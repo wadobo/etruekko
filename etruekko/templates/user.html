@@ -1,0 +1,39 @@
+{% load i18n %}
+
+{% if USER.is_authenticated %}
+    {{ USER.username }}
+    <a href="{% url logout %}">{% trans "Logout" %}</a>
+{% else %}
+    <form action="{% url login %}" method="POST">
+    {% csrf_token %}
+        <div class="holding">
+            <input id="id_username" type="text" name="username"/>
+            <span class="username holder">{% trans "Username" %}</span>
+        </div>
+        <div class="holding">
+            <input id="id_password" type="password" name="password"/>
+            <span class="password holder">{% trans "Password" %}</span>
+        </div>
+
+        <input type="submit" value="{% trans "Sign in" %}"/>
+    </form>
+    <a class="small" href="">{% trans "Forgot it" %}</a>
+{% endif %}
+
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function(){
+        $("#id_username").keyup(function() {
+            if ($(this).attr("value") == "")
+                $(".username.holder").show();
+            else
+                $(".username.holder").hide();
+        });
+
+        $("#id_password").keyup(function() {
+            if ($(this).attr("value") == "")
+                $(".password.holder").show();
+            else
+                $(".password.holder").hide();
+        });
+    });
+</script>

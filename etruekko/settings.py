@@ -10,6 +10,8 @@ ADMINS = (
     ('Daniel Garcia', 'danigm@ewadobo.com'),
 )
 
+SITE_NAME = "etruekko"
+
 MANAGERS = ADMINS
 
 DATABASES = {
@@ -123,6 +125,13 @@ INSTALLED_APPS = (
     'truekko',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'utils.context_processor',
+)
+
+
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error.
@@ -145,3 +154,6 @@ LOGGING = {
         },
     }
 }
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'

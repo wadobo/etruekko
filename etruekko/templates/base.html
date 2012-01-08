@@ -1,0 +1,94 @@
+{% load i18n %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css"  media="screen" />
+    <link rel="shortcut icon" href="{{ MEDIA_URL }}favicon.ico" type="image/x-icon" />
+
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
+
+    <meta name="keywords" content="trueque, intercambio, banco del tiempo"/>
+    <meta name="description" content="etruekko, tu red de intercambio"/>
+    <title>{{ SITE_NAME }} / {% block title %} {% trans 'Index' %} {% endblock %}</title>
+
+    {% block extrahead %}
+    {% endblock %}
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="head">
+            <div id="logo">
+                <img src="{{ MEDIA_URL }}imgs/logo.png" alt="etruekko"/>
+                <br/>
+                {% trans "your swap network" %}
+            </div>
+            <!-- endof logo -->
+
+            <div id="userprofile">
+                {% include "user.html" %}
+            </div>
+
+            <div class="clear"></div>
+
+            {% block head %}
+            {% endblock %}
+        </div>
+        <!-- endof head -->
+
+        <div id="content">
+            <div class="bg bg_{{ klass }}">
+                {% block content %}
+                    <div id="subcontent">
+                        {% block subcontent %}
+                        {% endblock %}
+                    </div>
+                    <!-- endof subcontent -->
+                {% endblock %}
+            </div>
+        </div>
+        <!-- endof content -->
+    </div>
+    <!-- endof wrapper -->
+
+    <div id="foot">
+        <div id="footwrapper">
+            <div id="help" class="fcontent">
+                <h2>{% trans "Help" %}</h2>
+                <ul>
+                    <li><a href="">{% trans "What is etruekko" %}</a></li>
+                    <li><a href="">{% trans "How works etruekko" %}</a></li>
+                    <li><a href="">{% trans "FAQ" %}</a></li>
+                </ul>
+            </div>
+
+            <div id="social" class="fcontent">
+                <h2>{% trans "Social" %}</h2>
+                <ul>
+                    <li><a href="">{% trans "blog" %}</a></li>
+                    <li><a href="">{% trans "twitter" %}</a></li>
+                    <li><a href="">{% trans "facebook" %}</a></li>
+                    <li><a href="">{% trans "youtbue" %}</a></li>
+                </ul>
+            </div>
+
+            <div id="privacy" class="fcontent flast">
+                <h2>{% trans "Privacy" %}</h2>
+                <ul>
+                    <li><a href="">{% trans "Privacy" %}</a></li>
+                    <li><a href="">{% trans "Terms" %}</a></li>
+                    <li><a href="">{% trans "About" %}</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        {% block foot %}
+        {% endblock %}
+    </div>
+</body>
+
+</html>
+

@@ -1,0 +1,155 @@
+* {
+    margin: 0px;
+}
+
+#logo {
+    text-align: right;
+    float: left;
+    width: 220px;
+    margin: 10px;
+}
+
+#userprofile {
+    float: right;
+    margin: 10px;
+}
+
+.small {
+    font-size: small;
+    text-decoration: none;
+    color: #777;
+}
+
+.small:hover {
+    text-decoration: underline;
+}
+
+.clear {
+    clear: both;
+}
+
+/* background color classes */
+
+.bg {
+    -webkit-box-shadow: 0 3px 2px #777;
+    -moz-box-shadow: 0 3px 2px #777;
+    box-shadow: 0 3px 2px #777;
+
+    padding: 10px;
+}
+
+.bg_   { background-color: #23B0DF }
+.bg_home   { background-color: #23B0DF }
+.bg_people { background-color: #A85F96 }
+.bg_serv   { background-color: #BC4484 }
+.bg_item   { background-color: #E36D9D }
+.bg_add    { background-color: #DC4D54 }
+.bg_transf { background-color: #E6E06F }
+.bg_msg    { background-color: #94B665 }
+
+#wrapper {
+    width: 1000px;
+    margin: 0 auto 0 auto;
+}
+
+.holding {
+    display: inline;
+    position: relative;
+}
+
+.holder {
+    position: absolute;
+    font-size: small;
+    color: #aaa;
+    top: 0;
+    left: 0;
+    margin: 5px;
+}
+
+/* SUBCONTENT */
+
+#subcontent {
+    margin: 20px;
+    min-height: 100px;
+
+    background-image: linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
+    background-image: -o-linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
+    background-image: -moz-linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
+    background-image: -webkit-linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
+    background-image: -ms-linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
+
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(228,233,240)),
+        color-stop(0.52, rgb(255,255,255))
+    );
+}
+
+/* ENDOF SUBCONTENT */
+
+
+/* FOOTER */
+
+#foot {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-height: 100px;
+
+    background-image: linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
+    background-image: -o-linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
+    background-image: -moz-linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
+    background-image: -webkit-linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
+    background-image: -ms-linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
+
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(228,233,240)),
+        color-stop(0.52, rgb(255,255,255))
+    );
+}
+
+.fcontent {
+    width: 140px;
+    float: left;
+    padding: 20px;
+    border-right: 1px solid #ccc;
+}
+
+.flast {
+    border: none;
+}
+
+.fcontent h2 {
+    color: #777;
+    font-size: large;
+}
+
+.fcontent ul {
+    list-style: none;
+    font-size: small;
+    margin: 0px;
+    padding: 0px;
+}
+
+.fcontent a {
+    color: #999;
+    text-decoration: none;
+}
+
+.fcontent a:hover {
+    color: #777;
+    text-decoration: underline;
+}
+
+#footwrapper {
+    margin: 0 auto 0 auto;
+    width: 550px;
+}
+
+/* ENDOF FOOTER */
