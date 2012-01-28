@@ -2,3 +2,4 @@ Django
 ipdb
 ipython
 south
+PIL

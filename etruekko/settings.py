@@ -123,6 +123,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'truekko',
+    'globaltags',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -157,3 +158,4 @@ LOGGING = {
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
+AUTH_PROFILE_MODULE = 'truekko.UserProfile'

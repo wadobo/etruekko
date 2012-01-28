@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'Edit profile' %} {% endblock %}
+
+{% block content %}
+    <h2>
+        <img src="{% avatar user 32 %}" alt="{{ user.username }}"/>
+        {% blocktrans with user.username as username %}
+        {{ username }}'s settings
+        {% endblocktrans %}
+    </h2>
+    <div class="form">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input class="submit" type="submit" value="{% trans 'Save' %}"/>
+    </form>
+    </div>
+{% endblock %}
