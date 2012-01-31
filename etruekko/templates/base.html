@@ -39,6 +39,10 @@
         <!-- endof head -->
 
         <div id="content">
+            {% block menu %}
+            {% include "menu.html" %}
+            {% endblock %}
+
             <div class="bg bg_{{ klass }}">
                 {% block content %}
                     <div id="subcontent">

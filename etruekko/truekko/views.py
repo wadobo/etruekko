@@ -6,6 +6,7 @@ from django.shortcuts import render_to_response
 
 from truekko.forms import UserProfileForm
 from truekko.models import UserProfile
+from truekko.utils import generate_menu
 
 
 class EditProfile(TemplateView):
@@ -14,6 +15,8 @@ class EditProfile(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(EditProfile, self).get_context_data(**kwargs)
         context['form'] = UserProfileForm(instance=self.request.user.get_profile())
+        context['klass'] = 'people'
+        context['menu'] = generate_menu()
         return context
 
 
@@ -31,8 +34,10 @@ class EditProfile(TemplateView):
 
         form = UserProfileForm(request.POST, files_req, instance=request.user.get_profile())
         if not form.is_valid():
-            return render_to_response(EditProfile.template_name,
-                                      {'user': request.user, 'form': form})
+            menu = generate_menu()
+            context = {'user': request.user, 'form': form, 'menu': menu}
+            context['klass'] = 'people'
+            return render_to_response(EditProfile.template_name, context)
 
         form.save()
 
@@ -40,4 +45,15 @@ class EditProfile(TemplateView):
         return nxt
 
 
+class Index(TemplateView):
+    template_name = 'truekko/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(Index, self).get_context_data(**kwargs)
+        context['klass'] = 'home'
+        context['menu'] = generate_menu("home")
+        return context
+
+
 edit_profile = login_required(EditProfile.as_view())
+index = Index.as_view()

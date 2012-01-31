@@ -1,0 +1,20 @@
+{% load i18n %}
+
+{% if menu %}
+
+{% for name, text, addr, selected in menu %}
+    <div class="menu {% if selected %}selected{% endif %}">
+        <a href="{{ addr }}" class="{% if selected %}selected{% endif %}">
+        <div class="menu_icon bg_{{ name }}">
+            <img src="/media/imgs/menu/{{ name }}.png" />
+        </div>
+        </a>
+        <a href="{{ addr }}" class="{% if selected %}selected{% endif %}">
+            <div class="menu_text {% if selected %}bg_{{ name }} selected{% endif %}">{{ text }}</div>
+        </a>
+    </div>
+{% endfor %}
+
+<div class="clear"></div>
+
+{% endif %}

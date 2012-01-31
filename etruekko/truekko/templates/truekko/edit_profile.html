@@ -4,12 +4,13 @@
 
 {% block content %}
     <h2>
-        <img src="{% avatar user 32 %}" alt="{{ user.username }}"/>
+        <div class="left"><img src="{% avatar user 32 %}" alt="{{ user.username }}"/></div>
         {% blocktrans with user.username as username %}
         {{ username }}'s settings
         {% endblocktrans %}
+        <div class="clear"></div>
     </h2>
-    <div class="form">
+    <div id="subcontent" class="form">
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <table>
