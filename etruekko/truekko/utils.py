@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 def generate_menu(selected=''):
     menu = (
         ("home", _("Home"), reverse("index"), selected == "home"),
-        ("people", _("People"), "", selected == "people"),
+        ("people", _("People"), reverse("people"), selected == "people"),
         ("serv", _("Services"), "", selected == "serv"),
         ("item", _("Item"), "", selected == "item"),
         ("add", _("Add"), "", selected == "add"),

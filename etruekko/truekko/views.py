@@ -6,6 +6,7 @@ from django.shortcuts import render_to_response
 
 from truekko.forms import UserProfileForm
 from truekko.models import UserProfile
+from truekko.models import User
 from truekko.utils import generate_menu
 
 
@@ -55,5 +56,19 @@ class Index(TemplateView):
         return context
 
 
+class People(TemplateView):
+    template_name = 'truekko/people.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(People, self).get_context_data(**kwargs)
+        context['klass'] = 'people'
+        context['menu'] = generate_menu("people")
+        # TODO show only latest interesting users (friends, group,
+        # others)
+        context['users'] = User.objects.all()
+        return context
+
+
 edit_profile = login_required(EditProfile.as_view())
 index = Index.as_view()
+people = People.as_view()

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'People' %} {% endblock %}
+
+{% block extrahead %}
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function(){
+            $("#id_search").keyup(function() {
+                if ($(this).attr("value") == "")
+                    $(".search.holder").show();
+                else
+                    $(".search.holder").hide();
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="left"><img src="/media/imgs/menu/people.png" alt="people"/></div>
+    <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <div class="search_div holding">
+            <input type="text" name="search" id="id_search"/>
+            <span class="search holder">{% trans "Search..." %}</span>
+            <input class="search_button" type="submit" value="{% trans 'Search' %}"/>
+        </div>
+    </form>
+
+    <div class="clear"></div>
+
+    <div id="subcontent">
+        {% for user in users %}
+            <div class="user">
+                <a href=""><img src="{% avatar user 64 %}" alt="{{ user.username }}"/></a>
+                <a href=""><span class="username">{{ user.username }}</span></a>
+                <span class="fullname">{{ user.get_profile.name }}</span>
+                <span class="location">{{ user.get_profile.location }}</span>
+                <p class="description">{{ user.get_profile.description|truncatewords:20 }}</p>
+                <span class="date">
+                    {% blocktrans with user.date_joined|timesince as d %}
+                        user since {{ d }}
+                    {% endblocktrans %}
+                </span>
+                </a>
+                <div class="clear"></div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

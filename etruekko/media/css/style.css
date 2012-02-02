@@ -2,6 +2,16 @@
     margin: 0px;
 }
 
+a {
+    font-weight: bold;
+    text-decoration: none;
+    color: #23B0DF;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 #logo {
     text-align: right;
     float: left;
@@ -195,6 +205,7 @@
     text-decoration: none;
     color: black;
     font-family: sans-serif;
+    font-weight: normal;
 }
 
 .selected a {
@@ -213,3 +224,67 @@
 }
 
 /* ENDOF HEADINGS */
+
+/* SEARCH */
+
+.search_button {
+    width: 50px;
+    height: 35px;
+    background: transparent url("../imgs/search.png") no-repeat;
+    border: 0px;
+    color: transparent;
+}
+
+.search_button:hover {
+    cursor: pointer;
+}
+
+.search_div {
+    margin: 20px;
+}
+
+#id_search {
+    border: 1px solid black;
+    padding: 4px;
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+/* ENDOF SEARCH */
+
+/* PEOPLE */
+
+.user {
+    border-bottom: 1px solid #cccccc;
+    padding: 10px;
+}
+
+.user img {
+    float: left;
+    margin-right: 10px;
+}
+
+.user .username {
+    font-weight: bold;
+}
+
+.user .fullname {
+    font-weight: bold;
+    color: #aaa;
+}
+
+.user .location {
+    display: block;
+    float: right;
+    font-size: x-small;
+}
+
+.user .date {
+    font-size: x-small;
+    color: #aaa;
+}
+
+/* ENDOF PEOPLE */
+
