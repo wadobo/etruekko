@@ -78,7 +78,7 @@ a:hover {
     color: #aaa;
     top: 0;
     left: 0;
-    margin: 5px;
+    margin-left: 5px;
 }
 
 /* SUBCONTENT */
@@ -370,6 +370,18 @@ a:hover {
 
 #profile span {
     display: block;
+}
+
+#profile_tools {
+    display: inline;
+}
+
+#userprofile {
+    font-size: small;
+}
+
+#userprofile img {
+    vertical-align: middle;
 }
 
 /* ENDOF PROFILE */

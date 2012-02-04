@@ -1,11 +1,13 @@
 {% load i18n %}
 
 {% if USER.is_authenticated %}
-    <img src="{% avatar user 24 %}" alt="{{ user.username }}"/>
-    {{ USER.username }}
-    <div id="profile_tools">
-        <a href="{% url edit_profile %}">{% trans "settings" %}</a>
-        <a href="{% url logout %}">{% trans "logout" %}</a>
+    <div id="userprofile">
+        <img src="{% avatar user 24 %}" alt="{{ user.username }}"/>
+        {{ USER.username }}
+        <div id="profile_tools">
+            <a href="{% url edit_profile %}">{% trans "settings" %}</a> |
+            <a href="{% url logout %}">{% trans "logout" %}</a>
+        </div>
     </div>
 {% else %}
     <form action="{% url login %}" method="POST">
