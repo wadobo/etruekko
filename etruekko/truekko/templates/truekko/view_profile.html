@@ -17,7 +17,7 @@
                 <img src="{% avatar viewing 128 %}" alt="{{ viewing.username }}"/>
                 <div id="thumbtack"></div>
             </div>
-            <span class="location">{{ viewing.get_profile.location }}</span>
+            <span class="location"><a href="{% url people %}?search={{ viewing.get_profile.location }}">{{ viewing.get_profile.location }}</a></span>
             <span class="username">{{ viewing.username }}</span>
             <span class="fullname">{{ viewing.get_profile.name }}</span>
             <a href="{{ viewing.get_profile.web }}" class="web">{{ viewing.get_profile.web }}</a>

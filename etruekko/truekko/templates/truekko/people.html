@@ -33,7 +33,7 @@
                 <a href="{% url view_profile user.username %}"><img src="{% avatar user 64 %}" alt="{{ user.username }}"/></a>
                 <a href="{% url view_profile user.username %}"><span class="username">{{ user.username }}</span></a>
                 <span class="fullname">{{ user.get_profile.name }}</span>
-                <span class="location">{{ user.get_profile.location }}</span>
+                <span class="location"><a href="{% url people %}?search={{ user.get_profile.location }}">{{ user.get_profile.location }}</a></span>
                 <p class="description">{{ user.get_profile.description|truncatewords:20 }}</p>
                 <span class="date">
                     {% blocktrans with user.date_joined|timesince as d %}
