@@ -3,3 +3,4 @@ ipdb
 ipython
 south
 PIL
+django-debug-toolbar

@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.conf import settings
 
 
@@ -23,3 +24,19 @@ def context_processor(request):
         'COLORS': COLORS,
         'USER': request.user,
     }
+
+
+def paginate(request, queryset, n=10):
+    paginator = Paginator(queryset, n)
+
+    try:
+        page = int(request.GET.get('page', '1'))
+    except ValueError:
+        page = 1
+
+    try:
+        p = paginator.page(page)
+    except (EmptyPage, InvalidPage):
+        p = paginator.page(paginator.num_pages)
+
+    return p

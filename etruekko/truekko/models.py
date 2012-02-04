@@ -18,7 +18,7 @@ class UserProfile(models.Model):
                             max_length=100)
     location = models.CharField(_("Location"), blank=True, null=True,
                                 max_length=100)
-    web = models.URLField(_("Web"), blank=True, null=True)
+    web = models.URLField(_("Web"), blank=True, null=True, default="")
     photo = models.ImageField(_("Avatar"), blank=True, null=True,
                               upload_to=os.path.join(settings.MEDIA_ROOT, "photos"))
     description = models.TextField(_("Personal description"), max_length=300,

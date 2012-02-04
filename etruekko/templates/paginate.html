@@ -1,0 +1,21 @@
+{% load i18n %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if pagination.has_previous %}
+            <a href="?page={{ pagination.previous_page_number }}">
+            <img src="/media/imgs/go-prev.png" alt="{% trans "previous" %}"/></a>
+        {% endif %}
+
+        <span class="current">
+            {% blocktrans with n=pagination.number m=pagination.paginator.num_pages %}
+                Page {{ n }} of {{ m }}.
+            {% endblocktrans %}
+        </span>
+
+        {% if pagination.has_next %}
+            <a href="?page={{ pagination.next_page_number }}">
+            <img src="/media/imgs/go-next.png" alt="{% trans "next" %}"/></a>
+        {% endif %}
+    </span>
+</div>

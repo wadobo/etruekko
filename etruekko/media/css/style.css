@@ -288,3 +288,22 @@ a:hover {
 
 /* ENDOF PEOPLE */
 
+/* PAGINATION */
+
+.pagination {
+    text-align: center;
+    color: white;
+    margin: 20px;
+    margin-top: 40px;
+    font-size: small;
+}
+
+.pagination .current {
+    vertical-align: middle;
+}
+
+.pagination img {
+    vertical-align: middle;
+}
+
+/* ENDOF PAGINATION */

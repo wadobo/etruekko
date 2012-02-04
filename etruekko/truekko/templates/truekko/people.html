@@ -17,8 +17,7 @@
 
 {% block content %}
     <div class="left"><img src="/media/imgs/menu/people.png" alt="people"/></div>
-    <form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
+    <form action="" method="get">
         <div class="search_div holding">
             <input type="text" name="search" id="id_search"/>
             <span class="search holder">{% trans "Search..." %}</span>
@@ -29,7 +28,7 @@
     <div class="clear"></div>
 
     <div id="subcontent">
-        {% for user in users %}
+        {% for user in users.object_list %}
             <div class="user">
                 <a href=""><img src="{% avatar user 64 %}" alt="{{ user.username }}"/></a>
                 <a href=""><span class="username">{{ user.username }}</span></a>
@@ -46,4 +45,9 @@
             </div>
         {% endfor %}
     </div>
+
+
+    {% with pagination=users %}
+        {% include "paginate.html" %}
+    {% endwith %}
 {% endblock %}
