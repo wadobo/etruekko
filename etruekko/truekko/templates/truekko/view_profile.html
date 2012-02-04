@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}
+    {% blocktrans with viewing.username as username %} {{ username }}'s profile {% endblocktrans %}
+{% endblock %}
+
+{% block content %}
+    <h2>
+        <div class="left"><img src="{% avatar viewing 32 %}" alt="{{ viewing.username }}"/></div>
+        {% blocktrans with viewing.username as username %} {{ username }}'s profile {% endblocktrans %}
+        <div class="clear"></div>
+    </h2>
+
+    <div id="subcontent">
+        <div id="profile">
+            <div id="profileimg">
+                <img src="{% avatar viewing 128 %}" alt="{{ viewing.username }}"/>
+                <div id="thumbtack"></div>
+            </div>
+            <span class="location">{{ viewing.get_profile.location }}</span>
+            <span class="username">{{ viewing.username }}</span>
+            <span class="fullname">{{ viewing.get_profile.name }}</span>
+            <a href="{{ viewing.get_profile.web }}" class="web">{{ viewing.get_profile.web }}</a>
+            <p class="description">{{ viewing.get_profile.description }}</p>
+            <span class="date">
+                {% blocktrans with viewing.date_joined|timesince as d %}
+                    user since {{ d }}
+                {% endblocktrans %}
+            </span>
+        </div>
+        <div class="clear"></div>
+    </div>
+{% endblock %}

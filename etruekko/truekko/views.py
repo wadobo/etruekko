@@ -12,6 +12,38 @@ from truekko.utils import generate_menu
 from etruekko.utils import paginate
 
 
+class Index(TemplateView):
+    template_name = 'truekko/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(Index, self).get_context_data(**kwargs)
+        context['klass'] = 'home'
+        context['menu'] = generate_menu("home")
+        return context
+
+
+############
+#          #
+#  PEOPLE  #
+#          #
+############
+
+class ViewProfile(TemplateView):
+    template_name = 'truekko/view_profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ViewProfile, self).get_context_data(**kwargs)
+        context['klass'] = 'people'
+        context['menu'] = generate_menu()
+        context['viewing'] = get_object_or_404(User, username=self.username)
+        return context
+
+    def get(self, request, username):
+        self.request = request
+        self.username = username
+        return super(ViewProfile, self).get(request)
+
+
 class EditProfile(TemplateView):
     template_name = 'truekko/edit_profile.html'
 
@@ -22,11 +54,9 @@ class EditProfile(TemplateView):
         context['menu'] = generate_menu()
         return context
 
-
     def get(self, request):
         self.request = request
         return super(EditProfile, self).get(request)
-
 
     def post(self, request):
         data = request.POST
@@ -44,18 +74,9 @@ class EditProfile(TemplateView):
 
         form.save()
 
-        nxt = redirect('/')
+        nxt = redirect('view_profile', request.user.username)
         return nxt
 
-
-class Index(TemplateView):
-    template_name = 'truekko/index.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(Index, self).get_context_data(**kwargs)
-        context['klass'] = 'home'
-        context['menu'] = generate_menu("home")
-        return context
 
 
 class People(TemplateView):
@@ -83,5 +104,7 @@ class People(TemplateView):
 
 
 edit_profile = login_required(EditProfile.as_view())
-index = Index.as_view()
+view_profile = login_required(ViewProfile.as_view())
 people = People.as_view()
+
+index = Index.as_view()

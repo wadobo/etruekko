@@ -30,8 +30,8 @@
     <div id="subcontent">
         {% for user in users.object_list %}
             <div class="user">
-                <a href=""><img src="{% avatar user 64 %}" alt="{{ user.username }}"/></a>
-                <a href=""><span class="username">{{ user.username }}</span></a>
+                <a href="{% url view_profile user.username %}"><img src="{% avatar user 64 %}" alt="{{ user.username }}"/></a>
+                <a href="{% url view_profile user.username %}"><span class="username">{{ user.username }}</span></a>
                 <span class="fullname">{{ user.get_profile.name }}</span>
                 <span class="location">{{ user.get_profile.location }}</span>
                 <p class="description">{{ user.get_profile.description|truncatewords:20 }}</p>

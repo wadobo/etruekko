@@ -307,3 +307,69 @@ a:hover {
 }
 
 /* ENDOF PAGINATION */
+
+/* PROFILE */
+
+#profile .username {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+#profile .fullname {
+    font-weight: bold;
+    color: #888;
+}
+
+#profile .location {
+    display: block;
+    float: right;
+}
+
+#profile .description {
+    color: #282828;
+    font-size: 1em;
+    line-height: 1.25em;
+    margin: 1.25em 0;
+    text-align: left;
+}
+
+#profile .date {
+    font-size: small;
+    color: #888888;
+}
+
+#profileimg {
+    position: relative;
+    float: left;
+
+    background-color: #FBFFFB;
+    -moz-box-shadow: 3px 3px 4px #CCCCCC;
+    -webkit-box-shadow: 3px 3px 4px #CCCCCC;
+    box-shadow: 3px 3px 4px #CCCCCC;
+    padding: 10px 10px 30px 10px;
+    margin-right: 20px;
+
+    -moz-transform: rotate(-4deg);
+    -webkit-transform: rotate(-4deg);
+    -o-transform: rotate(-4deg);
+    -ms-transform: rotate(-4deg);
+    transform: rotate(-4deg);
+
+    margin-bottom: 20px;
+}
+
+#thumbtack {
+    width: 50px;
+    height: 38px;
+    float: left;
+    background: url("../imgs/thumb-tack.png") no-repeat;
+    position: absolute;
+    top: -14px;
+    left: 48px;
+}
+
+#profile span {
+    display: block;
+}
+
+/* ENDOF PROFILE */
