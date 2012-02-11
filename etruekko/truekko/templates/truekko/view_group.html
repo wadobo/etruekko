@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}
+    {% blocktrans with viewing.name as name %} Group / {{ name }} {% endblocktrans %}
+{% endblock %}
+
+{% block content %}
+    <h2>
+        <div class="left"><img src="{% groupavatar viewing 32 %}" alt="{{ viewing.name }}"/></div>
+        {% blocktrans with viewing.name as name %} Group / {{ name }} {% endblocktrans %}
+        <div class="clear"></div>
+    </h2>
+
+    <div id="subcontent">
+        {% if editable %}
+            <a class="button" href="{% url edit_group viewing.name %}">{% trans "Edit" %}</a>
+        {% endif %}
+        <div id="profile">
+            <div id="profileimg">
+                <img src="{% groupavatar viewing 128 %}" alt="{{ viewing.name }}"/>
+                <div id="thumbtack"></div>
+            </div>
+            <span class="location"><a href="{% url groups %}?search={{ viewing.location }}">{{ viewing.location }}</a></span>
+            <span class="username">{{ viewing.name }}</span>
+            <a href="{{ viewing.web }}" class="web">{{ viewing.web }}</a>
+            <p class="description">{{ viewing.description }}</p>
+        </div>
+        <div class="clear"></div>
+    </div>
+{% endblock %}

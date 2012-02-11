@@ -8,6 +8,20 @@ a {
     color: #23B0DF;
 }
 
+#messages {
+    padding: 10px;
+    background: #000000;
+    opacity: 0.75;
+    color: white;
+    list-style: none;
+    width: 100%;
+}
+
+#messages li {
+    width: 1000px;
+    margin: 0 auto 0 auto;
+}
+
 a:hover {
     text-decoration: underline;
 }
@@ -61,6 +75,7 @@ a:hover {
 .bg_add    { background-color: #DC4D54 }
 .bg_transf { background-color: #E6E06F }
 .bg_msg    { background-color: #94B665 }
+.bg_group  { background-color: #23B0DF }
 
 #wrapper {
     width: 1000px;
@@ -385,3 +400,31 @@ a:hover {
 }
 
 /* ENDOF PROFILE */
+
+/* GROUP */
+
+.user {
+    border-bottom: 1px solid #cccccc;
+    padding: 10px;
+}
+
+.group img {
+    float: left;
+    margin-right: 10px;
+}
+
+.group .name {
+    font-weight: bold;
+}
+
+.group .location {
+    display: block;
+    float: right;
+    font-size: x-small;
+}
+
+.group .web {
+    font-size: x-small;
+}
+
+/* ENDOF GROUP */

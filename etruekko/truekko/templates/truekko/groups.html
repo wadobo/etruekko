@@ -16,7 +16,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="left"><img src="/media/imgs/menu/people.png" alt="people"/></div>
+    <div class="left"><img src="/media/imgs/menu/group.png" alt="group"/></div>
     <form action="" method="get">
         <div class="search_div holding">
             <input type="text" name="search" id="id_search"/>
@@ -28,25 +28,22 @@
     <div class="clear"></div>
 
     <div id="subcontent">
-        {% for user in users.object_list %}
-            <div class="user">
-                <a href="{% url view_profile user.username %}"><img src="{% avatar user 64 %}" alt="{{ user.username }}"/></a>
-                <a href="{% url view_profile user.username %}"><span class="username">{{ user.username }}</span></a>
-                <span class="fullname">{{ user.get_profile.name }}</span>
-                <span class="location"><a href="{% url people %}?search={{ user.get_profile.location }}">{{ user.get_profile.location }}</a></span>
-                <p class="description">{{ user.get_profile.description|truncatewords:20 }}</p>
-                <span class="date">
-                    {% blocktrans with user.date_joined|timesince as d %}
-                        user since {{ d }}
-                    {% endblocktrans %}
-                </span>
+        {% for group in groups.object_list %}
+            <div class="group">
+                <a href="{% url view_group group.name %}"><img src="{% groupavatar group 64 %}" alt="{{ group.name }}"/></a>
+                <a href="{% url view_group group.name %}"><span class="name">{{ group.name }}</span></a>
+                <span class="location"><a href="{% url groups %}?search={{ group.location }}">{{ group.location }}</a></span>
+                <p class="description">{{ group.description|truncatewords:20 }}</p>
+                {% if group.web %}
+                    <a href="{{ group.web }}"><span class="web">{{ group.web }}</span></a>
+                {% endif %}
                 <div class="clear"></div>
             </div>
         {% endfor %}
     </div>
 
 
-    {% with pagination=users %}
+    {% with pagination=groups %}
         {% include "paginate.html" %}
     {% endwith %}
 {% endblock %}

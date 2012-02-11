@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}
+    {% blocktrans with viewing.name as name %} Edit group "{{ name }}" {% endblocktrans %}
+{% endblock %}
+
+{% block content %}
+    <h2>
+        <div class="left"><img src="{% groupavatar group 32 %}" alt="{{ group.username }}"/></div>
+        {% blocktrans with group.name as name %}
+        {{ name }}'s settings
+        {% endblocktrans %}
+        <div class="clear"></div>
+    </h2>
+    <div id="subcontent" class="form">
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input class="submit" type="submit" value="{% trans 'Save' %}"/>
+    </form>
+    </div>
+{% endblock %}

@@ -10,6 +10,7 @@ def generate_menu(selected=''):
         ("add", _("Add"), "", selected == "add"),
         ("transf", _("Transf"), "", selected == "tranfs"),
         ("msg", _("Messages"), "", selected == "msgs"),
+        ("group", _("Groups"), reverse("groups"), selected == "group"),
     )
 
     return menu
