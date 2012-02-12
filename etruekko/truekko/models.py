@@ -76,3 +76,6 @@ class Membership(models.Model):
     user = models.ForeignKey(User)
     group = models.ForeignKey(Group)
     role = models.CharField(choices=ROLES, max_length=3)
+
+    def __unicode__(self):
+        return "%s - %s - %s" % (self.user.username, self.group.name, self.role)

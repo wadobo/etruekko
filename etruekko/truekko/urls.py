@@ -8,5 +8,8 @@ urlpatterns = patterns('truekko.views',
     url(r'^groups$', 'groups', name='groups'),
     url(r'^group/(\w+)$', 'view_group', name='view_group'),
     url(r'^group/edit/(\w+)$', 'edit_group', name='edit_group'),
+    url(r'^group/edit/members/(\w+)$', 'edit_group_members', name='edit_group_members'),
+    url(r'^group/join/(\w+)$', 'join_group', name='join_group'),
+    url(r'^group/leave/(\w+)$', 'leave_group', name='leave_group'),
     url(r'^$', 'index', name='index'),
 )

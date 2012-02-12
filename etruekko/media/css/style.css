@@ -232,10 +232,19 @@ a:hover {
 
 /* HEADINGS */
 
-#content h1, h2, h3, h4 {
+#content h1, #content h2, #content h3, #content h4 {
     color: white;
     font-family: sans-serif;
     font-weight: normal;
+    margin-top: 20px;
+}
+
+#subcontent h1, #subcontent h2, #subcontent h3, #subcontent h4 {
+    color: #888;
+    text-decoration: underline;
+    font-family: sans-serif;
+    font-weight: normal;
+    margin-top: 20px;
 }
 
 /* ENDOF HEADINGS */

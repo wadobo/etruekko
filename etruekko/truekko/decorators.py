@@ -42,3 +42,12 @@ def is_group_editable(username, groupname):
         return False
 
     return m.role == "ADM"
+
+
+def is_member(user, group):
+    try:
+        n = user.membership_set.filter(group=group).count()
+    except:
+        return False
+
+    return bool(n)
