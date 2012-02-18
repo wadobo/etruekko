@@ -13,6 +13,10 @@
         <div class="clear"></div>
     </h2>
     <div id="subcontent" class="form">
+        <div class="buttons">
+            <a class="button" href="{% url register_group_admin group.name %}">{% trans "Add new member" %}</a>
+        </div>
+
     <form action="" method="post">
         {% csrf_token %}
 

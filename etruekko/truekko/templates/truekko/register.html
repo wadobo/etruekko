@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}
+    {% blocktrans %} Register {% endblocktrans %}
+{% endblock %}
+
+{% block content %}
+    <h2>
+        <div class="left"><img src="{% groupavatar group 32 %}" alt="{{ group.username }}"/></div>
+        {% blocktrans with group.name as name %}
+        {{ name }}'s registering
+        {% endblocktrans %}
+        <div class="clear"></div>
+    </h2>
+    <div id="subcontent" class="form">
+    <p>
+    {% blocktrans %}
+        You need to be registered in etruekko.com to joining to this
+        group.
+
+        If you already have an user, please, sing in and then press
+        join.
+
+        If you don't have an user already, you can create one filling
+        the following form.
+    {% endblocktrans %}
+    </p>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input class="submit" type="submit" value="{% trans 'Register' %}"/>
+    </form>
+    </div>
+{% endblock %}

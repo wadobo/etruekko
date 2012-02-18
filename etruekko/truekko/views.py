@@ -1,3 +1,4 @@
+from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.shortcuts import redirect, get_object_or_404
 from django.views.generic.base import View, TemplateView
@@ -8,6 +9,7 @@ from django.db.models import Q
 
 from truekko.forms import UserProfileForm
 from truekko.forms import GroupForm
+from truekko.forms import RegisterForm
 from truekko.models import UserProfile
 from truekko.models import User
 from truekko.models import Group
@@ -72,7 +74,7 @@ class EditProfile(TemplateView):
         form = UserProfileForm(request.POST, files_req, instance=request.user.get_profile())
         if not form.is_valid():
             menu = generate_menu()
-            context = {'user': request.user, 'form': form, 'menu': menu}
+            context = RequestContext(request, {'user': request.user, 'form': form, 'menu': menu})
             context['klass'] = 'people'
             return render_to_response(EditProfile.template_name, context)
 
@@ -189,7 +191,7 @@ class EditGroup(TemplateView):
         form = GroupForm(request.POST, files_req, instance=g)
         if not form.is_valid():
             menu = generate_menu("group")
-            context = {'group': g, 'form': form, 'menu': menu}
+            context = RequestContext(request, {'group': g, 'form': form, 'menu': menu})
             context['klass'] = 'group'
             return render_to_response(EditGroup.template_name, context)
 
@@ -242,10 +244,129 @@ class EditGroupMembers(TemplateView):
                 elif data[k] == "remove":
                     m.delete()
 
+                if not m.user.is_active and data[k] in ["admin", "member"]:
+                    m.user.is_active = True
+                    m.user.save()
+
         request.user.message_set.create(message=_("Group memebership modified correctly"))
 
         nxt = redirect('view_group', groupname)
         return nxt
+
+
+class Register(TemplateView):
+
+    template_name = 'truekko/register.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(Register, self).get_context_data(**kwargs)
+        g = get_object_or_404(Group, name=self.groupname)
+        context['form'] = RegisterForm()
+        context['klass'] = 'group'
+        context['group'] = g
+        context['menu'] = generate_menu("group")
+        return context
+
+    def get(self, request, groupname):
+        self.request = request
+        self.groupname = groupname
+        return super(Register, self).get(request)
+
+    def post(self, request, groupname):
+        self.groupname = groupname
+        g = get_object_or_404(Group, name=self.groupname)
+        data = request.POST
+
+        f = RegisterForm(data)
+        if not f.is_valid():
+            context = RequestContext(request, {})
+            context['klass'] = 'group'
+            context['group'] = g
+            context['menu'] = generate_menu("group")
+            context['form'] = f
+            return render_to_response(Register.template_name, context)
+
+        f.save(g)
+        # TODO send email to user and group admin
+
+        nxt = redirect('register_confirm', groupname)
+        return nxt
+
+
+class RegisterAdmin(TemplateView):
+
+    template_name = 'truekko/register_admin.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(RegisterAdmin, self).get_context_data(**kwargs)
+        g = get_object_or_404(Group, name=self.groupname)
+        context['form'] = RegisterForm()
+        context['klass'] = 'group'
+        context['group'] = g
+        context['menu'] = generate_menu("group")
+        return context
+
+    def get_context(self, data):
+        context = RequestContext(self.request, data)
+        context['klass'] = 'group'
+        context['menu'] = generate_menu("group")
+        return context
+
+    def get(self, request, groupname):
+        self.request = request
+        self.groupname = groupname
+        return super(RegisterAdmin, self).get(request)
+
+    def post(self, request, groupname):
+        self.groupname = groupname
+        g = get_object_or_404(Group, name=self.groupname)
+        data = request.POST
+
+        if 'existing' in data:
+            username = data.get('existinguser', '')
+            try:
+                u = User.objects.get(username=username)
+            except:
+                msg = _("The user '%s' doesn't exist") % username
+                request.user.message_set.create(message=msg)
+                return render_to_response(RegisterAdmin.template_name,
+                                          self.get_context({'group': g, 'form': RegisterForm()}))
+                return redirect('edit_group_members', groupname)
+
+            m = Membership(user=u, group=g, role='REQ')
+            m.save()
+            # TODO send email to user
+            msg = _("A new membership request has been created, you need to confirm")
+            request.user.message_set.create(message=msg)
+            return redirect('edit_group_members', groupname)
+
+        f = RegisterForm(data)
+        if not f.is_valid():
+            return render_to_response(RegisterAdmin.template_name,
+                                      self.get_context({'group': g, 'form': f}))
+
+        f.save(g)
+        # TODO send email to user
+
+        nxt = redirect('edit_group_members', groupname)
+        return nxt
+
+
+class RegisterConfirm(TemplateView):
+    template_name = 'truekko/register_confirm.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(RegisterConfirm, self).get_context_data(**kwargs)
+        g = get_object_or_404(Group, name=self.groupname)
+        context['klass'] = 'group'
+        context['group'] = g
+        context['menu'] = generate_menu("group")
+        return context
+
+    def get(self, request, groupname):
+        self.request = request
+        self.groupname = groupname
+        return super(RegisterConfirm, self).get(request)
 
 
 class JoinGroup(View):
@@ -253,6 +374,9 @@ class JoinGroup(View):
     def post(self, request, groupname):
         g = get_object_or_404(Group, name=groupname)
         data = request.POST
+
+        if request.user.is_anonymous():
+            return redirect('register_group', groupname)
 
         if is_member(request.user, g):
             msg = _("You already are member of this group")
@@ -293,7 +417,10 @@ groups = Groups.as_view()
 view_group = ViewGroup.as_view()
 edit_group = login_required(is_group_admin(EditGroup.as_view()))
 edit_group_members = login_required(is_group_admin(EditGroupMembers.as_view()))
-join_group = JoinGroup.as_view()
 leave_group = login_required(LeaveGroup.as_view())
+join_group = JoinGroup.as_view()
+register_group_admin = login_required(is_group_admin(RegisterAdmin.as_view()))
+register_group = Register.as_view()
+register_confirm = RegisterConfirm.as_view()
 
 index = Index.as_view()

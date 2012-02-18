@@ -11,5 +11,8 @@ urlpatterns = patterns('truekko.views',
     url(r'^group/edit/members/(\w+)$', 'edit_group_members', name='edit_group_members'),
     url(r'^group/join/(\w+)$', 'join_group', name='join_group'),
     url(r'^group/leave/(\w+)$', 'leave_group', name='leave_group'),
+    url(r'^group/register/(\w+)$', 'register_group', name='register_group'),
+    url(r'^group/admin/register/(\w+)$', 'register_group_admin', name='register_group_admin'),
+    url(r'^group/register/confirm/(\w+)$', 'register_confirm', name='register_confirm'),
     url(r'^$', 'index', name='index'),
 )

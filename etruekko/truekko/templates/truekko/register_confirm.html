@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}
+    {% blocktrans %} Registered correctly {% endblocktrans %}
+{% endblock %}
+
+{% block content %}
+    <h2>
+        <div class="left"><img src="{% groupavatar group 32 %}" alt="{{ group.username }}"/></div>
+        {% blocktrans with group.name as name %}
+        Registered in {{ name }}
+        {% endblocktrans %}
+        <div class="clear"></div>
+    </h2>
+    <div id="subcontent" class="form">
+    <p>
+    {% blocktrans with groupname=group.name %}
+
+        Your user has been created and a request has been sent to
+        {{ groupname }} administrator. You will receive an email when the group
+        admin confirm your account. Thanks for registering.
+
+    {% endblocktrans %}
+    </p>
+
+    <a href="{% url view_group group.name %}">{% trans "Go Back" %}</a>
+    </div>
+{% endblock %}
