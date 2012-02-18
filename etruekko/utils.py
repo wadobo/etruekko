@@ -1,6 +1,10 @@
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.conf import settings
 
+from django.template.loader import get_template
+from django.template import Context
+from django.core.mail import send_mail
+
 
 COLORS = {
     'home': '#23B0DF',
@@ -40,3 +44,10 @@ def paginate(request, queryset, n=10):
         p = paginator.page(paginator.num_pages)
 
     return p
+
+
+def template_email(template_name, subject, to, context):
+    plaintext = get_template(template_name)
+    text_content = plaintext.render(Context(context))
+
+    send_mail('[etruekko] ' + subject, text_content, 'no-reply@etruekko.com', to, fail_silently=False)

@@ -1,0 +1,11 @@
+{% load i18n %}
+
+{% blocktrans with groupname=group.name username=username url=url %}
+
+A new user ({{ username }}) has been registered in and wants to be
+member of the group {{ groupname }}.
+
+To make this user active you should set as a member in:
+http://etruekko.com{{ url }}
+
+{% endblocktrans %}

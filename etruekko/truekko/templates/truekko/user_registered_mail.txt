@@ -1,0 +1,21 @@
+{% load i18n %}
+
+{% blocktrans with groupmail=group.email groupname=group.name username=username %}
+
+Welcome to etruekko,
+
+You have been registered in etruekko with the username '{{ username }}'
+
+Your membership request has been sent to the group '{{ groupname }}'
+administrator, you will receive another email when the administrator
+review your membership request and confirm (or reject) it.
+
+Each group could have different conditions to admit members so if you
+don't receive any mail in several days you should contact directly
+with the group writting to the following email:
+
+{{ groupmail }}
+
+Thank you for use etruekko.com
+
+{% endblocktrans %}

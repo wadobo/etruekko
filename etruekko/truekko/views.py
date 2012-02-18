@@ -1,5 +1,6 @@
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
+from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, get_object_or_404
 from django.views.generic.base import View, TemplateView
 from django.contrib.auth.decorators import login_required
@@ -15,7 +16,7 @@ from truekko.models import User
 from truekko.models import Group
 from truekko.models import Membership
 from truekko.utils import generate_menu
-from etruekko.utils import paginate
+from etruekko.utils import paginate, template_email
 
 
 class Index(TemplateView):
@@ -104,7 +105,7 @@ class People(TemplateView):
             query = User.objects.filter(k)
         else:
             # TODO show only latest interesting users (friends, group, others)
-            query = User.objects.all()
+            query = User.objects.filter(is_active=True)
         context['users'] = paginate(self.request, query, 10)
         return context
 
@@ -147,13 +148,13 @@ class ViewGroup(TemplateView):
         context['klass'] = 'group'
         context['menu'] = generate_menu('group')
         context['viewing'] = get_object_or_404(Group, name=self.groupname)
-        # TODO check user group relation
+
         context['editable'] = is_group_editable(self.request.user.username, self.groupname)
         context['member'] = is_member(self.request.user, context['viewing'])
 
         g = get_object_or_404(Group, name=self.groupname)
         context['requests'] = g.membership_set.filter(role="REQ").count()
-        context['memberships'] = g.membership_set.exclude(role="REQ").order_by("-id")
+        context['memberships'] = g.membership_set.exclude(role__in=["REQ", "BAN"]).order_by("-id")
         return context
 
     def get(self, request, groupname):
@@ -211,7 +212,8 @@ class EditGroupMembers(TemplateView):
         context['klass'] = 'group'
         context['group'] = g
         context['requests'] = g.membership_set.filter(role="REQ").order_by("-id")
-        context['memberships'] = g.membership_set.exclude(role="REQ").order_by("-id")
+        context['memberships'] = g.membership_set.exclude(role__in=["REQ", "BAN"]).order_by("-id")
+        context['banned'] = g.membership_set.filter(role="BAN").order_by("-id")
         context['menu'] = generate_menu("group")
         return context
 
@@ -225,17 +227,27 @@ class EditGroupMembers(TemplateView):
         g = get_object_or_404(Group, name=self.groupname)
         data = request.POST
 
+        def notify_user(user):
+            context = {'group': g, 'user': user, 'url': reverse('view_group', args=[groupname])}
+            template_email('truekko/user_member_mail.txt',
+                           _("Membership request confirmed %s") % groupname,
+                           [user.email], context)
+
         for k, v in data.items():
             if k.startswith("role_"):
                 role, uid = k.split("_")
                 m = Membership.objects.get(user__id=uid, group=g)
                 if data[k] == "admin":
+                    if m.role == "REQ":
+                        notify_user(m.user)
                     m.role = "ADM"
                     m.save()
                 elif data[k] == "req":
                     m.role = "REQ"
                     m.save()
                 elif data[k] == "member":
+                    if m.role == "REQ":
+                        notify_user(m.user)
                     m.role = "MEM"
                     m.save()
                 elif data[k] == "ban":
@@ -287,7 +299,15 @@ class Register(TemplateView):
             return render_to_response(Register.template_name, context)
 
         f.save(g)
-        # TODO send email to user and group admin
+
+        # sending mail to user and admins
+        context = dict(f.data.items())
+        context['group'] = g
+        template_email('truekko/user_registered_mail.txt', _("Welcome to etruekko"), [f.data['email']], context)
+        context['url'] = reverse('edit_group_members', args=(groupname,))
+        template_email('truekko/user_registered_admin_mail.txt',
+                       _("New user '%s' in group '%s'") % (f.data['username'], groupname),
+                       g.admins_emails(), context)
 
         nxt = redirect('register_confirm', groupname)
         return nxt
@@ -333,9 +353,16 @@ class RegisterAdmin(TemplateView):
                                           self.get_context({'group': g, 'form': RegisterForm()}))
                 return redirect('edit_group_members', groupname)
 
+            if (Membership.objects.filter(user=u, group=g).count()):
+                msg = _("The user '%s' is already member of the group") % username
+                request.user.message_set.create(message=msg)
+                return render_to_response(RegisterAdmin.template_name,
+                                          self.get_context({'group': g, 'form': RegisterForm()}))
+                return redirect('edit_group_members', groupname)
+
             m = Membership(user=u, group=g, role='REQ')
             m.save()
-            # TODO send email to user
+
             msg = _("A new membership request has been created, you need to confirm")
             request.user.message_set.create(message=msg)
             return redirect('edit_group_members', groupname)
@@ -346,7 +373,11 @@ class RegisterAdmin(TemplateView):
                                       self.get_context({'group': g, 'form': f}))
 
         f.save(g)
-        # TODO send email to user
+
+        # sending mail to user
+        context = dict(f.data.items())
+        context['group'] = g
+        template_email('truekko/user_registered_mail.txt', _("Welcome to etruekko"), [context['email']], context)
 
         nxt = redirect('edit_group_members', groupname)
         return nxt
@@ -383,7 +414,13 @@ class JoinGroup(View):
         else:
             m = Membership(user=request.user, group=g, role='REQ')
             m.save()
-            # TODO send email to group admin
+            # sending email to group admin
+            context = {'group': g, 'username': request.user.username, 'user': request.user,
+                       'url': reverse('edit_group_members', args=(groupname,))}
+            template_email('truekko/user_registered_admin_mail.txt',
+                           _("New user '%s' in group '%s'") % (request.user.username, groupname),
+                           g.admins_emails(), context)
+
             msg = _("Your membership request has been sent to group administrator")
 
         request.user.message_set.create(message=msg)

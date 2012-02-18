@@ -1,0 +1,13 @@
+{% load i18n %}
+
+{% blocktrans with groupname=group.name username=user.username url=url %}
+
+Good news {{ username }},
+
+Your membership request for the group '{{ groupname }}' has been
+confirmed. You are member of the gorup.
+
+You can view the group in:
+http://etruekko.com{{ url }}
+
+{% endblocktrans %}

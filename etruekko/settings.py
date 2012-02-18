@@ -10,6 +10,8 @@ ADMINS = (
     ('Daniel Garcia', 'danigm@ewadobo.com'),
 )
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 SITE_NAME = "etruekko"
 
 MANAGERS = ADMINS

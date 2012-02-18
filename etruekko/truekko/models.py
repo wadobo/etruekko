@@ -51,10 +51,14 @@ class Group(models.Model):
     description = models.TextField(_("Group description"), max_length=800,
                                    blank=True)
 
+    # TODO add here membership conditions
+
     def __unicode__(self):
         return self.name
 
-    # TODO add here membership conditions
+    def admins_emails(self):
+        emails = [i.user.email for i in self.membership_set.filter(role="ADM")]
+        return emails
 
 
 class Membership(models.Model):
