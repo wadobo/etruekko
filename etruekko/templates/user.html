@@ -2,8 +2,10 @@
 
 {% if USER.is_authenticated %}
     <div id="userprofile">
+        <a href="{% url view_profile USER.username %}">
         <img src="{% avatar user 24 %}" alt="{{ user.username }}"/>
         {{ USER.username }}
+        </a>
         <div id="profile_tools">
             <a href="{% url edit_profile %}">{% trans "settings" %}</a> |
             <a href="{% url logout %}">{% trans "logout" %}</a>
