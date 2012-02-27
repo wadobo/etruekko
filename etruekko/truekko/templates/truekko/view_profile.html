@@ -17,6 +17,9 @@
                 <img src="{% avatar viewing 128 %}" alt="{{ viewing.username }}"/>
                 <div id="thumbtack"></div>
             </div>
+            <div class="tools">
+                {% if viewing != USER %} <a href="{% url transfer_direct viewing.username %}">{% trans "Direct transfer" %}</a> {% endif %}
+            </div>
             <span class="location"><a href="{% url people %}?search={{ viewing.get_profile.location }}">{{ viewing.get_profile.location }}</a></span>
             <span class="username">{{ viewing.username }}</span>
             <span class="fullname">{{ viewing.get_profile.name }}</span>

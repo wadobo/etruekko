@@ -25,29 +25,8 @@
         {% endif %}
         {% for membership in requests %}
 
-                {% with user=membership.user %}
-                <!-- TODO use a template for this -->
-                <div class="user">
-                    <a href="{% url view_profile user.username %}"><img src="{% avatar user 64 %}" alt="{{ user.username }}"/></a>
-                    <a href="{% url view_profile user.username %}"><span class="username">{{ user.username }}</span></a>
-                    <span class="fullname">{{ user.get_profile.name }}</span>
-                    <span class="location"><a href="{% url people %}?search={{ user.get_profile.location }}">{{ user.get_profile.location }}</a></span>
-                    <p class="description">{{ user.get_profile.description|truncatewords:20 }}</p>
-                    <span class="date">
-                        {% blocktrans with user.date_joined|timesince as d %}
-                            user since {{ d }}
-                        {% endblocktrans %}
-                    </span>
-                    <select name="role_{{ user.id }}">
-                        <option value="admin" {% if membership.role == "ADM" %}selected="selected"{% endif %}>{% trans "Admin" %}</option>
-                        <option value="member" {% if membership.role == "MEM" %}selected="selected"{% endif %}>{% trans "Member" %}</option>
-                        <option value="req" {% if membership.role == "REQ" %}selected="selected"{% endif %}>{% trans "Requested" %}</option>
-                        <option value="ban" {% if membership.role == "BAN" %}selected="selected"{% endif %}>{% trans "Banned" %}</option>
-                        <option value="remove">{% trans "Remove" %}</option>
-                    </select>
-                    <div class="clear"></div>
-                </div>
-                <!-- -->
+                {% with user=membership.user tools="ALL" show_credits=True %}
+                    {% include "truekko/single_user_view.html" %}
                 {% endwith %}
 
         {% endfor %}
@@ -55,28 +34,8 @@
         <h3>{% trans "Members" %}</h3>
         {% for membership in memberships %}
 
-                {% with user=membership.user %}
-                <!-- TODO use a template for this -->
-                <div class="user">
-                    <a href="{% url view_profile user.username %}"><img src="{% avatar user 64 %}" alt="{{ user.username }}"/></a>
-                    <a href="{% url view_profile user.username %}"><span class="username">{{ user.username }}</span></a>
-                    <span class="fullname">{{ user.get_profile.name }}</span>
-                    <span class="location"><a href="{% url people %}?search={{ user.get_profile.location }}">{{ user.get_profile.location }}</a></span>
-                    <p class="description">{{ user.get_profile.description|truncatewords:20 }}</p>
-                    <span class="date">
-                        {% blocktrans with user.date_joined|timesince as d %}
-                            user since {{ d }}
-                        {% endblocktrans %}
-                    </span>
-                    <select name="role_{{ user.id }}">
-                        <option value="admin" {% if membership.role == "ADM" %}selected="selected"{% endif %}>{% trans "Admin" %}</option>
-                        <option value="member" {% if membership.role == "MEM" %}selected="selected"{% endif %}>{% trans "Member" %}</option>
-                        <option value="ban" {% if membership.role == "BAN" %}selected="selected"{% endif %}>{% trans "Banned" %}</option>
-                        <option value="remove">{% trans "Remove" %}</option>
-                    </select>
-                    <div class="clear"></div>
-                </div>
-                <!-- -->
+                {% with user=membership.user tools="REQ" show_credits=True %}
+                    {% include "truekko/single_user_view.html" %}
                 {% endwith %}
 
         {% endfor %}
@@ -86,28 +45,8 @@
         {% endif %}
         {% for membership in banned %}
 
-                {% with user=membership.user %}
-                <!-- TODO use a template for this -->
-                <div class="user">
-                    <a href="{% url view_profile user.username %}"><img src="{% avatar user 64 %}" alt="{{ user.username }}"/></a>
-                    <a href="{% url view_profile user.username %}"><span class="username">{{ user.username }}</span></a>
-                    <span class="fullname">{{ user.get_profile.name }}</span>
-                    <span class="location"><a href="{% url people %}?search={{ user.get_profile.location }}">{{ user.get_profile.location }}</a></span>
-                    <p class="description">{{ user.get_profile.description|truncatewords:20 }}</p>
-                    <span class="date">
-                        {% blocktrans with user.date_joined|timesince as d %}
-                            user since {{ d }}
-                        {% endblocktrans %}
-                    </span>
-                    <select name="role_{{ user.id }}">
-                        <option value="admin" {% if membership.role == "ADM" %}selected="selected"{% endif %}>{% trans "Admin" %}</option>
-                        <option value="member" {% if membership.role == "MEM" %}selected="selected"{% endif %}>{% trans "Member" %}</option>
-                        <option value="ban" {% if membership.role == "BAN" %}selected="selected"{% endif %}>{% trans "Banned" %}</option>
-                        <option value="remove">{% trans "Remove" %}</option>
-                    </select>
-                    <div class="clear"></div>
-                </div>
-                <!-- -->
+                {% with user=membership.user tools="REQ" show_credits=True %}
+                    {% include "truekko/single_user_view.html" %}
                 {% endwith %}
 
         {% endfor %}

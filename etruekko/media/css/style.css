@@ -310,6 +310,19 @@ a:hover {
     color: #aaa;
 }
 
+.user .credits {
+    font-size: small;
+    color: #aaa;
+}
+
+.me {
+    background-color: #DEF3FF;
+}
+
+.me .fullname {
+    color: #888;
+}
+
 /* ENDOF PEOPLE */
 
 /* PAGINATION */
@@ -437,3 +450,35 @@ a:hover {
 }
 
 /* ENDOF GROUP */
+
+/* TRANSF */
+
+.transfer {
+    border-bottom: 1px solid #cccccc;
+    padding: 10px;
+}
+
+.tranfer img {
+    float: left;
+    margin-right: 10px;
+}
+
+.transfer .username {
+    font-weight: bold;
+}
+
+.transfer .fullname {
+    font-weight: bold;
+    color: #aaa;
+}
+
+.transfer .date {
+    font-size: x-small;
+    color: #aaa;
+}
+
+.transfer .credits {
+    font-weight: bold;
+}
+
+/* ENDOF TRANSF */

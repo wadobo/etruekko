@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% block title %} {% trans 'People' %} {% endblock %}
+{% block title %} {% trans 'Transfer' %} {% endblock %}
 
 {% block extrahead %}
     <script type="text/javascript" charset="utf-8">
@@ -16,7 +16,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="left"><img src="/media/imgs/menu/people.png" alt="people"/></div>
+    <div class="left"><img src="/media/imgs/menu/transf.png" alt="transf"/></div>
     <form action="" method="get">
         <div class="search_div holding">
             <input type="text" name="search" id="id_search"/>
@@ -28,13 +28,13 @@
     <div class="clear"></div>
 
     <div id="subcontent">
-        {% for user in users.object_list %}
-            {% include "truekko/single_user_view.html" %}
+        {% for transf in transfs.object_list %}
+            {% include "truekko/single_transf_view.html" %}
         {% endfor %}
     </div>
 
 
-    {% with pagination=users %}
+    {% with pagination=transfs %}
         {% include "paginate.html" %}
     {% endwith %}
 {% endblock %}

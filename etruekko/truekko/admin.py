@@ -1,5 +1,5 @@
 from django.contrib import admin
-from truekko.models import Group, Membership
+from truekko.models import UserProfile, Group, Membership
 from django.db import models
 
 
@@ -19,5 +19,10 @@ class MembershipAdmin(admin.ModelAdmin):
     list_display = ('user', 'group', 'role')
 
 
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'credits', 'location')
+
+
 admin.site.register(Group, GroupAdmin)
 admin.site.register(Membership, MembershipAdmin)
+admin.site.register(UserProfile, UserProfileAdmin)

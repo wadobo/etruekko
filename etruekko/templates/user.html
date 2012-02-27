@@ -5,7 +5,9 @@
         <a href="{% url view_profile USER.username %}">
         <img src="{% avatar user 24 %}" alt="{{ user.username }}"/>
         {{ USER.username }}
+        ({{ USER.get_profile.credits }} {{ CREDIT_NAME.short }})
         </a>
+        <br/>
         <div id="profile_tools">
             <a href="{% url edit_profile %}">{% trans "settings" %}</a> |
             <a href="{% url logout %}">{% trans "logout" %}</a>

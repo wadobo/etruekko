@@ -1,0 +1,20 @@
+{% load i18n %}
+
+<div class="transfer">
+    <div class="left">
+        <a href="{% url view_profile transf.user_from.username %}"><img src="{% avatar transf.user_from 64 %}" alt="{{ transf.user_from.username }}"/></a>
+        <a href="{% url view_profile transf.user_to.username %}"><img src="{% avatar transf.user_to 64 %}" alt="{{ transf.user_to.username }}"/></a>
+    </div>
+
+    <div class="usernames">
+        <a href="{% url view_profile transf.user_from.username %}"><span class="username">{{ transf.user_from.username }}</span></a>
+        →
+        <a href="{% url view_profile transf.user_to.username %}"><span class="username">{{ transf.user_to.username }}</span></a>
+        <span class="credits">{{ transf.credits }}{{ CREDIT_NAME.short }}</span>
+    </div>
+
+    <span class="concept">{{ transf.concept }}</span>
+    <div class="date">{{ transf.date }}</div>
+
+    <div class="clear"></div>
+</div>

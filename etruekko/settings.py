@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Django settings for etruekko project.
 
 import os
@@ -165,3 +166,9 @@ LOGIN_REDIRECT_URL = '/'
 AUTH_PROFILE_MODULE = 'truekko.UserProfile'
 
 INTERNAL_IPS = ('127.0.0.1',)
+
+
+# truekko settings
+
+ETK_USER_INITIAL_CREDITS = 10
+ETK_CREDIT = {'name': 'etruekko', 'plural': 'etruekkos', 'short': u'ĸ'}

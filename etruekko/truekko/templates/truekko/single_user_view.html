@@ -1,0 +1,33 @@
+{% load i18n %}
+
+<div class="user{% if USER == user %} me{% endif %}">
+    <a href="{% url view_profile user.username %}"><img src="{% avatar user 64 %}" alt="{{ user.username }}"/></a>
+    <a href="{% url view_profile user.username %}"><span class="username">{{ user.username }}</span></a>
+    <span class="fullname">{{ user.get_profile.name }}</span>
+
+    {% if show_credits or USER == user %}
+    <span class="credits">
+        ({{ user.get_profile.credits }} {{ CREDIT_NAME.short }})
+    </span>
+    {% endif %}
+
+    <span class="location"><a href="{% url people %}?search={{ user.get_profile.location }}">{{ user.get_profile.location }}</a></span>
+    <p class="description">{{ user.get_profile.description|truncatewords:20 }}</p>
+    <span class="date">
+        {% blocktrans with user.date_joined|timesince as d %}
+            user since {{ d }}
+        {% endblocktrans %}
+    </span>
+    {% if tools %}
+        <select name="role_{{ user.id }}">
+            <option value="admin" {% if membership.role == "ADM" %}selected="selected"{% endif %}>{% trans "Admin" %}</option>
+            <option value="member" {% if membership.role == "MEM" %}selected="selected"{% endif %}>{% trans "Member" %}</option>
+            {% if tools != "REQ" %}
+            <option value="req" {% if membership.role == "REQ" %}selected="selected"{% endif %}>{% trans "Requested" %}</option>
+            {% endif %}
+            <option value="ban" {% if membership.role == "BAN" %}selected="selected"{% endif %}>{% trans "Banned" %}</option>
+            <option value="remove">{% trans "Remove" %}</option>
+        </select>
+    {% endif %}
+    <div class="clear"></div>
+</div>

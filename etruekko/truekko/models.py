@@ -29,6 +29,9 @@ class UserProfile(models.Model):
 
 def user_post_save(sender, instance, signal, *args, **kwargs):
     profile, new = UserProfile.objects.get_or_create(user=instance)
+    if new:
+        profile.credits += settings.ETK_USER_INITIAL_CREDITS
+        profile.save()
 
 
 post_save.connect(user_post_save, sender=User)
@@ -83,3 +86,30 @@ class Membership(models.Model):
 
     def __unicode__(self):
         return "%s - %s - %s" % (self.user.username, self.group.name, self.role)
+
+
+class Transfer(models.Model):
+    user_from = models.ForeignKey(User, null=True, blank=True, related_name="transfer_from")
+    group_from = models.ForeignKey(Group, null=True, blank=True, related_name="transfer_form")
+    user_to = models.ForeignKey(User, related_name="transfer_to")
+    concept = models.CharField(max_length=500)
+    credits = models.IntegerField()
+    date = models.DateTimeField(auto_now_add=True)
+
+
+def transfer_post_save(sender, instance, created, *args, **kwargs):
+    if created:
+        p1 = instance.user_to.get_profile()
+        p1.credits += instance.credits
+        p1.save()
+
+        if instance.user_from:
+            p2 = instance.user_from.get_profile()
+            p2.credits -= instance.credits
+            p2.save()
+        else:
+            instance.group_from.credits -= instance.credits
+            instance.group_from.save()
+
+
+post_save.connect(transfer_post_save, sender=Transfer)

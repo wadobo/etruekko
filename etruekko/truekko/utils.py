@@ -8,7 +8,7 @@ def generate_menu(selected=''):
         ("serv", _("Services"), "", selected == "serv"),
         ("item", _("Item"), "", selected == "item"),
         ("add", _("Add"), "", selected == "add"),
-        ("transf", _("Transf"), "", selected == "tranfs"),
+        ("transf", _("Transf"), reverse("transfer_list"), selected == "transf"),
         ("msg", _("Messages"), "", selected == "msgs"),
         ("group", _("Groups"), reverse("groups"), selected == "group"),
     )

@@ -7,6 +7,7 @@ from truekko.models import UserProfile
 from truekko.models import Group
 from truekko.models import User
 from truekko.models import Membership
+from truekko.models import Transfer
 
 
 class CustomImageWidget(ClearableFileInput):
@@ -73,3 +74,29 @@ class RegisterForm(forms.Form):
 
         m = Membership(user=u, group=group, role="REQ")
         m.save()
+
+
+class TransferDirectForm(forms.Form):
+
+    concept = forms.CharField(label=_("Concept"), max_length=500)
+    credits = forms.IntegerField(label=_("Credits"))
+
+    def __init__(self, user_from, user_to, *args, **kwargs):
+        self.user_from = user_from
+        self.user_to = user_to
+        super(TransferDirectForm, self).__init__(*args, **kwargs)
+
+    def clean_credits(self):
+        credits = self.cleaned_data.get('credits')
+        if credits > self.user_from.get_profile().credits:
+            raise forms.ValidationError(_("Can't make this transfer, insufficient credits"))
+
+        return credits
+
+    def save(self):
+        data = self.cleaned_data
+        t = Transfer(user_from=self.user_from,
+                     user_to=self.user_to,
+                     credits=data['credits'],
+                     concept=data['concept'])
+        t.save()

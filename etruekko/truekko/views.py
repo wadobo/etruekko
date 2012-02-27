@@ -11,10 +11,12 @@ from django.db.models import Q
 from truekko.forms import UserProfileForm
 from truekko.forms import GroupForm
 from truekko.forms import RegisterForm
+from truekko.forms import TransferDirectForm
 from truekko.models import UserProfile
 from truekko.models import User
 from truekko.models import Group
 from truekko.models import Membership
+from truekko.models import Transfer
 from truekko.utils import generate_menu
 from etruekko.utils import paginate, template_email
 
@@ -446,10 +448,97 @@ class LeaveGroup(View):
         return nxt
 
 
+#############
+#           #
+# TRANSFER  #
+#           #
+#############
+
+
+class TransferDirect(TemplateView):
+    template_name = 'truekko/transfer_direct.html'
+
+    def get_context(self, data):
+        context = RequestContext(self.request, data)
+        context['klass'] = 'transf'
+        context['menu'] = generate_menu("transf")
+        return context
+
+    def get_context_data(self, **kwargs):
+        context = super(TransferDirect, self).get_context_data(**kwargs)
+        u = get_object_or_404(User, username=self.username)
+        context['user_to'] = u
+        context['form'] = TransferDirectForm(self.request.user, u)
+        context['klass'] = 'transf'
+        context['menu'] = generate_menu("transf")
+        return context
+
+    def get(self, request, username):
+        self.request = request
+        self.username = username
+        return super(TransferDirect, self).get(request)
+
+    def post(self, request, username):
+        self.request = request
+        self.username = username
+        u = get_object_or_404(User, username=self.username)
+        data = request.POST
+
+        f = TransferDirectForm(self.request.user, u, data)
+        if not f.is_valid():
+            return render_to_response(TransferDirect.template_name,
+                                      self.get_context({'user_to': u, 'form': f}))
+
+        f.save()
+
+        # sending mail to both users
+        context = dict(f.data.items())
+        context['user_from'] = request.user
+        context['user_to'] = u
+        #template_email('truekko/transfer_direct_mail.txt', _("Direct transfer"), [u.email, request.user.email], context)
+        request.user.message_set.create(message=_("Transfer has been made correctly"))
+
+        nxt = redirect('view_profile', u.username)
+        return nxt
+
+
+class TransferList(TemplateView):
+    template_name = 'truekko/transfer_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(TransferList, self).get_context_data(**kwargs)
+        context['klass'] = 'transf'
+        context['menu'] = generate_menu("transf")
+
+        tq = Q(user_from=self.request.user) | Q(user_to=self.request.user)
+        query = Transfer.objects.filter(tq)
+
+        q = self.request.GET.get('search', '')
+        if q:
+            k = Q(user_from__username__icontains=q) |\
+                Q(user_from__email__icontains=q) |\
+                Q(user_from__userprofile__name__icontains=q) |\
+                Q(user_from__userprofile__location__icontains=q) |\
+                Q(user_to__username__icontains=q) |\
+                Q(user_to__email__icontains=q) |\
+                Q(user_to__userprofile__name__icontains=q) |\
+                Q(user_to__userprofile__location__icontains=q)
+
+            query = query.filter(k)
+
+        context['transfs'] = paginate(self.request, query.order_by('-date'), 10)
+        return context
+
+    def get(self, request):
+        self.request = request
+        return super(TransferList, self).get(request)
+
+
 edit_profile = login_required(EditProfile.as_view())
 view_profile = login_required(ViewProfile.as_view())
 people = People.as_view()
 
+# group
 groups = Groups.as_view()
 view_group = ViewGroup.as_view()
 edit_group = login_required(is_group_admin(EditGroup.as_view()))
@@ -459,5 +548,9 @@ join_group = JoinGroup.as_view()
 register_group_admin = login_required(is_group_admin(RegisterAdmin.as_view()))
 register_group = Register.as_view()
 register_confirm = RegisterConfirm.as_view()
+
+# transfer
+transfer_direct = login_required(TransferDirect.as_view())
+transfer_list = login_required(TransferList.as_view())
 
 index = Index.as_view()

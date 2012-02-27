@@ -23,6 +23,7 @@ def context_processor(request):
     '''
 
     return {
+        'CREDIT_NAME': settings.ETK_CREDIT,
         'MEDIA_URL': settings.MEDIA_URL,
         'SITE_NAME': settings.SITE_NAME,
         'COLORS': COLORS,
