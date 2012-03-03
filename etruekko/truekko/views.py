@@ -1,3 +1,5 @@
+import uuid
+
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
@@ -12,11 +14,17 @@ from truekko.forms import UserProfileForm
 from truekko.forms import GroupForm
 from truekko.forms import RegisterForm
 from truekko.forms import TransferDirectForm
+from truekko.forms import ItemAddForm
+
 from truekko.models import UserProfile
 from truekko.models import User
 from truekko.models import Group
 from truekko.models import Membership
 from truekko.models import Transfer
+from truekko.models import Item
+from truekko.models import Tag
+from truekko.models import ItemTagged
+
 from truekko.utils import generate_menu
 from etruekko.utils import paginate, template_email
 
@@ -534,6 +542,136 @@ class TransferList(TemplateView):
         return super(TransferList, self).get(request)
 
 
+###########
+#         #
+#  ITEMS  #
+#         #
+###########
+
+
+class ItemAdd(TemplateView):
+    template_name = 'truekko/item_add.html'
+
+    def get_context(self, data):
+        context = RequestContext(self.request, data)
+        context['klass'] = 'add'
+        context['menu'] = generate_menu("add")
+        context['form'] = ItemAddForm()
+        return context
+
+    def get_context_data(self, **kwargs):
+        context = super(ItemAdd, self).get_context_data(**kwargs)
+        context = self.get_context(context)
+        return context
+
+    def get(self, request):
+        self.request = request
+        return super(ItemAdd, self).get(request)
+
+    def post(self, request):
+        files_req = request.FILES
+        if (files_req.get('photo', '')):
+            files_req['photo'].name = "item_%s" % uuid.uuid4().hex
+
+        form = ItemAddForm(request.POST, files_req)
+        if not form.is_valid():
+            menu = generate_menu()
+            context = self.get_context()
+            context['form'] = form
+            return render_to_response(ItemAdd.template_name, context)
+
+        item = form.save(commit=False)
+        item.user = self.request.user
+        item.save()
+
+        # parsing tags
+        tagnames = (i.strip() for i in request.POST.get('tags').split(','))
+        for tag in tagnames:
+            dbtag, created = Tag.objects.get_or_create(name=tag)
+            it, created = ItemTagged.objects.get_or_create(item=item, tag=dbtag)
+
+        nxtsrv = 'item'
+        if item.type == "IT":
+            request.user.message_set.create(message=_("Item added correctly"))
+        else:
+            request.user.message_set.create(message=_("Service added correctly"))
+            nxtsrv = 'serv'
+
+        nxt = redirect('item_list', nxtsrv, request.user.username)
+        return nxt
+
+
+class ItemView(TemplateView):
+    template_name = 'truekko/item_view.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ItemView, self).get_context_data(**kwargs)
+
+        item = get_object_or_404(Item, pk=self.itemid)
+        if item.type == "IT":
+            klass = 'item'
+        else:
+            klass = 'serv'
+
+        context['klass'] = klass
+        context['menu'] = generate_menu(klass)
+        context['item'] = item
+        return context
+
+    def get(self, request, itemid):
+        self.request = request
+        self.itemid = itemid
+
+        return super(ItemView, self).get(request)
+
+
+class ItemList(TemplateView):
+    template_name = 'truekko/item_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ItemList, self).get_context_data(**kwargs)
+        context['klass'] = self.klass
+        context['menu'] = generate_menu(self.klass)
+
+        if self.username:
+            iq = Q(user__username=self.username) & Q(type=self.itemtype)
+        else:
+            iq = Q(type=self.itemtype)
+
+        query = Item.objects.filter(iq)
+
+        q = self.request.GET.get('search', '')
+        if q:
+            k = Q(name__icontains=q) |\
+                Q(description__icontains=q) |\
+                Q(user__username__icontains=q) |\
+                Q(user__userprofile__location__icontains=q) |\
+                Q(user__userprofile__name__icontains=q)
+
+            itemtagged = ItemTagged.objects.filter(tag__name__icontains=q)
+            for it in itemtagged:
+                k = k | Q(itemtagged=it)
+
+            query = query.filter(k).distinct()
+
+        context['items'] = paginate(self.request, query.order_by('-pub_date'), 10)
+        return context
+
+    def get(self, request, itemtype, username=None):
+        self.request = request
+
+        if itemtype == "item":
+            self.itemtype = "IT"
+            self.klass = 'item'
+        else:
+            self.itemtype = "SR"
+            self.klass = 'serv'
+        self.username = username
+
+        return super(ItemList, self).get(request)
+
+
+# profile
 edit_profile = login_required(EditProfile.as_view())
 view_profile = login_required(ViewProfile.as_view())
 people = People.as_view()
@@ -552,5 +690,10 @@ register_confirm = RegisterConfirm.as_view()
 # transfer
 transfer_direct = login_required(TransferDirect.as_view())
 transfer_list = login_required(TransferList.as_view())
+
+#item
+item_add = login_required(ItemAdd.as_view())
+item_view = login_required(ItemView.as_view())
+item_list = login_required(ItemList.as_view())
 
 index = Index.as_view()

@@ -8,6 +8,9 @@ from truekko.models import Group
 from truekko.models import User
 from truekko.models import Membership
 from truekko.models import Transfer
+from truekko.models import Item
+from truekko.models import Tag
+from truekko.models import ItemTagged
 
 
 class CustomImageWidget(ClearableFileInput):
@@ -100,3 +103,12 @@ class TransferDirectForm(forms.Form):
                      credits=data['credits'],
                      concept=data['concept'])
         t.save()
+
+
+class ItemAddForm(ModelForm):
+
+    class Meta:
+        model = Item
+        fields = ('name', 'type', 'description', 'photo', 'price', 'price_type')
+        widgets = {'photo': CustomImageWidget()}
+

@@ -430,6 +430,11 @@ a:hover {
     padding: 10px;
 }
 
+.group {
+    border-bottom: 1px solid #cccccc;
+    padding: 10px;
+}
+
 .group img {
     float: left;
     margin-right: 10px;
@@ -482,3 +487,50 @@ a:hover {
 }
 
 /* ENDOF TRANSF */
+
+/* ITEMS */
+.item {
+    border-bottom: 1px solid #cccccc;
+    padding: 10px;
+}
+
+.item img {
+    float: left;
+    margin-right: 10px;
+}
+
+.item .username {
+    font-weight: bold;
+}
+
+.item .fullname {
+    font-weight: bold;
+    color: #aaa;
+}
+
+.item .date {
+    font-size: x-small;
+    color: #aaa;
+}
+
+.item .price {
+    font-weight: bold;
+    float: right;
+}
+
+.item .description {
+    color: #282828;
+    font-size: 1em;
+    line-height: 1.25em;
+    margin: 1.25em 0;
+    text-align: left;
+}
+
+.item .tags {
+    float: right;
+}
+
+.item .tag {
+    font-size: small;
+}
+/* ENDOF ITEMS */

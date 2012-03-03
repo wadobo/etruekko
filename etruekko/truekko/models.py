@@ -87,6 +87,7 @@ class Membership(models.Model):
     def __unicode__(self):
         return "%s - %s - %s" % (self.user.username, self.group.name, self.role)
 
+# Transfer models
 
 class Transfer(models.Model):
     user_from = models.ForeignKey(User, null=True, blank=True, related_name="transfer_from")
@@ -113,3 +114,56 @@ def transfer_post_save(sender, instance, created, *args, **kwargs):
 
 
 post_save.connect(transfer_post_save, sender=Transfer)
+
+# Service / items models
+
+class Item(models.Model):
+    TYPES = [
+        ('IT', _('item')),
+        ('SR', _('service')),
+    ]
+
+    PRICE_TYPES = [
+        ('ETK', 'truekkos'),
+        ('ETK/H', _('truekkos per hour')),
+        ('ETK/KG', _('truekkos per kilogram')),
+        ('ETK/L', _('truekkos per liter')),
+        ('ETK/M', _('truekkos per metter')),
+        ('ETK/M2', _('truekkos per square metter')),
+        ('ETK/M3', _('truekkos per cubic metter')),
+    ]
+
+    user = models.ForeignKey(User)
+    type = models.CharField(_("Item or service"), max_length=2, choices=TYPES, default="IT")
+    name = models.CharField(_("Name"), max_length=150)
+    description = models.TextField(_("Description"))
+    price = models.IntegerField(_("Price"))
+    price_type = models.CharField(_("Price type"), max_length=20, choices=PRICE_TYPES, default=PRICE_TYPES[0][0])
+    photo = models.ImageField(_("photo"), blank=True, null=True,
+                              upload_to=os.path.join(settings.MEDIA_ROOT,
+                              "item_images"))
+    pub_date = models.DateTimeField(auto_now_add=True)
+
+    def tags(self):
+        return (i.tag for i in self.itemtagged_set.all())
+
+    def type_str(self):
+        return 'item' if self.type == 'IT' else 'serv'
+
+    def __unicode__(self):
+        return "%s" % self.name
+
+
+class Tag(models.Model):
+    name = models.CharField(_("Name"), max_length=100)
+
+    def __unicode__(self):
+        return self.name
+
+
+class ItemTagged(models.Model):
+    item = models.ForeignKey(Item)
+    tag = models.ForeignKey(Tag)
+
+    def __unicode__(self):
+        return "%s - %s" % (self.item.name, self.tag.name)

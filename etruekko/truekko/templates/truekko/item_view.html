@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}
+    {% if item.type == "IT" %}
+        {% blocktrans with item.name as name %} Item / {{ name }} {% endblocktrans %}
+    {% else %}
+        {% blocktrans with item.name as name %} Serv / {{ name }} {% endblocktrans %}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <h2>
+        {% if item.photo %}
+            <div class="left"><img src="{% image item.photo 32 %}" alt="{{ item.name }}"/></div>
+        {% endif %}
+        {% if item.type == "IT" %}
+            {% blocktrans with item.name as name %} Item / {{ name }} {% endblocktrans %}
+        {% else %}
+            {% blocktrans with item.name as name %} Serv / {{ name }} {% endblocktrans %}
+        {% endif %}
+        <div class="clear"></div>
+    </h2>
+
+    <div id="subcontent">
+        <div class="buttons">
+        </div>
+
+        {% with long="True" %}
+            {% include "truekko/single_item_view.html" %}
+        {% endwith %}
+
+    </div>
+{% endblock %}

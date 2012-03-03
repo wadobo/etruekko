@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} {% trans 'Transfer' %} {% endblock %}
+
+{% block extrahead %}
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function(){
+            $("#id_search").keyup(function() {
+                if ($(this).attr("value") == "")
+                    $(".search.holder").show();
+                else
+                    $(".search.holder").hide();
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="left"><img src="/media/imgs/menu/{{ klass }}.png" alt="transf"/></div>
+    <form action="" method="get">
+        <div class="search_div holding">
+            <input type="text" name="search" id="id_search"/>
+            <span class="search holder">{% trans "Search..." %}</span>
+            <input class="search_button" type="submit" value="{% trans 'Search' %}"/>
+        </div>
+    </form>
+
+    <div class="clear"></div>
+
+    <div id="subcontent">
+        {% for item in items.object_list %}
+            {% include "truekko/single_item_view.html" %}
+        {% endfor %}
+    </div>
+
+
+    {% with pagination=items %}
+        {% include "paginate.html" %}
+    {% endwith %}
+{% endblock %}

@@ -18,6 +18,10 @@ urlpatterns = patterns('truekko.views',
     # transfer
     url(r'^transfer/direct/(\w+)$', 'transfer_direct', name='transfer_direct'),
     url(r'^transfer/list$', 'transfer_list', name='transfer_list'),
+    # item
+    url(r'^item/add$', 'item_add', name='item_add'),
+    url(r'^item/view/(\d+)$', 'item_view', name='item_view'),
+    url(r'^item/list/(item|serv)/(\w+)?$', 'item_list', name='item_list'),
 
     url(r'^$', 'index', name='index'),
 )

@@ -1,0 +1,42 @@
+{% load i18n %}
+
+<div class="item">
+    {% if item.photo %}
+    <div class="left">
+        {% if long %}
+            <img src="{% image item.photo 128 %}" alt="{{ item.name }}"/>
+        {% else %}
+            <img src="{% image item.photo 64 %}" alt="{{ item.name }}"/>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    <span class="price">{{ item.price }} {{ item.get_price_type_display }}</span>
+
+    <div class="username">
+        <span class="username"> <a href="{% url item_view item.id %}">{{ item.name }}</a> </span>
+        (<a href="{% url view_profile item.user.username %}"><span class="username">{{ item.user.username }}</span></a>
+        <span class="fullname">{{ item.user.get_profile.name }}</span>)
+    </div>
+
+    <div class="tags">
+        {% for tag in item.tags %}
+            <span class="tag"><a href="{% url item_list item.type_str %}?search={{ tag.name }}">{{ tag.name }}</a></span>
+        {% endfor %}
+    </div>
+
+    <p class="description">
+    {% if long %}
+        {{ item.description }}
+    {% else %}
+        {{ item.description|truncatewords:20 }}
+    {% endif %}
+    </p>
+
+    <div class="date">{{ item.pub_date }}</div>
+
+    {% if not long %}
+    {% endif %}
+
+    <div class="clear"></div>
+</div>
