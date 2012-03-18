@@ -15,28 +15,40 @@
 
     <div class="username">
         <span class="username"> <a href="{% url item_view item.id %}">{{ item.name }}</a> </span>
+        {% if not short %}
         (<a href="{% url view_profile item.user.username %}"><span class="username">{{ item.user.username }}</span></a>
         <span class="fullname">{{ item.user.get_profile.name }}</span>)
+        {% endif %}
     </div>
 
+    {% if not short %}
     <div class="tags">
         {% for tag in item.tags %}
             <span class="tag"><a href="{% url item_list item.type_str %}?search={{ tag.name }}">{{ tag.name }}</a></span>
         {% endfor %}
     </div>
+    {% endif %}
 
     <p class="description">
     {% if long %}
         {{ item.description }}
     {% else %}
-        {{ item.description|truncatewords:20 }}
+        {% if short %}
+            {{ item.description|truncatewords:10 }}
+        {% else %}
+            {{ item.description|truncatewords:20 }}
+        {% endif %}
     {% endif %}
     </p>
 
+    {% if not short %}
     <div class="date">{{ item.pub_date }}</div>
+    {% endif %}
 
     {% if not long %}
     {% endif %}
+
+    <a href="{% url swap_creation item.user.username %}?item={{ item.id }}">{% trans "Make request" %}</a>
 
     <div class="clear"></div>
 </div>

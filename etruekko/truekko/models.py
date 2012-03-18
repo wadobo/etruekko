@@ -133,7 +133,7 @@ class Item(models.Model):
         ('ETK/M3', _('truekkos per cubic metter')),
     ]
 
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, related_name="items")
     type = models.CharField(_("Item or service"), max_length=2, choices=TYPES, default="IT")
     name = models.CharField(_("Name"), max_length=150)
     description = models.TextField(_("Description"))
@@ -167,3 +167,53 @@ class ItemTagged(models.Model):
 
     def __unicode__(self):
         return "%s - %s" % (self.item.name, self.tag.name)
+
+
+# Trasnf request
+
+class Swap(models.Model):
+    '''
+    Related:
+        * items
+        * comments
+    '''
+
+    STATUS = [
+        ('US1', _('User from confirmed')),
+        ('US2', _('User to confirmed')),
+        ('CON', _('confirmed')),
+        ('DON', _('Done')),
+        ('CAN', _('Cancel')),
+    ]
+
+    user_from = models.ForeignKey(User, related_name="swaps_from")
+    user_to = models.ForeignKey(User, related_name="swaps_to")
+
+    status = models.CharField(max_length=3, choices=STATUS)
+    credits = models.IntegerField()
+
+class SwapItems(models.Model):
+    swap = models.ForeignKey(Swap, related_name="items")
+    item = models.ForeignKey(Item)
+
+class SwapComment(models.Model):
+    swap = models.ForeignKey(Swap, related_name="comments")
+    user = models.ForeignKey(User)
+    comment = models.TextField()
+
+def swap_post_save(sender, instance, created, *args, **kwargs):
+    if instance.status == 'CON':
+        p1 = instance.user_to.get_profile()
+        p1.credits += instance.credits
+        p1.save()
+
+        p2 = instance.user_from.get_profile()
+        p2.credits -= instance.credits
+        p2.save()
+
+        instance.status = 'DON'
+        instance.save()
+
+        # TODO create transfer
+
+post_save.connect(swap_post_save, sender=Swap)

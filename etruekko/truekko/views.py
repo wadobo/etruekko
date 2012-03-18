@@ -24,6 +24,7 @@ from truekko.models import Transfer
 from truekko.models import Item
 from truekko.models import Tag
 from truekko.models import ItemTagged
+from truekko.models import Swap, SwapItems, SwapComment
 
 from truekko.utils import generate_menu
 from etruekko.utils import paginate, template_email
@@ -542,6 +543,195 @@ class TransferList(TemplateView):
         return super(TransferList, self).get(request)
 
 
+########
+#      #
+# SWAP #
+#      #
+########
+
+
+class SwapCreation(TemplateView):
+    template_name = 'truekko/swap_creation.html'
+
+    def get_context(self, data):
+        context = RequestContext(self.request, data)
+        context['klass'] = 'transf'
+        context['menu'] = generate_menu("transf")
+        return context
+
+    def get_context_data(self, **kwargs):
+        context = super(SwapCreation, self).get_context_data(**kwargs)
+        u = get_object_or_404(User, username=self.username)
+        context = self.get_context({'user_to': u, 'user_from': self.request.user})
+        context['items'] = [int(i) for i in self.request.GET.getlist('item')]
+        return context
+
+    def get(self, request, username):
+        self.request = request
+        self.username = username
+        return super(SwapCreation, self).get(request)
+
+    def post(self, request, username):
+        self.request = request
+        self.username = username
+        u = get_object_or_404(User, username=self.username)
+        data = request.POST
+
+        items = []
+        for k in data.keys():
+            if k.startswith('item_'):
+                items.append(int(k.split('_')[1]))
+
+        try:
+            credits = data.get('credits', 0)
+            credits = int(credits if credits else 0)
+        except:
+            context = self.get_context({'user_to': u, 'user_from': self.request.user})
+            context['items'] = items
+            context['errors'] = [_('Invalid credits')]
+            return render_to_response(SwapCreation.template_name, context)
+
+        swap = Swap(status="US1",
+                    credits=credits,
+                    user_from=self.request.user,
+                    user_to=u)
+        swap.save()
+
+        for item in items:
+            i = Item.objects.get(id=item)
+            si = SwapItems(swap=swap, item=i)
+            si.save()
+
+        comment = data.get('comment', '')
+        if comment:
+            swap_comment = SwapComment(swap=swap,
+                                       user=self.request.user,
+                                       comment=comment)
+            swap_comment.save()
+
+        nxt = redirect('swap_view', swap.id)
+        return nxt
+
+
+class SwapView(TemplateView):
+    template_name = 'truekko/swap_creation.html'
+
+    def get_context(self, data):
+        context = RequestContext(self.request, data)
+        context['klass'] = 'transf'
+        context['menu'] = generate_menu("transf")
+        return context
+
+    def get_context_data(self, **kwargs):
+        context = super(SwapView, self).get_context_data(**kwargs)
+        context = self.get_context({'user_to': self.swap.user_to,
+                                    'user_from': self.swap.user_from})
+        context['items'] = [item.item.id for item in self.swap.items.all()]
+        context['credits'] = self.swap.credits
+        context['comments'] = self.swap.comments.all()
+        context['swap'] = self.swap
+        if self.request.user == self.swap.user_from and self.swap.status == 'US2':
+            context['accept'] = True
+        if self.request.user == self.swap.user_to and self.swap.status == 'US1':
+            context['accept'] = True
+
+        if self.swap.status == 'US1':
+            u = self.swap.user_to.username
+            context['swapstatus'] = _("Negotiation, waiting for %s confirmation" % u)
+        elif self.swap.status == 'US2':
+            u = self.swap.user_from.username
+            context['swapstatus'] = _("Negotiation, waiting for %s confirmation" % u)
+        elif self.swap.status == 'CON':
+            context['swapstatus'] = _("Swap confirmed")
+        elif self.swap.status == 'DON':
+            context['swapstatus'] = _("Swap done")
+        elif self.swap.status == 'CAN':
+            context['swapstatus'] = _("Swap canceled")
+
+        return context
+
+    def get(self, request, swapid):
+        self.request = request
+        self.swap = get_object_or_404(Swap, id=swapid)
+        if request.user != self.swap.user_to and\
+           request.user != self.swap.user_from:
+            request.user.message_set.create(message=_("You can't view this swap"))
+            return redirect('/')
+
+        return super(SwapView, self).get(request)
+
+    def post(self, request, swapid):
+        self.request = request
+        self.swap = get_object_or_404(Swap, id=swapid)
+        data = request.POST
+
+        # comment
+        comment = data.get('comment', '')
+        if comment:
+            swap_comment = SwapComment(swap=self.swap,
+                                       user=self.request.user,
+                                       comment=comment)
+            swap_comment.save()
+
+        if 'cancel' in data.keys():
+            self.swap.delete()
+            request.user.message_set.create(message=_("Swap canceled"))
+            return redirect('/')
+
+        if 'accept' in data.keys():
+            nxt = redirect('swap_view', self.swap.id)
+            if self.request.user == self.swap.user_to and self.swap.status != 'US1':
+                return nxt
+            if self.request.user == self.swap.user_from and self.swap.status != 'US2':
+                return nxt
+
+            self.swap.status = 'CON'
+            self.swap.save()
+            request.user.message_set.create(message=_("Conglatulations, swap has been accepted"))
+            # TODO notify users by mail
+            return nxt
+
+        items = []
+        for k in data.keys():
+            if k.startswith('item_'):
+                items.append(int(k.split('_')[1]))
+
+        try:
+            credits = data.get('credits', 0)
+            credits = int(credits if credits else 0)
+        except:
+            context = self.get_context({'user_to': self.swap.user_to,
+                                        'user_from': self.swap.user_from})
+            context['items'] = items
+            context['errors'] = [_('Invalid credits')]
+            return render_to_response(SwapView.template_name, context)
+
+        self.swap.credits = credits
+        self.swap.save()
+
+        for swap_item in self.swap.items.all():
+            if swap_item.item.id not in items:
+                swap_item.delete()
+
+        for item in items:
+            i = Item.objects.get(id=item)
+            si, created = SwapItems.objects.get_or_create(swap=self.swap, item=i)
+            if created:
+                si.save()
+
+        if 'offer' in data.keys():
+            if self.request.user == self.swap.user_to:
+                self.swap.status = 'US2'
+            if self.request.user == self.swap.user_from:
+                self.swap.status = 'US1'
+            # TODO notify users by mail
+
+            self.swap.save()
+
+        nxt = redirect('swap_view', self.swap.id)
+        return nxt
+
+
 ###########
 #         #
 #  ITEMS  #
@@ -690,6 +880,10 @@ register_confirm = RegisterConfirm.as_view()
 # transfer
 transfer_direct = login_required(TransferDirect.as_view())
 transfer_list = login_required(TransferList.as_view())
+
+# swap
+swap_creation = login_required(SwapCreation.as_view())
+swap_view = login_required(SwapView.as_view())
 
 #item
 item_add = login_required(ItemAdd.as_view())
