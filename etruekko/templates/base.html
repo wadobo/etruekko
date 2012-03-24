@@ -21,10 +21,11 @@
     {% if messages %}
         <ul id="messages">
             {% for message in messages %}
-                <li>{{ message }}</li>
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
             {% endfor %}
         </ul>
     {% endif %}
+
     <div id="wrapper">
         <div id="head">
             <div id="logo">

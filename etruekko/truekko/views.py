@@ -1,5 +1,6 @@
 import uuid
 
+from django.contrib import messages
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
@@ -38,6 +39,9 @@ class Index(TemplateView):
         context['klass'] = 'home'
         context['menu'] = generate_menu("home")
         return context
+
+    def get(self, request):
+        return super(Index, self).get(request)
 
 
 ############
@@ -271,7 +275,7 @@ class EditGroupMembers(TemplateView):
                     m.user.is_active = True
                     m.user.save()
 
-        request.user.message_set.create(message=_("Group memebership modified correctly"))
+        messages.info(request, _("Group memebership modified correctly"))
 
         nxt = redirect('view_group', groupname)
         return nxt
@@ -359,14 +363,14 @@ class RegisterAdmin(TemplateView):
                 u = User.objects.get(username=username)
             except:
                 msg = _("The user '%s' doesn't exist") % username
-                request.user.message_set.create(message=msg)
+                messages.info(request, msg)
                 return render_to_response(RegisterAdmin.template_name,
                                           self.get_context({'group': g, 'form': RegisterForm()}))
                 return redirect('edit_group_members', groupname)
 
             if (Membership.objects.filter(user=u, group=g).count()):
                 msg = _("The user '%s' is already member of the group") % username
-                request.user.message_set.create(message=msg)
+                messages.info(request, msg)
                 return render_to_response(RegisterAdmin.template_name,
                                           self.get_context({'group': g, 'form': RegisterForm()}))
                 return redirect('edit_group_members', groupname)
@@ -375,7 +379,7 @@ class RegisterAdmin(TemplateView):
             m.save()
 
             msg = _("A new membership request has been created, you need to confirm")
-            request.user.message_set.create(message=msg)
+            messages.info(request, msg)
             return redirect('edit_group_members', groupname)
 
         f = RegisterForm(data)
@@ -434,7 +438,7 @@ class JoinGroup(View):
 
             msg = _("Your membership request has been sent to group administrator")
 
-        request.user.message_set.create(message=msg)
+        messages.info(request, msg)
         nxt = redirect('view_group', groupname)
         return nxt
 
@@ -452,7 +456,7 @@ class LeaveGroup(View):
 
         msg = _("You are not member of this group")
 
-        request.user.message_set.create(message=msg)
+        messages.info(request, msg)
         nxt = redirect('view_group', groupname)
         return nxt
 
@@ -505,7 +509,7 @@ class TransferDirect(TemplateView):
         context['user_from'] = request.user
         context['user_to'] = u
         #template_email('truekko/transfer_direct_mail.txt', _("Direct transfer"), [u.email, request.user.email], context)
-        request.user.message_set.create(message=_("Transfer has been made correctly"))
+        messages.info(request, _("Transfer has been made correctly"))
 
         nxt = redirect('view_profile', u.username)
         return nxt
@@ -655,7 +659,7 @@ class SwapView(TemplateView):
         self.swap = get_object_or_404(Swap, id=swapid)
         if request.user != self.swap.user_to and\
            request.user != self.swap.user_from:
-            request.user.message_set.create(message=_("You can't view this swap"))
+            messages.info(request, _("You can't view this swap"))
             return redirect('/')
 
         return super(SwapView, self).get(request)
@@ -675,7 +679,7 @@ class SwapView(TemplateView):
 
         if 'cancel' in data.keys():
             self.swap.delete()
-            request.user.message_set.create(message=_("Swap canceled"))
+            messages.info(request, _("Swap canceled"))
             return redirect('/')
 
         if 'accept' in data.keys():
@@ -687,7 +691,7 @@ class SwapView(TemplateView):
 
             self.swap.status = 'CON'
             self.swap.save()
-            request.user.message_set.create(message=_("Conglatulations, swap has been accepted"))
+            messages.info(request, _("Conglatulations, swap has been accepted"))
             # TODO notify users by mail
             return nxt
 
@@ -815,9 +819,9 @@ class ItemAdd(TemplateView):
 
         nxtsrv = 'item'
         if item.type == "IT":
-            request.user.message_set.create(message=_("Item added correctly"))
+            messages.info(request, _("Item added correctly"))
         else:
-            request.user.message_set.create(message=_("Service added correctly"))
+            messages.info(request, _("Service added correctly"))
             nxtsrv = 'serv'
 
         nxt = redirect('item_list', nxtsrv, request.user.username)
