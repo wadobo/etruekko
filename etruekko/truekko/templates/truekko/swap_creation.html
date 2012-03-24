@@ -67,8 +67,12 @@
             {% if accept %}
             <input type="submit" name="accept" value="{% trans "Accept" %}"/>
             {% endif %}
-            <input type="submit" name="offer" value="{% trans "Make offer" %}"/>
-            <input type="submit" name="cancel" value="{% trans "cancel" %}"/>
+            {% if swap.status == "US1" or swap.status == "US2" %}
+                <input type="submit" name="offer" value="{% trans "Make offer" %}"/>
+                <input type="submit" name="cancel" value="{% trans "cancel" %}"/>
+            {% else %}
+                <input type="submit" name="comment" value="{% trans "Comment" %}"/>
+            {% endif %}
         </form>
     </div>
 {% endblock %}

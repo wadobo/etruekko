@@ -192,6 +192,13 @@ class Swap(models.Model):
     status = models.CharField(max_length=3, choices=STATUS)
     credits = models.IntegerField()
 
+    def items_from(self):
+        return [i.item for i in self.items.filter(item__user=self.user_from)]
+
+    def items_to(self):
+        return [i.item for i in self.items.filter(item__user=self.user_to)]
+
+
 class SwapItems(models.Model):
     swap = models.ForeignKey(Swap, related_name="items")
     item = models.ForeignKey(Item)

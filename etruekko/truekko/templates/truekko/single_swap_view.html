@@ -1,0 +1,37 @@
+{% load i18n %}
+
+<div class="transfer">
+    <div class="left">
+        <a href="{% url view_profile swap.user_from.username %}"><img src="{% avatar swap.user_from 64 %}" alt="{{ swap.user_from.username }}"/></a>
+        <a href="{% url view_profile swap.user_to.username %}"><img src="{% avatar swap.user_to 64 %}" alt="{{ swap.user_to.username }}"/></a>
+    </div>
+
+    <div class="status">{{ swap.get_status_display }}</div>
+    <div class="usernames">
+        <a href="{% url view_profile swap.user_from.username %}"><span class="username">{{ swap.user_from.username }}</span></a>
+        →
+        <a href="{% url view_profile swap.user_to.username %}"><span class="username">{{ swap.user_to.username }}</span></a>
+        <span class="credits">{{ swap.credits }}{{ CREDIT_NAME.short }}</span>
+    </div>
+
+    <div class="items">
+    <ul class="itemlist left">
+    {% for item in swap.items_from %}
+        <li>{{ item.name }}</li>
+    {% endfor %}
+    </ul>
+
+    <ul class="itemlist left">
+    {% for item in swap.items_to %}
+        <li>{{ item.name }}</li>
+    {% endfor %}
+    </ul>
+    </div>
+
+    <div class="clear"></div>
+
+    <a href="{% url swap_view swap.id %}">{% trans "View" %}</a>
+
+
+    <div class="clear"></div>
+</div>

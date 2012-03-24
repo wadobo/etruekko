@@ -19,8 +19,9 @@ urlpatterns = patterns('etruekko.truekko.views',
     url(r'^transfer/direct/(\w+)$', 'transfer_direct', name='transfer_direct'),
     url(r'^transfer/list$', 'transfer_list', name='transfer_list'),
     # swap
-    url(r'^swap/(\w+)$', 'swap_creation', name='swap_creation'),
+    url(r'^swap/list$', 'swap_list', name='swap_list'),
     url(r'^swap/view/(\d+)$', 'swap_view', name='swap_view'),
+    url(r'^swap/(\w+)$', 'swap_creation', name='swap_creation'),
     # item
     url(r'^item/add$', 'item_add', name='item_add'),
     url(r'^item/view/(\d+)$', 'item_view', name='item_view'),

@@ -91,6 +91,8 @@ class TransferDirectForm(forms.Form):
 
     def clean_credits(self):
         credits = self.cleaned_data.get('credits')
+        if credits < 0:
+            raise forms.ValidationError(_("Can't make this transfer, negative credits isn't allowed"))
         if credits > self.user_from.get_profile().credits:
             raise forms.ValidationError(_("Can't make this transfer, insufficient credits"))
 

@@ -732,6 +732,39 @@ class SwapView(TemplateView):
         return nxt
 
 
+class SwapList(TemplateView):
+    template_name = 'truekko/swap_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(SwapList, self).get_context_data(**kwargs)
+        context['klass'] = 'transf'
+        context['menu'] = generate_menu("transf")
+
+        tq = Q(user_from=self.request.user) | Q(user_to=self.request.user)
+        query = Swap.objects.filter(tq)
+
+        q = self.request.GET.get('search', '')
+        if q:
+            k = Q(user_from__username__icontains=q) |\
+                Q(user_from__email__icontains=q) |\
+                Q(user_from__userprofile__name__icontains=q) |\
+                Q(user_from__userprofile__location__icontains=q) |\
+                Q(user_to__username__icontains=q) |\
+                Q(user_to__email__icontains=q) |\
+                Q(user_to__userprofile__name__icontains=q) |\
+                Q(user_to__userprofile__location__icontains=q)
+
+            query = query.filter(k)
+
+        context['swaps'] = paginate(self.request, query.order_by('status'), 10)
+        return context
+
+    def get(self, request):
+        self.request = request
+        return super(SwapList, self).get(request)
+
+
+
 ###########
 #         #
 #  ITEMS  #
@@ -884,6 +917,7 @@ transfer_list = login_required(TransferList.as_view())
 # swap
 swap_creation = login_required(SwapCreation.as_view())
 swap_view = login_required(SwapView.as_view())
+swap_list = login_required(SwapList.as_view())
 
 #item
 item_add = login_required(ItemAdd.as_view())
