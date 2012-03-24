@@ -1,6 +1,6 @@
 from django.contrib import admin
-from truekko.models import UserProfile, Group, Membership
-from truekko.models import Item, Tag, ItemTagged
+from etruekko.truekko.models import UserProfile, Group, Membership
+from etruekko.truekko.models import Item, Tag, ItemTagged
 from django.db import models
 
 

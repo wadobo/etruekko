@@ -3,14 +3,14 @@ from django.forms import ModelForm
 from django import forms
 from django.forms.widgets import ClearableFileInput
 
-from truekko.models import UserProfile
-from truekko.models import Group
-from truekko.models import User
-from truekko.models import Membership
-from truekko.models import Transfer
-from truekko.models import Item
-from truekko.models import Tag
-from truekko.models import ItemTagged
+from etruekko.truekko.models import UserProfile
+from etruekko.truekko.models import Group
+from etruekko.truekko.models import User
+from etruekko.truekko.models import Membership
+from etruekko.truekko.models import Transfer
+from etruekko.truekko.models import Item
+from etruekko.truekko.models import Tag
+from etruekko.truekko.models import ItemTagged
 
 
 class CustomImageWidget(ClearableFileInput):

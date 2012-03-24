@@ -1,9 +1,9 @@
 from django.shortcuts import redirect
 from django.utils.translation import ugettext as _
 
-from truekko.models import Membership
-from truekko.models import User
-from truekko.models import Group
+from etruekko.truekko.models import Membership
+from etruekko.truekko.models import User
+from etruekko.truekko.models import Group
 
 
 def has_perm(view, test_function, message="", next="/"):

@@ -10,23 +10,23 @@ from decorators import is_group_admin, is_group_editable, is_member
 from django.shortcuts import render_to_response
 from django.db.models import Q
 
-from truekko.forms import UserProfileForm
-from truekko.forms import GroupForm
-from truekko.forms import RegisterForm
-from truekko.forms import TransferDirectForm
-from truekko.forms import ItemAddForm
+from etruekko.truekko.forms import UserProfileForm
+from etruekko.truekko.forms import GroupForm
+from etruekko.truekko.forms import RegisterForm
+from etruekko.truekko.forms import TransferDirectForm
+from etruekko.truekko.forms import ItemAddForm
 
-from truekko.models import UserProfile
-from truekko.models import User
-from truekko.models import Group
-from truekko.models import Membership
-from truekko.models import Transfer
-from truekko.models import Item
-from truekko.models import Tag
-from truekko.models import ItemTagged
-from truekko.models import Swap, SwapItems, SwapComment
+from etruekko.truekko.models import UserProfile
+from etruekko.truekko.models import User
+from etruekko.truekko.models import Group
+from etruekko.truekko.models import Membership
+from etruekko.truekko.models import Transfer
+from etruekko.truekko.models import Item
+from etruekko.truekko.models import Tag
+from etruekko.truekko.models import ItemTagged
+from etruekko.truekko.models import Swap, SwapItems, SwapComment
 
-from truekko.utils import generate_menu
+from etruekko.truekko.utils import generate_menu
 from etruekko.utils import paginate, template_email
 
 
