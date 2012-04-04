@@ -1,0 +1,13 @@
+{% load i18n %}
+{% load markup %}
+
+{% blocktrans with msg=message name=name url=url %}
+
+There is a new message in '{{ name }}' wall:
+
+{{ msg }}
+
+You can view the message in:
+http://etruekko.com{{ url }}
+
+{% endblocktrans %}

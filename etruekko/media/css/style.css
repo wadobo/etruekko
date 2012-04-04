@@ -590,3 +590,41 @@ th {
 }
 
 /* ENDOF SWAP */
+
+
+/* WALL */
+
+.msg {
+    border-bottom: 1px solid #cccccc;
+    padding: 10px;
+}
+
+.msg img {
+    float: left;
+    margin-right: 10px;
+}
+
+.msg .username {
+    font-weight: bold;
+}
+
+.msg .fullname {
+    font-weight: bold;
+    color: #aaa;
+}
+
+.msg .date {
+    font-size: small;
+    color: #aaa;
+    float: right;
+}
+
+.msg p {
+    color: #282828;
+    font-size: 1em;
+    line-height: 1.25em;
+    margin: 1.25em 0;
+    text-align: left;
+}
+
+/* ENDOF WALL */

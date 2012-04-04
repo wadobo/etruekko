@@ -51,5 +51,14 @@
                 {% include "truekko/single_user_view.html" %}
             {% endwith %}
         {% endfor %}
+
+        <!-- wall --!>
+        {% with wall=wall wallmessages=wallmessages%}
+            {% include "truekko/wall.html" %}
+        {% endwith %}
     </div>
+
+    {% with pagination=wallmessages %}
+        {% include "paginate.html" %}
+    {% endwith %}
 {% endblock %}

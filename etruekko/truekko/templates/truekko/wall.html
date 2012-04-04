@@ -1,0 +1,23 @@
+{% load i18n %}
+<div class="wall">
+    <h3>{{ wall.display_name }}</h3>
+    {% if USER.is_authenticated %}
+    <form method="POST" action="{% url message_post wall.id %}">
+        {% csrf_token %}
+        <textarea id="comment" name="comment"></textarea>
+        <label for="priv">{% trans "Private" %}:</label>
+        <input type="checkbox" id="priv" name="priv"/><br/>
+        <input type="submit" name="post" value="{% trans "Post" %}"/>
+    </form>
+    {% endif %}
+
+    {% if wallmessages %}
+        {% for msg in wallmessages.object_list %}
+            {% include "truekko/single_message_view.html" %}
+        {% endfor %}
+    {% else %}
+        {% for msg in wall.messages.all %}
+            {% include "truekko/single_message_view.html" %}
+        {% endfor %}
+    {% endif %}
+</div>

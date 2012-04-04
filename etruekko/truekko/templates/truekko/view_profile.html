@@ -36,6 +36,16 @@
                 {% endblocktrans %}
             </span>
         </div>
+
+        <!-- wall --!>
+        {% with wall=wall wallmessages=wallmessages%}
+            {% include "truekko/wall.html" %}
+        {% endwith %}
+
         <div class="clear"></div>
     </div>
+
+    {% with pagination=wallmessages %}
+        {% include "paginate.html" %}
+    {% endwith %}
 {% endblock %}

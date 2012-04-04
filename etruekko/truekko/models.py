@@ -3,10 +3,13 @@ from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from django.db import models
+from django.core.urlresolvers import reverse
 
 from django.conf import settings
 
 from djangoratings.fields import RatingField
+
+from etruekko.utils import template_email
 
 
 # User profile models
@@ -69,6 +72,10 @@ class Group(models.Model):
 
     def admins_emails(self):
         emails = [i.user.email for i in self.membership_set.filter(role="ADM")]
+        return emails
+
+    def members_emails(self):
+        emails = [i.user.email for i in self.membership_set.all()]
         return emails
 
 
@@ -237,6 +244,64 @@ def swap_post_save(sender, instance, created, *args, **kwargs):
         instance.status = 'DON'
         instance.save()
 
-        # TODO create transfer
-
 post_save.connect(swap_post_save, sender=Swap)
+
+
+class Wall(models.Model):
+    user = models.ForeignKey(User, null=True, blank=True, related_name="walls")
+    group = models.ForeignKey(Group, null=True, blank=True, related_name="walls")
+
+    name = models.CharField(_("Name"), blank=True, null=True, max_length=100)
+    description = models.TextField(_("Description"), max_length=300, blank=True, null=True)
+
+    def __unicode__(self):
+        return self.name
+
+    def messages_for_user(self, user):
+        # TODO filter by group, membership and privacy
+        return self.messages.all()
+
+    def display_name(self):
+        if self.user:
+            return _("%s's wall") % self.user.username
+        if self.group:
+            return _("%s's wall") % self.group.name
+        else:
+            return self.name
+
+
+class WallMessage(models.Model):
+    user = models.ForeignKey(User, related_name="messages")
+    wall = models.ForeignKey(Wall, related_name="messages")
+    date = models.DateTimeField(auto_now_add=True)
+
+    private = models.BooleanField(_("Private"), default=False)
+    msg = models.TextField(_("Message"))
+
+    def __unicode__(self):
+        return self.msg
+
+    class Meta:
+        ordering = ['-date']
+
+def wall_message_post_save(sender, instance, created, *args, **kwargs):
+    if created:
+        # Sending email notification to receiver
+        if instance.wall.user:
+            email_list = [instance.wall.user.email]
+            url = reverse('view_profile', args=[instance.wall.user.username])
+            name = instance.wall.user.get_profile().name
+        elif instance.wall.group:
+            email_list = instance.wall.group.members_emails()
+            url = reverse('view_group', args=[instance.wall.group.name])
+            name = instance.wall.group.name
+        else:
+            email_list = [i[1] for i in settings.ADMINS]
+            url = '/'
+
+        context = {'message': instance, 'name': name, 'url': url}
+        template_email('truekko/message_mail.txt',
+                       _("New message by %s in %s") % (instance.user, instance.wall.name),
+                       email_list, context)
+
+post_save.connect(wall_message_post_save, sender=WallMessage)

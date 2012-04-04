@@ -26,6 +26,7 @@ from etruekko.truekko.models import Item
 from etruekko.truekko.models import Tag
 from etruekko.truekko.models import ItemTagged
 from etruekko.truekko.models import Swap, SwapItems, SwapComment
+from etruekko.truekko.models import Wall, WallMessage
 
 from etruekko.truekko.utils import generate_menu
 from etruekko.utils import paginate, template_email
@@ -55,9 +56,15 @@ class ViewProfile(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(ViewProfile, self).get_context_data(**kwargs)
+        u = get_object_or_404(User, username=self.username)
+        wall, created = Wall.objects.get_or_create(user=u, name="%s wall" % u.username)
+        messages = wall.messages_for_user(self.request.user)
+
         context['klass'] = 'people'
         context['menu'] = generate_menu()
-        context['viewing'] = get_object_or_404(User, username=self.username)
+        context['viewing'] = u
+        context['wall'] = wall
+        context['wallmessages'] = paginate(self.request, messages, 20)
         return context
 
     def get(self, request, username):
@@ -195,6 +202,12 @@ class ViewGroup(TemplateView):
         g = get_object_or_404(Group, name=self.groupname)
         context['requests'] = g.membership_set.filter(role="REQ").count()
         context['memberships'] = g.membership_set.exclude(role__in=["REQ", "BAN"]).order_by("-id")
+
+        wall, created = Wall.objects.get_or_create(group=g, name="%s wall" % g.name)
+        messages = wall.messages_for_user(self.request.user)
+
+        context['wall'] = wall
+        context['wallmessages'] = paginate(self.request, messages, 20)
         return context
 
     def get(self, request, groupname):
@@ -941,6 +954,35 @@ class ItemList(TemplateView):
         return super(ItemList, self).get(request)
 
 
+##############
+#            #
+#  MESSAGES  #
+#            #
+##############
+
+
+class MessagePost(View):
+
+    def post(self, request, wallid):
+        wall = get_object_or_404(Wall, pk=wallid)
+        msg = request.POST.get('comment', '')
+        priv = bool(request.POST.get('priv', False))
+
+        wmsg = WallMessage(user=request.user,
+                           wall=wall,
+                           msg=msg,
+                           private=priv)
+        wmsg.save()
+        messages.info(request, _(u"Message posted correctly"))
+
+        # redirecting to prev page
+        referer = request.META['HTTP_REFERER']
+        if not referer:
+            return redirect("/")
+
+        return redirect(referer)
+
+
 # profile
 edit_profile = login_required(EditProfile.as_view())
 view_profile = login_required(ViewProfile.as_view())
@@ -971,5 +1013,8 @@ swap_list = login_required(SwapList.as_view())
 item_add = login_required(ItemAdd.as_view())
 item_view = login_required(ItemView.as_view())
 item_list = login_required(ItemList.as_view())
+
+# messages
+message_post = login_required(MessagePost.as_view())
 
 index = Index.as_view()

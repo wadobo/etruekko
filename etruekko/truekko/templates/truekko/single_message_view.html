@@ -1,0 +1,13 @@
+{% load i18n %}
+{% load markup %}
+
+<div class="msg{% if msg.user == USER %} me{% endif %}">
+    <span class="date"> {{ msg.date|timesince }} </span>
+    <a href="{% url view_profile msg.user.username %}"><img src="{% avatar msg.user 64 %}" alt="{{ msg.user.username }}"/></a>
+    <a href="{% url view_profile msg.user.username %}"><span class="username">{{ msg.user.username }}</span></a>
+    <span class="fullname">{{ msg.user.get_profile.name }}</span>
+
+    <p class="text">{{ msg.msg|textile }}</p>
+
+    <div class="clear"></div>
+</div>

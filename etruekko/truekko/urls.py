@@ -27,6 +27,8 @@ urlpatterns = patterns('etruekko.truekko.views',
     url(r'^item/add$', 'item_add', name='item_add'),
     url(r'^item/view/(\d+)$', 'item_view', name='item_view'),
     url(r'^item/list/(item|serv)/(\w+)?$', 'item_list', name='item_list'),
+    # messages
+    url(r'^messages/post/(\d+)$', 'message_post', name='message_post'),
 
     url(r'^$', 'index', name='index'),
 )

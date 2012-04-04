@@ -11,6 +11,7 @@ from etruekko.truekko.models import Transfer
 from etruekko.truekko.models import Item
 from etruekko.truekko.models import Tag
 from etruekko.truekko.models import ItemTagged
+from etruekko.truekko.models import WallMessage
 
 
 class CustomImageWidget(ClearableFileInput):
@@ -114,3 +115,9 @@ class ItemAddForm(ModelForm):
         fields = ('name', 'type', 'demand', 'description', 'photo', 'price', 'price_type')
         widgets = {'photo': CustomImageWidget()}
 
+
+class WallMessageForm(ModelForm):
+
+    class Meta:
+        model = WallMessage
+        fields = ('msg', 'private')
