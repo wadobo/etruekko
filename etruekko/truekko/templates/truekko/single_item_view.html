@@ -1,6 +1,9 @@
 {% load i18n %}
 
-<div class="item">
+<div class="item {% if item.demand %}demand{% else %}offer{% endif %}">
+    <div class="left">
+        <a href="{% url view_profile item.user.username %}"><img src="{% avatar item.user 64 %}" alt="{{ item.user.username }}"/></a>
+    </div>
     {% if item.photo %}
     <div class="left">
         {% if long %}
@@ -14,7 +17,16 @@
     <span class="price">{{ item.price }} {{ item.get_price_type_display }}</span>
 
     <div class="username">
-        <span class="username"> <a href="{% url item_view item.id %}">{{ item.name }}</a> </span>
+        <span class="username">
+            <a href="{% url item_view item.id %}">{{ item.name }}</a>
+            <span class="offerdemand">
+                {% if item.demand %}
+                    {% trans "Demand" %}
+                {% else %}
+                    {% trans "Offer" %}
+                {% endif %}
+            </span>
+        </span>
         {% if not short %}
         (<a href="{% url view_profile item.user.username %}"><span class="username">{{ item.user.username }}</span></a>
         <span class="fullname">{{ item.user.get_profile.name }}</span>)
@@ -29,7 +41,7 @@
     </div>
     {% endif %}
 
-    <p class="description">
+    <p class="{% if long %}description{% else %}shortdescription{% endif %}">
     {% if long %}
         {{ item.description }}
     {% else %}
@@ -48,7 +60,7 @@
     {% if not long %}
     {% endif %}
 
-    <a href="{% url swap_creation item.user.username %}?item={{ item.id }}">{% trans "Make request" %}</a>
-
     <div class="clear"></div>
+
+    <a href="{% url swap_creation item.user.username %}?item={{ item.id }}">{% trans "Make request" %}</a>
 </div>

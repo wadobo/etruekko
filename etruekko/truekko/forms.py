@@ -111,6 +111,6 @@ class ItemAddForm(ModelForm):
 
     class Meta:
         model = Item
-        fields = ('name', 'type', 'description', 'photo', 'price', 'price_type')
+        fields = ('name', 'type', 'demand', 'description', 'photo', 'price', 'price_type')
         widgets = {'photo': CustomImageWidget()}
 

@@ -526,6 +526,14 @@ a:hover {
     text-align: left;
 }
 
+.item .shortdescription {
+    color: #282828;
+    font-size: 1em;
+    line-height: 1.25em;
+    margin-right: 0px;
+    text-align: left;
+}
+
 .item .tags {
     float: right;
 }
@@ -533,6 +541,15 @@ a:hover {
 .item .tag {
     font-size: small;
 }
+
+.offer {
+    border-left: 3px solid #88FF88;
+}
+
+.demand {
+    border-left: 3px solid #8888FF;
+}
+
 /* ENDOF ITEMS */
 
 /* SWAP */

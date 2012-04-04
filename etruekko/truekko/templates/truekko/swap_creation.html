@@ -13,17 +13,6 @@
     <div id="subcontent">
         <h3>{{ swapstatus }}</h3>
 
-        <div class="comments">
-            {% for comment in comments %}
-                <div class="comment">
-                    <a href="{% url view_profile comment.user.username %}"><img class="left" src="{% avatar comment.user 48 %}" alt="{{ comment.user.username }}"/></a>
-                    <a href="{% url view_profile comment.user.username %}"><span class="username">{{ comment.user.username }}</span></a>
-                    <p> {{ comment.comment }} </p>
-                </div>
-                <div class="clear"></div>
-            {% endfor %}
-        </div>
-
         <ul>
         {% for error in errors %}
             <li>{{ error }}</li>
@@ -35,20 +24,33 @@
             <fieldset class="swap1">
             <legend>{{ user_from.username }}</legend>
             {% for item in user_from.items.all %}
-                <input name="item_{{item.id}}" type="checkbox" {% if item.id in items %}checked="checked"{% endif %}/>
-                {% with short="True" %}
-                {% include "truekko/single_item_view.html" %}
-                {% endwith %}
+                {% if not item.demand %}
+                    <input name="item_{{item.id}}" type="checkbox" {% if item.id in items %}checked="checked"{% endif %}/>
+                    {% with short="True" %}
+                    {% include "truekko/single_item_view.html" %}
+                    {% endwith %}
+                {% endif %}
             {% endfor %}
             </fieldset>
 
             <fieldset class="swap2">
             <legend>{{ user_to.username }}</legend>
             {% for item in user_to.items.all %}
-                <input name="item_{{item.id}}" type="checkbox" {% if item.id in items %}checked="checked"{% endif %} />
-                {% with short="True" %}
-                {% include "truekko/single_item_view.html" %}
-                {% endwith %}
+                {% if not item.demand %}
+                    <input name="item_{{item.id}}" type="checkbox" {% if item.id in items %}checked="checked"{% endif %} />
+                    {% with short="True" %}
+                    {% include "truekko/single_item_view.html" %}
+                    {% endwith %}
+                {% endif %}
+            {% endfor %}
+
+            <h3>{% trans "Demands" %}</h3>
+            {% for item in user_to.items.all %}
+                {% if  item.demand %}
+                    {% with short="True" %}
+                    {% include "truekko/single_item_view.html" %}
+                    {% endwith %}
+                {% endif %}
             {% endfor %}
             </fieldset>
 
@@ -60,6 +62,17 @@
             <td><input type="text" id="credits" name="credits" value="{{ credits }}"/></td>
             </tr>
             </table>
+
+            <div class="comments">
+                {% for comment in comments %}
+                    <div class="comment">
+                        <a href="{% url view_profile comment.user.username %}"><img class="left" src="{% avatar comment.user 48 %}" alt="{{ comment.user.username }}"/></a>
+                        <a href="{% url view_profile comment.user.username %}"><span class="username">{{ comment.user.username }}</span></a>
+                        <p> {{ comment.comment }} </p>
+                    </div>
+                    <div class="clear"></div>
+                {% endfor %}
+            </div>
 
             <label for="comment">{% trans "Comment:" %}</label>
             <textarea id="comment" name="comment"></textarea>

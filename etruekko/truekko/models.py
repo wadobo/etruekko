@@ -138,6 +138,7 @@ class Item(models.Model):
 
     user = models.ForeignKey(User, related_name="items")
     type = models.CharField(_("Item or service"), max_length=2, choices=TYPES, default="IT")
+    demand = models.BooleanField(_("Demand"), default=False)
     name = models.CharField(_("Name"), max_length=150)
     description = models.TextField(_("Description"))
     price = models.IntegerField(_("Price"))
