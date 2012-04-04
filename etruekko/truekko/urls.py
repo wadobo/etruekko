@@ -5,6 +5,7 @@ urlpatterns = patterns('etruekko.truekko.views',
     url(r'^profile/edit$', 'edit_profile', name='edit_profile'),
     url(r'^profile/(\w+)$', 'view_profile', name='view_profile'),
     url(r'^people$', 'people', name='people'),
+    url(r'^rate/(\d+)$', 'rate_user', name='rate_user'),
     # groups
     url(r'^groups$', 'groups', name='groups'),
     url(r'^group/(\w+)$', 'view_group', name='view_group'),

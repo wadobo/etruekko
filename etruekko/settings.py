@@ -100,7 +100,7 @@ SECRET_KEY = '*n-t9&pap!_%%3wbu(jukhd+4=6_jqox^#g6y^y8m-#b&&-49l'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -134,6 +134,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'debug_toolbar',
+    'djangoratings',
     'etruekko.truekko',
     'etruekko.globaltags',
 )

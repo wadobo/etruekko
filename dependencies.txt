@@ -4,3 +4,4 @@ ipython
 south
 PIL
 django-debug-toolbar
+django-ratings

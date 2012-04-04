@@ -1,0 +1,34 @@
+{% load i18n %}
+{% load ratings %}
+<form class="rating" id="rating-{{profile.user.id}}" action="{% url rate_user profile.user.id  %}" method="post">
+    {% csrf_token %}
+    {% if user.is_authenticated %}
+        {% rating_by_user user on profile.rating as user_rating %}
+        {% if user_rating %}
+            <input class="hover-star" type="radio" name="rating" value="1" {% if user_rating == 1 %} checked="checked" {% endif %}/>
+            <input class="hover-star" type="radio" name="rating" value="2" {% if user_rating == 2 %} checked="checked" {% endif %}/>
+            <input class="hover-star" type="radio" name="rating" value="3" {% if user_rating == 3 %} checked="checked" {% endif %}/>
+            <input class="hover-star" type="radio" name="rating" value="4" {% if user_rating == 4 %} checked="checked" {% endif %}/>
+            <input class="hover-star" type="radio" name="rating" value="5" {% if user_rating == 5 %} checked="checked" {% endif %}/>
+        {% else %}
+            <input class="hover-star" type="radio" name="rating" value="1" {% if profile.int_rating == 1 %} checked="checked" {% endif %}/>
+            <input class="hover-star" type="radio" name="rating" value="2" {% if profile.int_rating == 2 %} checked="checked" {% endif %}/>
+            <input class="hover-star" type="radio" name="rating" value="3" {% if profile.int_rating == 3 %} checked="checked" {% endif %}/>
+            <input class="hover-star" type="radio" name="rating" value="4" {% if profile.int_rating == 4 %} checked="checked" {% endif %}/>
+            <input class="hover-star" type="radio" name="rating" value="5" {% if profile.int_rating == 5 %} checked="checked" {% endif %}/>
+        {% endif %}
+    {% else %}
+        <input class="hover-star" type="radio" name="rating" value="1" disabled="disabled" {% if profile.int_rating == 1 %} checked="checked" {% endif %}/>
+        <input class="hover-star" type="radio" name="rating" value="2" disabled="disabled" {% if profile.int_rating == 2 %} checked="checked" {% endif %}/>
+        <input class="hover-star" type="radio" name="rating" value="3" disabled="disabled" {% if profile.int_rating == 3 %} checked="checked" {% endif %}/>
+        <input class="hover-star" type="radio" name="rating" value="4" disabled="disabled" {% if profile.int_rating == 4 %} checked="checked" {% endif %}/>
+        <input class="hover-star" type="radio" name="rating" value="5" disabled="disabled" {% if profile.int_rating == 5 %} checked="checked" {% endif %}/>
+    {% endif %}
+    <script>
+        $('.hover-star').rating({
+            callback: function(value, link){
+                this.form.submit();
+            }
+        });
+    </script>
+</form>

@@ -18,6 +18,11 @@
             user since {{ d }}
         {% endblocktrans %}
     </span>
+
+    {% with value=user.get_profile.int_rating votes=user.get_profile.rating.votes %}
+        {% include "rating.html" %}
+    {% endwith %}
+
     {% if tools %}
         <select name="role_{{ user.id }}">
             <option value="admin" {% if membership.role == "ADM" %}selected="selected"{% endif %}>{% trans "Admin" %}</option>

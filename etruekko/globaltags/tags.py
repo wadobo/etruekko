@@ -61,3 +61,12 @@ def gravatar(email, size=48, d='identicon'):
         'size': str(size),
         'd': d})
     return gravatar_url
+
+
+@register.inclusion_tag("user_rating.html",\
+    takes_context=True)
+def user_rating(context, user):
+    '''
+    Renders actions for a given service if any. Assumes user is authenticated
+    '''
+    return {'user': context['user'], "profile": user.get_profile()}

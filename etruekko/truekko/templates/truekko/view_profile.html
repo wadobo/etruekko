@@ -15,14 +15,19 @@
         <div id="profile">
             <div id="profileimg">
                 <img src="{% avatar viewing 128 %}" alt="{{ viewing.username }}"/>
+                {% with value=viewing.get_profile.int_rating votes=viewing.get_profile.rating.votes %}
+                    {% include "rating.html" %}
+                {% endwith %}
                 <div id="thumbtack"></div>
             </div>
+
             <div class="tools">
                 {% if viewing != USER %} <a href="{% url transfer_direct viewing.username %}">{% trans "Direct transfer" %}</a> {% endif %}
             </div>
             <span class="location"><a href="{% url people %}?search={{ viewing.get_profile.location }}">{{ viewing.get_profile.location }}</a></span>
             <span class="username">{{ viewing.username }}</span>
             <span class="fullname">{{ viewing.get_profile.name }}</span>
+            <span class="rating"> {% user_rating viewing %} </span>
             <a href="{{ viewing.get_profile.web }}" class="web">{{ viewing.get_profile.web }}</a>
             <p class="description">{{ viewing.get_profile.description }}</p>
             <span class="date">

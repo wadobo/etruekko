@@ -125,6 +125,31 @@ class People(TemplateView):
         return context
 
 
+class RateUser(View):
+    def post(self, request, user_id):
+        user = get_object_or_404(User, pk=user_id)
+        try:
+            rating = int(request.POST['rating'])
+        except:
+            messages.info(request, _(u"Error receiving the rating"))
+            return redirect('view_profile', user.username)
+
+        if user == request.user:
+            messages.info(request, _(u"You don't have permissions to rate this user"))
+            return redirect('view_profile', user.username)
+
+        if 1 > rating > 5:
+            messages.info(request, _(u"Rating must be between 1 and 5"))
+            return redirect('view_profile', user.username)
+
+        user.get_profile().rating.add(score=rating,
+                                      user=request.user,
+                                      ip_address=request.META['REMOTE_ADDR'])
+        messages.info(request, _(u"User rated successfully"))
+
+        return redirect('view_profile', user.username)
+
+
 ############
 #          #
 #  GROUPS  #
@@ -919,6 +944,7 @@ class ItemList(TemplateView):
 # profile
 edit_profile = login_required(EditProfile.as_view())
 view_profile = login_required(ViewProfile.as_view())
+rate_user = login_required(RateUser.as_view())
 people = People.as_view()
 
 # group

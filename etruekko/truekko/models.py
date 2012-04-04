@@ -6,6 +6,8 @@ from django.db import models
 
 from django.conf import settings
 
+from djangoratings.fields import RatingField
+
 
 # User profile models
 
@@ -25,6 +27,12 @@ class UserProfile(models.Model):
                               upload_to=os.path.join(settings.MEDIA_ROOT, "photos"))
     description = models.TextField(_("Personal description"), max_length=300,
                                    blank=True)
+    rating = RatingField(range=5, can_change_vote=True)
+
+    def int_rating(self):
+        if self.rating.votes == 0:
+            return self.rating.votes
+        return int(self.rating.score / self.rating.votes)
 
 
 def user_post_save(sender, instance, signal, *args, **kwargs):
