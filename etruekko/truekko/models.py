@@ -97,6 +97,9 @@ class Transfer(models.Model):
     credits = models.IntegerField()
     date = models.DateTimeField(auto_now_add=True)
 
+    def type(self):
+        return "transf"
+
 
 def transfer_post_save(sender, instance, created, *args, **kwargs):
     if created:
@@ -191,6 +194,10 @@ class Swap(models.Model):
 
     status = models.CharField(max_length=3, choices=STATUS)
     credits = models.IntegerField()
+    date = models.DateTimeField(auto_now=True)
+
+    def type(self):
+        return "swap"
 
     def items_from(self):
         return [i.item for i in self.items.filter(item__user=self.user_from)]

@@ -29,7 +29,13 @@
 
     <div id="subcontent">
         {% for transf in transfs.object_list %}
+        {% if transf.type == "transf" %}
             {% include "truekko/single_transf_view.html" %}
+        {% else %}
+            {% with swap=transf %}
+            {% include "truekko/single_swap_view.html" %}
+            {% endwith %}
+        {% endif %}
         {% endfor %}
     </div>
 

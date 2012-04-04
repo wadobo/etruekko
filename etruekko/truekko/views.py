@@ -539,7 +539,25 @@ class TransferList(TemplateView):
 
             query = query.filter(k)
 
-        context['transfs'] = paginate(self.request, query.order_by('-date'), 10)
+        query = query.order_by('-date')[:20]
+
+        query2 = Swap.objects.filter(tq)
+        if q:
+            k = Q(user_from__username__icontains=q) |\
+                Q(user_from__email__icontains=q) |\
+                Q(user_from__userprofile__name__icontains=q) |\
+                Q(user_from__userprofile__location__icontains=q) |\
+                Q(user_to__username__icontains=q) |\
+                Q(user_to__email__icontains=q) |\
+                Q(user_to__userprofile__name__icontains=q) |\
+                Q(user_to__userprofile__location__icontains=q)
+
+            query2 = query2.filter(k).order_by('-date')[:20]
+
+        queries = [i for i in query] + [i for i in query2]
+        queries = sorted(queries, key=lambda x: x.date, reverse=True)
+
+        context['transfs'] = paginate(self.request, queries, 20)
         return context
 
     def get(self, request):

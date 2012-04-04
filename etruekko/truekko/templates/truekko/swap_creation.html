@@ -67,7 +67,7 @@
             {% if accept %}
             <input type="submit" name="accept" value="{% trans "Accept" %}"/>
             {% endif %}
-            {% if swap.status == "US1" or swap.status == "US2" %}
+            {% if not swap or swap.status == "US1" or swap.status == "US2" %}
                 <input type="submit" name="offer" value="{% trans "Make offer" %}"/>
                 <input type="submit" name="cancel" value="{% trans "cancel" %}"/>
             {% else %}
