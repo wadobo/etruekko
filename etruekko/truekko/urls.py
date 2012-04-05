@@ -29,6 +29,8 @@ urlpatterns = patterns('etruekko.truekko.views',
     url(r'^item/list/(item|serv)/(\w+)?$', 'item_list', name='item_list'),
     # messages
     url(r'^messages/post/(\d+)$', 'message_post', name='message_post'),
+    # search
+    url(r'^search/', include('haystack.urls')),
 
     url(r'^$', 'index', name='index'),
 )

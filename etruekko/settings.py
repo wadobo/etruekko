@@ -136,6 +136,7 @@ INSTALLED_APPS = (
     'django.contrib.markup',
     'debug_toolbar',
     'djangoratings',
+    'haystack',
     'etruekko.truekko',
     'etruekko.globaltags',
 )
@@ -183,6 +184,13 @@ AUTH_PROFILE_MODULE = 'truekko.UserProfile'
 
 INTERNAL_IPS = ('127.0.0.1',)
 
+# Search
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+    },
+}
 
 # truekko settings
 

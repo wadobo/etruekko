@@ -37,6 +37,12 @@ class UserProfile(models.Model):
             return self.rating.votes
         return int(self.rating.score / self.rating.votes)
 
+    def __unicode__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('view_profile', args=[self.user.username])
+
 
 def user_post_save(sender, instance, signal, *args, **kwargs):
     profile, new = UserProfile.objects.get_or_create(user=instance)
@@ -69,6 +75,9 @@ class Group(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('view_group', args=[self.name])
 
     def admins_emails(self):
         emails = [i.user.email for i in self.membership_set.filter(role="ADM")]
@@ -162,6 +171,9 @@ class Item(models.Model):
                               upload_to=os.path.join(settings.MEDIA_ROOT,
                               "item_images"))
     pub_date = models.DateTimeField(auto_now_add=True)
+
+    def get_absolute_url(self):
+        return reverse('item_view', args=[self.id])
 
     def tags(self):
         return (i.tag for i in self.itemtagged_set.all())
