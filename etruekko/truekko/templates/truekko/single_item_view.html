@@ -62,5 +62,9 @@
 
     <div class="clear"></div>
 
-    <a href="{% url swap_creation item.user.username %}?item={{ item.id }}">{% trans "Make request" %}</a>
+    {% if item.demand %}
+        <a href="{% url swap_creation item.user.username %}?item={{ item.id }}">{% trans "Make offer" %}</a>
+    {% else %}
+        <a href="{% url swap_creation item.user.username %}?item={{ item.id }}">{% trans "Make request" %}</a>
+    {% endif %}
 </div>
