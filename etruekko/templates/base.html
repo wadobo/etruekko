@@ -20,13 +20,6 @@
 
     <script type="text/javascript" charset="utf-8">
         $(document).ready(function(){
-            $("#id_global_search").keyup(function() {
-                if ($(this).attr("value") == "")
-                    $(".global_search.holder").show();
-                else
-                    $(".global_search.holder").hide();
-            });
-
             $("#id_global_search").focusin(function() {
                 $(".global_search.holder").hide();
             });
@@ -35,18 +28,17 @@
                     $(".global_search.holder").show();
             });
 
-            $("#id_search").keyup(function() {
-                if ($(this).attr("value") == "")
-                    $(".search.holder").show();
-                else
-                    $(".search.holder").hide();
-            });
             $("#id_search").focusin(function() {
                 $(".search.holder").hide();
             });
             $("#id_search").focusout(function() {
                 if ($(this).attr("value") == "")
                     $(".search.holder").show();
+            });
+
+            $(".holder").click(function() {
+                $(this).hide();
+                $(this).prev().focus();
             });
         });
     </script>
@@ -79,9 +71,9 @@
             <div id="search">
                 <form method="GET" action="/search">
                     <div class="search_div holding">
-                        <input id="id_global_search" type="text" name="q">
-                        <span class="global_search holder">Search...</span>
-                        <input class="search_button_white" type="submit" value="Search">
+                        <input id="id_global_search" type="text" name="q"/>
+                        <span class="global_search holder">{% trans "Search" %}...</span>
+                        <input class="search_button_white" type="submit" value="Search"/>
                     </div>
                 </form>
             </div>

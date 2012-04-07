@@ -313,7 +313,7 @@ a:hover {
     margin: 20px;
 }
 
-#id_search {
+#id_global_search, #id_search {
     border: 1px solid black;
     padding: 4px;
 
