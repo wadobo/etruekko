@@ -291,6 +291,9 @@ class Wall(models.Model):
 
     def messages_for_user(self, user):
         from etruekko.truekko.decorators import is_member
+        if user.is_anonymous():
+            return self.messages.filter(private=False)
+
         if self.user:
             if self.user == user:
                 return self.messages.all()
