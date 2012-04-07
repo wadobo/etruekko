@@ -3,6 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import Q
 from django.core.urlresolvers import reverse
 
 from django.conf import settings
@@ -10,6 +11,7 @@ from django.conf import settings
 from djangoratings.fields import RatingField
 
 from etruekko.utils import template_email
+from etruekko.globaltags.tags import avatar, groupavatar
 
 
 # User profile models
@@ -42,6 +44,12 @@ class UserProfile(models.Model):
 
     def get_absolute_url(self):
         return reverse('view_profile', args=[self.user.username])
+
+    def get_search_img(self):
+        return avatar(self.user, 20)
+
+    def get_search_desc(self):
+        return '(%s) %s: %s' % (self.user.username, self.location, self.description)
 
 
 def user_post_save(sender, instance, signal, *args, **kwargs):
@@ -78,6 +86,12 @@ class Group(models.Model):
 
     def get_absolute_url(self):
         return reverse('view_group', args=[self.name])
+
+    def get_search_img(self):
+        return groupavatar(self, 20)
+
+    def get_search_desc(self):
+        return '(%s) %s' % (self.location, self.description)
 
     def admins_emails(self):
         emails = [i.user.email for i in self.membership_set.filter(role="ADM")]
@@ -175,6 +189,12 @@ class Item(models.Model):
     def get_absolute_url(self):
         return reverse('item_view', args=[self.id])
 
+    def get_search_img(self):
+        return avatar(self.user, 20)
+
+    def get_search_desc(self):
+        return '(%s) %s' % (self.user.get_profile().location, self.description)
+
     def tags(self):
         return (i.tag for i in self.itemtagged_set.all())
 
@@ -270,8 +290,21 @@ class Wall(models.Model):
         return self.name
 
     def messages_for_user(self, user):
-        # TODO filter by group, membership and privacy
+        from etruekko.truekko.decorators import is_member
+        if self.user:
+            if self.user == user:
+                return self.messages.all()
+            else:
+                return self.messages.filter(Q(private=False) | Q(user=user))
+
+        if self.group:
+            if is_member(user, self.group):
+                return self.messages.all()
+            else:
+                return self.messages.filter(Q(private=False) | Q(user=user))
+
         return self.messages.all()
+
 
     def display_name(self):
         if self.user:

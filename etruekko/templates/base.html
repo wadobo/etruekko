@@ -17,6 +17,17 @@
 
     {% block extrahead %}
     {% endblock %}
+
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function(){
+            $("#id_search").keyup(function() {
+                if ($(this).attr("value") == "")
+                    $(".search.holder").show();
+                else
+                    $(".search.holder").hide();
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -40,6 +51,20 @@
             <div id="userprofile">
                 {% include "user.html" %}
             </div>
+
+            <!-- search -->
+            {% if USER.is_authenticated %}
+            <div id="search">
+                <form method="GET" action="/search">
+                    <div class="search_div holding">
+                        <input id="id_search" type="text" name="q">
+                        <span class="search holder">Search...</span>
+                        <input class="search_button_white" type="submit" value="Search">
+                    </div>
+                </form>
+            </div>
+            {% endif %}
+            <!-- endof search -->
 
             <div class="clear"></div>
 
