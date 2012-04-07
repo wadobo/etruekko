@@ -14,16 +14,16 @@
     <div id="subcontent">
         <div class="buttons">
             {% if editable %}
-                <a class="button" href="{% url edit_group viewing.name %}">{% trans "Edit" %}</a>
-                <a class="button" href="{% url edit_group_members viewing.name %}">{% trans "Edit members" %}</a>
+                <span class="button"><a class="button" href="{% url edit_group viewing.name %}">{% trans "Edit" %}</a></span>
+                <span class="button"><a class="button" href="{% url edit_group_members viewing.name %}">{% trans "Edit members" %}</a></span>
             {% endif %}
             {% if member %}
                 <form method="POST" action="{% url leave_group viewing.name %}"> {% csrf_token %}
-                    <input class="link" type="submit" value="Leave"/>
+                    <span class="button"><input class="link" type="submit" value="Leave"/></span>
                 </form>
             {% else %}
                 <form method="POST" action="{% url join_group viewing.name %}"> {% csrf_token %}
-                    <input class="link" type="submit" value="Join"/>
+                    <span class="button"><input class="link" type="submit" value="Join"/></span>
                 </form>
             {% endif %}
         </div>
@@ -40,6 +40,7 @@
         </div>
         <div class="clear"></div>
 
+        <div id="memberlist">
         <h3>
             {% trans "Members" %}
             {% if editable and requests %}
@@ -47,15 +48,23 @@
             {% endif %}
         </h3>
         {% for membership in memberships %}
-            {% with user=membership.user show_credits=editable %}
-                {% include "truekko/single_user_view.html" %}
-            {% endwith %}
+            <a href="{% url view_profile membership.user.username %}">
+            <img class="left
+                        {% if membership.role == "ADM" %}admin{% endif %}
+                        {% if membership.user == USER %}me{% endif %}"
+                 src="{% avatar membership.user 64 %}"
+                 title="{{ membership.user.get_profile.name }}"
+                 alt="{{ membership.user.username }}"/>
+            </a>
         {% endfor %}
+        </div>
 
         <!-- wall --!>
-        {% with wall=wall wallmessages=wallmessages%}
-            {% include "truekko/wall.html" %}
-        {% endwith %}
+        <div id="groupwall">
+            {% with wall=wall wallmessages=wallmessages%}
+                {% include "truekko/wall.html" %}
+            {% endwith %}
+        </div>
     </div>
 
     {% with pagination=wallmessages %}

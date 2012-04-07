@@ -6,6 +6,9 @@ a {
     font-weight: bold;
     text-decoration: none;
     color: #23B0DF;
+
+    font-size: 100%;
+    font-family: "Helvetica Neue","Segoe UI",Arial,sans-serif;
 }
 
 #messages {
@@ -495,6 +498,73 @@ a:hover {
 
 .group .web {
     font-size: x-small;
+}
+
+#groupwall {
+    width: 60%;
+}
+
+#memberlist {
+    width: 30%;
+    float: right;
+}
+
+#memberlist .admin {
+    border: 3px solid red;
+}
+
+#memberlist .me {
+    border: 3px solid blue;
+}
+
+.buttons {
+    margin: 20px;
+}
+
+.buttons input {
+    font-size: 100%;
+    font-family: "Helvetica Neue","Segoe UI",Arial,sans-serif;
+    border: 0px;
+    background:none;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    color: #23B0DF;
+    display: inline;
+    padding: 0px;
+}
+
+.buttons form {
+    display: inline;
+}
+
+.buttons input:hover {
+    text-decoration: underline;
+}
+
+span.button {
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+
+    border: 1px solid #555;
+
+    background-image: linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
+    background-image: -o-linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
+    background-image: -moz-linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
+    background-image: -webkit-linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
+    background-image: -ms-linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
+
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(228,233,240)),
+        color-stop(0.52, rgb(255,255,255))
+    );
 }
 
 /* ENDOF GROUP */
