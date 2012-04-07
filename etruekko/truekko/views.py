@@ -32,6 +32,22 @@ from etruekko.truekko.utils import generate_menu
 from etruekko.utils import paginate, template_email
 
 
+def messages_for_user(u):
+    if u.is_anonymous():
+        return WallMessage.objects.filter(private=False)
+
+    groups = [i.group for i in Membership.objects.filter(user=u)]
+    wall, created = Wall.objects.get_or_create(user=u, name="%s wall" % u.username)
+    # user wall messages
+    query = Q(wall=wall)
+    # and user sended messages
+    query = query | Q(user=u)
+    # and user groups messages
+    query = query | Q(wall__group__in=groups)
+    # TODO add friends messages
+    return WallMessage.objects.filter(query)
+
+
 class Index(TemplateView):
     template_name = 'truekko/index.html'
 
@@ -39,9 +55,18 @@ class Index(TemplateView):
         context = super(Index, self).get_context_data(**kwargs)
         context['klass'] = 'home'
         context['menu'] = generate_menu("home")
+
+        if self.request.user.is_authenticated():
+            u = self.request.user
+            wall, created = Wall.objects.get_or_create(user=u, name="%s wall" % u.username)
+            messages = messages_for_user(u)
+            context['wallmessages'] = paginate(self.request, messages, 20)
+            context['wall'] = wall
+
         return context
 
     def get(self, request):
+        self.request = request
         return super(Index, self).get(request)
 
 
@@ -968,6 +993,7 @@ class MessagePost(View):
         msg = request.POST.get('comment', '')
         priv = bool(request.POST.get('priv', False))
 
+        # TODO check post permissions
         wmsg = WallMessage(user=request.user,
                            wall=wall,
                            msg=msg,
