@@ -32,22 +32,6 @@ from etruekko.truekko.utils import generate_menu
 from etruekko.utils import paginate, template_email
 
 
-def messages_for_user(u):
-    if u.is_anonymous():
-        return WallMessage.objects.filter(private=False)
-
-    groups = [i.group for i in Membership.objects.filter(user=u)]
-    wall, created = Wall.objects.get_or_create(user=u, name="%s wall" % u.username)
-    # user wall messages
-    query = Q(wall=wall)
-    # and user sended messages
-    query = query | Q(user=u)
-    # and user groups messages
-    query = query | Q(wall__group__in=groups)
-    # TODO add friends messages
-    return WallMessage.objects.filter(query)
-
-
 class Index(TemplateView):
     template_name = 'truekko/index.html'
 
@@ -59,7 +43,7 @@ class Index(TemplateView):
         if self.request.user.is_authenticated():
             u = self.request.user
             wall, created = Wall.objects.get_or_create(user=u, name="%s wall" % u.username)
-            messages = messages_for_user(u)
+            messages = self.messages_for_user()
             context['wallmessages'] = paginate(self.request, messages, 20)
             context['wall'] = wall
 
@@ -68,6 +52,22 @@ class Index(TemplateView):
     def get(self, request):
         self.request = request
         return super(Index, self).get(request)
+
+    def messages_for_user(self):
+        u = self.request.user
+        if u.is_anonymous():
+            return WallMessage.objects.filter(private=False)
+
+        groups = [i.group for i in Membership.objects.filter(user=u)]
+        wall, created = Wall.objects.get_or_create(user=u, name="%s wall" % u.username)
+        # user wall messages
+        query = Q(wall=wall)
+        # and user sended messages
+        query = query | Q(user=u)
+        # and user groups messages
+        query = query | Q(wall__group__in=groups)
+        # TODO add friends messages
+        return WallMessage.objects.filter(query)
 
 
 ############
@@ -994,12 +994,15 @@ class MessagePost(View):
         priv = bool(request.POST.get('priv', False))
 
         # TODO check post permissions
-        wmsg = WallMessage(user=request.user,
-                           wall=wall,
-                           msg=msg,
-                           private=priv)
-        wmsg.save()
-        messages.info(request, _(u"Message posted correctly"))
+        if not self.can_post(request.user, wall):
+            messages.info(request, _(u"You can't post here"))
+        else:
+            wmsg = WallMessage(user=request.user,
+                               wall=wall,
+                               msg=msg,
+                               private=priv)
+            wmsg.save()
+            messages.info(request, _(u"Message posted correctly"))
 
         # redirecting to prev page
         referer = request.META['HTTP_REFERER']
@@ -1007,6 +1010,16 @@ class MessagePost(View):
             return redirect("/")
 
         return redirect(referer)
+
+    def can_post(self, user, wall):
+        if wall.user == user:
+            return True
+        if wall.group:
+            return is_member(user, wall.group)
+
+        # TODO only can post in friend walls
+
+        return True
 
 
 # profile
