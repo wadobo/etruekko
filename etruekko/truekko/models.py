@@ -85,7 +85,7 @@ class Group(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('view_group', args=[self.name])
+        return reverse('view_group', args=[self.id])
 
     def get_search_img(self):
         return groupavatar(self, 20)

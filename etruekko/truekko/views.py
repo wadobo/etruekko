@@ -232,12 +232,12 @@ class ViewGroup(TemplateView):
         context = super(ViewGroup, self).get_context_data(**kwargs)
         context['klass'] = 'group'
         context['menu'] = generate_menu('group')
-        context['viewing'] = get_object_or_404(Group, name=self.groupname)
+        context['viewing'] = get_object_or_404(Group, pk=self.groupid)
 
-        context['editable'] = is_group_editable(self.request.user.username, self.groupname)
+        context['editable'] = is_group_editable(self.request.user.username, self.groupid)
         context['member'] = is_member(self.request.user, context['viewing'])
 
-        g = get_object_or_404(Group, name=self.groupname)
+        g = get_object_or_404(Group, pk=self.groupid)
         context['requests'] = g.membership_set.filter(role="REQ").count()
         context['memberships'] = g.membership_set.exclude(role__in=["REQ", "BAN"]).order_by("-id")
 
@@ -248,9 +248,9 @@ class ViewGroup(TemplateView):
         context['wallmessages'] = paginate(self.request, messages, 20)
         return context
 
-    def get(self, request, groupname):
+    def get(self, request, groupid):
         self.request = request
-        self.groupname = groupname
+        self.groupid = groupid
         return super(ViewGroup, self).get(request)
 
 
@@ -259,26 +259,26 @@ class EditGroup(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(EditGroup, self).get_context_data(**kwargs)
-        g = get_object_or_404(Group, name=self.groupname)
+        g = get_object_or_404(Group, pk=self.groupid)
         context['form'] = GroupForm(instance=g)
         context['klass'] = 'group'
         context['group'] = g
         context['menu'] = generate_menu("group")
         return context
 
-    def get(self, request, groupname):
+    def get(self, request, groupid):
         self.request = request
-        self.groupname = groupname
+        self.groupid = groupid
         return super(EditGroup, self).get(request)
 
-    def post(self, request, groupname):
-        self.groupname = groupname
-        g = get_object_or_404(Group, name=self.groupname)
+    def post(self, request, groupid):
+        self.groupid = groupid
+        g = get_object_or_404(Group, pk=self.groupid)
         data = request.POST
 
         files_req = request.FILES
         if (files_req.get('photo', '')):
-            files_req['photo'].name = groupname
+            files_req['photo'].name = "group_%s" % g.id
 
         form = GroupForm(request.POST, files_req, instance=g)
         if not form.is_valid():
@@ -289,7 +289,7 @@ class EditGroup(TemplateView):
 
         form.save()
 
-        nxt = redirect('view_group', groupname)
+        nxt = redirect('view_group', groupid)
         return nxt
 
 
@@ -298,7 +298,7 @@ class EditGroupMembers(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(EditGroupMembers, self).get_context_data(**kwargs)
-        g = get_object_or_404(Group, name=self.groupname)
+        g = get_object_or_404(Group, pk=self.groupid)
         context['form'] = GroupForm(instance=g)
         context['klass'] = 'group'
         context['group'] = g
@@ -308,20 +308,20 @@ class EditGroupMembers(TemplateView):
         context['menu'] = generate_menu("group")
         return context
 
-    def get(self, request, groupname):
+    def get(self, request, groupid):
         self.request = request
-        self.groupname = groupname
+        self.groupid = groupid
         return super(EditGroupMembers, self).get(request)
 
-    def post(self, request, groupname):
-        self.groupname = groupname
-        g = get_object_or_404(Group, name=self.groupname)
+    def post(self, request, groupid):
+        self.groupid = groupid
+        g = get_object_or_404(Group, pk=self.groupid)
         data = request.POST
 
         def notify_user(user):
-            context = {'group': g, 'user': user, 'url': reverse('view_group', args=[groupname])}
+            context = {'group': g, 'user': user, 'url': reverse('view_group', args=[groupid])}
             template_email('truekko/user_member_mail.txt',
-                           _("Membership request confirmed %s") % groupname,
+                           _("Membership request confirmed %s") % g.name,
                            [user.email], context)
 
         for k, v in data.items():
@@ -353,7 +353,7 @@ class EditGroupMembers(TemplateView):
 
         messages.info(request, _("Group memebership modified correctly"))
 
-        nxt = redirect('view_group', groupname)
+        nxt = redirect('view_group', groupid)
         return nxt
 
 
@@ -363,21 +363,21 @@ class Register(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(Register, self).get_context_data(**kwargs)
-        g = get_object_or_404(Group, name=self.groupname)
+        g = get_object_or_404(Group, pk=self.groupid)
         context['form'] = RegisterForm()
         context['klass'] = 'group'
         context['group'] = g
         context['menu'] = generate_menu("group")
         return context
 
-    def get(self, request, groupname):
+    def get(self, request, groupid):
         self.request = request
-        self.groupname = groupname
+        self.groupid = groupid
         return super(Register, self).get(request)
 
-    def post(self, request, groupname):
-        self.groupname = groupname
-        g = get_object_or_404(Group, name=self.groupname)
+    def post(self, request, groupid):
+        self.groupid = groupid
+        g = get_object_or_404(Group, pk=self.groupid)
         data = request.POST
 
         f = RegisterForm(data)
@@ -395,12 +395,12 @@ class Register(TemplateView):
         context = dict(f.data.items())
         context['group'] = g
         template_email('truekko/user_registered_mail.txt', _("Welcome to etruekko"), [f.data['email']], context)
-        context['url'] = reverse('edit_group_members', args=(groupname,))
+        context['url'] = reverse('edit_group_members', args=(groupid,))
         template_email('truekko/user_registered_admin_mail.txt',
-                       _("New user '%s' in group '%s'") % (f.data['username'], groupname),
+                       _("New user '%s' in group '%s'") % (f.data['username'], g.name),
                        g.admins_emails(), context)
 
-        nxt = redirect('register_confirm', groupname)
+        nxt = redirect('register_confirm', groupid)
         return nxt
 
 
@@ -410,7 +410,7 @@ class RegisterAdmin(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(RegisterAdmin, self).get_context_data(**kwargs)
-        g = get_object_or_404(Group, name=self.groupname)
+        g = get_object_or_404(Group, pk=self.groupid)
         context['form'] = RegisterForm()
         context['klass'] = 'group'
         context['group'] = g
@@ -423,14 +423,14 @@ class RegisterAdmin(TemplateView):
         context['menu'] = generate_menu("group")
         return context
 
-    def get(self, request, groupname):
+    def get(self, request, groupid):
         self.request = request
-        self.groupname = groupname
+        self.groupid = groupid
         return super(RegisterAdmin, self).get(request)
 
-    def post(self, request, groupname):
-        self.groupname = groupname
-        g = get_object_or_404(Group, name=self.groupname)
+    def post(self, request, groupid):
+        self.groupid = groupid
+        g = get_object_or_404(Group, pk=self.groupid)
         data = request.POST
 
         if 'existing' in data:
@@ -442,21 +442,21 @@ class RegisterAdmin(TemplateView):
                 messages.info(request, msg)
                 return render_to_response(RegisterAdmin.template_name,
                                           self.get_context({'group': g, 'form': RegisterForm()}))
-                return redirect('edit_group_members', groupname)
+                return redirect('edit_group_members', groupid)
 
             if (Membership.objects.filter(user=u, group=g).count()):
                 msg = _("The user '%s' is already member of the group") % username
                 messages.info(request, msg)
                 return render_to_response(RegisterAdmin.template_name,
                                           self.get_context({'group': g, 'form': RegisterForm()}))
-                return redirect('edit_group_members', groupname)
+                return redirect('edit_group_members', groupid)
 
             m = Membership(user=u, group=g, role='REQ')
             m.save()
 
             msg = _("A new membership request has been created, you need to confirm")
             messages.info(request, msg)
-            return redirect('edit_group_members', groupname)
+            return redirect('edit_group_members', groupid)
 
         f = RegisterForm(data)
         if not f.is_valid():
@@ -470,7 +470,7 @@ class RegisterAdmin(TemplateView):
         context['group'] = g
         template_email('truekko/user_registered_mail.txt', _("Welcome to etruekko"), [context['email']], context)
 
-        nxt = redirect('edit_group_members', groupname)
+        nxt = redirect('edit_group_members', groupid)
         return nxt
 
 
@@ -479,26 +479,26 @@ class RegisterConfirm(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(RegisterConfirm, self).get_context_data(**kwargs)
-        g = get_object_or_404(Group, name=self.groupname)
+        g = get_object_or_404(Group, pk=self.groupid)
         context['klass'] = 'group'
         context['group'] = g
         context['menu'] = generate_menu("group")
         return context
 
-    def get(self, request, groupname):
+    def get(self, request, groupid):
         self.request = request
-        self.groupname = groupname
+        self.groupid = groupid
         return super(RegisterConfirm, self).get(request)
 
 
 class JoinGroup(View):
 
-    def post(self, request, groupname):
-        g = get_object_or_404(Group, name=groupname)
+    def post(self, request, groupid):
+        g = get_object_or_404(Group, pk=groupid)
         data = request.POST
 
         if request.user.is_anonymous():
-            return redirect('register_group', groupname)
+            return redirect('register_group', groupid)
 
         if is_member(request.user, g):
             msg = _("You already are member of this group")
@@ -507,22 +507,22 @@ class JoinGroup(View):
             m.save()
             # sending email to group admin
             context = {'group': g, 'username': request.user.username, 'user': request.user,
-                       'url': reverse('edit_group_members', args=(groupname,))}
+                       'url': reverse('edit_group_members', args=(groupid,))}
             template_email('truekko/user_registered_admin_mail.txt',
-                           _("New user '%s' in group '%s'") % (request.user.username, groupname),
+                           _("New user '%s' in group '%s'") % (request.user.username, g.name),
                            g.admins_emails(), context)
 
             msg = _("Your membership request has been sent to group administrator")
 
         messages.info(request, msg)
-        nxt = redirect('view_group', groupname)
+        nxt = redirect('view_group', groupid)
         return nxt
 
 
 class LeaveGroup(View):
 
-    def post(self, request, groupname):
-        g = get_object_or_404(Group, name=groupname)
+    def post(self, request, groupid):
+        g = get_object_or_404(Group, name=groupid)
         data = request.POST
 
         if is_member(request.user, g):
@@ -533,7 +533,7 @@ class LeaveGroup(View):
         msg = _("You are not member of this group")
 
         messages.info(request, msg)
-        nxt = redirect('view_group', groupname)
+        nxt = redirect('view_group', groupid)
         return nxt
 
 

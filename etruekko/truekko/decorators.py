@@ -23,21 +23,21 @@ def has_perm(view, test_function, message="", next="/"):
 
 def is_group_admin(view):
 
-    def new_func(request, groupname):
-        if is_group_editable(request.user.username, groupname):
-            return view(request, groupname)
+    def new_func(request, groupid):
+        if is_group_editable(request.user.username, groupid):
+            return view(request, groupid)
         else:
             message = _("Only group admin can edit this group")
             messages.info(request, message)
-            return redirect('view_group', groupname)
+            return redirect('view_group', groupid)
 
     return new_func
 
 
-def is_group_editable(username, groupname):
+def is_group_editable(username, groupid):
     try:
         user = User.objects.get(username=username)
-        m = user.membership_set.get(group__name=groupname)
+        m = user.membership_set.get(group__pk=groupid)
     except:
         return False
 

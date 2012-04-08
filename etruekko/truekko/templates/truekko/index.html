@@ -28,10 +28,10 @@
                 <ul>
                 {% for group in groups %}
                     <li>
-                        <a href="{% url view_group group.name %}">
+                        <a href="{% url view_group group.id %}">
                             <img class="left" src="{{ group.get_search_img }}" alt="{{ group.name }}"/>
                         </a>
-                        <a href="{% url view_group group.name %}">{{ group.name }}</a>
+                        <a href="{% url view_group group.id %}">{{ group.name }}</a>
                         <div class="clear"></div>
                     </li>
                 {% endfor %}

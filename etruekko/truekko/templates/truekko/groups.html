@@ -17,8 +17,8 @@
     <div id="subcontent">
         {% for group in groups.object_list %}
             <div class="group">
-                <a href="{% url view_group group.name %}"><img src="{% groupavatar group 64 %}" alt="{{ group.name }}"/></a>
-                <a href="{% url view_group group.name %}"><span class="name">{{ group.name }}</span></a>
+                <a href="{% url view_group group.id %}"><img src="{% groupavatar group 64 %}" alt="{{ group.name }}"/></a>
+                <a href="{% url view_group group.id %}"><span class="name">{{ group.name }}</span></a>
                 <span class="location"><a href="{% url groups %}?search={{ group.location }}">{{ group.location }}</a></span>
                 <p class="description">{{ group.description|truncatewords:20 }}</p>
                 {% if group.web %}

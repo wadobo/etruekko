@@ -4,8 +4,8 @@
 <div class="msg{% if msg.user == USER %} me{% endif %}">
     <span class="date"> {{ msg.date|timesince }} </span>
     {% if msg.wall.group %}
-        <a href="{% url view_group msg.wall.group.name %}"><img src="{% groupavatar msg.wall.group 64 %}" alt="{{ msg.wall.group.name }}"/></a>
-        <a href="{% url view_group msg.wall.group.name %}"><span class="username">{{ msg.wall.group.name }}</span></a>:
+        <a href="{% url view_group msg.wall.group.id %}"><img src="{% groupavatar msg.wall.group 64 %}" alt="{{ msg.wall.group.name }}"/></a>
+        <a href="{% url view_group msg.wall.group.id %}"><span class="username">{{ msg.wall.group.name }}</span></a>:
     {% endif %}
     <a href="{% url view_profile msg.user.username %}"><img src="{% avatar msg.user 64 %}" alt="{{ msg.user.username }}"/></a>
     <a href="{% url view_profile msg.user.username %}"><span class="username">{{ msg.user.username }}</span></a>

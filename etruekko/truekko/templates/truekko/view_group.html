@@ -14,15 +14,15 @@
     <div id="subcontent">
         <div class="buttons">
             {% if editable %}
-                <span class="button"><a class="button" href="{% url edit_group viewing.name %}">{% trans "Edit" %}</a></span>
-                <span class="button"><a class="button" href="{% url edit_group_members viewing.name %}">{% trans "Edit members" %}</a></span>
+                <span class="button"><a class="button" href="{% url edit_group viewing.id %}">{% trans "Edit" %}</a></span>
+                <span class="button"><a class="button" href="{% url edit_group_members viewing.id %}">{% trans "Edit members" %}</a></span>
             {% endif %}
             {% if member %}
-                <form method="POST" action="{% url leave_group viewing.name %}"> {% csrf_token %}
+                <form method="POST" action="{% url leave_group viewing.id %}"> {% csrf_token %}
                     <span class="button"><input class="link" type="submit" value="Leave"/></span>
                 </form>
             {% else %}
-                <form method="POST" action="{% url join_group viewing.name %}"> {% csrf_token %}
+                <form method="POST" action="{% url join_group viewing.id %}"> {% csrf_token %}
                     <span class="button"><input class="link" type="submit" value="Join"/></span>
                 </form>
             {% endif %}
@@ -44,7 +44,7 @@
         <h3>
             {% trans "Members" %}
             {% if editable and requests %}
-                (<a href="{% url edit_group_members viewing.name %}">{{ requests }} {% trans "pending requests" %}</a>)
+                (<a href="{% url edit_group_members viewing.id %}">{{ requests }} {% trans "pending requests" %}</a>)
             {% endif %}
         </h3>
         {% for membership in memberships %}
