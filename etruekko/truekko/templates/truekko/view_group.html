@@ -49,7 +49,7 @@
         </h3>
         {% for membership in memberships %}
             <a href="{% url view_profile membership.user.username %}">
-            <img class="left
+            <img class="left memberimg
                         {% if membership.role == "ADM" %}admin{% endif %}
                         {% if membership.user == USER %}me{% endif %}"
                  src="{% avatar membership.user 64 %}"

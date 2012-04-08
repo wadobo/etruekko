@@ -510,6 +510,12 @@ a:hover {
     float: left;
 }
 
+#memberlist .memberimg {
+    border: 3px solid transparent;
+    margin: 0px;
+    padding: 0px;
+}
+
 #memberlist .admin {
     border: 3px solid red;
 }
