@@ -37,10 +37,48 @@
             </span>
         </div>
 
-        <!-- wall --!>
-        {% with wall=wall wallmessages=wallmessages%}
-            {% include "truekko/wall.html" %}
-        {% endwith %}
+        <div class="clear"></div>
+
+        <div id="indexcontent">
+            <!-- wall --!>
+            {% with wall=wall wallmessages=wallmessages%}
+                {% include "truekko/wall.html" %}
+            {% endwith %}
+        </div>
+
+
+        <div id="indexmenu"/>
+            <!-- offers -->
+            <h3>{% trans "Offers" %}</h3>
+            <ul>
+            {% for item in offers %}
+                <li>
+                    <a href="{% url item_view item.id %}">
+                        <img class="left" src="{{ item.get_search_img }}" alt="{{ item.name }}"/>
+                    </a>
+                    <a href="{% url item_view item.id %}">
+                        {{ item.name }} ({{item.price }} {{ item.get_price_type_display }})
+                    </a>
+                    <div class="clear"></div>
+                </li>
+            {% endfor %}
+            </ul>
+
+            <!-- demands -->
+            <h3>{% trans "Demands" %}</h3>
+            <ul>
+            {% for item in demands %}
+                <li>
+                    <a href="{% url item_view item.id %}">
+                        <img class="left" src="{{ item.get_search_img }}" alt="{{ item.name }}"/>
+                    </a>
+                    <a href="{% url item_view item.id %}">
+                        {{ item.name }} ({{item.price }} {{ item.get_price_type_display }})
+                    </a>
+                    <div class="clear"></div>
+                </li>
+            {% endfor %}
+        </div>
 
         <div class="clear"></div>
     </div>

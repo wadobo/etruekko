@@ -6,22 +6,96 @@
     <div id="subcontent">
         {% if USER.is_authenticated %}
             <!-- Authenticated -->
-            <form method="POST" action="{% url message_post wall.id %}">
-                {% csrf_token %}
-                <textarea id="comment" name="comment"></textarea>
-                <label for="priv">{% trans "Private" %}:</label>
-                <input type="checkbox" id="priv" name="priv"/><br/>
-                <input type="submit" name="post" value="{% trans "Post" %}"/>
-            </form>
+            <div id="indexcontent">
+                <form method="POST" action="{% url message_post wall.id %}">
+                    {% csrf_token %}
+                    <label for="comment">{% trans "What's happening?" %}:</label>
+                    <textarea id="comment" name="comment"></textarea>
+                    <input type="submit" name="post" value="{% trans "Post" %}"/>
+                </form>
 
-            {% if wallmessages %}
-                {% for msg in wallmessages.object_list %}
-                    {% include "truekko/single_message_view.html" %}
+                {% if wallmessages %}
+                    {% for msg in wallmessages.object_list %}
+                        {% include "truekko/single_message_view.html" %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <!-- index menu -->
+            <div id="indexmenu">
+                <!-- groups -->
+                <h3>{% trans "My groups" %}</h3>
+                <ul>
+                {% for group in groups %}
+                    <li>
+                        <a href="{% url view_group group.name %}">
+                            <img class="left" src="{{ group.get_search_img }}" alt="{{ group.name }}"/>
+                        </a>
+                        <a href="{% url view_group group.name %}">{{ group.name }}</a>
+                        <div class="clear"></div>
+                    </li>
                 {% endfor %}
-            {% endif %}
+                </ul>
+
+                <!-- swaps -->
+                {% if swaps %}
+                    <h3>{% trans "My Swaps" %}</h3>
+                    <ul>
+                    {% for swap in swaps %}
+                        <li>
+                            <a href="{% url swap_view swap.id %}">
+                                <img class="left" src="{% avatar swap.user_from 20 %}"/>
+                                <img class="left" src="{% avatar swap.user_to 20 %}"/>
+                                {{ swap.get_status_msg }}
+                                ({{ swap.date|timesince }})
+                            </a>
+                            <div class="clear"></div>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <!-- offers -->
+                <h3>{% trans "My Offers" %}</h3>
+                <ul>
+                {% for item in offers %}
+                    <li>
+                        <a href="{% url item_view item.id %}">
+                            <img class="left" src="{{ item.get_search_img }}" alt="{{ item.name }}"/>
+                        </a>
+                        <a href="{% url item_view item.id %}">
+                            {{ item.name }} ({{item.price }} {{ item.get_price_type_display }})
+                        </a>
+                        <div class="clear"></div>
+                    </li>
+                {% empty %}
+                    <li><a href="{% url item_add %}">{% trans "Add new" %}</a></li>
+                {% endfor %}
+                </ul>
+
+                <!-- demands -->
+                <h3>{% trans "My Demands" %}</h3>
+                <ul>
+                {% for item in demands %}
+                    <li>
+                        <a href="{% url item_view item.id %}">
+                            <img class="left" src="{{ item.get_search_img }}" alt="{{ item.name }}"/>
+                        </a>
+                        <a href="{% url item_view item.id %}">
+                            {{ item.name }} ({{item.price }} {{ item.get_price_type_display }})
+                        </a>
+                        <div class="clear"></div>
+                    </li>
+                {% empty %}
+                    <li><a href="{% url item_add %}">{% trans "Add new" %}</a></li>
+                {% endfor %}
+                </ul>
+            </div>
         {% else %}
             <!-- Anonymous -->
         {% endif %}
+
+        <div class="clear"></div>
     </div>
 
     {% with pagination=wallmessages %}

@@ -42,10 +42,19 @@ class Index(TemplateView):
 
         if self.request.user.is_authenticated():
             u = self.request.user
+            groups = [i.group for i in Membership.objects.filter(user=u)]
             wall, created = Wall.objects.get_or_create(user=u, name="%s wall" % u.username)
             messages = self.messages_for_user()
             context['wallmessages'] = paginate(self.request, messages, 20)
             context['wall'] = wall
+            context['groups'] = groups
+            items = Item.objects.filter(user=u)
+            context['offers'] = items.filter(demand=False)
+            context['demands'] = items.filter(demand=True)
+
+            tq = Q(user_from=u) | Q(user_to=u)
+            tq2 = Q(status__in=['US1', 'US2'])
+            context['swaps'] = Swap.objects.filter(tq).filter(tq2)
 
         return context
 
@@ -90,6 +99,10 @@ class ViewProfile(TemplateView):
         context['viewing'] = u
         context['wall'] = wall
         context['wallmessages'] = paginate(self.request, messages, 20)
+
+        items = Item.objects.filter(user=u)
+        context['offers'] = items.filter(demand=False)
+        context['demands'] = items.filter(demand=True)
         return context
 
     def get(self, request, username):
@@ -720,18 +733,7 @@ class SwapView(TemplateView):
         if self.request.user == self.swap.user_to and self.swap.status == 'US1':
             context['accept'] = True
 
-        if self.swap.status == 'US1':
-            u = self.swap.user_to.username
-            context['swapstatus'] = _("Negotiation, waiting for %s confirmation" % u)
-        elif self.swap.status == 'US2':
-            u = self.swap.user_from.username
-            context['swapstatus'] = _("Negotiation, waiting for %s confirmation" % u)
-        elif self.swap.status == 'CON':
-            context['swapstatus'] = _("Swap confirmed")
-        elif self.swap.status == 'DON':
-            context['swapstatus'] = _("Swap done")
-        elif self.swap.status == 'CAN':
-            context['swapstatus'] = _("Swap canceled")
+        context['swapstatus'] = self.swap.get_status_msg()
 
         return context
 

@@ -244,8 +244,25 @@ class Swap(models.Model):
     credits = models.IntegerField()
     date = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ['-date']
+
     def type(self):
         return "swap"
+
+    def get_status_msg(self):
+        if self.status == 'US1':
+            u = self.user_to.username
+            return _("Negotiation, waiting for %s confirmation" % u)
+        elif self.status == 'US2':
+            u = self.user_from.username
+            return _("Negotiation, waiting for %s confirmation" % u)
+        elif self.status == 'CON':
+            return _("Swap confirmed")
+        elif self.status == 'DON':
+            return _("Swap done")
+        elif self.status == 'CAN':
+            return _("Swap canceled")
 
     def items_from(self):
         return [i.item for i in self.items.filter(item__user=self.user_from)]

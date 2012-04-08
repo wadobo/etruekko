@@ -501,12 +501,13 @@ a:hover {
 }
 
 #groupwall {
-    width: 60%;
+    width: 550px;
+    float: left;
 }
 
 #memberlist {
-    width: 30%;
-    float: right;
+    width: 300px;
+    float: left;
 }
 
 #memberlist .admin {
@@ -741,3 +742,30 @@ th {
 }
 
 /* ENDOF WALL */
+
+/* INDEX */
+
+#indexcontent {
+    width: 550px;
+    float: left;
+}
+
+#indexmenu {
+    padding: 20px;
+    width: 300px;
+    float: left;
+}
+
+#indexmenu ul {
+    list-style: none;
+    font-size: small;
+    margin: 0px;
+    padding: 0px;
+}
+
+#indexmenu li {
+    padding: 5px;
+    border-bottom: 1px dashed #999;
+}
+
+/* ENDOF INDEX */
