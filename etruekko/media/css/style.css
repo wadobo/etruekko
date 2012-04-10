@@ -77,8 +77,7 @@ a:hover {
 .bg_item   { background-color: #E36D9D }
 .bg_add    { background-color: #DC4D54 }
 .bg_transf { background-color: #E6E06F }
-.bg_msg    { background-color: #94B665 }
-.bg_group  { background-color: #23B0DF }
+.bg_group  { background-color: #94B665 }
 
 #wrapper {
     width: 1000px;
