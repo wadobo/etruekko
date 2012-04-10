@@ -24,7 +24,7 @@
 
         <label for="exisinguser">{% trans "User name" %}</label>
         <input name="existinguser" id="exisinguser" type="text"/>
-        <input class="submit" type="submit" name="existing" value="{% trans 'Add user to group' %}"/>
+        <input class="button green" type="submit" name="existing" value="{% trans 'Add user to group' %}"/>
         </fieldset>
 
         <fieldset>
@@ -36,7 +36,7 @@
         <table>
             {{ form.as_table }}
         </table>
-        <input class="submit" type="submit" name="newuser" value="{% trans 'Register' %}"/>
+        <input class="button green" type="submit" name="newuser" value="{% trans 'Register' %}"/>
         </fieldset>
     </form>
     </div>

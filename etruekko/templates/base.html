@@ -5,6 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css"  media="screen" />
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/buttons.css" type="text/css"  media="screen" />
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/jquery.rating.css" type="text/css"  media="screen" />
     <link rel="shortcut icon" href="{{ MEDIA_URL }}favicon.ico" type="image/x-icon" />
 
@@ -18,30 +19,6 @@
     {% block extrahead %}
     {% endblock %}
 
-    <script type="text/javascript" charset="utf-8">
-        $(document).ready(function(){
-            $("#id_global_search").focusin(function() {
-                $(".global_search.holder").hide();
-            });
-            $("#id_global_search").focusout(function() {
-                if ($(this).attr("value") == "")
-                    $(".global_search.holder").show();
-            });
-
-            $("#id_search").focusin(function() {
-                $(".search.holder").hide();
-            });
-            $("#id_search").focusout(function() {
-                if ($(this).attr("value") == "")
-                    $(".search.holder").show();
-            });
-
-            $(".holder").click(function() {
-                $(this).hide();
-                $(this).prev().focus();
-            });
-        });
-    </script>
 </head>
 
 <body>
@@ -70,11 +47,8 @@
             {% if USER.is_authenticated %}
             <div id="search">
                 <form method="GET" action="/search">
-                    <div class="search_div holding">
-                        <input id="id_global_search" type="text" name="q"/>
-                        <span class="global_search holder">{% trans "Search" %}...</span>
-                        <input class="search_button_white" type="submit" value="Search"/>
-                    </div>
+                    <input id="id_global_search" type="text" class="text" placeholder="{% trans "Search..." %}" name="q"/>
+                    <input class="search_button_white" type="submit" value="Search"/>
                 </form>
             </div>
             {% endif %}
@@ -93,7 +67,7 @@
             {% include "menu.html" %}
             {% endblock %}
 
-            <div class="bg bg_{{ klass }}">
+            <div class="effect1 bg_{{ klass }}">
                 {% block content %}
                     <div id="subcontent">
                         {% block subcontent %}

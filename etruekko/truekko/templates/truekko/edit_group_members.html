@@ -14,7 +14,7 @@
     </h2>
     <div id="subcontent" class="form">
         <div class="buttons">
-            <span class="button"><a class="button" href="{% url register_group_admin group.id %}">{% trans "Add new member" %}</a></span>
+            <a class="button green" href="{% url register_group_admin group.id %}">{% trans "Add new member" %}</a>
         </div>
 
     <form action="" method="post">
@@ -51,7 +51,7 @@
 
         {% endfor %}
 
-        <input class="submit" type="submit" value="{% trans 'Save' %}"/>
+        <input class="button green" type="submit" value="{% trans 'Save' %}"/>
     </form>
     </div>
 {% endblock %}

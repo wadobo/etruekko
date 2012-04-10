@@ -1,7 +1,21 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block content %}
+{% block subcontent %}
+
+<p>
+{% blocktrans %}
+To login in etruekko you should have an account. If you don't have
+one, you can request the creation to a group. In etruekko users must
+be part of a group and only will be created by group administrators.
+{% endblocktrans %}
+</p>
+
+<p>
+{% trans "You can view the list of groups in:" %}
+<a href="{% url groups %}">Groups</a>
+</p>
+
 <form method="post" action="">
     {% csrf_token %}
 
@@ -9,7 +23,7 @@
     {{ form.as_table }}
     </table>
 
-    <input type="submit" value="login" />
+    <input type="submit" class="button blue" value="{% trans "Sing in" %}" />
     <input type="hidden" name="next" value="{{ next }}" />
 </form>
 

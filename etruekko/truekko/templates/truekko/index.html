@@ -11,7 +11,7 @@
                     {% csrf_token %}
                     <label for="comment">{% trans "What's happening?" %}:</label>
                     <textarea id="comment" name="comment"></textarea>
-                    <input type="submit" name="post" value="{% trans "Post" %}"/>
+                    <input type="submit" class="button blue" name="post" value="{% trans "Post" %}"/>
                 </form>
 
                 {% if wallmessages %}

@@ -11,6 +11,14 @@ a {
     font-family: "Helvetica Neue","Segoe UI",Arial,sans-serif;
 }
 
+p {
+    color: #282828;
+    font-size: 1em;
+    line-height: 1.25em;
+    margin: 1.25em 0;
+    text-align: left;
+}
+
 #messages {
     padding: 10px;
     background: #000000;
@@ -279,13 +287,8 @@ a:hover {
 }
 
 #id_q {
-    width: 50%;
-    border: 1px solid black;
-    padding: 4px;
-
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+    width: 400px;
+    margin-bottom: 10px;
 }
 
 .search_button {
@@ -310,15 +313,6 @@ a:hover {
 
 .search_div {
     margin: 20px;
-}
-
-#id_global_search, #id_search {
-    border: 1px solid black;
-    padding: 4px;
-
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
 }
 
 /* ENDOF SEARCH */
@@ -524,20 +518,17 @@ a:hover {
 }
 
 .buttons {
-    margin: 20px;
+    margin-bottom: 20px;
 }
 
 .buttons input {
     font-size: 100%;
     font-family: "Helvetica Neue","Segoe UI",Arial,sans-serif;
-    border: 0px;
     background:none;
     cursor: pointer;
     font-weight: bold;
     text-decoration: none;
     color: #23B0DF;
-    display: inline;
-    padding: 0px;
 }
 
 .buttons form {
@@ -702,6 +693,11 @@ th {
     width: 20%;
 }
 
+label {
+    font-weight: normal;
+    color: #888;
+}
+
 .status {
     display: block;
     float: right;
@@ -738,14 +734,6 @@ th {
     float: right;
 }
 
-.msg p {
-    color: #282828;
-    font-size: 1em;
-    line-height: 1.25em;
-    margin: 1.25em 0;
-    text-align: left;
-}
-
 /* ENDOF WALL */
 
 /* INDEX */
@@ -774,3 +762,83 @@ th {
 }
 
 /* ENDOF INDEX */
+
+/* COOL STYLES */
+
+/* inputs */
+
+textarea {
+    width: 100% !important;
+    margin: 10px;
+    margin-left: 0px;
+    padding: 4px !important;
+}
+
+textarea, input[type=text], input[type=password] {
+    background: #fff;
+    display: inline;
+    border: #fff;
+    border: 1px solid rgba(0, 0, 0, .2);
+    padding: 8px;
+    position: relative;
+    width: 180px;
+    font-family: "HelveticaNeue-Light", "HelveticaNeue", Helvetica, Arial, sans-serif;
+}
+
+textarea:focus, input[type=text]:focus, input[type=password]:focus {
+    outline: 0;
+    border-color: #888;
+    color: #222;
+    outline-color: #888;
+}
+
+/* shadow effect */
+/*==================================================
+ * Effect 1
+ * ===============================================*/
+.effect1{
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+       -moz-box-shadow: 0 10px 6px -6px #777;
+            box-shadow: 0 10px 6px -6px #777;
+  padding: 10px;
+}
+/*==================================================
+ * Effect 2
+ * ===============================================*/
+.effect2
+{
+  padding: 10px;
+  position: relative;
+}
+
+.effect2:before, .effect2:after
+{
+  z-index: -1;
+  position: absolute;
+  content: "";
+  bottom: 15px;
+  left: 10px;
+  width: 50%;
+  top: 80%;
+  max-width:300px;
+  background: #777;
+  -webkit-box-shadow: 0 15px 10px #777;
+  -moz-box-shadow: 0 15px 10px #777;
+  box-shadow: 0 15px 10px #777;
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+
+.effect2:after
+{
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+  right: 10px;
+  left: auto;
+}

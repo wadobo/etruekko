@@ -5,11 +5,8 @@
 {% block content %}
     <div class="left"><img src="/media/imgs/menu/group.png" alt="group"/></div>
     <form action="" method="get">
-        <div class="search_div holding">
-            <input type="text" name="search" id="id_search"/>
-            <span class="search holder">{% trans "Search..." %}</span>
-            <input class="search_button" type="submit" value="{% trans 'Search' %}"/>
-        </div>
+        <input id="id_search" type="text" class="text" placeholder="{% trans "Search..." %}" name="search"/>
+        <input class="search_button" type="submit" value="{% trans "Search" %}"/>
     </form>
 
     <div class="clear"></div>

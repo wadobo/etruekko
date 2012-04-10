@@ -78,13 +78,13 @@
             <textarea id="comment" name="comment"></textarea>
 
             {% if accept %}
-            <input type="submit" name="accept" value="{% trans "Accept" %}"/>
+            <input type="submit" class="button yellowish" name="accept" value="{% trans "Accept" %}"/>
             {% endif %}
             {% if not swap or swap.status == "US1" or swap.status == "US2" %}
-                <input type="submit" name="offer" value="{% trans "Make offer" %}"/>
-                <input type="submit" name="cancel" value="{% trans "cancel" %}"/>
+                <input type="submit" class="button yellowish" name="offer" value="{% trans "Make offer" %}"/>
+                <input type="submit" class="button yellowish" name="cancel" value="{% trans "cancel" %}"/>
             {% else %}
-                <input type="submit" name="comment" value="{% trans "Comment" %}"/>
+                <input type="submit" class="button yellowish" name="comment" value="{% trans "Comment" %}"/>
             {% endif %}
         </form>
     </div>

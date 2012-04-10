@@ -21,8 +21,8 @@
                 <div id="thumbtack"></div>
             </div>
 
-            <div class="tools">
-                {% if viewing != USER %} <a href="{% url transfer_direct viewing.username %}">{% trans "Direct transfer" %}</a> {% endif %}
+            <div class="buttons">
+                {% if viewing != USER %} <a class="button violet" href="{% url transfer_direct viewing.username %}">{% trans "Direct transfer" %}</a> {% endif %}
             </div>
             <span class="location"><a href="{% url people %}?search={{ viewing.get_profile.location }}">{{ viewing.get_profile.location }}</a></span>
             <span class="username">{{ viewing.username }}</span>
