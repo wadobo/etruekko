@@ -6,7 +6,7 @@
         <a href="{% url view_profile swap.user_to.username %}"><img src="{% avatar swap.user_to 64 %}" alt="{{ swap.user_to.username }}"/></a>
     </div>
 
-    <div class="status">{{ swap.get_status_display }}</div>
+    <div class="status">{{ swap.get_status_msg }}</div>
     <div class="usernames">
         <a href="{% url view_profile swap.user_from.username %}"><span class="username">{{ swap.user_from.username }}</span></a>
         →
