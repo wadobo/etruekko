@@ -52,6 +52,18 @@ class UserProfile(models.Model):
     def get_search_desc(self):
         return '(%s) %s: %s' % (self.user.username, self.location, self.description)
 
+    def is_admin_user(self, user):
+        admin = self.user
+        groups = Membership.objects.filter(role="ADM", user=admin).values('group')
+        user_groups = Membership.objects.filter(role__in=["MEM", "REQ"],
+                                                user=user,
+                                                group__in=groups).count()
+        if user_groups:
+            return True
+
+        return False
+
+
 
 def user_post_save(sender, instance, signal, *args, **kwargs):
     profile, new = UserProfile.objects.get_or_create(user=instance)

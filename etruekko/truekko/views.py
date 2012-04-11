@@ -1,5 +1,6 @@
 import uuid
 
+from django.http import Http404
 from django.contrib import messages
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
@@ -97,6 +98,7 @@ class ViewProfile(TemplateView):
         context['klass'] = 'people'
         context['menu'] = generate_menu()
         context['viewing'] = u
+        context['admin'] = self.request.user.get_profile().is_admin_user(u)
         context['wall'] = wall
         context['wallmessages'] = paginate(self.request, messages, 20)
 
@@ -118,6 +120,7 @@ class EditProfile(TemplateView):
         context = super(EditProfile, self).get_context_data(**kwargs)
         context['form'] = UserProfileForm(instance=self.request.user.get_profile())
         context['klass'] = 'people'
+        context['viewing'] = self.request.user
         context['menu'] = generate_menu()
         return context
 
@@ -135,7 +138,7 @@ class EditProfile(TemplateView):
         form = UserProfileForm(request.POST, files_req, instance=request.user.get_profile())
         if not form.is_valid():
             menu = generate_menu()
-            context = RequestContext(request, {'user': request.user, 'form': form, 'menu': menu})
+            context = RequestContext(request, {'viewing': request.user, 'form': form, 'menu': menu})
             context['klass'] = 'people'
             return render_to_response(EditProfile.template_name, context)
 
@@ -144,6 +147,47 @@ class EditProfile(TemplateView):
         nxt = redirect('view_profile', request.user.username)
         return nxt
 
+
+class EditProfileAdmin(TemplateView):
+    template_name = 'truekko/edit_profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(EditProfileAdmin, self).get_context_data(**kwargs)
+        context['form'] = UserProfileForm(instance=self.user.get_profile())
+        context['klass'] = 'people'
+        context['viewing'] = self.user
+        context['menu'] = generate_menu()
+        return context
+
+    def get(self, request, username):
+        self.request = request
+        self.user = get_object_or_404(User, username=username)
+        if not self.request.user.get_profile().is_admin_user(self.user):
+            raise Http404
+        return super(EditProfileAdmin, self).get(request)
+
+    def post(self, request, username):
+        self.user = get_object_or_404(User, username=username)
+        if not self.request.user.get_profile().is_admin_user(self.user):
+            raise Http404
+
+        data = request.POST
+
+        files_req = request.FILES
+        if (files_req.get('photo', '')):
+            files_req['photo'].name = self.user.username
+
+        form = UserProfileForm(request.POST, files_req, instance=self.user.get_profile())
+        if not form.is_valid():
+            menu = generate_menu()
+            context = RequestContext(request, {'viewing': self.user, 'form': form, 'menu': menu})
+            context['klass'] = 'people'
+            return render_to_response(EditProfileAdmin.template_name, context)
+
+        form.save()
+
+        nxt = redirect('view_profile', username)
+        return nxt
 
 
 class People(TemplateView):
@@ -1097,6 +1141,7 @@ class MessageRemove(TemplateView):
 
 # profile
 edit_profile = login_required(EditProfile.as_view())
+edit_profile_admin = login_required(EditProfileAdmin.as_view())
 view_profile = login_required(ViewProfile.as_view())
 rate_user = login_required(RateUser.as_view())
 people = People.as_view()

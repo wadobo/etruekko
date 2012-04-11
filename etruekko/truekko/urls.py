@@ -2,6 +2,7 @@ from django.conf.urls.defaults import *
 
 urlpatterns = patterns('etruekko.truekko.views',
     url(r'^profile/edit$', 'edit_profile', name='edit_profile'),
+    url(r'^profile/edit/(\w+)$', 'edit_profile_admin', name='edit_profile_admin'),
     url(r'^profile/(\w+)$', 'view_profile', name='view_profile'),
     url(r'^people$', 'people', name='people'),
     url(r'^rate/(\d+)$', 'rate_user', name='rate_user'),

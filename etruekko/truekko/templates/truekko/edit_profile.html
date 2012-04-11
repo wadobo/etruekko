@@ -4,8 +4,8 @@
 
 {% block content %}
     <h2>
-        <div class="left"><img src="{% avatar user 32 %}" alt="{{ user.username }}"/></div>
-        {% blocktrans with user.username as username %}
+        <div class="left"><img src="{% avatar viewing 32 %}" alt="{{ viewing.username }}"/></div>
+        {% blocktrans with viewing.username as username %}
         {{ username }}'s settings
         {% endblocktrans %}
         <div class="clear"></div>

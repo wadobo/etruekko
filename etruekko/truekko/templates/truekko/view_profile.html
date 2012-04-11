@@ -23,6 +23,8 @@
 
             <div class="buttons">
                 {% if viewing != USER %} <a class="button violet" href="{% url transfer_direct viewing.username %}">{% trans "Direct transfer" %}</a> {% endif %}
+                {% if admin %} <a class="button violet" href="{% url edit_profile_admin viewing.username %}">{% trans "Edit user" %}</a> {% endif %}
+                {% if viewing == USER %} <a class="button violet" href="{% url edit_profile %}">{% trans "Edit profile" %}</a> {% endif %}
             </div>
             <span class="location"><a href="{% url people %}?search={{ viewing.get_profile.location }}">{{ viewing.get_profile.location }}</a></span>
             <span class="username">{{ viewing.username }}</span>
