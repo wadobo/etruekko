@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% block title %} {% trans 'Add' %} {% endblock %}
+{% block title %}
+    {% if editing %}
+        {% trans 'Edit' %}
+    {% else %}
+        {% trans 'Add' %}
+    {% endif %}
+{% endblock %}
 
 {% block content %}
     <div class="left"><img src="/media/imgs/menu/add.png" alt="add"/></div>
@@ -13,10 +19,12 @@
         {% csrf_token %}
         <table>
             {{ form.as_table }}
+            {% if not editing %}
             <tr>
                 <th>{% trans "Tags:" %}</th>
                 <td><input type="text" name="tags"/>  {% trans "comma separated values" %}</td>
             </tr>
+            {% endif %}
         </table>
         <input class="button red" type="submit" value="{% trans 'Save' %}"/>
     </form>

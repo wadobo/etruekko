@@ -866,7 +866,11 @@ class ItemAdd(TemplateView):
         context = RequestContext(self.request, data)
         context['klass'] = 'add'
         context['menu'] = generate_menu("add")
-        context['form'] = ItemAddForm()
+        if self.item:
+            context['form'] = ItemAddForm(instance=self.item)
+            context['editing'] = True
+        else:
+            context['form'] = ItemAddForm()
         return context
 
     def get_context_data(self, **kwargs):
@@ -874,19 +878,29 @@ class ItemAdd(TemplateView):
         context = self.get_context(context)
         return context
 
-    def get(self, request):
+    def get(self, request, object_id=None):
         self.request = request
+        self.item = None
+        if object_id:
+            self.item = get_object_or_404(Item, id=object_id, user=self.request.user)
         return super(ItemAdd, self).get(request)
 
-    def post(self, request):
+    def post(self, request, object_id=None):
+        self.item = None
+        if object_id:
+            self.item = get_object_or_404(Item, id=object_id, user=self.request.user)
+
         files_req = request.FILES
         if (files_req.get('photo', '')):
             files_req['photo'].name = "item_%s" % uuid.uuid4().hex
 
-        form = ItemAddForm(request.POST, files_req)
+        if self.item:
+            form = ItemAddForm(request.POST, files_req, instance=self.item)
+        else:
+            form = ItemAddForm(request.POST, files_req)
+
         if not form.is_valid():
-            menu = generate_menu()
-            context = self.get_context()
+            context = self.get_context({})
             context['form'] = form
             return render_to_response(ItemAdd.template_name, context)
 
@@ -895,10 +909,12 @@ class ItemAdd(TemplateView):
         item.save()
 
         # parsing tags
-        tagnames = (i.strip() for i in request.POST.get('tags').split(','))
-        for tag in tagnames:
-            dbtag, created = Tag.objects.get_or_create(name=tag)
-            it, created = ItemTagged.objects.get_or_create(item=item, tag=dbtag)
+        tags = request.POST.get('tags')
+        if tags:
+            tagnames = (i.strip() for i in request.POST.get('tags').split(','))
+            for tag in tagnames:
+                dbtag, created = Tag.objects.get_or_create(name=tag)
+                it, created = ItemTagged.objects.get_or_create(item=item, tag=dbtag)
 
         nxtsrv = 'item'
         if item.type == "IT":

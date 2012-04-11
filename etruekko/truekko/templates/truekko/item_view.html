@@ -23,6 +23,10 @@
 
     <div id="subcontent">
         <div class="buttons">
+            {% if item.user == USER %}
+                <a class="button default" href="{% url item_edit item.id %}">{% trans "Edit" %}</a>
+                <a class="button default" href="{% url item_remove item.id %}">{% trans "Delete" %}</a>
+            {% endif %}
         </div>
 
         {% with long="True" %}

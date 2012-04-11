@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% if object.type == "IT" %}
+        {% blocktrans with object.name as name %} Remove Item / {{ name }} {% endblocktrans %}
+    {% else %}
+        {% blocktrans with object.name as name %} Remove Serv / {{ name }} {% endblocktrans %}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <h2>
+        {% if object.photo %}
+            <div class="left"><img src="{% image object.photo 32 %}" alt="{{ object.name }}"/></div>
+        {% endif %}
+        {% if object.type == "IT" %}
+            {% blocktrans with object.name as name %} Remove Item / {{ name }} {% endblocktrans %}
+        {% else %}
+            {% blocktrans with object.name as name %} Remove Serv / {{ name }} {% endblocktrans %}
+        {% endif %}
+        <div class="clear"></div>
+    </h2>
+
+    <div id="subcontent">
+        {% with item=object %}
+            {% include "truekko/single_item_view.html" %}
+        {% endwith %}
+
+        <form method="post" action="">
+            {% csrf_token %}
+            <p>{% trans "You are going to delete this item" %}</p>
+            <p>{% trans "Are you sure?" %}</p>
+            <input class="button red" type="submit" value="{% trans "Yes, delete it" %}"/>
+        </form>
+
+    </div>
+{% endblock %}

@@ -62,9 +62,16 @@
 
     <div class="clear"></div>
 
-    {% if item.demand %}
-        <a href="{% url swap_creation item.user.username %}?item={{ item.id }}">{% trans "Make offer" %}</a>
+    {% if item.user == USER or swap %}
     {% else %}
-        <a href="{% url swap_creation item.user.username %}?item={{ item.id }}">{% trans "Make request" %}</a>
+        {% if item.demand %}
+            <a class="button blue" href="{% url swap_creation item.user.username %}?item={{ item.id }}">{% trans "Make offer" %}</a>
+        {% else %}
+            <a class="button green" href="{% url swap_creation item.user.username %}?item={{ item.id }}">{% trans "Make request" %}</a>
+        {% endif %}
+    {% endif %}
+
+    {% if not long and not short %}
+        <a class="button orange" href="{% url item_view item.id %}">{% trans "View" %}</a>
     {% endif %}
 </div>

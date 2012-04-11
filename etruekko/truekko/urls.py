@@ -1,5 +1,7 @@
 from django.conf.urls.defaults import *
-from django.views.generic.simple import direct_to_template
+from django.views.generic.create_update import delete_object
+
+from etruekko.truekko.models import Item
 
 urlpatterns = patterns('etruekko.truekko.views',
     url(r'^profile/edit$', 'edit_profile', name='edit_profile'),
@@ -25,6 +27,8 @@ urlpatterns = patterns('etruekko.truekko.views',
     url(r'^swap/(\w+)$', 'swap_creation', name='swap_creation'),
     # item
     url(r'^item/add$', 'item_add', name='item_add'),
+    url(r'^item/edit/(?P<object_id>\d+)$', 'item_add', name='item_edit'),
+    url(r'^item/remove/(?P<object_id>\d+)$', delete_object, {'model': Item, 'post_delete_redirect': '/', 'login_required': True}, name='item_remove'),
     url(r'^item/view/(\d+)$', 'item_view', name='item_view'),
     url(r'^item/list/(item|serv)/(\w+)?$', 'item_list', name='item_list'),
     # messages

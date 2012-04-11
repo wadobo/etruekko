@@ -38,7 +38,7 @@
             {% for item in user_to.items.all %}
                 {% if not item.demand %}
                     <input name="item_{{item.id}}" type="checkbox" {% if item.id in items %}checked="checked"{% endif %} />
-                    {% with short="True" %}
+                    {% with short="True" swap="True" %}
                     {% include "truekko/single_item_view.html" %}
                     {% endwith %}
                 {% endif %}
