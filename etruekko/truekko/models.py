@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Q
 from django.core.urlresolvers import reverse
+from django.utils import simplejson
 
 from django.conf import settings
 
@@ -242,6 +243,7 @@ class Swap(models.Model):
 
     status = models.CharField(max_length=3, choices=STATUS)
     credits = models.IntegerField()
+    done_msg = models.TextField(null=True, blank=True)
     date = models.DateTimeField(auto_now=True)
 
     class Meta:
@@ -249,6 +251,9 @@ class Swap(models.Model):
 
     def type(self):
         return "swap"
+
+    def finished(self):
+        return self.status in ['DON', 'CAN']
 
     def get_status_msg(self):
         if self.status == 'US1':
@@ -263,6 +268,20 @@ class Swap(models.Model):
             return _("Swap done")
         elif self.status == 'CAN':
             return _("Swap canceled")
+
+    def items_from_names(self):
+        if self.done_msg:
+            items = simplejson.loads(self.done_msg)
+            return items['from']
+
+        return [i.item.name for i in self.items.filter(item__user=self.user_from)]
+
+    def items_to_names(self):
+        if self.done_msg:
+            items = simplejson.loads(self.done_msg)
+            return items['to']
+
+        return [i.item.name for i in self.items.filter(item__user=self.user_to)]
 
     def items_from(self):
         return [i.item for i in self.items.filter(item__user=self.user_from)]
@@ -291,6 +310,8 @@ def swap_post_save(sender, instance, created, *args, **kwargs):
         p2.save()
 
         instance.status = 'DON'
+        items = {'from': [i.name for i in instance.items_from()], 'to': [i.name for i in instance.items_to()]}
+        instance.done_msg = simplejson.dumps(items)
         instance.save()
 
 post_save.connect(swap_post_save, sender=Swap)

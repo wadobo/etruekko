@@ -16,14 +16,14 @@
 
     <div class="items">
     <ul class="itemlist left">
-    {% for item in swap.items_from %}
-        <li>{{ item.name }}</li>
+    {% for item in swap.items_from_names %}
+        <li>{{ item }}</li>
     {% endfor %}
     </ul>
 
     <ul class="itemlist left">
-    {% for item in swap.items_to %}
-        <li>{{ item.name }}</li>
+    {% for item in swap.items_to_names %}
+        <li>{{ item }}</li>
     {% endfor %}
     </ul>
     </div>
