@@ -70,3 +70,8 @@ def user_rating(context, user):
     Renders actions for a given service if any. Assumes user is authenticated
     '''
     return {'user': context['user'], "profile": user.get_profile()}
+
+@register.simple_tag(takes_context=True)
+def is_admin_group(context, user, group):
+    context['is_admin_group_v'] = group.is_admin(user)
+    return ''

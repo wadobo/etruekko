@@ -518,14 +518,31 @@ a:hover {
     border: 3px solid transparent;
     margin: 0px;
     padding: 0px;
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+       -moz-box-shadow: 0 10px 6px -6px #777;
+            box-shadow: 0 10px 6px -6px #777;
 }
 
 #memberlist .admin {
-    border: 3px solid red;
+    border: 3px solid #ff8888;
 }
 
 #memberlist .me {
-    border: 3px solid blue;
+    border: 3px solid #8888ff;
+}
+
+.memberimg {
+    position: relative;
+}
+
+.memberimg .floating {
+    position: absolute;
+    background-color: white;
+    padding: 2px;
+    padding-top: 0px;
+    opacity: 0.80;
+    top: 0px;
+    left: 0px;
 }
 
 .buttons {

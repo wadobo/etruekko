@@ -114,6 +114,9 @@ class Group(models.Model):
         emails = [i.user.email for i in self.membership_set.all()]
         return emails
 
+    def is_admin(self, user):
+        return bool(self.membership_set.filter(role="ADM", user=user).count())
+
 
 class Membership(models.Model):
     '''

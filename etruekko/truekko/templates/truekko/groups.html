@@ -16,6 +16,7 @@
             <div class="group">
                 <a href="{% url view_group group.id %}"><img src="{% groupavatar group 64 %}" alt="{{ group.name }}"/></a>
                 <a href="{% url view_group group.id %}"><span class="name">{{ group.name }}</span></a>
+                {% is_admin_group USER group %} {% if is_admin_group_v %}<img src="/media/imgs/admin.png" alt="admin"/>{% endif %}
                 <span class="location"><a href="{% url groups %}?search={{ group.location }}">{{ group.location }}</a></span>
                 <p class="description">{{ group.description|truncatewords:20 }}</p>
                 {% if group.web %}

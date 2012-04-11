@@ -49,12 +49,10 @@
         </h3>
         {% for membership in memberships %}
             <a href="{% url view_profile membership.user.username %}">
-            <img class="left memberimg
-                        {% if membership.role == "ADM" %}admin{% endif %}
-                        {% if membership.user == USER %}me{% endif %}"
-                 src="{% avatar membership.user 64 %}"
-                 title="{{ membership.user.get_profile.name }}"
-                 alt="{{ membership.user.username }}"/>
+            <div class="left memberimg {% if membership.role == "ADM" %}admin{% endif %} {% if membership.user == USER %}me{% endif %}">
+                <img src="{% avatar membership.user 64 %}" title="{{ membership.user.get_profile.name }}" alt="{{ membership.user.username }}"/>
+                {% is_admin_group membership.user viewing %} {% if is_admin_group_v %}<img class="floating" src="/media/imgs/admin.png" alt="admin"/>{% endif %}
+            </div>
             </a>
         {% endfor %}
         </div>
