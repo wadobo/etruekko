@@ -1,0 +1,17 @@
+{% load i18n %}
+
+{% blocktrans with msg=denounce.msg group=denounce.group.name user_from=denounce.user_from.username user_to=denounce.user_to.username url=url %}
+
+{{ user_to }} has been denounced in group {{ group }} by user {{ user_from }}.
+
+The group admin should resolve this incidence.
+
+Denounce:
+
+{{ msg }}
+
+---
+You can view the denounce in:
+http://etruekko.com{{ url }}
+
+{% endblocktrans %}

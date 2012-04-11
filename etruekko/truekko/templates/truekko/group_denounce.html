@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+    <h2>
+        <div class="left"><img src="{% groupavatar group 32 %}" alt="{{ group.name }}"/></div>
+        {% blocktrans with group.name as name %} Denounce user in Group / {{ name }} {% endblocktrans %}
+        <div class="clear"></div>
+    </h2>
+
+    <div id="subcontent">
+        <div id="denouncelist">
+        <h3>{% trans "Members" %}</h3>
+        {% for membership in memberships %}
+            {% with user=membership.user %}
+                <div class="user{% if USER == user %} me{% endif %}">
+                    <a href="{% url view_profile user.username %}"><img src="{% avatar user 64 %}" alt="{{ user.username }}"/></a>
+                    <a href="{% url view_profile user.username %}"><span class="username">{{ user.username }}</span></a>
+                    <span class="fullname">{{ user.get_profile.name }}</span>
+
+                    {% if show_credits or USER == user %}
+                    <span class="credits">
+                        ({{ user.get_profile.credits }} {{ CREDIT_NAME.short }})
+                    </span>
+                    {% endif %}
+
+                    <span class="location"><a href="{% url people %}?search={{ user.get_profile.location }}">{{ user.get_profile.location }}</a></span>
+                    {% if USER != user %}
+                        <a class="button red" href="{% url group_denounce_user group.id user.username %}">{% trans "Denounce" %}</a>
+                    {% endif %}
+                    <p class="description">{{ user.get_profile.description|truncatewords:20 }}</p>
+                    <span class="date">
+                        {% blocktrans with user.date_joined|timesince as d %}
+                            user since {{ d }}
+                        {% endblocktrans %}
+                    </span>
+
+                    <div class="clear"></div>
+                </div>
+            {% endwith %}
+        {% endfor %}
+        </div>
+
+        <div class="clear"></div>
+    </div>
+{% endblock %}

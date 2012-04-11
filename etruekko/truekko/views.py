@@ -22,6 +22,7 @@ from etruekko.truekko.models import UserProfile
 from etruekko.truekko.models import User
 from etruekko.truekko.models import Group
 from etruekko.truekko.models import Membership
+from etruekko.truekko.models import Denounce
 from etruekko.truekko.models import Transfer
 from etruekko.truekko.models import Item
 from etruekko.truekko.models import Tag
@@ -52,6 +53,9 @@ class Index(TemplateView):
             items = Item.objects.filter(user=u)
             context['offers'] = items.filter(demand=False)
             context['demands'] = items.filter(demand=True)
+
+            tq = Q(user_from=u) | Q(user_to=u)
+            context['denounces'] = Denounce.objects.filter(status__in=["PEN", "CON"]).filter(tq)
 
             tq = Q(user_from=u) | Q(user_to=u)
             tq2 = Q(status__in=['US1', 'US2'])
@@ -284,6 +288,8 @@ class ViewGroup(TemplateView):
         g = get_object_or_404(Group, pk=self.groupid)
         context['requests'] = g.membership_set.filter(role="REQ").count()
         context['memberships'] = g.membership_set.exclude(role__in=["REQ", "BAN"]).order_by("-id")
+
+        context['denounces'] = Denounce.objects.filter(group=g, status__in=["PEN", "CON"])
 
         wall, created = Wall.objects.get_or_create(group=g, name="%s wall" % g.name)
         messages = wall.messages_for_user(self.request.user)
@@ -579,6 +585,99 @@ class LeaveGroup(View):
         messages.info(request, msg)
         nxt = redirect('view_group', groupid)
         return nxt
+
+# denounce
+
+class GroupDenounce(TemplateView):
+    template_name = 'truekko/group_denounce.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(GroupDenounce, self).get_context_data(**kwargs)
+        context['klass'] = 'group'
+        context['group'] = self.group
+        context['memberships'] = self.group.membership_set.exclude(role__in=["REQ", "BAN"]).order_by("-id")
+        context['menu'] = generate_menu("group")
+        return context
+
+    def get(self, request, groupid):
+        self.request = request
+        self.group = get_object_or_404(Group, pk=groupid)
+        return super(GroupDenounce, self).get(request)
+
+
+class GroupDenounceUser(TemplateView):
+    template_name = 'truekko/group_denounce_user.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(GroupDenounceUser, self).get_context_data(**kwargs)
+        context['klass'] = 'group'
+        context['group'] = self.group
+        context['denounced'] = self.user
+        context['menu'] = generate_menu("group")
+        return context
+
+    def get(self, request, groupid, username):
+        self.request = request
+        self.group = get_object_or_404(Group, pk=groupid)
+        self.user = get_object_or_404(User, username=username)
+        return super(GroupDenounceUser, self).get(request)
+
+    def post(self, request, groupid, username):
+        self.request = request
+        self.group = get_object_or_404(Group, pk=groupid)
+        self.user = get_object_or_404(User, username=username)
+
+        msg = request.POST.get('msg', '')
+
+        d = Denounce(user_from=request.user,
+                     user_to=self.user,
+                     group=self.group,
+                     msg=msg)
+        d.save()
+        messages.info(request, _("User has been denounced correctly"))
+        messages.info(request, _("You should receive an email"))
+
+        return redirect('group_denounce_view', d.id)
+
+
+class GroupDenounceView(TemplateView):
+    template_name = 'truekko/group_denounce_view.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(GroupDenounceView, self).get_context_data(**kwargs)
+        context['klass'] = 'group'
+        context['denounce'] = self.denounce
+        context['group'] = self.denounce.group
+        context['denounced'] = self.denounce.user_to
+        context['denouncer'] = self.denounce.user_from
+        context['admin'] = self.denounce.group.is_admin(self.request.user)
+        context['menu'] = generate_menu("group")
+        return context
+
+    def get(self, request, did):
+        self.request = request
+        self.denounce = get_object_or_404(Denounce, pk=did)
+        viewers = self.denounce.group.admins() + [self.denounce.user_from, self.denounce.user_to]
+        if not request.user in viewers:
+            raise Http404
+        return super(GroupDenounceView, self).get(request)
+
+    def post(self, request, did):
+        self.request = request
+        self.denounce = get_object_or_404(Denounce, pk=did)
+        if not self.denounce.group.is_admin(request.user):
+            raise Http404
+
+        st = "PEN"
+        if 'con' in request.POST.keys():
+            st = "CON"
+        elif 'res' in request.POST.keys():
+            st = "RES"
+        elif 'can' in request.POST.keys():
+            st = "CAN"
+        self.denounce.status = st
+        self.denounce.save()
+        return redirect('group_denounce_view', self.denounce.id)
 
 
 #############
@@ -1156,6 +1255,10 @@ join_group = JoinGroup.as_view()
 register_group_admin = login_required(is_group_admin(RegisterAdmin.as_view()))
 register_group = Register.as_view()
 register_confirm = RegisterConfirm.as_view()
+# denounce
+group_denounce = login_required(GroupDenounce.as_view())
+group_denounce_user = login_required(GroupDenounceUser.as_view())
+group_denounce_view = login_required(GroupDenounceView.as_view())
 
 # transfer
 transfer_direct = login_required(TransferDirect.as_view())

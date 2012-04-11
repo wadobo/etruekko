@@ -26,6 +26,7 @@
                     <input class="button green link" type="submit" value="Join"/>
                 </form>
             {% endif %}
+            <a class="button green" href="{% url group_denounce viewing.id %}">{% trans "Denounce a member" %}</a>
         </div>
 
         <div id="profile">
@@ -55,9 +56,20 @@
             </div>
             </a>
         {% endfor %}
+
+        <div class="clear"></div>
+        <!-- denounces -->
+        {% if editable %}
+            <h3>{% trans "Denounces" %}</h3>
+            <ul>
+            {% for denounce in denounces %}
+                <li><a href="{% url group_denounce_view denounce.id %}">{{ denounce }} ({{ denounce.get_status_display }})</a></li>
+            {% endfor %}
+            </ul>
+        {% endif %}
         </div>
 
-        <!-- wall --!>
+        <!-- wall -->
         <div id="groupwall">
             {% with wall=wall wallmessages=wallmessages%}
                 {% include "truekko/wall.html" %}

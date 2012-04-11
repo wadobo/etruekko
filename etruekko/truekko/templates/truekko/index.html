@@ -94,6 +94,16 @@
                     <li><a href="{% url item_add %}">{% trans "Add new" %}</a></li>
                 {% endfor %}
                 </ul>
+
+                <!-- denounces -->
+                {% if denounces %}
+                <h3>{% trans "Denounces" %}</h3>
+                <ul>
+                {% for denounce in denounces %}
+                    <li><a href="{% url group_denounce_view denounce.id %}">{{ denounce }} ({{ denounce.get_status_display }})</a></li>
+                {% endfor %}
+                </ul>
+                {% endif %}
             </div>
         {% else %}
             <!-- Anonymous -->

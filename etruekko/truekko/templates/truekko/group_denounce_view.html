@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+    <h2>
+        <div class="left"><img src="{% groupavatar group 32 %}" alt="{{ group.name }}"/></div>
+        <div class="left"><img src="{% avatar denouncer 32 %}" alt="{{ denouncer.username }}"/></div>
+        <div class="left"><img src="{% avatar denounced 32 %}" alt="{{ denounced.username }}"/></div>
+        {% blocktrans with name=group.name username=denounced.username %} Denounced {{ username }} in Group {{ name }} {% endblocktrans %}
+        <div class="clear"></div>
+    </h2>
+
+    <div id="subcontent">
+        <h3>
+        {% blocktrans %} {{ denouncer }} has denounced {{ denounced }} {% endblocktrans %}
+        ({{ denounce.get_status_display }})
+        </h3>
+
+        <div id="denouncelist">
+        {% with user=denouncer %}
+            {% include "truekko/single_user_view.html" %}
+        {% endwith %}
+
+        {% with user=denounced %}
+            {% include "truekko/single_user_view.html" %}
+        {% endwith %}
+        </div>
+
+        <div class="msg">
+        <h3>{% trans "Denouncer comment:" %}</h3>
+        <p>
+        {{ denounce.msg }}
+        </p>
+        </div>
+
+        {% if admin %}
+            <form method="POST" action="">
+            {% csrf_token %}
+                {% if denounce.status == "PEN" %}
+                    <input type="submit" class="button blue" name="con" value="{% trans "Confirmed" %}"/>
+                    <input type="submit" class="button green" name="res" value="{% trans "Resolved" %}"/>
+                    <input type="submit" class="button red" name="can" value="{% trans "Cancel" %}"/>
+                {% endif %}
+                {% if denounce.status == "CON" %}
+                    <input type="submit" class="button green" name="res" value="{% trans "Resolved" %}"/>
+                    <input type="submit" class="button red" name="can" value="{% trans "Cancel" %}"/>
+                {% endif %}
+            </form>
+        {% endif %}
+
+        <div class="clear"></div>
+    </div>
+{% endblock %}

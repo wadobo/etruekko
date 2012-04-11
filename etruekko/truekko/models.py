@@ -114,6 +114,9 @@ class Group(models.Model):
         emails = [i.user.email for i in self.membership_set.all()]
         return emails
 
+    def admins(self):
+        return [i.user for i in self.membership_set.filter(role="ADM")]
+
     def is_admin(self, user):
         return bool(self.membership_set.filter(role="ADM", user=user).count())
 
@@ -406,3 +409,39 @@ def wall_message_post_save(sender, instance, created, *args, **kwargs):
                        email_list, context)
 
 post_save.connect(wall_message_post_save, sender=WallMessage)
+
+
+class Denounce(models.Model):
+    STATUS = [
+        ('PEN', _('pending')),
+        ('CON', _('confirmed')),
+        ('RES', _('resolved')),
+        ('CAN', _('cancel')),
+    ]
+
+    user_from = models.ForeignKey(User, related_name="dennounces_from")
+    user_to = models.ForeignKey(User, related_name="dennounces_to")
+    group = models.ForeignKey(Group)
+    date = models.DateTimeField(auto_now=True)
+
+    msg = models.TextField(_("Message"))
+    status = models.CharField(max_length=3, choices=STATUS, default='PEN')
+
+    def __unicode__(self):
+        return "%s - %s" % (self.user_from.username, self.user_to.username)
+
+    class Meta:
+        ordering = ['-date']
+
+def denounce_post_save(sender, instance, created, *args, **kwargs):
+    if created:
+        # Sending email notification to admin, denouncer and denounced
+        email_list = instance.group.admins_emails() + [instance.user_from.email, instance.user_to.email]
+        url = reverse('group_denounce_view', args=[instance.id])
+
+        context = {'denounce': instance, 'url': url}
+        template_email('truekko/denounce_mail.txt',
+                       _("%s user has been denounced in group %s") % (instance.user_to.username, instance.group.name),
+                       email_list, context)
+
+post_save.connect(denounce_post_save, sender=Denounce)

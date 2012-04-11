@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+    <h2>
+        <div class="left"><img src="{% groupavatar group 32 %}" alt="{{ group.name }}"/></div>
+        <div class="left"><img src="{% avatar denounced 32 %}" alt="{{ denounced.username }}"/></div>
+        {% blocktrans with name=group.name username=denounced.username %} Denounce {{ username }} in Group {{ name }} {% endblocktrans %}
+        <div class="clear"></div>
+    </h2>
+
+    <div id="subcontent">
+        <div id="denouncelist">
+        {% with user=denounced %}
+            <div class="user{% if USER == user %} me{% endif %}">
+                <a href="{% url view_profile user.username %}"><img src="{% avatar user 64 %}" alt="{{ user.username }}"/></a>
+                <a href="{% url view_profile user.username %}"><span class="username">{{ user.username }}</span></a>
+                <span class="fullname">{{ user.get_profile.name }}</span>
+
+                {% if show_credits or USER == user %}
+                <span class="credits">
+                    ({{ user.get_profile.credits }} {{ CREDIT_NAME.short }})
+                </span>
+                {% endif %}
+
+                <span class="location"><a href="{% url people %}?search={{ user.get_profile.location }}">{{ user.get_profile.location }}</a></span>
+                <p class="description">{{ user.get_profile.description }}</p>
+                <span class="date">
+                    {% blocktrans with user.date_joined|timesince as d %}
+                        user since {{ d }}
+                    {% endblocktrans %}
+                </span>
+
+                {% with value=user.get_profile.int_rating votes=user.get_profile.rating.votes %}
+                    {% include "rating.html" %}
+                {% endwith %}
+            </div>
+            <div class="clear"></div>
+        {% endwith %}
+        </div>
+
+        <p>
+        {% blocktrans %}
+You are going to denounce a bad behaviour in etruekko network to this
+group admin. The group admin will manage this denounce and resolve it.
+        {% endblocktrans %}
+        </p>
+
+        <form method="POST" action="">
+            {% csrf_token %}
+            <label for="msg">{% trans "Why are you denouncing this user?" %}</label>
+            <textarea id="msg" name="msg"></textarea>
+            <input class="button red" type="submit" value="{% trans "Denounce" %}"/>
+        </form>
+
+        <div class="clear"></div>
+    </div>
+{% endblock %}
