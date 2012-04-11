@@ -2,29 +2,29 @@
 {% load i18n %}
 
 {% block title %}
-    {% if object.type == "IT" %}
-        {% blocktrans with object.name as name %} Remove Item / {{ name }} {% endblocktrans %}
+    {% if item.type == "IT" %}
+        {% blocktrans with item.name as name %} Remove Item / {{ name }} {% endblocktrans %}
     {% else %}
-        {% blocktrans with object.name as name %} Remove Serv / {{ name }} {% endblocktrans %}
+        {% blocktrans with item.name as name %} Remove Serv / {{ name }} {% endblocktrans %}
     {% endif %}
 {% endblock %}
 
 {% block content %}
     <h2>
-        {% if object.photo %}
-            <div class="left"><img src="{% image object.photo 32 %}" alt="{{ object.name }}"/></div>
+        {% if item.photo %}
+            <div class="left"><img src="{% image item.photo 32 %}" alt="{{ item.name }}"/></div>
         {% endif %}
-        {% if object.type == "IT" %}
-            {% blocktrans with object.name as name %} Remove Item / {{ name }} {% endblocktrans %}
+        {% if item.type == "IT" %}
+            {% blocktrans with item.name as name %} Remove Item / {{ name }} {% endblocktrans %}
         {% else %}
-            {% blocktrans with object.name as name %} Remove Serv / {{ name }} {% endblocktrans %}
+            {% blocktrans with item.name as name %} Remove Serv / {{ name }} {% endblocktrans %}
         {% endif %}
         <div class="clear"></div>
     </h2>
 
     <div id="subcontent">
-        {% with item=object %}
-            {% include "truekko/single_item_view.html" %}
+        {% with long="True" %}
+        {% include "truekko/single_item_view.html" %}
         {% endwith %}
 
         <form method="post" action="">

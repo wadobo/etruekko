@@ -997,6 +997,36 @@ class ItemList(TemplateView):
         return super(ItemList, self).get(request)
 
 
+class ItemRemove(TemplateView):
+    template_name = 'truekko/item_confirm_delete.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ItemRemove, self).get_context_data(**kwargs)
+        context['klass'] = self.klass
+        context['menu'] = generate_menu(self.klass)
+        context['item'] = self.item
+        return context
+
+    def get(self, request, itemid):
+        self.request = request
+        self.item = get_object_or_404(Item, pk=itemid, user=request.user)
+
+        if self.item.type == "IT":
+            self.klass = 'item'
+        else:
+            self.klass = 'serv'
+        return super(ItemRemove, self).get(request)
+
+    def post(self, request, itemid):
+        self.request = request
+        self.item = get_object_or_404(Item, pk=itemid, user=request.user)
+        self.item.delete()
+
+        messages.info(request, _(u"Item removed correctly"))
+
+        return redirect(index)
+
+
 ##############
 #            #
 #  MESSAGES  #
@@ -1040,6 +1070,31 @@ class MessagePost(View):
         return True
 
 
+class MessageRemove(TemplateView):
+    template_name = 'truekko/message_confirm_delete.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(MessageRemove, self).get_context_data(**kwargs)
+        context['menu'] = generate_menu()
+        context['msg'] = self.msg
+        return context
+
+    def get(self, request, msgid):
+        self.request = request
+        self.msg = get_object_or_404(WallMessage, pk=msgid, user=request.user)
+
+        return super(MessageRemove, self).get(request)
+
+    def post(self, request, msgid):
+        self.request = request
+        self.msg = get_object_or_404(WallMessage, pk=msgid, user=request.user)
+        self.msg.delete()
+
+        messages.info(request, _(u"Message removed correctly"))
+
+        return redirect(index)
+
+
 # profile
 edit_profile = login_required(EditProfile.as_view())
 view_profile = login_required(ViewProfile.as_view())
@@ -1070,8 +1125,10 @@ swap_list = login_required(SwapList.as_view())
 item_add = login_required(ItemAdd.as_view())
 item_view = login_required(ItemView.as_view())
 item_list = login_required(ItemList.as_view())
+item_remove = login_required(ItemRemove.as_view())
 
 # messages
 message_post = login_required(MessagePost.as_view())
+message_remove = login_required(MessageRemove.as_view())
 
 index = Index.as_view()

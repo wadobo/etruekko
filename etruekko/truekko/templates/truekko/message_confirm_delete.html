@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {% trans "Remove Message" %}
+{% endblock %}
+
+{% block subcontent %}
+        {% include "truekko/single_message_view.html" %}
+
+        <form method="post" action="">
+            {% csrf_token %}
+            <p>{% trans "You are going to delete this message" %}</p>
+            <p>{% trans "Are you sure?" %}</p>
+            <input class="button red" type="submit" value="{% trans "Yes, delete it" %}"/>
+        </form>
+
+    </div>
+{% endblock %}

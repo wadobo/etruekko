@@ -745,6 +745,11 @@ label {
     float: right;
 }
 
+.msg .rm {
+    float: right;
+    margin-left: 5px;
+}
+
 /* ENDOF WALL */
 
 /* INDEX */

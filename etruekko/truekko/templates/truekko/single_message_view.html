@@ -2,6 +2,9 @@
 {% load markup %}
 
 <div class="msg{% if msg.user == USER %} me{% endif %}">
+    {% if msg.user == USER %}
+    <a href="{% url message_remove msg.id %}" class="rm"><img src="/media/imgs/remove.gif" alt="{% trans "Remove" %}"/></a>
+    {% endif %}
     <span class="date"> {{ msg.date|timesince }} </span>
     {% if msg.wall.group %}
         <a href="{% url view_group msg.wall.group.id %}"><img src="{% groupavatar msg.wall.group 64 %}" alt="{{ msg.wall.group.name }}"/></a>
