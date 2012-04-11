@@ -447,7 +447,7 @@ class Register(TemplateView):
         template_email('truekko/user_registered_mail.txt', _("Welcome to etruekko"), [f.data['email']], context)
         context['url'] = reverse('edit_group_members', args=(groupid,))
         template_email('truekko/user_registered_admin_mail.txt',
-                       _("New user '%s' in group '%s'") % (f.data['username'], g.name),
+                       _("New user '%(user)s' in group '%(group)s'") % dict(user=f.data['username'], group=g.name),
                        g.admins_emails(), context)
 
         nxt = redirect('register_confirm', groupid)
@@ -559,7 +559,7 @@ class JoinGroup(View):
             context = {'group': g, 'username': request.user.username, 'user': request.user,
                        'url': reverse('edit_group_members', args=(groupid,))}
             template_email('truekko/user_registered_admin_mail.txt',
-                           _("New user '%s' in group '%s'") % (request.user.username, g.name),
+                           _("New user '%(user)s' in group '%(group)s'") % dict(user=request.user.username, group=g.name),
                            g.admins_emails(), context)
 
             msg = _("Your membership request has been sent to group administrator")

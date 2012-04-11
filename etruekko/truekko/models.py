@@ -405,7 +405,7 @@ def wall_message_post_save(sender, instance, created, *args, **kwargs):
 
         context = {'message': instance, 'name': name, 'url': url}
         template_email('truekko/message_mail.txt',
-                       _("New message by %s in %s") % (instance.user, instance.wall.name),
+                       _("New message by %(user)s in %(wall)s") % dict(user=instance.user, wall=instance.wall.name),
                        email_list, context)
 
 post_save.connect(wall_message_post_save, sender=WallMessage)
@@ -441,7 +441,7 @@ def denounce_post_save(sender, instance, created, *args, **kwargs):
 
         context = {'denounce': instance, 'url': url}
         template_email('truekko/denounce_mail.txt',
-                       _("%s user has been denounced in group %s") % (instance.user_to.username, instance.group.name),
+                       _("%(user)s user has been denounced in group %(group)s") % dict(user=instance.user_to.username, group=instance.group.name),
                        email_list, context)
 
 post_save.connect(denounce_post_save, sender=Denounce)
