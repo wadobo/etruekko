@@ -19,5 +19,5 @@
 
         <input type="submit" class="button blue" value="{% trans "Sign in" %}"/>
     </form>
-    <a class="small" href="">{% trans "Forgot it" %}</a>
+    <a class="small" href="{% url password_reset %}">{% trans "Forgot it" %}</a>
 {% endif %}

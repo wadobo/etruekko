@@ -1238,6 +1238,21 @@ class MessageRemove(TemplateView):
         return redirect(index)
 
 
+class PasswordResetDoneView(TemplateView):
+    def get(self, request):
+        messages.info(request, _('An e-mail has been '
+                                 'send to you which explains how to reset your password'))
+        return redirect('/')
+
+
+class PasswordResetCompleteView(TemplateView):
+    def get(self, request):
+        messages.add_message(request, messages.SUCCESS, _('Your password has '
+              'been reset, you can now <a href="%(url)s">login</a> with your '
+              'new password') % dict(url=reverse(index)))
+        return redirect('/')
+
+
 # profile
 edit_profile = login_required(EditProfile.as_view())
 edit_profile_admin = login_required(EditProfileAdmin.as_view())
