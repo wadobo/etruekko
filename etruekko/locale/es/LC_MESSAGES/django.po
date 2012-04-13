@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-12 00:03+0200\n"
+"POT-Creation-Date: 2012-04-13 16:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: urls.py:25 urls.py:37
+msgid "Reset password"
+msgstr "Restaurar contraseña"
+
+#: urls.py:50 truekko/templates/truekko/edit_profile.html:14
+msgid "Change password"
+msgstr "Cambiar contraseña"
 
 #: templates/base.html:17
 msgid "Index"
@@ -51,23 +59,23 @@ msgstr "Preguntas frecuentes"
 
 #: templates/base.html:96
 msgid "Social"
-msgstr ""
+msgstr "Social"
 
 #: templates/base.html:98
 msgid "blog"
-msgstr ""
+msgstr "blog"
 
 #: templates/base.html:99
 msgid "twitter"
-msgstr ""
+msgstr "twitter"
 
 #: templates/base.html:100
 msgid "facebook"
-msgstr ""
+msgstr "facebook"
 
 #: templates/base.html:101
 msgid "youtbue"
-msgstr ""
+msgstr "youtube"
 
 #: templates/base.html:106 templates/base.html.py:108
 msgid "Privacy"
@@ -149,6 +157,32 @@ msgstr "Entrar"
 msgid "Forgot it"
 msgstr "Olvidé la contraseña"
 
+#: templates/accounts/password_reset.html:13
+#: templates/accounts/password_reset_confirm_form.html:14
+msgid "Send"
+msgstr "Enviar"
+
+#: templates/accounts/password_reset_confirm_form.html:17
+msgid "Sorry, this link has expired or is invalid"
+msgstr "Lo sentimos, este enlace ha expirado o es invalido"
+
+#: templates/accounts/emails/password_reset_message.txt:2
+#, python-format
+msgid ""
+"You're receiving this e-mail because you requested a password reset\n"
+"for your user account at %(site_name)s"
+msgstr ""
+"Estás reciviendo este correo porque has solicitado restaurar tu contraseña\n"
+"en %(site_name)s"
+
+#: templates/accounts/emails/password_reset_message.txt:5
+msgid "Please go to the following page and choose a new password:"
+msgstr "Por favor, visita el siguiente enlace y selecciona una nueva contraseña:"
+
+#: templates/accounts/emails/password_reset_message.txt:10
+msgid "Thanks for using our site!"
+msgstr "¡Gracias por usar nuestra web!"
+
 #: truekko/decorators.py:16
 msgid "Sorry but you don't have permission"
 msgstr "Lo sentimos, pero no tienes permiso para hacer esto"
@@ -206,11 +240,11 @@ msgstr "Localización"
 
 #: truekko/models.py:31 truekko/models.py:89
 msgid "Web"
-msgstr ""
+msgstr "Web"
 
 #: truekko/models.py:32 truekko/models.py:90
 msgid "Avatar"
-msgstr ""
+msgstr "Avatar"
 
 #: truekko/models.py:34
 msgid "Personal description"
@@ -278,11 +312,11 @@ msgstr "foto"
 
 #: truekko/models.py:252
 msgid "User from confirmed"
-msgstr ""
+msgstr "Usuario desde confirmado"
 
 #: truekko/models.py:253
 msgid "User to confirmed"
-msgstr ""
+msgstr "Usuario para confirmado"
 
 #: truekko/models.py:254 truekko/models.py:417
 msgid "confirmed"
@@ -486,6 +520,21 @@ msgstr "Mensaje enviado correctamente"
 msgid "Message removed correctly"
 msgstr "Mensaje borrado correctamente"
 
+#: truekko/views.py:1243
+msgid ""
+"An e-mail has been send to you which explains how to reset your password"
+msgstr ""
+"Te hemos enviado un correo electrónico que explica cómo restaurar tu contraseña"
+
+#: truekko/views.py:1250
+#, python-format
+msgid ""
+"Your password has been reset, you can now <a href=\"%(url)s\">login</a> with "
+"your new password"
+msgstr ""
+"Tu contraseña se ha restaurado, ahora puedes <a href=\"%(url)s\">entrar</a> con "
+"tu nueva contraseña"
+
 #: truekko/templates/search/search.html:24
 msgid "Results"
 msgstr "Resultados:"
@@ -557,7 +606,7 @@ msgstr ""
 
 #: truekko/templates/truekko/edit_group.html:21
 #: truekko/templates/truekko/edit_group_members.html:54
-#: truekko/templates/truekko/edit_profile.html:19
+#: truekko/templates/truekko/edit_profile.html:20
 #: truekko/templates/truekko/item_add.html:29
 msgid "Save"
 msgstr "Guardar"
@@ -727,7 +776,7 @@ msgid "My Demands"
 msgstr "Mis Demandas"
 
 #: truekko/templates/truekko/index.html:100
-#: truekko/templates/truekko/view_group.html:63
+#: truekko/templates/truekko/view_group.html:65
 msgid "Denounces"
 msgstr "Denuncias"
 
