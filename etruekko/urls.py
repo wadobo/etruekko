@@ -41,6 +41,15 @@ urlpatterns = patterns('',
     url(r'^password/reset/confirm/complete/$',
        PasswordResetCompleteView.as_view(),
        name='password_reset_complete'),
+
+    # Change password
+    url(r'password/change/$',
+        auth_views.password_change,
+        {'template_name': 'accounts/password_reset.html',
+         'post_change_redirect': reverse_lazy('edit_profile'),
+         'extra_context': {'title': _('Change password')},
+        },
+        name='password_change'),
 )
 
 if settings.DEBUG:

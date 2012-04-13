@@ -11,6 +11,7 @@
         <div class="clear"></div>
     </h2>
     <div id="subcontent" class="form">
+    <a class="button violet" href="{% url password_change %}">{% trans "Change password" %}</a>
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <table>
