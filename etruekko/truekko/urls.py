@@ -19,6 +19,8 @@ urlpatterns = patterns('etruekko.truekko.views',
     url(r'^group/denounce/(\d+)$', 'group_denounce', name='group_denounce'),
     url(r'^group/denounce/(\d+)/(\w+)$', 'group_denounce_user', name='group_denounce_user'),
     url(r'^group/denounce/view/(\d+)$', 'group_denounce_view', name='group_denounce_view'),
+    # register
+    url(r'^register$', 'register_wizard', name='register_wizard'),
     # transfer
     url(r'^transfer/direct/(\w+)$', 'transfer_direct', name='transfer_direct'),
     url(r'^transfer/list$', 'transfer_list', name='transfer_list'),

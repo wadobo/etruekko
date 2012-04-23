@@ -30,6 +30,13 @@ p {
     text-align: left;
 }
 
+.tip {
+    font-size: x-large;
+    color: #AAA;
+    background: white url('../imgs/info.png') center left no-repeat;
+    padding-left: 85px;
+}
+
 #messages {
     padding: 10px;
     background: #000000;
@@ -577,6 +584,30 @@ span.button {
 
     border: 1px solid #555;
 
+    background-image: linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
+    background-image: -o-linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
+    background-image: -moz-linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
+    background-image: -webkit-linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
+    background-image: -ms-linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
+
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0, rgb(228,233,240)),
+        color-stop(0.52, rgb(255,255,255))
+    );
+}
+
+.groupgrid {
+    width: 250px;
+    float: left;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    margin: 10px;
+}
+
+.groupgrid:hover {
     background-image: linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
     background-image: -o-linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
     background-image: -moz-linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);

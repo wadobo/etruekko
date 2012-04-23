@@ -12,8 +12,17 @@
     <div class="clear"></div>
 
     <div id="subcontent">
+        <p class="tip">
+        {% blocktrans %}
+        To register in etruekko you should select a group to join in.
+        In this platform each user must be part of a group, so the
+        first step to join to etruekko network is to select the group
+        you want to be part.
+        {% endblocktrans %}
+        </p>
+        <div class="centered">
         {% for group in groups.object_list %}
-            <div class="group">
+            <div class="group groupgrid">
                 <a href="{% url view_group group.id %}"><img src="{% groupavatar group 64 %}" alt="{{ group.name }}"/></a>
                 <a href="{% url view_group group.id %}"><span class="name">{{ group.name }}</span></a>
                 {% if USER.is_authenticated %}
@@ -25,8 +34,12 @@
                     <a href="{{ group.web }}"><span class="web">{{ group.web }}</span></a>
                 {% endif %}
                 <div class="clear"></div>
+                <a class="button green" href="{% url register_group group.id %}">{% trans "select" %}</a>
             </div>
+            {% clear_mod_3 %}
         {% endfor %}
+        </div>
+        <div class="clear"></div>
     </div>
 
 

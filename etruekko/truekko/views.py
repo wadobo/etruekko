@@ -1253,6 +1253,33 @@ class PasswordResetCompleteView(TemplateView):
         return redirect('/')
 
 
+class RegisterWizard(TemplateView):
+    template_name = 'truekko/user_register.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(RegisterWizard, self).get_context_data(**kwargs)
+        context['klass'] = 'group'
+        context['menu'] = generate_menu("group")
+
+        q = self.request.GET.get('search', '')
+        if q:
+            k = Q(email__icontains=q) |\
+                Q(description__icontains=q) |\
+                Q(name__icontains=q) |\
+                Q(location__icontains=q)
+
+            query = Group.objects.filter(k)
+        else:
+            query = Group.objects.all()
+        context['groups'] = paginate(self.request, query, 10)
+        return context
+
+    def get(self, request):
+        self.request = request
+
+        return super(RegisterWizard, self).get(request)
+
+
 # profile
 edit_profile = login_required(EditProfile.as_view())
 edit_profile_admin = login_required(EditProfileAdmin.as_view())
@@ -1293,5 +1320,8 @@ item_remove = login_required(ItemRemove.as_view())
 # messages
 message_post = login_required(MessagePost.as_view())
 message_remove = login_required(MessageRemove.as_view())
+
+# register
+register_wizard = RegisterWizard.as_view()
 
 index = Index.as_view()
