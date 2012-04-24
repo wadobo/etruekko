@@ -1,0 +1,205 @@
+1.- REGISTRO
+
+Debemos cambiar el registro, no es intuitivo, debería haber una puerta
+de entrada, desde la que se registren si no están registrados o se
+logen para entrar a la plataforma, una vez logados o registrados
+entrarían a la plataforma. En esta puerta de entrada podríamos poner
+carrusel de últimas ofertas, ultimas demandas, últimos grupos
+incorporados, etc...
+
+Deberíamos poner como obligatorios los datos de zona geográfica para
+el tema de las búsquedas
+
+
+2.- BUSQUEDA
+
+En la búsqueda general, debería poder dejar filtrar de entrada entre
+grupo, bien o servicio, zona geográfica y oferta o demanda.
+
+En las búsquedas de artículos y bienes también por zona geográfica
+zona y demanda
+
+En la búsqueda de grupos por zona geográfica y canal una vez que los
+vayamos creado
+
+En todas las búsquedas para que encuentre debe coincidir mayúsculas o
+minúsculas, esto si se puede sería bueno que no fueses así
+
+
+3.- INICIO Y GENTE
+
+Cuando te vas a gente, te salen todos los usuarios del sistema, la
+idea es que cada usuario tenga su propia red, que se la vaya haciendo
+poco a poco.
+
+En cuanto a inicio, el funcionamiento debería ser similar al del muro
+de facebook.
+
+
+4.- INTERCAMBIOS
+
+Para cerrar un intercambio, no hace falta doble confirmación,
+cualquier parte puede cerrar el intercambio, por ejemplo si yo al
+negociar le pido a la otra parte algo, el puede cerrar a negociación
+sin haberlo hecho. Debemos darle una vuelta a esta dinámica
+
+No hace bien el tema del intercambio de truekkos, lo hace al revés, al
+que paga se los suma y viceversa.
+
+También deberíamos poner la forma de materializar el intercambio,  de
+manera presencial, envío postal o envío mensajería. Comentamos también
+que debería de haber una opción de compromiso, por ejemplo si a mí me
+dan una bici en agosto a cambio de que le haga la declaración de la
+renta el año siguiente, debe de quedar reflejado ese compromiso.
+
+También a la hora de añadir bienes o servicios debemos poner un check
+para que creen numero, de manera que si yo añado bici y le pongo 1,
+cuando haga un intercambio me desaparezca. SI por ejemplo creo como
+servicio que hago declaraciones de la renta, est ole pongo ilimitadas
+porque hago las que quiera, de esta manera no me desaparecerán de mis
+ofertas al hacer un intercambio.
+
+Cuando en una negociación entran en juego truekkos, estos deben de
+quedar bloqueados de mi cuenta, para que no los pueda utilizar en otro
+intercambio paralelamente
+
+
+5.- COMUNIDAD DE ADMINISTRADORES Y CANALES?
+
+Añadir campo canal a los grupos.
+
+Añadir un muro por cada canal al que sólo puedan acceder los
+administradores de grupos dentro de ese canal.
+
+Añadir muro etruekko con acceso a administradores.
+
+
+COSAS MENOS IMPORTANTES
+
+Cuando se crea un grupo y se hace a un usuario administrador, no le
+llega correo, debería hacerlo, al igual que si hay más de un
+administrador le debería llegar también a los dos
+
+Al intentar abandonar un grupo desde plataforma sale "unhandle
+exception"
+
+Cuando recibes una solicitud debería aparecer un estado para cuando no
+lo aceptas, salen varias pero no está, así como enviar correo de no
+aceptación
+
+Mirar bug de auto añadirse a un grupo cuando está en solicitud. Listar
+tu solicitudes pendientes.
+
+Te llega mensaje cuando publican en tu muro, esto lo dejamos así o
+cuando consigamos que los usuarios puedan hacer su red no? o desde su
+perfil los usuarios lo podrán definir?
+
+No deja subir fotos ni de los usuarios ni de artículos
+
+Cuando añado un bien o servicio, si después quiero modificar algo al
+editar no me deja poner etiquetas.
+
+Deberíamos plantearnos otra pestaña que fuese mi perfil en el que
+apareciesen todos mis datos, ofertas y demandas además de lo que sale
+en inicio
+
+Debería aparecer en tu muro cuando un amigo pública o hace una oferta
+
+En inicio los intercambios deben estar bien traducidos, no llegan los
+correos avisando que tienes un nuevo intercambio a ninguna de las dos
+partes
+
+Debe poner truekkos y no créditos en la negociación
+
+Cuando te unes a un grupo, además del correo en la plataforma tendría
+que poner que está pendiente de aceptar por el administrador
+
+Cambios nomenclatura:
+    Inicio-Muro
+    Gente-Mis contactos
+    Añadir-Crea tus ofertas y demandas
+    Transf-Mis intercambios
+    Grupos-Mis grupos
+
+En la negociación cambiar aceptar por cerrar intercambio, hacer oferta
+por negociar y cancelar por rechazar intercambio
+
+No se puede valorar a los usuarios? - Limitar valoraciones a sólo
+intercambios contigo
+
+Debería aparecer para cerrar intercambios la forma de entrega,
+presencial, correo postal, mensajería y el tema de los compromisos
+
+En lugar de precio en añadir debemos poner valoración usuario
+
+ambiar preferencias  por mi perfil
+
+En el caso de las etiquetas al crear bienes y servicios, poner ejemplo
+no solo lo de las comas para que se vea que además debe haber un
+espacio para que las coja bien
+
+En el caso de las demandas, es necesario valorarlas?
+
+Puede ser que la plataforma no sea compatible con alguna versión de
+internet explorer
+
+Debe de haber en añadir caja de oferta además de la de demanda
+
+Revisar lo del tipo de precio (por hora, kilo, etc...)
+
+No llegan los correos cuando se negocia
+
+Damos 10 truekkos por registrarse, ademas de esto dijimos de dar x
+truekkos por numero de transacciones, ver también lo de no permitir
+desfase de truekkos y con cuantos truekkos se premia a los
+administradores
+
+Dar 5 truekkos por cada 3 intercambios a condición de:
+    Transferencías en menos de 7 días
+    Usuarios diferentes, no valen intercambios entre los dos mismos usuarios.
+
+Administradores darle 50 etruekkos.
+
+Probar la plataforma en ie.
+
+-------------------------------------------------------------------
+
+Personal:
+
+* 10 truekkos por registro
+* 5 truekkos por invitar a alguien después de la primera transacción
+  del invitado
+* cada dos transacciones 5 truekkos
+* límite de truekkos, 50 truekkos
+
+* Registro confirmado por grupo.
+* Transferencia con retención, el que paga tiene que confirmar, el que
+  recibe puede crear una incidencia para un mediador si no recibe el
+  pago.
+* Red social, comunicación por grupo, tipo muro facebook, amigos
+* Perfil de usuario mostrando valoración y datos, tener cuidado con el
+  tema de la privacidad.
+* Incentivar trueque antes que transferencia de truekkos. Mostrar
+  bienes y servicios ofrecidos por cada parte para poder seleccionar
+  varios para intercambiar.
+
+  | +bien     |   |  bien     |
+  |  bien     | > | +bien     |
+  | +servicio |   |  servicio |
+  |    ...    |   |     ...   |
+            +truekkos
+
+Empresarial:
+
+* Transacciones similares al personal, pero al final se muestra un
+  contrato a base a partir de una plantilla para firmar por las dos
+  partes.
+
+Administrador:
+
+* Administrar usuarios completamente, permitir bloquear, cambiar
+  créditos, datos personales.
+* Ofrecer truekkos por grupo, por usuario o por transacciones.
+
+* Por cada usuario registrado 10 truekkos (truekkos del grupo)
+* Por cada 20 transacciones 5 truekkos
