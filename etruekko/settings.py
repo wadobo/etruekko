@@ -141,6 +141,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'djangoratings',
     'haystack',
+    'south',
     'etruekko.truekko',
     'etruekko.globaltags',
 )

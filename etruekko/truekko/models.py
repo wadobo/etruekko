@@ -24,9 +24,11 @@ class UserProfile(models.Model):
 
     user = models.ForeignKey(User)
     credits = models.IntegerField(default=0)
-    name = models.CharField(_("Name"), blank=True, null=True,
+    name = models.CharField(_("Name"), blank=False, null=False,
+                            default="Unnamed",
                             max_length=100)
-    location = models.CharField(_("Location"), blank=True, null=True,
+    location = models.CharField(_("Location"), blank=False, null=False,
+                                default="Unlocated",
                                 max_length=100)
     web = models.URLField(_("Web"), blank=True, null=True, default="")
     photo = models.ImageField(_("Avatar"), blank=True, null=True,

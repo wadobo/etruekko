@@ -1,16 +1,5 @@
 1.- REGISTRO
 
-Debemos cambiar el registro, no es intuitivo, debería haber una puerta
-de entrada, desde la que se registren si no están registrados o se
-logen para entrar a la plataforma, una vez logados o registrados
-entrarían a la plataforma. En esta puerta de entrada podríamos poner
-carrusel de últimas ofertas, ultimas demandas, últimos grupos
-incorporados, etc...
-
-Deberíamos poner como obligatorios los datos de zona geográfica para
-el tema de las búsquedas
-
-
 2.- BUSQUEDA
 
 En la búsqueda general, debería poder dejar filtrar de entrada entre
@@ -28,12 +17,15 @@ minúsculas, esto si se puede sería bueno que no fueses así
 
 3.- INICIO Y GENTE
 
+En esta puerta de entrada podríamos poner carrusel de últimas ofertas,
+ultimas demandas, últimos grupos incorporados, etc...
+
 Cuando te vas a gente, te salen todos los usuarios del sistema, la
 idea es que cada usuario tenga su propia red, que se la vaya haciendo
 poco a poco.
 
 En cuanto a inicio, el funcionamiento debería ser similar al del muro
-de facebook.
+de facebook, poder responder en el mismo muro.
 
 
 4.- INTERCAMBIOS

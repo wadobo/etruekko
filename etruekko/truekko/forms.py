@@ -39,6 +39,7 @@ class RegisterForm(forms.Form):
 
     username = forms.CharField(label=_("Username"))
     name = forms.CharField(label=_("Name"))
+    location = forms.CharField(label=_("Location"))
     email = forms.EmailField(label=_("Email"))
     password = forms.CharField(label=_("Password"), widget=forms.PasswordInput)
     password2 = forms.CharField(label=_("Password confirm"), widget=forms.PasswordInput)
@@ -74,6 +75,7 @@ class RegisterForm(forms.Form):
         u.save()
         p = u.get_profile()
         p.name = data["name"]
+        p.location = data["location"]
         p.save()
 
         m = Membership(user=u, group=group, role="REQ")
