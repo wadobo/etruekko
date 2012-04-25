@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}
+{% trans "Advanced search" %}
+{% endblock %}
+
+{% block extrahead %}
+<script type="text/javascript">
+function hide_itemform() {
+    var str = "";
+    str = $("#typeselect option:selected").val();
+    if (str === "item") {
+        $(".itemform").show();
+        $("#offer").removeAttr("disabled");
+        $("#demand").removeAttr("disabled");
+        $("#item").removeAttr("disabled");
+        $("#serv").removeAttr("disabled");
+    } else {
+        $(".itemform").hide();
+        $("#offer").attr("disabled", "disabled");
+        $("#demand").attr("disabled", "disabled");
+        $("#item").attr("disabled", "disabled");
+        $("#serv").attr("disabled", "disabled");
+    }
+}
+
+$(document).ready(function() {
+    $("#typeselect").change(function () {
+        hide_itemform();
+    });
+
+    hide_itemform();
+});
+</script>
+{% endblock %}
+
+{% block subcontent %}
+    <h2>Search</h2>
+
+{% endblock %}
+
+{% block content %}
+    <div class="left"><img src="/media/imgs/search.png" alt="people"/></div>
+    <div class="clear"></div>
+
+    <div id="subcontent">
+        <div class="search">
+            <form method="GET" action="">
+                <input type="text" id="id_q" name="q" placeholder="{% trans "Search..." %}" value="{{ data.q }}"/>
+                <select name="type" id="typeselect">
+                    <option value="item" {% if data.type == "item" %}selected="selected"{% endif %}>{% trans "Item or service" %}</option>
+                    <option value="group" {% if data.type == "group" %}selected="selected"{% endif %}>{% trans "Groups" %}</option>
+                    <option value="user" {% if data.type == "user" %}selected="selected"{% endif %}>{% trans "Users" %}</option>
+                </select>
+                <br/>
+                <div class="left itemform">
+                    <input type="checkbox" name="offer" id="offer" {% if data.offer %}checked="checked"{% endif %}/>
+                    <label for="offer">{% trans "offer" %}</label>
+                    <br/>
+                    <input type="checkbox" name="demand" id="demand" {% if data.demand %}checked="checked"{% endif %}/>
+                    <label for="demand">{% trans "demand" %}</label>
+                    <br/>
+                    <input type="checkbox" name="item" id="item" {% if data.item %}checked="checked"{% endif %}/>
+                    <label for="item">{% trans "item" %}</label>
+                    <br/>
+                    <input type="checkbox" name="serv" id="serv" {% if data.serv %}checked="checked"{% endif %}/>
+                    <label for="serv">{% trans "service" %}</label>
+                </div>
+                <label for="location">{% trans "location" %}:</label>
+                <input type="text" name="location" id="location" placeholder="{% trans "location" %}" value="{{ data.location }}"/>
+                <br/>
+                <div class="clear"></div>
+                <input class="button blue" type="submit" value="{% trans "Search" %}"/>
+            </form>
+        </div>
+
+        <div class="querycontent">
+            <h3>{% trans "Results" %}</h3>
+
+            {% for object in result.object_list %}
+                <p class="search_entry">
+                    <a href="{{ object.get_absolute_url }}">{{ object }}</a>
+                    <p class="search_desc">
+                        <img src="{{ object.get_search_img }}" class="left"/>
+                        {{ object.get_search_desc|truncatewords:20 }}
+                    </p>
+                </p>
+            {% empty %}
+                <p>{% trans "No results found" %}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% with page=result %}
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page.has_previous %}
+                <a href="?{{ query }}&amp;page={{ page.previous_page_number }}">
+                <img src="/media/imgs/go-prev.png" alt="{% trans "previous" %}"/></a>
+            {% endif %}
+
+            <span class="current">
+                {% blocktrans with n=page.number m=page.paginator.num_pages %}
+                    Page {{ n }} of {{ m }}.
+                {% endblocktrans %}
+            </span>
+
+            {% if page.has_next %}
+                <a href="?{{ query }}&amp;page={{ page.next_page_number }}">
+                <img src="/media/imgs/go-next.png" alt="{% trans "next" %}"/></a>
+            {% endif %}
+        </span>
+    </div>
+
+    {% endwith %}
+
+{% endblock %}

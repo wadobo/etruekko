@@ -1,5 +1,6 @@
 import os
 from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import ugettext as _u
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from django.db import models
@@ -214,7 +215,8 @@ class Item(models.Model):
         return avatar(self.user, 20)
 
     def get_search_desc(self):
-        return '(%s) %s' % (self.user.get_profile().location, self.description)
+        offer_or_demand = _u("demand") if self.demand else _u("offer")
+        return '%s, %s: (%s) %s' % (self.get_type_display(), offer_or_demand, self.user.get_profile().location, self.description)
 
     def tags(self):
         return (i.tag for i in self.itemtagged_set.all())
@@ -224,6 +226,9 @@ class Item(models.Model):
 
     def __unicode__(self):
         return "%s" % self.name
+
+    class Meta:
+        ordering = ['-pub_date']
 
 
 class Tag(models.Model):

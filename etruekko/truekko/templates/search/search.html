@@ -15,9 +15,9 @@
             <form method="GET" action=".">
                 {{ form.q }}
                 <input class="search_button_white" type="submit" value="Search">
-                {{ form.models }}
             </form>
         </div>
+        <a href="{% url search_advanced %}">{% trans "Advanced search" %}</a>
 
         <div class="querycontent">
             {% if query %}

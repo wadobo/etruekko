@@ -38,6 +38,7 @@ urlpatterns = patterns('etruekko.truekko.views',
     url(r'^messages/post/(\d+)$', 'message_post', name='message_post'),
     url(r'^messages/remove/(\d+)$', 'message_remove', name='message_remove'),
     # search
+    url(r'^search/advanced$', 'search_advanced', name='search_advanced'),
     url(r'^search/', include('haystack.urls')),
 
     url(r'^$', 'index', name='index'),

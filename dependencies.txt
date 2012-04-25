@@ -7,3 +7,4 @@ django-debug-toolbar
 django-ratings
 textile
 haystack
+unidecode

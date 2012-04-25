@@ -1,4 +1,5 @@
 import uuid
+from unidecode import unidecode
 
 from django.http import Http404
 from django.contrib import messages
@@ -1280,6 +1281,122 @@ class RegisterWizard(TemplateView):
         return super(RegisterWizard, self).get(request)
 
 
+class SearchAdvanced(TemplateView):
+    template_name = 'search/advanced.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(SearchAdvanced, self).get_context_data(**kwargs)
+        context['menu'] = generate_menu("")
+        context['query'] = ''
+        context['result'] = ''
+
+        data = self.request.GET.dict()
+
+        if data.get('q', '') or data.get('location', ''):
+            query = self.query(data)
+
+            # paginating the query
+            result = paginate(self.request, query, 20)
+            context['result'] = result
+
+            if data.get('page', ''):
+                del data['page']
+
+            context['query'] = '&'.join(u'%s=%s' % (k,v) for k,v in data.items())
+
+        else:
+            # for initial checkbox selection
+            data['offer'] = "on"
+            data['demand'] = "on"
+            data['item'] = "on"
+            data['serv'] = "on"
+
+        context['data'] = data
+        return context
+
+    def get(self, request):
+        self.request = request
+
+        return super(SearchAdvanced, self).get(request)
+
+    def query(self, data):
+        models = dict(item=Item, group=Group, user=UserProfile)
+        modelname = data.get('type', '')
+
+        q = data.get('q', '')
+        offer = data.get('offer', False)
+        demand = data.get('demand', False)
+        item = data.get('item', False)
+        serv = data.get('serv', False)
+        location = data.get('location', '')
+
+        # getting the model to query
+        model = models.get(modelname, Item)
+
+        sf = self.create_filters(modelname, q, location,
+                                  serv, item, offer, demand)
+
+        if unidecode(q) != q or unidecode(location) != location:
+            sf = sf | self.create_filters(modelname, unidecode(q),
+                                          unidecode(location),
+                                          serv, item, offer, demand)
+
+        # getting the objects
+        query = model.objects.filter(sf)
+
+        return query
+
+    def create_filters(self, modelname, q, location, serv, item, offer, demand):
+        # building the query
+        sf = Q()
+        if modelname == 'item':
+            if q:
+                sf = Q(name__icontains=q) |\
+                    Q(description__icontains=q) |\
+                    Q(user__username__icontains=q) |\
+                    Q(user__userprofile__location__icontains=q) |\
+                    Q(user__userprofile__name__icontains=q)
+
+                itemtagged = ItemTagged.objects.filter(tag__name__icontains=q)
+                for it in itemtagged:
+                    sf = sf | Q(itemtagged=it)
+
+            if location:
+                sf = sf & Q(user__userprofile__location__icontains=location)
+
+            if not serv:
+                sf = sf & ~Q(type="SR")
+            if not item:
+                sf = sf & ~Q(type="IT")
+            if not offer:
+                sf = sf & ~Q(demand=False)
+            if not demand:
+                sf = sf & ~Q(demand=True)
+
+        elif modelname == 'group':
+            if q:
+                sf = Q(email__icontains=q) |\
+                     Q(description__icontains=q) |\
+                     Q(name__icontains=q) |\
+                     Q(location__icontains=q)
+
+            if location:
+                sf = sf & Q(location__icontains=location)
+
+        elif modelname == 'user':
+            if q:
+                sf = Q(user__email__icontains=q) |\
+                     Q(user__username__icontains=q) |\
+                     Q(description__icontains=q) |\
+                     Q(name__icontains=q) |\
+                     Q(location__icontains=q)
+
+            if location:
+                sf = sf & Q(location__icontains=location)
+
+        return sf
+
+
 # profile
 edit_profile = login_required(EditProfile.as_view())
 edit_profile_admin = login_required(EditProfileAdmin.as_view())
@@ -1323,5 +1440,9 @@ message_remove = login_required(MessageRemove.as_view())
 
 # register
 register_wizard = RegisterWizard.as_view()
+
+# search
+search_advanced = login_required(SearchAdvanced.as_view())
+
 
 index = Index.as_view()
