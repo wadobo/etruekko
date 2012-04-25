@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load markup %}
 
-<div class="msg{% if msg.user == USER %} me{% endif %}">
+<div class="msg{% if msg.user == USER %} me{% endif %}{% if msg.private %} priv{% endif %}">
     {% if msg.user == USER %}
     <a href="{% url message_remove msg.id %}" class="rm"><img src="/media/imgs/remove.gif" alt="{% trans "Remove" %}"/></a>
     {% endif %}
@@ -34,12 +34,15 @@
     </div>
     {% endfor %}
 
+    <a class="reply_link" href="#">{% trans "reply" %}</a>
+    <div class="reply_form">
     <form method="POST" action="{% url message_post msg.wall.id %}">
         {% csrf_token %}
         <input type="hidden" name="reply" value="{{ msg.id }}"/>
         <textarea class="autogrow reply left" name="comment" placeholder="{% trans "Reply..." %}"></textarea>
         <input type="submit" class="button blue" name="post" value="{% trans "Reply" %}"/>
     </form>
+    </div>
 
     <div class="clear"></div>
 </div>

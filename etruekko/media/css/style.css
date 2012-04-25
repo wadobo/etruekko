@@ -770,6 +770,7 @@ label {
 
 .msg {
     border-bottom: 1px solid #cccccc;
+    background-color: white;
     padding: 10px;
 }
 
@@ -778,6 +779,10 @@ label {
     margin-left: 20px;
     border: 1px solid #cccccc;
     background-color: white;
+}
+
+.priv {
+    background-color: #ffdddd;
 }
 
 .msg img {
