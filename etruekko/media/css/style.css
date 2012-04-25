@@ -773,6 +773,13 @@ label {
     padding: 10px;
 }
 
+.msg_reply {
+    margin: 10px;
+    margin-left: 20px;
+    border: 1px solid #cccccc;
+    background-color: white;
+}
+
 .msg img {
     float: left;
     margin-right: 10px;
@@ -796,6 +803,15 @@ label {
 .msg .rm {
     float: right;
     margin-left: 5px;
+}
+
+textarea.reply {
+    height: 27px;
+    line-height: 27px;
+    width: 400px !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    margin-right: 5px !important;
 }
 
 /* ENDOF WALL */

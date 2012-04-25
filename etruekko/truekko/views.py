@@ -1,5 +1,6 @@
 import uuid
 from unidecode import unidecode
+import datetime
 
 from django.http import Http404
 from django.contrib import messages
@@ -85,6 +86,8 @@ class Index(TemplateView):
         query = query | Q(wall__group__in=groups)
         # and friends messages
         query = query | Q(user__in=friends)
+        # replies will be shown in template
+        query = query & Q(parent=None)
 
         return WallMessage.objects.filter(query)
 
@@ -1200,6 +1203,7 @@ class MessagePost(View):
     def post(self, request, wallid):
         wall = get_object_or_404(Wall, pk=wallid)
         msg = request.POST.get('comment', '')
+        reply = request.POST.get('reply', '')
         priv = bool(request.POST.get('priv', False))
 
         # TODO check post permissions
@@ -1210,6 +1214,12 @@ class MessagePost(View):
                                wall=wall,
                                msg=msg,
                                private=priv)
+            if reply:
+                reply = get_object_or_404(WallMessage, pk=reply)
+                wmsg.parent = reply
+                reply.date = datetime.datetime.now()
+                reply.save()
+
             wmsg.save()
             messages.info(request, _(u"Message posted correctly"))
 

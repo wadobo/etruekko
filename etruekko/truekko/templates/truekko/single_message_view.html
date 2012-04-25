@@ -16,5 +16,30 @@
 
     <p class="text">{{ msg.msg|textile }}</p>
 
+    {% for msg in msg.get_childs %}
+    <div class="msg msg_reply{% if msg.user == USER %} me{% endif %}">
+        {% if msg.user == USER %}
+        <a href="{% url message_remove msg.id %}" class="rm"><img src="/media/imgs/remove.gif" alt="{% trans "Remove" %}"/></a>
+        {% endif %}
+        <span class="date"> {{ msg.date|timesince }} </span>
+        {% if msg.wall.group %}
+            <a href="{% url view_group msg.wall.group.id %}"><img src="{% groupavatar msg.wall.group 64 %}" alt="{{ msg.wall.group.name }}"/></a>
+            <a href="{% url view_group msg.wall.group.id %}"><span class="username">{{ msg.wall.group.name }}</span></a>:
+        {% endif %}
+        <a href="{% url view_profile msg.user.username %}"><img src="{% avatar msg.user 64 %}" alt="{{ msg.user.username }}"/></a>
+        <a href="{% url view_profile msg.user.username %}"><span class="username">{{ msg.user.username }}</span></a>
+        <span class="fullname">{{ msg.user.get_profile.name }}</span>
+
+        <p class="text">{{ msg.msg|textile }}</p>
+    </div>
+    {% endfor %}
+
+    <form method="POST" action="{% url message_post msg.wall.id %}">
+        {% csrf_token %}
+        <input type="hidden" name="reply" value="{{ msg.id }}"/>
+        <textarea class="autogrow reply left" name="comment" placeholder="{% trans "Reply..." %}"></textarea>
+        <input type="submit" class="button blue" name="post" value="{% trans "Reply" %}"/>
+    </form>
+
     <div class="clear"></div>
 </div>

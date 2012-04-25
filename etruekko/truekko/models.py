@@ -368,22 +368,28 @@ class Wall(models.Model):
 
     def messages_for_user(self, user):
         from etruekko.truekko.decorators import is_member
+        query = Q(parent=None)
+
         if user.is_anonymous():
-            return self.messages.filter(private=False)
+            query = query & Q(private=False)
+            return self.messages.filter(query)
+        # replies will be shown in template
 
         if self.user:
             if self.user == user:
-                return self.messages.all()
+                return self.messages.filter(query)
             else:
-                return self.messages.filter(Q(private=False) | Q(user=user))
+                query = query & (Q(private=False) | Q(user=user))
+                return self.messages.filter(query)
 
         if self.group:
             if is_member(user, self.group):
-                return self.messages.all()
+                return self.messages.filter(query)
             else:
-                return self.messages.filter(Q(private=False) | Q(user=user))
+                query = query & (Q(private=False) | Q(user=user))
+                return self.messages.filter(query)
 
-        return self.messages.all()
+        return self.messages.filter(query)
 
 
     def display_name(self):
@@ -398,10 +404,14 @@ class Wall(models.Model):
 class WallMessage(models.Model):
     user = models.ForeignKey(User, related_name="messages")
     wall = models.ForeignKey(Wall, related_name="messages")
+    parent = models.ForeignKey("WallMessage", related_name="childs", null=True)
     date = models.DateTimeField(auto_now_add=True)
 
     private = models.BooleanField(_("Private"), default=False)
     msg = models.TextField(_("Message"))
+
+    def get_childs(self):
+        return self.childs.all().order_by("date")
 
     def __unicode__(self):
         return self.msg
@@ -418,7 +428,7 @@ def wall_message_post_save(sender, instance, created, *args, **kwargs):
             name = instance.wall.user.get_profile().name
         elif instance.wall.group:
             email_list = instance.wall.group.members_emails()
-            url = reverse('view_group', args=[instance.wall.group.name])
+            url = reverse('view_group', args=[instance.wall.group.id])
             name = instance.wall.group.name
         else:
             email_list = [i[1] for i in settings.ADMINS]

@@ -11,6 +11,7 @@
 
     <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.rating.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.simpleautogrow.js"></script>
 
     <meta name="keywords" content="trueque, intercambio, banco del tiempo"/>
     <meta name="description" content="etruekko, tu red de intercambio"/>
@@ -18,6 +19,12 @@
 
     {% block extrahead %}
     {% endblock %}
+
+    <script>
+    $(document).ready(function(){
+          $('.autogrow').simpleautogrow();
+    });
+    </script>
 
 </head>
 
