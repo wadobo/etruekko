@@ -25,6 +25,18 @@
                 {% if viewing != USER %} <a class="button violet" href="{% url transfer_direct viewing.username %}">{% trans "Direct transfer" %}</a> {% endif %}
                 {% if admin %} <a class="button violet" href="{% url edit_profile_admin viewing.username %}">{% trans "Edit user" %}</a> {% endif %}
                 {% if viewing == USER %} <a class="button violet" href="{% url edit_profile %}">{% trans "Edit profile" %}</a> {% endif %}
+
+                {% if viewing != USER %}
+                    {% if USER in viewing.get_profile.followers %}
+                        <form method="POST" action="{% url unfollow viewing.id %}"> {% csrf_token %}
+                            <input class="button red link" type="submit" value="{% trans "unfollow" %}"/>
+                        </form>
+                    {% else %}
+                        <form method="POST" action="{% url follow viewing.id %}"> {% csrf_token %}
+                            <input class="button green link" type="submit" value="{% trans "follow" %}"/>
+                        </form>
+                    {% endif %}
+                {% endif %}
             </div>
             <span class="location"><a href="{% url people %}?search={{ viewing.get_profile.location }}">{{ viewing.get_profile.location }}</a></span>
             <span class="username">{{ viewing.username }}</span>

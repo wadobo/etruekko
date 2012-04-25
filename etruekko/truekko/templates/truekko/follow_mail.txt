@@ -1,0 +1,16 @@
+{% load i18n %}
+
+{% blocktrans with you=you.username name=user.get_profile.name location=user.get_profile.location description=user.get_profile.description username=user.username url=url %}
+
+{{ name }} ({{ username }}) is following you ({{ you }}) in etruekko
+
+Username: {{ username }}
+Name: {{ name }}
+Location: {{ location }}
+Description: {{ description }}
+
+---
+You can view the {{ username }} profile in:
+http://etruekko.com{{ url }}
+
+{% endblocktrans %}

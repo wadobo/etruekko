@@ -802,6 +802,14 @@ label {
 
 /* INDEX */
 
+.friends {
+    width: 110px;
+}
+
+.friends img {
+    float: left;
+}
+
 #indexcontent {
     width: 550px;
     float: left;

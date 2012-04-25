@@ -12,6 +12,8 @@
     <div class="clear"></div>
 
     <div id="subcontent">
+        <a class="button violet" href="{% url people %}">{% trans "Only friends" %}</a>
+        <a class="button violet" href="{% url people_all %}">{% trans "All" %}</a>
         {% for user in users.object_list %}
             {% include "truekko/single_user_view.html" %}
         {% endfor %}

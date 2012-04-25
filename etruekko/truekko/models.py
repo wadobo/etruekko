@@ -66,6 +66,20 @@ class UserProfile(models.Model):
 
         return False
 
+    def followers(self):
+        return [i.follower for i in self.user.followers.all()]
+
+    def followings(self):
+        return [i.following for i in self.user.followings.all()]
+
+
+class Follow(models.Model):
+    '''
+    Friendship relation, like in twitter
+    '''
+
+    follower = models.ForeignKey(User, related_name="followings")
+    following = models.ForeignKey(User, related_name="followers")
 
 
 def user_post_save(sender, instance, signal, *args, **kwargs):

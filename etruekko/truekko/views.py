@@ -30,6 +30,7 @@ from etruekko.truekko.models import Tag
 from etruekko.truekko.models import ItemTagged
 from etruekko.truekko.models import Swap, SwapItems, SwapComment
 from etruekko.truekko.models import Wall, WallMessage
+from etruekko.truekko.models import Follow
 
 from etruekko.truekko.utils import generate_menu
 from etruekko.utils import paginate, template_email
@@ -74,6 +75,7 @@ class Index(TemplateView):
             return WallMessage.objects.filter(private=False)
 
         groups = [i.group for i in Membership.objects.filter(user=u)]
+        friends = u.get_profile().followings()
         wall, created = Wall.objects.get_or_create(user=u, name="%s wall" % u.username)
         # user wall messages
         query = Q(wall=wall)
@@ -81,7 +83,9 @@ class Index(TemplateView):
         query = query | Q(user=u)
         # and user groups messages
         query = query | Q(wall__group__in=groups)
-        # TODO add friends messages
+        # and friends messages
+        query = query | Q(user__in=friends)
+
         return WallMessage.objects.filter(query)
 
 
@@ -197,11 +201,21 @@ class EditProfileAdmin(TemplateView):
 
 class People(TemplateView):
     template_name = 'truekko/people.html'
+    all=False
+
+    def get(self, request):
+        self.request = request
+        return super(People, self).get(request)
 
     def get_context_data(self, **kwargs):
         context = super(People, self).get_context_data(**kwargs)
         context['klass'] = 'people'
         context['menu'] = generate_menu("people")
+
+        if not self.all and self.request.user.is_authenticated():
+            query = User.objects.filter(followers__follower=self.request.user)
+        else:
+            query = User.objects.all()
 
         q = self.request.GET.get('search', '')
         if q:
@@ -211,12 +225,15 @@ class People(TemplateView):
                 Q(userprofile__name__icontains=q) |\
                 Q(userprofile__location__icontains=q)
 
-            query = User.objects.filter(k)
+            query = query.filter(k)
         else:
-            # TODO show only latest interesting users (friends, group, others)
-            query = User.objects.filter(is_active=True)
+            query = query.filter(is_active=True)
         context['users'] = paginate(self.request, query, 10)
         return context
+
+
+class PeopleAll(People):
+    all=True
 
 
 class RateUser(View):
@@ -1397,12 +1414,58 @@ class SearchAdvanced(TemplateView):
         return sf
 
 
+#############
+#           #
+# FOLLOWING #
+#           #
+#############
+
+class FollowView(View):
+
+    def post(self, request, userid):
+        user = get_object_or_404(User, pk=userid)
+        if user == request.user:
+            raise Http404
+
+        f, created = Follow.objects.get_or_create(follower=request.user, following=user)
+        f.save()
+
+        messages.info(request, _(u"You are now following %(user)s in etruekko") % {'user': user.username})
+        url = reverse('view_profile', args=(request.user.username,))
+        context = {'user': request.user, 'you': user, 'url': url}
+        template_email('truekko/follow_mail.txt',
+                       _("%(name)s (%(username)s) is now following you in etruekko") %\
+                            {'name': request.user.get_profile().name,
+                            'username': request.user.username},
+                       [user.email], context)
+
+        nxt = redirect('view_profile', user.username)
+        return nxt
+
+
+class UnFollowView(View):
+
+    def post(self, request, userid):
+        user = get_object_or_404(User, pk=userid)
+        f = get_object_or_404(Follow, follower=request.user, following=user)
+        f.delete()
+
+        messages.info(request, _(u"You are not following %(user)s in etruekko anymore") % {'user': user.username})
+        nxt = redirect('view_profile', user.username)
+        return nxt
+
+
 # profile
 edit_profile = login_required(EditProfile.as_view())
 edit_profile_admin = login_required(EditProfileAdmin.as_view())
 view_profile = login_required(ViewProfile.as_view())
 rate_user = login_required(RateUser.as_view())
 people = People.as_view()
+people_all = PeopleAll.as_view()
+
+# friendship
+follow = login_required(FollowView.as_view())
+unfollow = login_required(UnFollowView.as_view())
 
 # group
 groups = Groups.as_view()

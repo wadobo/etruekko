@@ -5,7 +5,11 @@ urlpatterns = patterns('etruekko.truekko.views',
     url(r'^profile/edit/(\w+)$', 'edit_profile_admin', name='edit_profile_admin'),
     url(r'^profile/(\w+)$', 'view_profile', name='view_profile'),
     url(r'^people$', 'people', name='people'),
+    url(r'^people/all$', 'people_all', name='people_all'),
     url(r'^rate/(\d+)$', 'rate_user', name='rate_user'),
+    # follow
+    url(r'^follow/(\d+)$', 'follow', name='follow'),
+    url(r'^unfollow/(\d+)$', 'unfollow', name='unfollow'),
     # groups
     url(r'^groups$', 'groups', name='groups'),
     url(r'^group/(\d+)$', 'view_group', name='view_group'),
