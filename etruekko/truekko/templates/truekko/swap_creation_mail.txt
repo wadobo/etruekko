@@ -1,0 +1,14 @@
+{% load i18n %}
+
+{% blocktrans with name=swap.user_from.get_profile.name username=swap.user_from.username you=swap.user_to.username url=url comment=comment %}
+
+{{ name }} ({{ username }}) has started a swap with you ({{ you }}) in etruekko
+
+---
+{{ comment }}
+---
+
+You can view the swap in:
+http://etruekko.com{{ url }}
+
+{% endblocktrans %}

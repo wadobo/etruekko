@@ -13,7 +13,7 @@
     <div id="subcontent">
         <h3>{{ swapstatus }}</h3>
 
-        <ul>
+        <ul class="errorlist">
         {% for error in errors %}
             <li>{{ error }}</li>
         {% endfor %}
@@ -29,12 +29,14 @@
                 {% for item in swap.items_from_names %}
                     <li>{{ item }}</li>
                 {% endfor %}
+                <li class="credits">{{ swap.credits_from }}{{ CREDIT_NAME.short }}</li>
                 </ul>
 
                 <ul class="itemlist left">
                 {% for item in swap.items_to_names %}
                     <li>{{ item }}</li>
                 {% endfor %}
+                <li class="credits">{{ swap.credits_to }}{{ CREDIT_NAME.short }}</li>
                 </ul>
                 </div>
             {% else %}
@@ -48,6 +50,10 @@
                         {% endwith %}
                     {% endif %}
                 {% endfor %}
+                <br/>
+                <input type="text" id="credits" name="credits1" value="{{ credits1 }}"
+                       {% if swap and swap.finished %}disabled="disabled"{% endif %}
+                       placeholder="{% trans "truekkos" %}"/>
                 </fieldset>
 
                 <fieldset class="swap2">
@@ -69,16 +75,13 @@
                         {% endwith %}
                     {% endif %}
                 {% endfor %}
+                <br/>
+                <input type="text" id="credits" name="credits2" value="{{ credits2 }}"
+                       {% if swap and swap.finished %}disabled="disabled"{% endif %}
+                       placeholder="{% trans "truekkos" %}"/>
                 </fieldset>
             {% endif %}
             <div class="clear"></div>
-
-            <table>
-            <tr>
-            <th><label for="credits">{% trans "Credits:" %}</label></th>
-            <td><input type="text" id="credits" name="credits" value="{{ credits }}" {% if swap and swap.finished %}disabled="disabled"{% endif %}/></td>
-            </tr>
-            </table>
 
             <div class="comments">
                 {% for comment in comments %}
@@ -101,7 +104,7 @@
                 <input type="submit" class="button yellowish" name="offer" value="{% trans "Make offer" %}"/>
                 <input type="submit" class="button yellowish" name="cancel" value="{% trans "cancel" %}"/>
             {% else %}
-                <input type="submit" class="button yellowish" name="comment" value="{% trans "Comment" %}"/>
+                <input type="submit" class="button yellowish" name="cbutton" value="{% trans "Comment" %}"/>
             {% endif %}
         </form>
     </div>

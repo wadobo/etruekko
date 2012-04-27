@@ -11,7 +11,6 @@
         <a href="{% url view_profile swap.user_from.username %}"><span class="username">{{ swap.user_from.username }}</span></a>
         →
         <a href="{% url view_profile swap.user_to.username %}"><span class="username">{{ swap.user_to.username }}</span></a>
-        <span class="credits">{{ swap.credits }}{{ CREDIT_NAME.short }}</span>
     </div>
 
     <div class="items">
@@ -19,16 +18,19 @@
     {% for item in swap.items_from_names %}
         <li>{{ item }}</li>
     {% endfor %}
+        <li class="credits">{{ swap.credits_from }}{{ CREDIT_NAME.short }}</li>
     </ul>
 
     <ul class="itemlist left">
     {% for item in swap.items_to_names %}
         <li>{{ item }}</li>
     {% endfor %}
+        <li class="credits">{{ swap.credits_to }}{{ CREDIT_NAME.short }}</li>
     </ul>
     </div>
 
     <div class="clear"></div>
+    <div class="date">{{ swap.date }}</div>
 
     <a class="button orange" href="{% url swap_view swap.id %}">{% trans "View" %}</a>
 

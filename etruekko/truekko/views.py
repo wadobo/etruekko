@@ -844,19 +844,31 @@ class SwapCreation(TemplateView):
             if k.startswith('item_'):
                 items.append(int(k.split('_')[1]))
 
-        try:
-            credits = data.get('credits', 0)
-            credits = int(credits if credits else 0)
-        except:
-            context = self.get_context({'user_to': u, 'user_from': self.request.user})
-            context['items'] = items
-            context['errors'] = [_('Invalid credits')]
-            return render_to_response(SwapCreation.template_name, context)
+        credits1 = data.get('credits1', '0')
+        credits2 = data.get('credits2', '0')
+        credits1 = credits1 if credits1 else '0'
+        credits2 = credits2 if credits2 else '0'
 
         swap = Swap(status="US1",
-                    credits=credits,
+                    credits_from=credits1,
+                    credits_to=credits2,
                     user_from=self.request.user,
                     user_to=u)
+
+        swap.credits_from = credits1
+        swap.credits_to = credits2
+
+        if not swap.is_valid():
+            context = self.get_context({'user_to': u,
+                                        'user_from': self.request.user,
+                                        'credits1': credits1,
+                                        'credits2': credits2})
+            context['items'] = items
+            context['errors'] = [_("Invalid credits, you can't offer"
+            " more than you have, and you can't request more that the"
+            " other person has")]
+            return render_to_response(SwapCreation.template_name, context)
+
         swap.save()
 
         for item in items:
@@ -872,6 +884,13 @@ class SwapCreation(TemplateView):
             swap_comment.save()
 
         nxt = redirect('swap_view', swap.id)
+        url = reverse('swap_view', args=(swap.id,))
+
+        context = {'swap': swap, 'comment': comment, 'url': url}
+        template_email('truekko/swap_creation_mail.txt',
+                       _("A new swap has been created"),
+                       [swap.user_to.email], context)
+
         return nxt
 
 
@@ -889,7 +908,8 @@ class SwapView(TemplateView):
         context = self.get_context({'user_to': self.swap.user_to,
                                     'user_from': self.swap.user_from})
         context['items'] = [item.item.id for item in self.swap.items.all()]
-        context['credits'] = self.swap.credits
+        context['credits1'] = self.swap.credits_from
+        context['credits2'] = self.swap.credits_to
         context['comments'] = self.swap.comments.all()
         context['swap'] = self.swap
         if self.request.user == self.swap.user_from and self.swap.status == 'US2':
@@ -916,6 +936,11 @@ class SwapView(TemplateView):
         self.swap = get_object_or_404(Swap, id=swapid)
         data = request.POST
 
+        items = []
+        for k in data.keys():
+            if k.startswith('item_'):
+                items.append(int(k.split('_')[1]))
+
         # comment
         comment = data.get('comment', '')
         if comment:
@@ -924,10 +949,15 @@ class SwapView(TemplateView):
                                        comment=comment)
             swap_comment.save()
 
+        if self.swap.status in ['CAN', 'CON', 'DON']:
+            self.swap.save()
+            return redirect('swap_view', self.swap.id)
+
         if 'cancel' in data.keys():
-            self.swap.delete()
+            self.swap.status = 'CAN'
+            self.swap.save()
             messages.info(request, _("Swap canceled"))
-            return redirect('/')
+            return redirect('swap_view', self.swap.id)
 
         if 'accept' in data.keys():
             nxt = redirect('swap_view', self.swap.id)
@@ -937,27 +967,36 @@ class SwapView(TemplateView):
                 return nxt
 
             self.swap.status = 'CON'
-            self.swap.save()
-            messages.info(request, _("Conglatulations, swap has been accepted"))
-            # TODO notify users by mail
+            if self.swap.is_valid():
+                self.swap.save()
+                messages.info(request, _("Conglatulations, swap has been accepted"))
+            else:
+                context = self.get_context({'user_to': self.swap.user_to,
+                                            'user_from': self.swap.user_from,
+                                            'credits1': self.swap.credits_from,
+                                            'credits2': self.swap.credits_to})
+                context['items'] = items
+                context['errors'] = [_('Invalid credits')]
+                return render_to_response(SwapView.template_name, context)
             return nxt
 
-        items = []
-        for k in data.keys():
-            if k.startswith('item_'):
-                items.append(int(k.split('_')[1]))
+        credits1 = data.get('credits1', '0')
+        credits2 = data.get('credits2', '0')
+        credits1 = credits1 if credits1 else '0'
+        credits2 = credits2 if credits2 else '0'
 
-        try:
-            credits = data.get('credits', 0)
-            credits = int(credits if credits else 0)
-        except:
+        self.swap.credits_from = credits1
+        self.swap.credits_to = credits2
+
+        if not self.swap.is_valid():
             context = self.get_context({'user_to': self.swap.user_to,
-                                        'user_from': self.swap.user_from})
+                                        'user_from': self.swap.user_from,
+                                        'credits1': credits1,
+                                        'credits2': credits2})
             context['items'] = items
             context['errors'] = [_('Invalid credits')]
             return render_to_response(SwapView.template_name, context)
 
-        self.swap.credits = credits
         self.swap.save()
 
         for swap_item in self.swap.items.all():
@@ -975,7 +1014,6 @@ class SwapView(TemplateView):
                 self.swap.status = 'US2'
             if self.request.user == self.swap.user_from:
                 self.swap.status = 'US1'
-            # TODO notify users by mail
 
             self.swap.save()
 

@@ -1,0 +1,28 @@
+{% load i18n %}
+
+{% blocktrans with from=swap.user_from.username to=swap.user_to.username comment=comment last_comment=last_comment status=status %}
+
+One swap from {{ from }} to {{ to }} has been modified:
+
+status: {{ status }}
+{{ comment }}
+---
+{{ last_comment }}
+---
+
+{% endblocktrans %}
+
+-- {{ swap.user_from.username }}
+{% for item in swap.items_from_names %}
+ * {{ item }}
+{% endfor %}
+ * {{ swap.credits_from }} {{ credit_name.short }}
+
+-- {{ swap.user_to.username }}
+{% for item in swap.items_to_names %}
+ * {{ item }}
+{% endfor %}
+ * {{ swap.credits_to }} {{ credit_name.short }}
+
+{% trans "You can view the swap in:" %}
+http://etruekko.com{{ url }}
