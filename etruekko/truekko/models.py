@@ -282,10 +282,18 @@ class Swap(models.Model):
         ('CAN', _('Cancel')),
     ]
 
+    SWAP_MODE = [
+        ('NON', _('---')),
+        ('PER', _('In person')),
+        ('MAI', _('Postal mail')),
+        ('MSG', _('Express transport')),
+    ]
+
     user_from = models.ForeignKey(User, related_name="swaps_from")
     user_to = models.ForeignKey(User, related_name="swaps_to")
 
     status = models.CharField(max_length=3, choices=STATUS)
+    swap_mode = models.CharField(max_length=3, choices=SWAP_MODE, default="NON")
     credits_from = models.PositiveIntegerField(default=0)
     credits_to = models.PositiveIntegerField(default=0)
     done_msg = models.TextField(null=True, blank=True)

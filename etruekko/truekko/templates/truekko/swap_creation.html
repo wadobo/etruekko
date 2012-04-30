@@ -24,6 +24,10 @@
             {% csrf_token %}
 
             {% if swap and swap.finished %}
+                <div class="status">
+                    {{ swap.get_status_msg }}
+                    <span class="mode">{{ swap.get_swap_mode_display }}</span>
+                </div>
                 <div class="items">
                 <ul class="itemlist left">
                 {% for item in swap.items_from_names %}
@@ -39,6 +43,7 @@
                 <li class="credits">{{ swap.credits_to }}{{ CREDIT_NAME.short }}</li>
                 </ul>
                 </div>
+                <div class="clear"></div>
             {% else %}
                 <fieldset class="swap1">
                 <legend>{{ user_from.username }}</legend>
@@ -80,6 +85,15 @@
                        {% if swap and swap.finished %}disabled="disabled"{% endif %}
                        placeholder="{% trans "truekkos" %}"/>
                 </fieldset>
+
+                <div class="swap_mode">
+                    <label for="swap_mode">{% trans "Swap mode" %}:</label>
+                    <select id="swap_mode" name="swap_mode">
+                        {% for opt, text in swap_opts %}
+                            <option value="{{ opt }}" {% if swap.swap_mode == opt %}selected="selected"{% endif %}>{{ text }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
             {% endif %}
             <div class="clear"></div>
 

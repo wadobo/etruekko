@@ -86,6 +86,11 @@ a:hover {
     margin-right: 5px;
 }
 
+.right {
+    float: right;
+    margin-left: 5px;
+}
+
 /* background color classes */
 
 .bg {
@@ -761,6 +766,10 @@ label {
     display: block;
     float: right;
     font-size: small;
+}
+
+.status .mode {
+    display: block;
 }
 
 /* ENDOF SWAP */

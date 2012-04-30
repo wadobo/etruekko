@@ -819,6 +819,7 @@ class SwapCreation(TemplateView):
         context = RequestContext(self.request, data)
         context['klass'] = 'transf'
         context['menu'] = generate_menu("transf")
+        context['swap_opts'] = Swap.SWAP_MODE
         return context
 
     def get_context_data(self, **kwargs):
@@ -846,12 +847,14 @@ class SwapCreation(TemplateView):
 
         credits1 = data.get('credits1', '0')
         credits2 = data.get('credits2', '0')
+        swap_mode = data.get('swap_mode', 'NON')
         credits1 = credits1 if credits1 else '0'
         credits2 = credits2 if credits2 else '0'
 
         swap = Swap(status="US1",
                     credits_from=credits1,
                     credits_to=credits2,
+                    swap_mode=swap_mode,
                     user_from=self.request.user,
                     user_to=u)
 
@@ -901,6 +904,7 @@ class SwapView(TemplateView):
         context = RequestContext(self.request, data)
         context['klass'] = 'transf'
         context['menu'] = generate_menu("transf")
+        context['swap_opts'] = Swap.SWAP_MODE
         return context
 
     def get_context_data(self, **kwargs):
@@ -976,15 +980,19 @@ class SwapView(TemplateView):
                                             'credits1': self.swap.credits_from,
                                             'credits2': self.swap.credits_to})
                 context['items'] = items
-                context['errors'] = [_('Invalid credits')]
+                context['errors'] = [_("Invalid credits, you can't offer"
+                " more than you have, and you can't request more that the"
+                " other person has")]
                 return render_to_response(SwapView.template_name, context)
             return nxt
 
         credits1 = data.get('credits1', '0')
         credits2 = data.get('credits2', '0')
+        swap_mode = data.get('swap_mode', 'NON')
         credits1 = credits1 if credits1 else '0'
         credits2 = credits2 if credits2 else '0'
 
+        self.swap.swap_mode = swap_mode
         self.swap.credits_from = credits1
         self.swap.credits_to = credits2
 
@@ -994,7 +1002,9 @@ class SwapView(TemplateView):
                                         'credits1': credits1,
                                         'credits2': credits2})
             context['items'] = items
-            context['errors'] = [_('Invalid credits')]
+            context['errors'] = [_("Invalid credits, you can't offer"
+            " more than you have, and you can't request more that the"
+            " other person has")]
             return render_to_response(SwapView.template_name, context)
 
         self.swap.save()
