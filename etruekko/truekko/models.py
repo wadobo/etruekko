@@ -205,6 +205,11 @@ class Item(models.Model):
         ('SR', _('service')),
     ]
 
+    OFFER = [
+        ('OFF', _('Offer')),
+        ('DEM', _('Demand')),
+    ]
+
     PRICE_TYPES = [
         ('ETK', 'truekkos'),
         ('ETK/H', _('truekkos per hour')),
@@ -217,7 +222,7 @@ class Item(models.Model):
 
     user = models.ForeignKey(User, related_name="items")
     type = models.CharField(_("Item or service"), max_length=2, choices=TYPES, default="IT")
-    demand = models.BooleanField(_("Demand"), default=False)
+    offer_or_demand = models.CharField(_("Offer or demand"), max_length=3, choices=OFFER, default="OFF")
     name = models.CharField(_("Name"), max_length=150)
     description = models.TextField(_("Description"))
     price = models.IntegerField(_("Price"))
@@ -227,6 +232,9 @@ class Item(models.Model):
                               "item_images"))
     pub_date = models.DateTimeField(auto_now_add=True)
 
+    def demand(self):
+        return self.offer_or_demand == "DEM"
+
     def get_absolute_url(self):
         return reverse('item_view', args=[self.id])
 
@@ -234,8 +242,10 @@ class Item(models.Model):
         return avatar(self.user, 20)
 
     def get_search_desc(self):
-        offer_or_demand = _u("demand") if self.demand else _u("offer")
-        return '%s, %s: (%s) %s' % (self.get_type_display(), offer_or_demand, self.user.get_profile().location, self.description)
+        return '%s, %s: (%s) %s' % (self.get_type_display(),
+                                    self.get_offer_or_demand_display(),
+                                    self.user.get_profile().location,
+                                    self.description)
 
     def tags(self):
         return (i.tag for i in self.itemtagged_set.all())

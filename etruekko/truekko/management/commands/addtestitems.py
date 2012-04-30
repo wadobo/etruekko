@@ -23,7 +23,7 @@ class Command(BaseCommand):
             users = list(User.objects.all()[0:10])
             item = Item(user=random.choice(users),
                         type=random.choice(['IT', 'SR']),
-                        demand=random.choice([True, False]),
+                        offer_or_demand=random.choice(['OFF', 'DEM']),
                         name="item %s" % (i + 1),
                         description=' '.join(random.choice(desc) for i in range(80)),
                         price=random.choice(range(1,11)))

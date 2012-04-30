@@ -54,8 +54,8 @@ class Index(TemplateView):
             context['wall'] = wall
             context['groups'] = groups
             items = Item.objects.filter(user=u)
-            context['offers'] = items.filter(demand=False)
-            context['demands'] = items.filter(demand=True)
+            context['offers'] = items.filter(offer_or_demand="OFF")
+            context['demands'] = items.filter(offer_or_demand="DEM")
 
             tq = Q(user_from=u) | Q(user_to=u)
             context['denounces'] = Denounce.objects.filter(status__in=["PEN", "CON"]).filter(tq)
@@ -1444,9 +1444,9 @@ class SearchAdvanced(TemplateView):
             if not item:
                 sf = sf & ~Q(type="IT")
             if not offer:
-                sf = sf & ~Q(demand=False)
+                sf = sf & ~Q(offer_or_demand="OFF")
             if not demand:
-                sf = sf & ~Q(demand=True)
+                sf = sf & ~Q(offer_or_demand="DEM")
 
         elif modelname == 'group':
             if q:
