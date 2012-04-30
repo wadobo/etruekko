@@ -136,6 +136,12 @@ a:hover {
     padding: 20px;
     min-height: 100px;
 
+    background-color: white;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+
+    /**
     background-image: linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
     background-image: -o-linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
     background-image: -moz-linear-gradient(bottom, rgb(228,233,240) 0%, rgb(255,255,255) 52%);
@@ -149,6 +155,7 @@ a:hover {
         color-stop(0, rgb(228,233,240)),
         color-stop(0.52, rgb(255,255,255))
     );
+    */
 }
 
 /* ENDOF SUBCONTENT */
@@ -772,15 +779,26 @@ label {
     display: block;
 }
 
+.commitment {
+    border-bottom: 2px solid #cccccc;
+    background-color: #eee;
+    padding: 10px;
+    margin: 5px;
+}
+
+.commitment .service {
+}
+
 /* ENDOF SWAP */
 
 
 /* WALL */
 
 .msg {
-    border-bottom: 1px solid #cccccc;
-    background-color: white;
+    border-bottom: 2px solid #cccccc;
+    background-color: #eee;
     padding: 10px;
+    margin: 5px;
 }
 
 .msg_reply {

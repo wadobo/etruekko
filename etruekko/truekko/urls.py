@@ -32,6 +32,7 @@ urlpatterns = patterns('etruekko.truekko.views',
     url(r'^swap/list$', 'swap_list', name='swap_list'),
     url(r'^swap/view/(\d+)$', 'swap_view', name='swap_view'),
     url(r'^swap/(\w+)$', 'swap_creation', name='swap_creation'),
+    url(r'^commitment/done/(\d+)$', 'commitment_done', name='commitment_done'),
     # item
     url(r'^item/add$', 'item_add', name='item_add'),
     url(r'^item/edit/(?P<object_id>\d+)$', 'item_add', name='item_edit'),

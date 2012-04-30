@@ -400,6 +400,18 @@ def swap_post_save(sender, instance, created, *args, **kwargs):
         items = {'from': [i.name for i in instance.items_from()], 'to': [i.name for i in instance.items_to()]}
         instance.done_msg = simplejson.dumps(items)
         instance.save()
+
+        # creating a commitment for each service
+        for item in instance.items.filter(item__type='SR'):
+            item = item.item
+            if item.demand():
+                ut = item.user
+                uf = instance.user_to if ut == instance.user_from else instance.user_from
+            else:
+                uf = item.user
+                ut = instance.user_to if uf == instance.user_from else instance.user_from
+            cm = Commitment(user_from=uf, user_to=ut, comment=item.name, swap=instance)
+            cm.save()
         return
 
     elif instance.status == 'DON':
@@ -421,6 +433,28 @@ def swap_post_save(sender, instance, created, *args, **kwargs):
                    [instance.user_to.email, instance.user_from.email], context)
 
 post_save.connect(swap_post_save, sender=Swap)
+
+
+class Commitment(models.Model):
+    STATUS = [
+        ('WAI', _('Waiting')),
+        ('DON', _('Done')),
+    ]
+
+    user_from = models.ForeignKey(User, related_name="my_commitments")
+    user_to = models.ForeignKey(User, related_name="commitments_to_me")
+    status = models.CharField(max_length=3, choices=STATUS, default='WAI')
+    #due_date = models.DateTimeField(_('Due date'), null=True, blank=True)
+    comment = models.TextField(_('Comment'))
+    swap = models.ForeignKey(Swap, related_name="commitments")
+
+    date = models.DateTimeField(auto_now=True)
+
+    def done(self):
+        self.status = "DON"
+
+    class Meta:
+        ordering = ['-date']
 
 
 class Wall(models.Model):

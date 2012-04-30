@@ -41,6 +41,37 @@
                 {% endfor %}
                 </ul>
 
+                <!-- commitments -->
+                <h3>{% trans "My Commitments" %}</h3>
+                <ul>
+                {% for cm in USER.my_commitments.all %}
+                    <li>
+                        <a href="{% url swap_view cm.swap.id %}">
+                            <img class="left" src="{% avatar cm.swap.user_from 20 %}"/>
+                            <img class="left" src="{% avatar cm.swap.user_to 20 %}"/>
+                            {{ cm.comment }}
+                            ({{ cm.date|timesince }})
+                        </a>
+                        <div class="clear"></div>
+                    </li>
+                {% endfor %}
+                </ul>
+
+                <h3>{% trans "Commitments to me" %}</h3>
+                {% for cm in USER.commitments_to_me.all %}
+                    <li>
+                        <a href="{% url swap_view cm.swap.id %}">
+                            <img class="left" src="{% avatar cm.swap.user_from 20 %}"/>
+                            <img class="left" src="{% avatar cm.swap.user_to 20 %}"/>
+                            {{ cm.comment }}
+                            ({{ cm.date|timesince }})
+                        </a>
+                        <div class="clear"></div>
+                    </li>
+                {% endfor %}
+                </ul>
+
+
                 <!-- swaps -->
                 {% if swaps %}
                     <h3>{% trans "My Swaps" %}</h3>

@@ -19,32 +19,58 @@
         {% endfor %}
         </ul>
 
+        {% if swap and swap.finished %}
+            <div class="status">
+                {{ swap.get_status_msg }}
+                <span class="mode">{{ swap.get_swap_mode_display }}</span>
+            </div>
+            <div class="items">
+            <ul class="itemlist left">
+            {% for item in swap.items_from_names %}
+                <li>{{ item }}</li>
+            {% endfor %}
+            <li class="credits">{{ swap.credits_from }}{{ CREDIT_NAME.short }}</li>
+            </ul>
+
+            <ul class="itemlist left">
+            {% for item in swap.items_to_names %}
+                <li>{{ item }}</li>
+            {% endfor %}
+            <li class="credits">{{ swap.credits_to }}{{ CREDIT_NAME.short }}</li>
+            </ul>
+            </div>
+            <div class="clear"></div>
+
+            <!-- Commitments -->
+            <h3>{% trans "Commitments" %}</h3>
+            {% for cm in swap.commitments.all %}
+                <div class="commitment">
+                    <span class="status">{{ cm.get_status_display }}</span>
+                    <div class="left">
+                    {% with user=cm.user_from %} {% include "single_user.html" %} {% endwith %}
+                    {% with user=cm.user_to %} {% include "single_user.html" %} {% endwith %}
+                    </div>
+                    <span class="service">
+                    {% blocktrans with userfromname=cm.user_from.get_profile.name userfrom=cm.user_from.username usertoname=cm.user_to.get_profile.name userto=cm.user_to.username comment=cm.comment %}
+                    {{ userfromname }} ({{ userfrom }}) has a commitment to provide the service "{{ comment }}" to {{ usertoname }} ({{ userto }}).
+                    {% endblocktrans %}
+                    </span>
+                    <div class="clear"></div>
+                    {% if USER == cm.user_to and cm.status != "DON" %}
+                        <form method="POST" action="{% url commitment_done cm.id %}">
+                        {% csrf_token %}
+                            <input type="submit" class="button blue" value="{% trans "Done" %}"/>
+                        </form>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        {% endif %}
+
 
         <form method="POST" action="">
             {% csrf_token %}
 
-            {% if swap and swap.finished %}
-                <div class="status">
-                    {{ swap.get_status_msg }}
-                    <span class="mode">{{ swap.get_swap_mode_display }}</span>
-                </div>
-                <div class="items">
-                <ul class="itemlist left">
-                {% for item in swap.items_from_names %}
-                    <li>{{ item }}</li>
-                {% endfor %}
-                <li class="credits">{{ swap.credits_from }}{{ CREDIT_NAME.short }}</li>
-                </ul>
-
-                <ul class="itemlist left">
-                {% for item in swap.items_to_names %}
-                    <li>{{ item }}</li>
-                {% endfor %}
-                <li class="credits">{{ swap.credits_to }}{{ CREDIT_NAME.short }}</li>
-                </ul>
-                </div>
-                <div class="clear"></div>
-            {% else %}
+            {% if not swap or not swap.finished %}
                 <fieldset class="swap1">
                 <legend>{{ user_from.username }}</legend>
                 {% for item in user_from.items.all %}

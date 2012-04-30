@@ -32,6 +32,7 @@ from etruekko.truekko.models import ItemTagged
 from etruekko.truekko.models import Swap, SwapItems, SwapComment
 from etruekko.truekko.models import Wall, WallMessage
 from etruekko.truekko.models import Follow
+from etruekko.truekko.models import Commitment
 
 from etruekko.truekko.utils import generate_menu
 from etruekko.utils import paginate, template_email
@@ -115,8 +116,8 @@ class ViewProfile(TemplateView):
         context['wallmessages'] = paginate(self.request, messages, 20)
 
         items = Item.objects.filter(user=u)
-        context['offers'] = items.filter(demand=False)
-        context['demands'] = items.filter(demand=True)
+        context['offers'] = items.filter(offer_or_demand="OFF")
+        context['demands'] = items.filter(offer_or_demand="DEM")
         return context
 
     def get(self, request, username):
@@ -1063,6 +1064,14 @@ class SwapList(TemplateView):
         return super(SwapList, self).get(request)
 
 
+class CommitmentDone(View):
+    def post(self, request, cid):
+        cm = get_object_or_404(Commitment, pk=cid, user_to=request.user)
+        cm.done()
+        cm.save()
+
+        return redirect('swap_view', cm.swap.id)
+
 
 ###########
 #         #
@@ -1548,6 +1557,8 @@ transfer_list = login_required(TransferList.as_view())
 swap_creation = login_required(SwapCreation.as_view())
 swap_view = login_required(SwapView.as_view())
 swap_list = login_required(SwapList.as_view())
+
+commitment_done = login_required(CommitmentDone.as_view())
 
 #item
 item_add = login_required(ItemAdd.as_view())
