@@ -1120,12 +1120,22 @@ class ItemAdd(TemplateView):
         else:
             form = ItemAddForm(request.POST, files_req)
 
-        if not form.is_valid():
+        try:
+            quantity = int(request.POST.get('quantity', '0'))
+            quantity_valid = True
+        except:
+            quantity_valid = False
+
+        if not form.is_valid() or not quantity_valid:
             context = self.get_context({})
             context['form'] = form
             return render_to_response(ItemAdd.template_name, context)
 
         item = form.save(commit=False)
+        item.quantity = 0
+        if item.type == 'IT' and item.offer_or_demand == 'OFF':
+            item.quantity = quantity
+
         item.user = self.request.user
         item.save()
 

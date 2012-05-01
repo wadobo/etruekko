@@ -230,6 +230,7 @@ class Item(models.Model):
     photo = models.ImageField(_("photo"), blank=True, null=True,
                               upload_to=os.path.join(settings.MEDIA_ROOT,
                               "item_images"))
+    quantity = models.PositiveIntegerField(_("quantity"), default=0, help_text=_("use 0 for unlimited"))
     pub_date = models.DateTimeField(auto_now_add=True)
 
     def demand(self):
@@ -412,6 +413,17 @@ def swap_post_save(sender, instance, created, *args, **kwargs):
                 ut = instance.user_to if uf == instance.user_from else instance.user_from
             cm = Commitment(user_from=uf, user_to=ut, comment=item.name, swap=instance)
             cm.save()
+
+        # removing items from sender
+        for item in instance.items.filter(item__type='IT').exclude(item__quantity=0):
+            item = item.item
+            item.quantity = item.quantity - 1
+
+            if item.quantity <= 0:
+                # zero items, removing
+                item.delete()
+            else:
+                item.save()
         return
 
     elif instance.status == 'DON':

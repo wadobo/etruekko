@@ -8,6 +8,34 @@
     {% endif %}
 {% endblock %}
 
+{% block extrahead %}
+    <script>
+    function check_quantity() {
+        var type = $("#id_type option:selected").val();
+        var offer = $("#id_offer_or_demand option:selected").val();
+
+        if (type === "IT" && offer === "OFF") {
+            $("#quantity_tr").show();
+        } else {
+            $("#quantity_tr").hide();
+            $("#quantity").val("0");
+        }
+    }
+
+    $(document).ready(function(){
+        check_quantity();
+
+        $("#id_type").change(function() {
+            check_quantity();
+        });
+
+        $("#id_offer_or_demand").change(function() {
+            check_quantity();
+        });
+    });
+    </script>
+{% endblock %}
+
 {% block content %}
     <div class="left"><img src="/media/imgs/menu/add.png" alt="add"/></div>
     <div class="left"><img src="/media/imgs/menu/item.png" alt="item"/></div>
@@ -19,10 +47,14 @@
         {% csrf_token %}
         <table>
             {{ form.as_table }}
+            <tr id="quantity_tr">
+                <th><label for="quantity">{% trans "Quantity:" %}</label></th>
+                <td><input id="quantity" type="text" name="quantity" value="{{ form.quantity }}"/>  {% trans "Use 0 for unlimited" %}</td>
+            </tr>
             {% if not editing %}
             <tr>
-                <th>{% trans "Tags:" %}</th>
-                <td><input type="text" name="tags"/>  {% trans "comma separated values" %}</td>
+                <th><label for="tags">{% trans "Tags:" %}<label></th>
+                <td><input id="tags" type="text" name="tags"/>  {% trans "comma separated values" %}</td>
             </tr>
             {% endif %}
         </table>

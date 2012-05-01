@@ -2,6 +2,10 @@
     margin: 0px;
 }
 
+.helptext {
+    color: #888;
+}
+
 ul.errorlist {
     list-style: none;
     font-size: small;

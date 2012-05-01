@@ -117,6 +117,9 @@ class ItemAddForm(ModelForm):
         fields = ('name', 'type', 'offer_or_demand', 'description', 'photo', 'price', 'price_type')
         widgets = {'photo': CustomImageWidget()}
 
+    def quantity(self):
+        return self.instance.quantity
+
 
 class WallMessageForm(ModelForm):
 
