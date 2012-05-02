@@ -5,8 +5,10 @@
     <form method="POST" action="{% url message_post wall.id %}">
         {% csrf_token %}
         <textarea class="autogrow" id="comment" name="comment"></textarea>
-        <label for="priv">{% trans "Private" %}:</label>
-        <input type="checkbox" id="priv" name="priv"/><br/>
+        {% if not hidepriv %}
+            <label for="priv">{% trans "Private" %}:</label>
+            <input type="checkbox" id="priv" name="priv"/><br/>
+        {% endif %}
         <input type="submit" class="button blue" name="post" value="{% trans "Post" %}"/>
     </form>
     {% endif %}

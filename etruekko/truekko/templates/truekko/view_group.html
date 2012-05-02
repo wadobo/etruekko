@@ -27,6 +27,13 @@
                 </form>
             {% endif %}
             <a class="button green" href="{% url group_denounce viewing.id %}">{% trans "Denounce a member" %}</a>
+
+
+            <div>
+            {% if editable %}
+                <a class="button green" href="{% url channel_view viewing.channel.id %}">{% trans "Go to channel" %} {{ viewing.channel.name }}</a>
+            {% endif %}
+            </div>
         </div>
 
         <div id="profile">

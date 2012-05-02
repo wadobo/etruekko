@@ -10,6 +10,8 @@ urlpatterns = patterns('etruekko.truekko.views',
     # follow
     url(r'^follow/(\d+)$', 'follow', name='follow'),
     url(r'^unfollow/(\d+)$', 'unfollow', name='unfollow'),
+    # channels
+    url(r'^channel/view/(\d+)$', 'channel_view', name='channel_view'),
     # groups
     url(r'^groups$', 'groups', name='groups'),
     url(r'^group/(\d+)$', 'view_group', name='view_group'),

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}
+    {% blocktrans with channel.name as name %} Channel / {{ name }} {% endblocktrans %}
+{% endblock %}
+
+{% block content %}
+    <h2>
+        <div class="left"><img src="/media/imgs/channel.png" alt="{{ channel.name }}"/></div>
+        {% blocktrans with channel.name as name %} {{ name }} {% endblocktrans %}
+        <div class="clear"></div>
+    </h2>
+
+    <div id="subcontent">
+
+        <div id="memberlist">
+        <h3> {% trans "Groups" %} </h3>
+        {% for group in channel.groups.all %}
+            <div class="left memberimg">
+                <a href="{% url view_group group.id %}">
+                    <img src="{% groupavatar group 64 %}" title="{{ group.name }}" alt="{{ group.name }}"/>
+                </a>
+            </div>
+        {% endfor %}
+        <div class="clear"></div>
+        </div>
+
+        <!-- wall -->
+        <div id="groupwall">
+            {% with hidepriv="True" wall=channel.wall wallmessages=wallmessages %}
+                {% include "truekko/wall.html" %}
+            {% endwith %}
+        </div>
+
+        <div class="clear"></div>
+    </div>
+
+    {% with pagination=wallmessages %}
+        {% include "paginate.html" %}
+    {% endwith %}
+{% endblock %}

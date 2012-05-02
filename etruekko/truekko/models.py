@@ -99,6 +99,33 @@ post_save.connect(user_post_save, sender=User)
 
 # Groups models
 
+class Channel(models.Model):
+    name = models.CharField(_("Name"), max_length=500, unique=True)
+    description = models.TextField(_("Channel description"), max_length=800, blank=True)
+    wall = models.ForeignKey("Wall", null=True, blank=True)
+
+    def __unicode__(self):
+        return self.name
+
+    def can_view(self, user):
+        if user.is_staff and user.is_superuser:
+            return True
+
+        for group in self.groups.all():
+            if group.membership_set.filter(role="ADM", user=user).count():
+                return True
+
+        return False
+
+
+def channel_post_save(sender, instance, signal, *args, **kwargs):
+    instance.wall, created = Wall.objects.get_or_create(name="%s wall" % instance.name)
+    if created:
+        instance.save()
+
+post_save.connect(channel_post_save, sender=Channel)
+
+
 class Group(models.Model):
     '''
     Model that represents a barter group.
@@ -113,6 +140,7 @@ class Group(models.Model):
                               upload_to=os.path.join(settings.MEDIA_ROOT, "photos"))
     description = models.TextField(_("Group description"), max_length=800,
                                    blank=True)
+    channel = models.ForeignKey(Channel, related_name="groups")
 
     # TODO add here membership conditions
 
@@ -534,6 +562,7 @@ class WallMessage(models.Model):
 
 def wall_message_post_save(sender, instance, created, *args, **kwargs):
     if created:
+        name = instance.wall.name
         # Sending email notification to receiver
         if instance.wall.user:
             email_list = [instance.wall.user.email]

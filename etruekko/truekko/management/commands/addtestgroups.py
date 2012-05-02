@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth.models import User
-from etruekko.truekko.models import Group, Membership
+from etruekko.truekko.models import Group, Membership, Channel
 
 import random
 
@@ -19,6 +19,8 @@ class Command(BaseCommand):
         except:
             raise CommandError("You need to provide the number of groups to add")
 
+        channels = list(Channel.objects.all())
+
 
         users = list(User.objects.all())
         for i in range(n):
@@ -28,6 +30,7 @@ class Command(BaseCommand):
                       location=random.choice(locations),
                       web="%s.com" % name,
                       description = ' '.join(random.choice(desc) for i in range(80)))
+            g.channel = random.choice(channels)
             g.save()
 
             admin = random.choice(users)

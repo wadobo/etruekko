@@ -23,6 +23,7 @@ from etruekko.truekko.forms import ItemAddForm
 from etruekko.truekko.models import UserProfile
 from etruekko.truekko.models import User
 from etruekko.truekko.models import Group
+from etruekko.truekko.models import Channel
 from etruekko.truekko.models import Membership
 from etruekko.truekko.models import Denounce
 from etruekko.truekko.models import Transfer
@@ -263,6 +264,34 @@ class RateUser(View):
         messages.info(request, _(u"User rated successfully"))
 
         return redirect('view_profile', user.username)
+
+
+############
+#          #
+# CHANNELS #
+#          #
+############
+
+class ChannelView(TemplateView):
+    template_name = 'truekko/channel_view.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ChannelView, self).get_context_data(**kwargs)
+        context['klass'] = 'group'
+        context['menu'] = generate_menu("group")
+        context['channel'] = self.channel
+        context['wallmessages'] = paginate(self.request, WallMessage.objects.filter(Q(wall=self.channel.wall) & Q(parent=None)), 20)
+
+        return context
+
+    def get(self, request, channelid):
+        self.request = request
+        self.channel = get_object_or_404(Channel, pk=channelid)
+        # checking perms
+        if not self.channel.can_view(request.user):
+            raise Http404
+
+        return super(ChannelView, self).get(request)
 
 
 ############
@@ -1543,6 +1572,9 @@ people_all = PeopleAll.as_view()
 # friendship
 follow = login_required(FollowView.as_view())
 unfollow = login_required(UnFollowView.as_view())
+
+# channel
+channel_view = login_required(ChannelView.as_view())
 
 # group
 groups = Groups.as_view()
