@@ -12,6 +12,34 @@
     <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.rating.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.simpleautogrow.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/slides.min.jquery.js"></script>
+
+    <script>
+        $(function(){
+            $('#slides').slides({
+                preload: true,
+                preloadImage: '/media/imgs/loading.gif',
+                play: 5000,
+                pause: 2500,
+                hoverPause: true,
+                animationStart: function(current){
+                    $('.caption').animate({
+                        bottom:-35
+                    },100);
+                },
+                animationComplete: function(current){
+                    $('.caption').animate({
+                        bottom:0
+                    },200);
+                },
+                slidesLoaded: function() {
+                    $('.caption').animate({
+                        bottom:0
+                    },200);
+                }
+            });
+        });
+    </script>
 
     <meta name="keywords" content="trueque, intercambio, banco del tiempo"/>
     <meta name="description" content="etruekko, tu red de intercambio"/>

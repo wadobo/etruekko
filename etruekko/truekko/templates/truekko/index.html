@@ -2,7 +2,9 @@
 {% load i18n %}
 
 {% block content %}
+    {% if USER.is_authenticated %}
     <img src="/media/imgs/menu/home.png"/>
+    {% endif %}
     <div id="subcontent">
         {% if USER.is_authenticated %}
             <!-- Authenticated -->
@@ -167,12 +169,15 @@
             </div>
         {% else %}
             <!-- Anonymous -->
+            {% include "truekko/anon_index.html" %}
         {% endif %}
 
         <div class="clear"></div>
     </div>
 
+    {% if USER.is_authenticated %}
     {% with pagination=wallmessages %}
         {% include "paginate.html" %}
     {% endwith %}
+    {% endif %}
 {% endblock %}

@@ -65,6 +65,10 @@ class Index(TemplateView):
             tq = Q(user_from=u) | Q(user_to=u)
             tq2 = Q(status__in=['US1', 'US2'])
             context['swaps'] = Swap.objects.filter(tq).filter(tq2)
+        else:
+            context['last_services'] = Item.objects.filter(type="SR")[0:3]
+            context['last_items'] = Item.objects.filter(type="SR")[0:3]
+            context['last_groups'] = Group.objects.all().order_by("-id")[0:3]
 
         return context
 
