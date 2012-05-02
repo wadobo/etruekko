@@ -23,6 +23,17 @@
 
             <!-- index menu -->
             <div id="indexmenu">
+                <!-- admin walls -->
+                {% if USER.get_profile.is_admin %}
+                    <h3>{% trans "Walls" %}</h3>
+                    <ul>
+                        <li><a href="{% url etruekko %}">{% trans "Etruekko wall" %}</a></li>
+                        {% for channel in USER.get_profile.channels %}
+                        <li><a href="{% url channel_view channel.id %}">{{ channel.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
                 <!-- groups -->
                 <h3>{% trans "My groups" %}</h3>
                 <ul>

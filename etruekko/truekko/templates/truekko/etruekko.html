@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} Etruekko {% endblock %}
+
+{% block content %}
+    <h2>
+        <div class="left"><img src="/media/imgs/channel.png" alt="etruekko"/></div>
+        <div class="clear"></div>
+    </h2>
+
+    <div id="subcontent">
+        <!-- wall -->
+        <div id="groupwall">
+            {% with hidepriv="True" wall=wall wallmessages=wallmessages %}
+                {% include "truekko/wall.html" %}
+            {% endwith %}
+        </div>
+
+        <div class="clear"></div>
+    </div>
+
+    {% with pagination=wallmessages %}
+        {% include "paginate.html" %}
+    {% endwith %}
+{% endblock %}

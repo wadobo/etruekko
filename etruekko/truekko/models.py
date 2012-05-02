@@ -66,6 +66,9 @@ class UserProfile(models.Model):
 
         return False
 
+    def is_admin(self):
+        return Membership.objects.filter(role="ADM", user=self.user).count() > 0
+
     def followers(self):
         return [i.follower for i in self.user.followers.all()]
 
@@ -76,6 +79,14 @@ class UserProfile(models.Model):
         min = settings.ETK_USER_MIN_CREDITS
         max = settings.ETK_USER_MAX_CREDITS
         return min <= self.credits + value <= max
+
+    def channels(self):
+        groups = [i.group for i in Membership.objects.filter(role="ADM", user=self.user)]
+        channels = []
+        for g in groups:
+            if not g.channel in channels:
+                channels.append(g.channel)
+        return channels
 
 
 class Follow(models.Model):

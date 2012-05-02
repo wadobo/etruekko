@@ -294,6 +294,35 @@ class ChannelView(TemplateView):
         return super(ChannelView, self).get(request)
 
 
+class Etruekko(TemplateView):
+    template_name = 'truekko/etruekko.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(Etruekko, self).get_context_data(**kwargs)
+        context['klass'] = 'home'
+        context['menu'] = generate_menu("home")
+        context['wall'] = self.wall
+        context['wallmessages'] = paginate(self.request, WallMessage.objects.filter(Q(wall=self.wall) & Q(parent=None)), 20)
+
+        return context
+
+    def get(self, request):
+        self.request = request
+        self.wall, created = Wall.objects.get_or_create(name="Etruekko wall")
+        # checking perms
+        if not self.can_view(request.user):
+            raise Http404
+
+        return super(Etruekko, self).get(request)
+
+    def can_view(self, user):
+        if user.is_staff and user.is_superuser:
+            return True
+
+        if Membership.objects.filter(role="ADM", user=user).count():
+                return True
+
+
 ############
 #          #
 #  GROUPS  #
@@ -1617,6 +1646,9 @@ register_wizard = RegisterWizard.as_view()
 
 # search
 search_advanced = login_required(SearchAdvanced.as_view())
+
+# etruekko
+etruekko = login_required(Etruekko.as_view())
 
 
 index = Index.as_view()
