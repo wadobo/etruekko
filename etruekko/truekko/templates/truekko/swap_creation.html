@@ -4,6 +4,44 @@
     {% blocktrans with u1=user_from.username u2=user_to.username %} swap items between {{ u1 }} and {{ u2 }} {% endblocktrans %}
 {% endblock %}
 
+{% block extrahead %}
+    <style>
+        .iselected {
+            background: #33aa33 url("/media/imgs/ok.png") no-repeat scroll right bottom;
+            color: white;
+        }
+        .iselected a { color: white; }
+        .iselected p { color: white !important; }
+        .item_div {
+            cursor: pointer;
+        }
+    </style>
+    <script>
+    $(document).ready(function(){
+          $('.item_input').hide();
+          $('.item_input').each(function() {
+            $(this).parent().removeClass("iselected");
+          });
+
+          $('.item_input:checked').each(function() {
+            $(this).parent().addClass("iselected");
+          });
+
+          $('.item_div').click(function() {
+            var inp = $(this).find(".item_input");
+            if (inp.attr('checked') === 'checked') {
+                inp.removeAttr('checked');
+                $(this).removeClass("iselected");
+            } else {
+                inp.attr('checked', 'checked');
+                $(this).addClass("iselected");
+            }
+            return false;
+          });
+    });
+    </script>
+{% endblock %}
+
 {% block content %}
     <div class="left"><img src="/media/imgs/menu/transf.png" alt="transf"/></div>
     <div class="left"><img src="{% avatar user_from 48 %}" alt="{{ user_from.username }}"/></div>
@@ -75,10 +113,12 @@
                 <legend>{{ user_from.username }}</legend>
                 {% for item in user_from.items.all %}
                     {% if not item.demand %}
-                        <input name="item_{{item.id}}" type="checkbox" {% if item.id in items %}checked="checked"{% endif %}/>
+                        <div class="item_div">
+                        <input class="item_input" name="item_{{item.id}}" type="checkbox" {% if item.id in items %}checked="checked"{% endif %}/>
                         {% with short="True" swap="True" %}
                         {% include "truekko/single_item_view.html" %}
                         {% endwith %}
+                        </div>
                     {% endif %}
                 {% endfor %}
                 <br/>
@@ -91,10 +131,12 @@
                 <legend>{{ user_to.username }}</legend>
                 {% for item in user_to.items.all %}
                     {% if not item.demand %}
-                        <input name="item_{{item.id}}" type="checkbox" {% if item.id in items %}checked="checked"{% endif %} />
+                        <div class="item_div">
+                        <input class="item_input" name="item_{{item.id}}" type="checkbox" {% if item.id in items %}checked="checked"{% endif %} />
                         {% with short="True" swap="True" %}
                         {% include "truekko/single_item_view.html" %}
                         {% endwith %}
+                        </div>
                     {% endif %}
                 {% endfor %}
 
