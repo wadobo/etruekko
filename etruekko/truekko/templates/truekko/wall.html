@@ -8,6 +8,8 @@
         {% if not hidepriv %}
             <label for="priv">{% trans "Private" %}:</label>
             <input type="checkbox" id="priv" name="priv"/><br/>
+        {% else %}
+            <input type="checkbox" id="priv" name="priv" checked="checked" class="hidden"/>
         {% endif %}
         <input type="submit" class="button blue" name="post" value="{% trans "Post" %}"/>
     </form>

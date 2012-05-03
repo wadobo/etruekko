@@ -91,7 +91,13 @@ class Index(TemplateView):
         # and user groups messages
         query = query | Q(wall__group__in=groups)
         # and friends messages
-        query = query | Q(user__in=friends)
+        query = query | Q(user__in=friends, private=False)
+        # and channels msgs
+        query = query | Q(wall__channels__in=u.get_profile().channels())
+        # and etruekko
+        if u.get_profile().is_admin():
+            ewall, created = Wall.objects.get_or_create(name="Etruekko wall")
+            query = query | Q(wall=ewall)
         # replies will be shown in template
         query = query & Q(parent=None)
 

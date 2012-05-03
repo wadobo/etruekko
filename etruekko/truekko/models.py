@@ -113,7 +113,7 @@ post_save.connect(user_post_save, sender=User)
 class Channel(models.Model):
     name = models.CharField(_("Name"), max_length=500, unique=True)
     description = models.TextField(_("Channel description"), max_length=800, blank=True)
-    wall = models.ForeignKey("Wall", null=True, blank=True)
+    wall = models.ForeignKey("Wall", related_name="channels", null=True, blank=True)
 
     def __unicode__(self):
         return self.name

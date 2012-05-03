@@ -14,6 +14,14 @@
     <a href="{% url view_profile msg.user.username %}"><span class="username">{{ msg.user.username }}</span></a>
     <span class="fullname">{{ msg.user.get_profile.name }}</span>
 
+    {% for cn in msg.wall.channels.all %}
+        <a href="{% url channel_view cn.id %}">({{ cn.name }})</a>
+    {% endfor %}
+
+    {% if msg.wall.name == 'Etruekko wall' %}
+        <a href="{% url etruekko %}">(etruekko)</a>
+    {% endif %}
+
     <p class="text">{{ msg.msg|textile }}</p>
 
     {% for msg in msg.get_childs %}

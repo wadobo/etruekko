@@ -90,6 +90,10 @@ a:hover {
     margin-right: 5px;
 }
 
+.hidden {
+    display: none;
+}
+
 .right {
     float: right;
     margin-left: 5px;
