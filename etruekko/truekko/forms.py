@@ -131,7 +131,7 @@ class WallMessageForm(ModelForm):
 class ContactForm(forms.Form):
     sender = forms.EmailField(label=_("Email"))
     subject = forms.CharField(label=_("Subject"), max_length=100)
-    message = forms.CharField(label=_("Mensaje"), widget=forms.Textarea)
+    message = forms.CharField(label=_("Message"), widget=forms.Textarea)
     cc_myself = forms.BooleanField(label=_("Send a copy to myself"), required=False)
 
     def send(self):
