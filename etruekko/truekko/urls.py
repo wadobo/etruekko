@@ -49,6 +49,8 @@ urlpatterns = patterns('etruekko.truekko.views',
     url(r'^search/', include('haystack.urls')),
     # etruekko
     url(r'^etruekko$', 'etruekko', name='etruekko'),
+    # contact
+    url(r'^contact$', 'contact', name='contact'),
 
     url(r'^$', 'index', name='index'),
 )

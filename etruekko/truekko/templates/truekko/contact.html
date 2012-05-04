@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block subcontent %}
+    <form action="{% url contact %}" method="post">{% csrf_token %}
+        <table>
+        {{ form.as_table }}
+        </table>
+        <input class="button blue" type="submit" value="Submit" />
+    </form>
+{% endblock %}

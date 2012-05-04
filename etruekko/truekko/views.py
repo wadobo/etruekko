@@ -19,6 +19,7 @@ from etruekko.truekko.forms import GroupForm
 from etruekko.truekko.forms import RegisterForm
 from etruekko.truekko.forms import TransferDirectForm
 from etruekko.truekko.forms import ItemAddForm
+from etruekko.truekko.forms import ContactForm
 
 from etruekko.truekko.models import UserProfile
 from etruekko.truekko.models import User
@@ -1600,6 +1601,45 @@ class UnFollowView(View):
         return nxt
 
 
+###########
+#         #
+# CONTACT #
+#         #
+###########
+
+class Contact(TemplateView):
+    template_name = 'truekko/contact.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(Contact, self).get_context_data(**kwargs)
+        context['menu'] = generate_menu()
+        context['form'] = ContactForm()
+
+        return context
+
+    def get(self, request):
+        self.request = request
+
+        return super(Contact, self).get(request)
+
+    def post(self, request):
+        self.request = request
+
+        form = ContactForm(request.POST)
+        if not form.is_valid():
+            context = self.get_context_data()
+            context = RequestContext(request, context)
+            context['form'] = form
+            return render_to_response(Contact.template_name, context)
+
+        # Send email
+        form.send()
+
+        # notify
+        messages.info(request, _(u"Thanks for contact with us, we will reply as soon as possible"))
+        return redirect(index)
+
+
 # profile
 edit_profile = login_required(EditProfile.as_view())
 edit_profile_admin = login_required(EditProfileAdmin.as_view())
@@ -1659,6 +1699,9 @@ search_advanced = login_required(SearchAdvanced.as_view())
 
 # etruekko
 etruekko = login_required(Etruekko.as_view())
+
+# contact
+contact = Contact.as_view()
 
 
 index = Index.as_view()

@@ -126,3 +126,23 @@ class WallMessageForm(ModelForm):
     class Meta:
         model = WallMessage
         fields = ('msg', 'private')
+
+
+class ContactForm(forms.Form):
+    sender = forms.EmailField(label=_("Email"))
+    subject = forms.CharField(label=_("Subject"), max_length=100)
+    message = forms.CharField(label=_("Mensaje"), widget=forms.Textarea)
+    cc_myself = forms.BooleanField(label=_("Send a copy to myself"), required=False)
+
+    def send(self):
+        subject = self.cleaned_data['subject']
+        message = self.cleaned_data['message']
+        sender = self.cleaned_data['sender']
+        cc_myself = self.cleaned_data['cc_myself']
+
+        recipients = ['info@etruekko.com']
+        if cc_myself:
+            recipients.append(sender)
+
+        from django.core.mail import send_mail
+        send_mail(subject, message, sender, recipients)
