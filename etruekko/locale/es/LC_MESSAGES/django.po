@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-13 16:37+0200\n"
+"POT-Creation-Date: 2012-05-04 11:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,67 +25,74 @@ msgstr "Restaurar contraseña"
 msgid "Change password"
 msgstr "Cambiar contraseña"
 
-#: templates/base.html:17
+#: templates/base.html:46
 msgid "Index"
 msgstr "Inicio"
 
-#: templates/base.html:38
+#: templates/base.html:81
 msgid "your swap network"
 msgstr "tu red de intercambio"
 
-#: templates/base.html:50 truekko/templates/truekko/groups.html:8
+#: templates/base.html:93 truekko/templates/search/advanced.html:50
+#: truekko/templates/truekko/groups.html:8
 #: truekko/templates/truekko/item_list.html:8
 #: truekko/templates/truekko/people.html:8
 #: truekko/templates/truekko/swap_list.html:8
 #: truekko/templates/truekko/transfer_list.html:8
+#: truekko/templates/truekko/user_register.html:8
 msgid "Search..."
 msgstr "Buscar..."
 
-#: templates/base.html:87
+#: templates/base.html:96 truekko/templates/search/advanced.html:5
+#: truekko/templates/search/search.html:20
+msgid "Advanced search"
+msgstr "Búsqueda avanzada"
+
+#: templates/base.html:131
 msgid "Help"
 msgstr "Ayuda"
 
-#: templates/base.html:89
+#: templates/base.html:133
 msgid "What is etruekko"
 msgstr "Qué es etruekko"
 
-#: templates/base.html:90
+#: templates/base.html:134
 msgid "How works etruekko"
 msgstr "Como funciona etruekko"
 
-#: templates/base.html:91
+#: templates/base.html:135
 msgid "FAQ"
 msgstr "Preguntas frecuentes"
 
-#: templates/base.html:96
+#: templates/base.html:140
 msgid "Social"
 msgstr "Social"
 
-#: templates/base.html:98
+#: templates/base.html:142
 msgid "blog"
 msgstr "blog"
 
-#: templates/base.html:99
+#: templates/base.html:143
 msgid "twitter"
 msgstr "twitter"
 
-#: templates/base.html:100
+#: templates/base.html:144
 msgid "facebook"
 msgstr "facebook"
 
-#: templates/base.html:101
+#: templates/base.html:145
 msgid "youtbue"
 msgstr "youtube"
 
-#: templates/base.html:106 templates/base.html.py:108
+#: templates/base.html:150 templates/base.html.py:152
 msgid "Privacy"
 msgstr "Privacidad"
 
-#: templates/base.html:109
+#: templates/base.html:153
 msgid "Terms"
 msgstr "Terminos de uso"
 
-#: templates/base.html:110
+#: templates/base.html:154
 msgid "About"
 msgstr "Acerca de"
 
@@ -110,7 +117,8 @@ msgstr "Puedes ver la lista de groups en:"
 msgid "Sing in"
 msgstr "Entrar"
 
-#: templates/paginate.html:7 truekko/templates/search/search.html:47
+#: templates/paginate.html:7 truekko/templates/search/advanced.html:101
+#: truekko/templates/search/search.html:47
 msgid "previous"
 msgstr "anterior"
 
@@ -125,7 +133,8 @@ msgstr ""
 "                Página %(n)s de %(m)s.\n"
 "            "
 
-#: templates/paginate.html:18 truekko/templates/search/search.html:58
+#: templates/paginate.html:18 truekko/templates/search/advanced.html:112
+#: truekko/templates/search/search.html:58
 msgid "next"
 msgstr "siguiente"
 
@@ -145,7 +154,7 @@ msgstr "salir"
 msgid "Username"
 msgstr "Nombre de usuario"
 
-#: templates/user.html:18 truekko/forms.py:43
+#: templates/user.html:18 truekko/forms.py:44
 msgid "Password"
 msgstr "Contraseña"
 
@@ -156,6 +165,11 @@ msgstr "Entrar"
 #: templates/user.html:22
 msgid "Forgot it"
 msgstr "Olvidé la contraseña"
+
+#: templates/user.html:23 truekko/templates/truekko/register.html:33
+#: truekko/templates/truekko/register_admin.html:39
+msgid "Register"
+msgstr "Registro"
 
 #: templates/accounts/password_reset.html:13
 #: templates/accounts/password_reset_confirm_form.html:14
@@ -177,7 +191,8 @@ msgstr ""
 
 #: templates/accounts/emails/password_reset_message.txt:5
 msgid "Please go to the following page and choose a new password:"
-msgstr "Por favor, visita el siguiente enlace y selecciona una nueva contraseña:"
+msgstr ""
+"Por favor, visita el siguiente enlace y selecciona una nueva contraseña:"
 
 #: templates/accounts/emails/password_reset_message.txt:10
 msgid "Thanks for using our site!"
@@ -191,194 +206,240 @@ msgstr "Lo sentimos, pero no tienes permiso para hacer esto"
 msgid "Only group admin can edit this group"
 msgstr "Sólo el administrador del grupo puede editar este grupo"
 
-#: truekko/forms.py:41 truekko/models.py:27 truekko/models.py:85
-#: truekko/models.py:199 truekko/models.py:228 truekko/models.py:342
+#: truekko/forms.py:41 truekko/models.py:28 truekko/models.py:114
+#: truekko/models.py:145 truekko/models.py:265 truekko/models.py:304
+#: truekko/models.py:515
 msgid "Name"
 msgstr "Nombre"
 
-#: truekko/forms.py:42 truekko/models.py:86
+#: truekko/forms.py:42 truekko/models.py:31 truekko/models.py:147
+msgid "Location"
+msgstr "Localización"
+
+#: truekko/forms.py:43 truekko/models.py:146
 msgid "Email"
 msgstr "Correo electrónico"
 
-#: truekko/forms.py:44
+#: truekko/forms.py:45
 msgid "Password confirm"
 msgstr "Confirmación de contraseña"
 
-#: truekko/forms.py:49
+#: truekko/forms.py:50
 msgid "Username exists"
 msgstr "El nombre de usuario existe"
 
-#: truekko/forms.py:56
+#: truekko/forms.py:57
 msgid "User exists with the same email"
 msgstr "Un usuario con el mismo email ya existe"
 
-#: truekko/forms.py:66
+#: truekko/forms.py:67
 msgid "Password and password confirm didn't match"
 msgstr "Las contraseñas no coinciden"
 
-#: truekko/forms.py:85
+#: truekko/forms.py:87
 msgid "Concept"
 msgstr "Concepto"
 
-#: truekko/forms.py:86
+#: truekko/forms.py:88
 msgid "Credits"
 msgstr "Créditos"
 
-#: truekko/forms.py:96
+#: truekko/forms.py:98
 msgid "Can't make this transfer, negative credits isn't allowed"
 msgstr ""
 "No es posible hacer esta transferencia, no están permitidos créditos "
 "negativos"
 
-#: truekko/forms.py:98
+#: truekko/forms.py:100
 msgid "Can't make this transfer, insufficient credits"
 msgstr "No es posible hacer esta transferencia, insuficientes créditos"
 
-#: truekko/models.py:29 truekko/models.py:87
-msgid "Location"
-msgstr "Localización"
-
-#: truekko/models.py:31 truekko/models.py:89
+#: truekko/models.py:34 truekko/models.py:149
 msgid "Web"
 msgstr "Web"
 
-#: truekko/models.py:32 truekko/models.py:90
+#: truekko/models.py:35 truekko/models.py:150
 msgid "Avatar"
 msgstr "Avatar"
 
-#: truekko/models.py:34
+#: truekko/models.py:37
 msgid "Personal description"
 msgstr "Descripción personal"
 
-#: truekko/models.py:92
+#: truekko/models.py:115
+msgid "Channel description"
+msgstr "Descripción de Canal"
+
+#: truekko/models.py:152
 msgid "Group description"
 msgstr "Descripción del grupo"
 
-#: truekko/models.py:182
+#: truekko/models.py:243 truekko/templates/search/advanced.html:65
 msgid "item"
 msgstr "Artículo"
 
-#: truekko/models.py:183
+#: truekko/models.py:244 truekko/templates/search/advanced.html:68
 msgid "service"
 msgstr "Servicio"
 
-#: truekko/models.py:188
-msgid "truekkos per hour"
-msgstr "truekkos por hora"
+#: truekko/models.py:248 truekko/templates/truekko/single_item_view.html:26
+msgid "Offer"
+msgstr "Oferta"
 
-#: truekko/models.py:189
-msgid "truekkos per kilogram"
-msgstr "truekkos por kilogramo"
-
-#: truekko/models.py:190
-msgid "truekkos per liter"
-msgstr "truekkos por litro"
-
-#: truekko/models.py:191
-msgid "truekkos per metter"
-msgstr "truekkos por metro"
-
-#: truekko/models.py:192
-msgid "truekkos per square metter"
-msgstr "truekkos por metro cuadrado"
-
-#: truekko/models.py:193
-msgid "truekkos per cubic metter"
-msgstr "truecos por metro cúbico"
-
-#: truekko/models.py:197
-msgid "Item or service"
-msgstr "Artículo o servicio"
-
-#: truekko/models.py:198 truekko/templates/truekko/single_item_view.html:24
+#: truekko/models.py:249 truekko/templates/truekko/single_item_view.html:24
 msgid "Demand"
 msgstr "Demanda"
 
-#: truekko/models.py:200 truekko/models.py:343
+#: truekko/models.py:254
+msgid "truekkos per hour"
+msgstr "truekkos por hora"
+
+#: truekko/models.py:255
+msgid "truekkos per kilogram"
+msgstr "truekkos por kilogramo"
+
+#: truekko/models.py:256
+msgid "truekkos per liter"
+msgstr "truekkos por litro"
+
+#: truekko/models.py:257
+msgid "truekkos per metter"
+msgstr "truekkos por metro"
+
+#: truekko/models.py:258
+msgid "truekkos per square metter"
+msgstr "truekkos por metro cuadrado"
+
+#: truekko/models.py:259
+msgid "truekkos per cubic metter"
+msgstr "truecos por metro cúbico"
+
+#: truekko/models.py:263 truekko/templates/search/advanced.html:52
+msgid "Item or service"
+msgstr "Artículo o servicio"
+
+#: truekko/models.py:264
+msgid "Offer or demand"
+msgstr "Oferta o demanda"
+
+#: truekko/models.py:266 truekko/models.py:516
 msgid "Description"
 msgstr "Descripción"
 
-#: truekko/models.py:201
+#: truekko/models.py:267
 msgid "Price"
 msgstr "Precio"
 
-#: truekko/models.py:202
+#: truekko/models.py:268
 msgid "Price type"
 msgstr "Tipo de precio"
 
-#: truekko/models.py:203
+#: truekko/models.py:269
 msgid "photo"
 msgstr "foto"
 
-#: truekko/models.py:252
+#: truekko/models.py:272
+msgid "quantity"
+msgstr "cantidad"
+
+#: truekko/models.py:272
+msgid "use 0 for unlimited"
+msgstr "usa 0 para ilimitado"
+
+#: truekko/models.py:328
 msgid "User from confirmed"
 msgstr "Usuario desde confirmado"
 
-#: truekko/models.py:253
+#: truekko/models.py:329
 msgid "User to confirmed"
 msgstr "Usuario para confirmado"
 
-#: truekko/models.py:254 truekko/models.py:417
+#: truekko/models.py:330 truekko/models.py:601
 msgid "confirmed"
 msgstr "confirmado"
 
-#: truekko/models.py:255
+#: truekko/models.py:331 truekko/models.py:492
+#: truekko/templates/truekko/swap_creation.html:100
 msgid "Done"
 msgstr "Hecho"
 
-#: truekko/models.py:256 truekko/templates/truekko/group_denounce_view.html:42
+#: truekko/models.py:332 truekko/templates/truekko/group_denounce_view.html:42
 #: truekko/templates/truekko/group_denounce_view.html:46
 msgid "Cancel"
 msgstr "Cancelado"
 
-#: truekko/models.py:279 truekko/models.py:282
+#: truekko/models.py:336
+msgid "---"
+msgstr "---"
+
+#: truekko/models.py:337
+msgid "In person"
+msgstr "En persona"
+
+#: truekko/models.py:338
+msgid "Postal mail"
+msgstr "Correo postal"
+
+#: truekko/models.py:339
+msgid "Express transport"
+msgstr "Empresa de mensajería"
+
+#: truekko/models.py:364 truekko/models.py:367
 #, python-format
 msgid "Negotiation, waiting for %s confirmation"
 msgstr "Negociación, esperando la confirmación de %s"
 
-#: truekko/models.py:284
+#: truekko/models.py:369
 msgid "Swap confirmed"
 msgstr "Intercambio confirmado"
 
-#: truekko/models.py:286
+#: truekko/models.py:371
 msgid "Swap done"
 msgstr "Intercambio hecho"
 
-#: truekko/models.py:288 truekko/views.py:908
+#: truekko/models.py:373 truekko/views.py:1032
 msgid "Swap canceled"
 msgstr "Intercambio cancelado"
 
-#: truekko/models.py:370 truekko/models.py:372
+#: truekko/models.py:491
+msgid "Waiting"
+msgstr "Esperando"
+
+#: truekko/models.py:499 truekko/templates/truekko/swap_creation.html:189
+msgid "Comment"
+msgstr "Comentario"
+
+#: truekko/models.py:549 truekko/models.py:551
 #, python-format
 msgid "%s's wall"
 msgstr "Muro de %s"
 
-#: truekko/models.py:382 truekko/templates/truekko/wall.html:8
+#: truekko/models.py:562 truekko/templates/truekko/wall.html:9
 msgid "Private"
 msgstr "Privado"
 
-#: truekko/models.py:383 truekko/models.py:427
+#: truekko/models.py:563 truekko/models.py:611
 msgid "Message"
 msgstr "Mensaje"
 
-#: truekko/models.py:408
+#: truekko/models.py:592
 #, python-format
 msgid "New message by %(user)s in %(wall)s"
 msgstr "Nuevo mensaje de %(user)s en %(wall)s"
 
-#: truekko/models.py:416
+#: truekko/models.py:600
 msgid "pending"
 msgstr "pendiente"
 
-#: truekko/models.py:418
+#: truekko/models.py:602
 msgid "resolved"
 msgstr "resuelto"
 
-#: truekko/models.py:419 truekko/templates/truekko/swap_creation.html:102
+#: truekko/models.py:603 truekko/templates/truekko/swap_creation.html:187
 msgid "cancel"
 msgstr "cancelado"
 
-#: truekko/models.py:444
+#: truekko/models.py:628
 #, python-format
 msgid "%(user)s user has been denounced in group %(group)s"
 msgstr "El usuario %(user)s ha sido denunciado en el grupo %(group)s"
@@ -387,8 +448,7 @@ msgstr "El usuario %(user)s ha sido denunciado en el grupo %(group)s"
 msgid "Home"
 msgstr "Inicio"
 
-#: truekko/utils.py:7 truekko/templates/truekko/groups.html:3
-#: truekko/templates/truekko/people.html:3
+#: truekko/utils.py:7 truekko/templates/truekko/people.html:3
 msgid "People"
 msgstr "Gente"
 
@@ -408,141 +468,198 @@ msgstr "Añadir"
 msgid "Transf"
 msgstr "Transf"
 
-#: truekko/utils.py:12
+#: truekko/utils.py:12 truekko/templates/search/advanced.html:53
+#: truekko/templates/truekko/channel_view.html:17
+#: truekko/templates/truekko/groups.html:3
+#: truekko/templates/truekko/user_register.html:3
 msgid "Groups"
 msgstr "Grupos"
 
-#: truekko/views.py:227
+#: truekko/views.py:260
 msgid "Error receiving the rating"
 msgstr "Error reciviendo la valoración"
 
-#: truekko/views.py:231
+#: truekko/views.py:264
 msgid "You don't have permissions to rate this user"
 msgstr "No tienes permiso para valorar este usuario"
 
-#: truekko/views.py:235
+#: truekko/views.py:268
 msgid "Rating must be between 1 and 5"
 msgstr "La valoración tiene que estar entre 1 y 5"
 
-#: truekko/views.py:241
+#: truekko/views.py:274
 msgid "User rated successfully"
 msgstr "Usuario valorado correctamente"
 
-#: truekko/views.py:374
+#: truekko/views.py:464
 #, python-format
 msgid "Membership request confirmed %s"
 msgstr "Solicitud confirmada %s"
 
-#: truekko/views.py:404
+#: truekko/views.py:494
 msgid "Group memebership modified correctly"
 msgstr "Miembros del grupo modificados correctamente"
 
-#: truekko/views.py:447 truekko/views.py:521
+#: truekko/views.py:537 truekko/views.py:611
 msgid "Welcome to etruekko"
 msgstr "Bienvenido a etruekko"
 
-#: truekko/views.py:450 truekko/views.py:562
+#: truekko/views.py:540 truekko/views.py:652
 #, python-format
 msgid "New user '%(user)s' in group '%(group)s'"
 msgstr "Nuevo usuario '%(user)s' en el grupo '%(group)s'"
 
-#: truekko/views.py:491
+#: truekko/views.py:581
 #, python-format
 msgid "The user '%s' doesn't exist"
 msgstr "El usuario '%s' no existe"
 
-#: truekko/views.py:498
+#: truekko/views.py:588
 #, python-format
 msgid "The user '%s' is already member of the group"
 msgstr "El usuario '%s' ya es miembro del grupo"
 
-#: truekko/views.py:507
+#: truekko/views.py:597
 msgid "A new membership request has been created, you need to confirm"
 msgstr "Una nueva solicitud de miembro ha sido creada, necesitas confirmarla"
 
-#: truekko/views.py:554
+#: truekko/views.py:644
 msgid "You already are member of this group"
 msgstr "Ya eres miembro de este grupo"
 
-#: truekko/views.py:565
+#: truekko/views.py:655
 msgid "Your membership request has been sent to group administrator"
 msgstr "Tu solicitud se ha enviado al administrador del grupo"
 
-#: truekko/views.py:583
+#: truekko/views.py:673
 msgid "You are not member of this group"
 msgstr "No eres miembro de este grupo"
 
-#: truekko/views.py:637
+#: truekko/views.py:727
 msgid "User has been denounced correctly"
 msgstr "El usuario ha sido denunciado correctamente"
 
-#: truekko/views.py:638
+#: truekko/views.py:728
 msgid "You should receive an email"
 msgstr "Recivirás un correco electrónico"
 
-#: truekko/views.py:731
+#: truekko/views.py:821
 msgid "Transfer has been made correctly"
 msgstr "La transferencia se ha hecho correctamente"
 
-#: truekko/views.py:832 truekko/views.py:936
-msgid "Invalid credits"
-msgstr "Créditos invalidos"
+#: truekko/views.py:939 truekko/views.py:1052 truekko/views.py:1074
+msgid ""
+"Invalid credits, you can't offer more than you have, and you can't request "
+"more that the other person has"
+msgstr ""
+"Créditos invalidos, no puedes ofrecer más de lo que tienes ni pedir "
+"más de lo que la otra persona tiene"
 
-#: truekko/views.py:888
+#: truekko/views.py:963
+msgid "A new swap has been created"
+msgstr "Un nuevo intercambio ha sido creado"
+
+#: truekko/views.py:1002
 msgid "You can't view this swap"
 msgstr "No puedes ver este intercambio"
 
-#: truekko/views.py:920
+#: truekko/views.py:1045
 msgid "Conglatulations, swap has been accepted"
 msgstr "Felicidades, el intercambio ha sido aceptado"
 
-#: truekko/views.py:1064
+#: truekko/views.py:1220
 msgid "Item added correctly"
 msgstr "Artículo añadido correctamente"
 
-#: truekko/views.py:1066
+#: truekko/views.py:1222
 msgid "Service added correctly"
 msgstr "Servicio añadido correctamente"
 
-#: truekko/views.py:1168
+#: truekko/views.py:1324
 msgid "Item removed correctly"
 msgstr "Artículo eliminado correctamente"
 
-#: truekko/views.py:1189
+#: truekko/views.py:1346
 msgid "You can't post here"
 msgstr "No puedes escribir aquí"
 
-#: truekko/views.py:1196
+#: truekko/views.py:1359
 msgid "Message posted correctly"
 msgstr "Mensaje enviado correctamente"
 
-#: truekko/views.py:1236
+#: truekko/views.py:1399
 msgid "Message removed correctly"
 msgstr "Mensaje borrado correctamente"
 
-#: truekko/views.py:1243
+#: truekko/views.py:1406
 msgid ""
 "An e-mail has been send to you which explains how to reset your password"
 msgstr ""
-"Te hemos enviado un correo electrónico que explica cómo restaurar tu contraseña"
+"Te hemos enviado un correo electrónico que explica cómo restaurar tu "
+"contraseña"
 
-#: truekko/views.py:1250
+#: truekko/views.py:1413
 #, python-format
 msgid ""
 "Your password has been reset, you can now <a href=\"%(url)s\">login</a> with "
 "your new password"
 msgstr ""
-"Tu contraseña se ha restaurado, ahora puedes <a href=\"%(url)s\">entrar</a> con "
-"tu nueva contraseña"
+"Tu contraseña se ha restaurado, ahora puedes <a href=\"%(url)s\">entrar</a> "
+"con tu nueva contraseña"
 
+#: truekko/views.py:1578
+#, python-format
+msgid "You are now following %(user)s in etruekko"
+msgstr "Ahora estás siguiendo a %(user)s en etruekko"
+
+#: truekko/views.py:1582
+#, python-format
+msgid "%(name)s (%(username)s) is now following you in etruekko"
+msgstr "%(name)s (%(username)s) te está siguiendo ahora en etruekko"
+
+#: truekko/views.py:1598
+#, python-format
+msgid "You are not following %(user)s in etruekko anymore"
+msgstr "Ya no estás siguiendo a %(user)s en etruekko"
+
+#: truekko/templates/search/advanced.html:54
+msgid "Users"
+msgstr "Usuarios"
+
+#: truekko/templates/search/advanced.html:59
+msgid "offer"
+msgstr "oferta"
+
+#: truekko/templates/search/advanced.html:62
+msgid "demand"
+msgstr "demanda"
+
+#: truekko/templates/search/advanced.html:70
+#: truekko/templates/search/advanced.html:71
+msgid "location"
+msgstr "localización"
+
+#: truekko/templates/search/advanced.html:74
+#: truekko/templates/truekko/groups.html:9
+#: truekko/templates/truekko/item_list.html:9
+#: truekko/templates/truekko/people.html:9
+#: truekko/templates/truekko/swap_list.html:9
+#: truekko/templates/truekko/transfer_list.html:9
+#: truekko/templates/truekko/user_register.html:9
+msgid "Search"
+msgstr "Buscar"
+
+#: truekko/templates/search/advanced.html:79
 #: truekko/templates/search/search.html:24
 msgid "Results"
 msgstr "Resultados:"
 
+#: truekko/templates/search/advanced.html:90
 #: truekko/templates/search/search.html:35
 msgid "No results found"
 msgstr "No hay resultados"
 
+#: truekko/templates/search/advanced.html:105
 #: truekko/templates/search/search.html:51
 #, python-format
 msgid ""
@@ -553,6 +670,76 @@ msgstr ""
 "\n"
 "                    Página %(n)s de %(m)s.\n"
 "                "
+
+#: truekko/templates/truekko/anon_index.html:11
+msgid ""
+"\n"
+"                    City Hall\n"
+"                    "
+msgstr ""
+"\n"
+"                    Ayuntamiento\n"
+"                    "
+
+#: truekko/templates/truekko/anon_index.html:21
+msgid ""
+"\n"
+"                    Association\n"
+"                    "
+msgstr ""
+"\n"
+"                    Asociacion\n"
+"                    "
+
+#: truekko/templates/truekko/anon_index.html:31
+msgid ""
+"\n"
+"                    ONG\n"
+"                    "
+msgstr ""
+"\n"
+"                    ONG\n"
+"                "
+
+#: truekko/templates/truekko/anon_index.html:44
+msgid ""
+"\n"
+"Etruekko is a social network where you can share items or services,\n"
+"allowing any combination, and indirect sharing like time banking and\n"
+"traditional barter systems. Get what you want without money at the\n"
+"same time that you recycle, makes the most of your items and skills,\n"
+"collaborates with your community and improves it.\n"
+msgstr ""
+"\n"
+"Etruekko es una red social en la que podrás intercambiar bienes o \n"
+"servicios, permitiendo cualquier tipo de combinación, así como \n"
+"intercambios indirectos bajo la filosofía de los bancos de tiempo y \n"
+"sistemas de trueque tradicionales, consigue lo que quieras sin \n"
+"realizar desembolsos económicos, al tiempo que reciclas, sacas \n"
+"provecho a tus bienes y habilidades, colaboras con tu comunidad y \n"
+"potencias la ayuda mutua.\n"
+
+#: truekko/templates/truekko/anon_index.html:58
+msgid "Last Services"
+msgstr "Últimos Servicios"
+
+#: truekko/templates/truekko/anon_index.html:67
+msgid "Last Items"
+msgstr "Últimos Artículos"
+
+#: truekko/templates/truekko/anon_index.html:77
+msgid "Last Groups"
+msgstr "Últimos Grupos"
+
+#: truekko/templates/truekko/channel_view.html:4
+#, python-format
+msgid " Channel / %(name)s "
+msgstr " Canal / %(name)s "
+
+#: truekko/templates/truekko/channel_view.html:10
+#, python-format
+msgid " %(name)s "
+msgstr " %(name)s "
 
 #: truekko/templates/truekko/denounce_mail.txt:3
 #, python-format
@@ -607,7 +794,7 @@ msgstr ""
 #: truekko/templates/truekko/edit_group.html:21
 #: truekko/templates/truekko/edit_group_members.html:54
 #: truekko/templates/truekko/edit_profile.html:20
-#: truekko/templates/truekko/item_add.html:29
+#: truekko/templates/truekko/item_add.html:61
 msgid "Save"
 msgstr "Guardar"
 
@@ -637,7 +824,7 @@ msgstr "Solicitudes pendientes"
 
 #: truekko/templates/truekko/edit_group_members.html:34
 #: truekko/templates/truekko/group_denounce.html:13
-#: truekko/templates/truekko/view_group.html:46
+#: truekko/templates/truekko/view_group.html:53
 msgid "Members"
 msgstr "Miembros"
 
@@ -660,6 +847,37 @@ msgstr ""
 "\n"
 "        preferencias de %(username)s\n"
 "        "
+
+#: truekko/templates/truekko/follow_mail.txt:3
+#, python-format
+msgid ""
+"\n"
+"\n"
+"%(name)s (%(username)s) is following you (%(you)s) in etruekko\n"
+"\n"
+"Username: %(username)s\n"
+"Name: %(name)s\n"
+"Location: %(location)s\n"
+"Description: %(description)s\n"
+"\n"
+"---\n"
+"You can view the %(username)s profile in:\n"
+"http://etruekko.com%(url)s\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"%(name)s (%(username)s) te está siguiendo (%(you)s) en etruekko\n"
+"\n"
+"Nombre de usuario: %(username)s\n"
+"Nombre: %(name)s\n"
+"Localización: %(location)s\n"
+"Descripción: %(description)s\n"
+"\n"
+"---\n"
+"Puedes ver el perfil de %(username)s en:\n"
+"http://etruekko.com%(url)s\n"
+"\n"
 
 #: truekko/templates/truekko/group_denounce.html:7
 #, python-format
@@ -737,48 +955,64 @@ msgstr "Confirmado"
 msgid "Resolved"
 msgstr "Resuelto"
 
-#: truekko/templates/truekko/groups.html:9
-#: truekko/templates/truekko/item_list.html:9
-#: truekko/templates/truekko/people.html:9
-#: truekko/templates/truekko/swap_list.html:9
-#: truekko/templates/truekko/transfer_list.html:9
-msgid "Search"
-msgstr "Buscar"
-
-#: truekko/templates/truekko/index.html:12
+#: truekko/templates/truekko/index.html:14
 msgid "What's happening?"
 msgstr "¿Qué estás pensando?"
 
-#: truekko/templates/truekko/index.html:14
-#: truekko/templates/truekko/wall.html:10
+#: truekko/templates/truekko/index.html:16
+#: truekko/templates/truekko/wall.html:14
 msgid "Post"
 msgstr "Publicar"
 
-#: truekko/templates/truekko/index.html:27
+#: truekko/templates/truekko/index.html:30
+msgid "Walls"
+msgstr "Muros"
+
+#: truekko/templates/truekko/index.html:32
+msgid "Etruekko wall"
+msgstr "Muro de Etruekko"
+
+#: truekko/templates/truekko/index.html:40
 msgid "My groups"
 msgstr "Mis grupos"
 
-#: truekko/templates/truekko/index.html:46
+#: truekko/templates/truekko/index.html:58
+msgid "My Commitments"
+msgstr "Mis Compromisos"
+
+#: truekko/templates/truekko/index.html:73
+msgid "Commitments to me"
+msgstr "Compromisos conmigo"
+
+#: truekko/templates/truekko/index.html:90
 msgid "My Swaps"
 msgstr "Mis Intercambios"
 
-#: truekko/templates/truekko/index.html:63
+#: truekko/templates/truekko/index.html:107
 msgid "My Offers"
 msgstr "Mis Ofertas"
 
-#: truekko/templates/truekko/index.html:76
-#: truekko/templates/truekko/index.html:94
+#: truekko/templates/truekko/index.html:120
+#: truekko/templates/truekko/index.html:138
 msgid "Add new"
 msgstr "Añadir nuevo"
 
-#: truekko/templates/truekko/index.html:81
+#: truekko/templates/truekko/index.html:125
 msgid "My Demands"
 msgstr "Mis Demandas"
 
-#: truekko/templates/truekko/index.html:100
-#: truekko/templates/truekko/view_group.html:65
+#: truekko/templates/truekko/index.html:144
+#: truekko/templates/truekko/view_group.html:72
 msgid "Denounces"
 msgstr "Denuncias"
+
+#: truekko/templates/truekko/index.html:153
+msgid "People you follow"
+msgstr "Personas que sigues"
+
+#: truekko/templates/truekko/index.html:161
+msgid "People following you"
+msgstr "Personas que te siguen"
 
 #: truekko/templates/truekko/item_add.html:5
 #: truekko/templates/truekko/item_view.html:27
@@ -786,11 +1020,19 @@ msgstr "Denuncias"
 msgid "Edit"
 msgstr "Editar"
 
-#: truekko/templates/truekko/item_add.html:24
+#: truekko/templates/truekko/item_add.html:51
+msgid "Quantity:"
+msgstr "Cantidad:"
+
+#: truekko/templates/truekko/item_add.html:52
+msgid "Use 0 for unlimited"
+msgstr "Usa 0 para ilimitado"
+
+#: truekko/templates/truekko/item_add.html:56
 msgid "Tags:"
 msgstr "Etiquetas:"
 
-#: truekko/templates/truekko/item_add.html:25
+#: truekko/templates/truekko/item_add.html:57
 msgid "comma separated values"
 msgstr "Valores separados por comas"
 
@@ -873,6 +1115,14 @@ msgstr ""
 "http://etruekko.com%(url)s\n"
 "\n"
 
+#: truekko/templates/truekko/people.html:15
+msgid "Only friends"
+msgstr "Sólo amigos"
+
+#: truekko/templates/truekko/people.html:16
+msgid "All"
+msgstr "Todos"
+
 #: truekko/templates/truekko/register.html:4
 #: truekko/templates/truekko/register_admin.html:4
 msgid " Register "
@@ -913,11 +1163,6 @@ msgstr ""
 "        Si no tienes cuenta de usuario todavía, puedes crear una rellenando\n"
 "        el siguiente formulario.\n"
 "    "
-
-#: truekko/templates/truekko/register.html:33
-#: truekko/templates/truekko/register_admin.html:39
-msgid "Register"
-msgstr "Registro"
 
 #: truekko/templates/truekko/register_admin.html:20
 msgid "Add an existing user"
@@ -983,12 +1228,8 @@ msgstr ""
 msgid "Go Back"
 msgstr "Atrás"
 
-#: truekko/templates/truekko/single_item_view.html:26
-msgid "Offer"
-msgstr "Oferta"
-
 #: truekko/templates/truekko/single_item_view.html:68
-#: truekko/templates/truekko/swap_creation.html:101
+#: truekko/templates/truekko/swap_creation.html:186
 msgid "Make offer"
 msgstr "Hacer oferta"
 
@@ -997,14 +1238,27 @@ msgid "Make request"
 msgstr "Solicitar"
 
 #: truekko/templates/truekko/single_item_view.html:75
-#: truekko/templates/truekko/single_swap_view.html:33
+#: truekko/templates/truekko/single_swap_view.html:38
 msgid "View"
 msgstr "Ver"
 
 #: truekko/templates/truekko/single_message_view.html:6
+#: truekko/templates/truekko/single_message_view.html:30
 #: truekko/templates/truekko/single_user_view.html:34
 msgid "Remove"
 msgstr "Eliminar"
+
+#: truekko/templates/truekko/single_message_view.html:45
+msgid "reply"
+msgstr "responder"
+
+#: truekko/templates/truekko/single_message_view.html:50
+msgid "Reply..."
+msgstr "Responder..."
+
+#: truekko/templates/truekko/single_message_view.html:51
+msgid "Reply"
+msgstr "Responder"
 
 #: truekko/templates/truekko/single_user_view.html:17
 #, python-format
@@ -1038,26 +1292,100 @@ msgstr "Expulsado"
 msgid " swap items between %(u1)s and %(u2)s "
 msgstr " intercambio de artículos entre %(u1)s y %(u2)s "
 
-#: truekko/templates/truekko/swap_creation.html:64
-#: truekko/templates/truekko/view_profile.html:70
+#: truekko/templates/truekko/swap_creation.html:83
+msgid "Commitments"
+msgstr "Compromisos"
+
+#: truekko/templates/truekko/swap_creation.html:92
+#, python-format
+msgid ""
+"\n"
+"                    %(userfromname)s (%(userfrom)s) has a commitment to "
+"provide the service \"%(comment)s\" to %(usertoname)s (%(userto)s).\n"
+"                    "
+msgstr ""
+"\n"
+"                    %(userfromname)s (%(userfrom)s) tiene un compromiso "
+"de proporcionar el servicio \"%(comment)s\" a %(usertoname)s (%(userto)s).\n"
+"                    "
+
+#: truekko/templates/truekko/swap_creation.html:127
+#: truekko/templates/truekko/swap_creation.html:154
+msgid "truekkos"
+msgstr "truekkos"
+
+#: truekko/templates/truekko/swap_creation.html:143
+#: truekko/templates/truekko/view_profile.html:82
 msgid "Demands"
 msgstr "Demandas"
 
-#: truekko/templates/truekko/swap_creation.html:78
-msgid "Credits:"
-msgstr "Créditos:"
+#: truekko/templates/truekko/swap_creation.html:158
+msgid "Swap mode"
+msgstr "Modo de intercambio"
 
-#: truekko/templates/truekko/swap_creation.html:94
+#: truekko/templates/truekko/swap_creation.html:179
 msgid "Comment:"
 msgstr "Comentarios:"
 
-#: truekko/templates/truekko/swap_creation.html:98
+#: truekko/templates/truekko/swap_creation.html:183
 msgid "Accept"
 msgstr "Aceptar"
 
-#: truekko/templates/truekko/swap_creation.html:104
-msgid "Comment"
-msgstr "Comentario"
+#: truekko/templates/truekko/swap_creation_mail.txt:3
+#, python-format
+msgid ""
+"\n"
+"\n"
+"%(name)s (%(username)s) has started a swap with you (%(you)s) in etruekko\n"
+"\n"
+"---\n"
+"%(comment)s\n"
+"---\n"
+"\n"
+"You can view the swap in:\n"
+"http://etruekko.com%(url)s\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"%(name)s (%(username)s) ha comenzado un intercambio contigo (%(you)s) en etruekko\n"
+"\n"
+"---\n"
+"%(comment)s\n"
+"---\n"
+"\n"
+"Puedes ver el intercambio en:\n"
+"http://etruekko.com%(url)s\n"
+"\n"
+
+#: truekko/templates/truekko/swap_modified_mail.txt:3
+#, python-format
+msgid ""
+"\n"
+"\n"
+"One swap from %(from)s to %(to)s has been modified:\n"
+"\n"
+"status: %(status)s\n"
+"%(comment)s\n"
+"---\n"
+"%(last_comment)s\n"
+"---\n"
+"\n"
+msgstr ""
+"\n"
+"\n"
+"Un intercambio de %(from)s para %(to)s ha sido modificado:\n"
+"\n"
+"status: %(status)s\n"
+"%(comment)s\n"
+"---\n"
+"%(last_comment)s\n"
+"---\n"
+"\n"
+
+#: truekko/templates/truekko/swap_modified_mail.txt:27
+msgid "You can view the swap in:"
+msgstr "Puedes ver el intercambio en:"
 
 #: truekko/templates/truekko/transfer_direct.html:4
 #, python-format
@@ -1130,6 +1458,26 @@ msgstr ""
 "Puedes ver este grupo en:\n"
 "http://etruekko.com%(url)s\n"
 "\n"
+
+#: truekko/templates/truekko/user_register.html:16
+msgid ""
+"\n"
+"        To register in etruekko you should select a group to join in.\n"
+"        In this platform each user must be part of a group, so the\n"
+"        first step to join to etruekko network is to select the group\n"
+"        you want to be part.\n"
+"        "
+msgstr ""
+"\n"
+"        Para registrarte en etruekko debes seleccionar un grupo al que unirte.\n"
+"        En esta plataforma cada usuario debe formar parte de un grupo, \n"
+"        así que el primer paso para unirse a la red etruekko es seleccionar el grupo\n"
+"        del que quieres formar parte.\n"
+"        "
+
+#: truekko/templates/truekko/user_register.html:37
+msgid "select"
+msgstr "seleccionar"
 
 #: truekko/templates/truekko/user_registered_admin_mail.txt:3
 #, python-format
@@ -1211,7 +1559,11 @@ msgstr "Abandonar"
 msgid "Denounce a member"
 msgstr "Denunciar un miembro"
 
-#: truekko/templates/truekko/view_group.html:48
+#: truekko/templates/truekko/view_group.html:34
+msgid "Go to channel"
+msgstr "Ir al canal"
+
+#: truekko/templates/truekko/view_group.html:55
 msgid "pending requests"
 msgstr "solicitudes pendientes"
 
@@ -1229,7 +1581,15 @@ msgstr "Transferencia directa"
 msgid "Edit user"
 msgstr "Editar usuario"
 
+#: truekko/templates/truekko/view_profile.html:32
+msgid "unfollow"
+msgstr "dejar de seguir"
+
 #: truekko/templates/truekko/view_profile.html:36
+msgid "follow"
+msgstr "seguir"
+
+#: truekko/templates/truekko/view_profile.html:48
 #, python-format
 msgid ""
 "\n"
@@ -1240,6 +1600,12 @@ msgstr ""
 "                    usuario desde %(d)s\n"
 "                "
 
-#: truekko/templates/truekko/view_profile.html:54
+#: truekko/templates/truekko/view_profile.html:66
 msgid "Offers"
 msgstr "Ofertas"
+
+#~ msgid "Invalid credits"
+#~ msgstr "Créditos invalidos"
+
+#~ msgid "Credits:"
+#~ msgstr "Créditos:"
