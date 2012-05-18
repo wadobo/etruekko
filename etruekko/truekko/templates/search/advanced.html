@@ -47,6 +47,7 @@ $(document).ready(function() {
     <div id="subcontent">
         <div class="search">
             <form method="GET" action="">
+                <input type="hidden" name="query" value="true"/>
                 <input type="text" id="id_q" name="q" placeholder="{% trans "Search..." %}" value="{{ data.q }}"/>
                 <select name="type" id="typeselect">
                     <option value="item" {% if data.type == "item" %}selected="selected"{% endif %}>{% trans "Item or service" %}</option>
@@ -67,9 +68,22 @@ $(document).ready(function() {
                     <input type="checkbox" name="serv" id="serv" {% if data.serv %}checked="checked"{% endif %}/>
                     <label for="serv">{% trans "service" %}</label>
                 </div>
-                <label for="location">{% trans "location" %}:</label>
-                <input type="text" name="location" id="location" placeholder="{% trans "location" %}" value="{{ data.location }}"/>
-                <br/>
+
+                <div class="left">
+                    <label for="location">{% trans "location" %}:</label>
+                    <input type="text" name="location" id="location" placeholder="{% trans "location" %}" value="{{ data.location }}"/>
+                </div>
+
+                <div class="left channelform">
+                <label for="channel">{% trans "channel" %}:</label>
+                <select id="channel" name="channel" id="channelselect">
+                    <option value="all" {% if channel_selected == "all" %}selected="selected"{% endif %}>{% trans "All" %}</option>
+                    {% for channel in channels %}
+                    <option value="{{ channel.id }}" {% if channel_selected == channel.id|stringformat:"s" %}selected="selected"{% endif %}>{{ channel.name }}</option>
+                    {% endfor %}
+                </select>
+                </div>
+
                 <div class="clear"></div>
                 <input class="button blue" type="submit" value="{% trans "Search" %}"/>
             </form>

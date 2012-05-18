@@ -1457,10 +1457,12 @@ class SearchAdvanced(TemplateView):
         context['menu'] = generate_menu("")
         context['query'] = ''
         context['result'] = ''
+        context['channels'] = Channel.objects.all()
 
         data = self.request.GET.dict()
+        context['channel_selected'] = data.get('channel', 'all')
 
-        if data.get('q', '') or data.get('location', ''):
+        if data.get('query', ''):
             query = self.query(data)
 
             # paginating the query
@@ -1497,24 +1499,31 @@ class SearchAdvanced(TemplateView):
         item = data.get('item', False)
         serv = data.get('serv', False)
         location = data.get('location', '')
+        channel = data.get('channel', 'all')
+
+        if channel != "all":
+            channel = get_object_or_404(Channel, pk=channel)
+        else:
+            channel = None
 
         # getting the model to query
         model = models.get(modelname, Item)
 
         sf = self.create_filters(modelname, q, location,
-                                  serv, item, offer, demand)
+                                  serv, item, offer, demand, channel)
 
         if unidecode(q) != q or unidecode(location) != location:
             sf = sf | self.create_filters(modelname, unidecode(q),
                                           unidecode(location),
-                                          serv, item, offer, demand)
+                                          serv, item, offer, demand,
+                                          channel)
 
         # getting the objects
         query = model.objects.filter(sf)
 
         return query
 
-    def create_filters(self, modelname, q, location, serv, item, offer, demand):
+    def create_filters(self, modelname, q, location, serv, item, offer, demand, channel):
         # building the query
         sf = Q()
         if modelname == 'item':
@@ -1531,6 +1540,9 @@ class SearchAdvanced(TemplateView):
 
             if location:
                 sf = sf & Q(user__userprofile__location__icontains=location)
+
+            if channel:
+                sf = sf & Q(user__membership__group__channel=channel)
 
             if not serv:
                 sf = sf & ~Q(type="SR")
@@ -1551,6 +1563,9 @@ class SearchAdvanced(TemplateView):
             if location:
                 sf = sf & Q(location__icontains=location)
 
+            if channel:
+                sf = sf & Q(channel=channel)
+
         elif modelname == 'user':
             if q:
                 sf = Q(user__email__icontains=q) |\
@@ -1561,6 +1576,9 @@ class SearchAdvanced(TemplateView):
 
             if location:
                 sf = sf & Q(location__icontains=location)
+
+            if channel:
+                sf = sf & Q(user__membership__group__channel=channel)
 
         return sf
 

@@ -541,6 +541,11 @@ a:hover {
     font-weight: bold;
 }
 
+.group .channel {
+    font-weight: bold;
+    color: #999;
+}
+
 .group .location {
     display: block;
     float: right;
