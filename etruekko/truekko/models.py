@@ -93,6 +93,11 @@ class UserProfile(models.Model):
                                     membership__role__in=["MEM", "ADM"])\
                             .order_by("name")
 
+    def reqs(self):
+        return Group.objects.filter(membership__user=self.user,
+                                    membership__role="REQ")\
+                            .order_by("name")
+
 
 class Follow(models.Model):
     '''
