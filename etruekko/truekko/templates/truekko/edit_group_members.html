@@ -25,11 +25,12 @@
         {% endif %}
         {% for membership in requests %}
 
-                {% with user=membership.user tools="ALL" show_credits=True %}
+                {% with user=membership.user tools="ALL" request="True" show_credits=True %}
                     {% include "truekko/single_user_view.html" %}
                 {% endwith %}
 
         {% endfor %}
+        <input class="button green" type="submit" value="{% trans 'Save' %}"/>
 
         <h3>{% trans "Members" %}</h3>
         {% for membership in memberships %}

@@ -1,0 +1,13 @@
+{% load i18n %}
+
+{% blocktrans with groupname=membership.group.name username=membership.user.username role=membership.get_role_display %}
+
+Hello {{ username }},
+
+You're now "{{ role }}" of the group "{{ groupname }}".
+
+You can view this group in:
+
+{% endblocktrans %}
+
+http://etruekko.com{{ url }}

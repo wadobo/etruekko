@@ -1,7 +1,7 @@
 import os
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext as _u
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_delete, post_delete
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import Q
@@ -87,6 +87,11 @@ class UserProfile(models.Model):
             if not g.channel in channels:
                 channels.append(g.channel)
         return channels
+
+    def groups(self):
+        return Group.objects.filter(membership__user=self.user,
+                                    membership__role__in=["MEM", "ADM"])\
+                            .order_by("name")
 
 
 class Follow(models.Model):
@@ -181,6 +186,9 @@ class Group(models.Model):
     def is_admin(self, user):
         return bool(self.membership_set.filter(role="ADM", user=user).count())
 
+    def n_req(self):
+        return self.membership_set.filter(role="REQ").count()
+
 
 class Membership(models.Model):
     '''
@@ -204,6 +212,34 @@ class Membership(models.Model):
 
     def __unicode__(self):
         return "%s - %s - %s" % (self.user.username, self.group.name, self.role)
+
+def membership_post_save(sender, instance, created, *args, **kwargs):
+    if created:
+        url = reverse('view_group', args=(instance.group.id,))
+
+        context = {'membership': instance, 'url': url}
+        template_email('truekko/membership_mail.txt',
+                       'Group "%(group)s" membership' % {'group': instance.group.name},
+                       [instance.user.email], context)
+
+def membership_pre_delete(sender, instance, *args, **kwargs):
+    url = reverse('view_group', args=(instance.group.id,))
+
+    context = {'membership': instance, 'url': url}
+    template_email('truekko/membership_delete_mail.txt',
+                   'Group "%(group)s" membership' % {'group': instance.group.name},
+                   [instance.user.email], context)
+
+def membership_post_delete(sender, instance, *args, **kwargs):
+    u = instance.user
+    m = Membership.objects.filter(user=u).count()
+    if not m:
+        u.delete()
+
+post_save.connect(membership_post_save, sender=Membership)
+pre_delete.connect(membership_pre_delete, sender=Membership)
+post_delete.connect(membership_post_delete, sender=Membership)
+
 
 # Transfer models
 

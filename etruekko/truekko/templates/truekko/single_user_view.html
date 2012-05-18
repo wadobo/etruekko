@@ -31,7 +31,11 @@
             <option value="req" {% if membership.role == "REQ" %}selected="selected"{% endif %}>{% trans "Requested" %}</option>
             {% endif %}
             <option value="ban" {% if membership.role == "BAN" %}selected="selected"{% endif %}>{% trans "Banned" %}</option>
+            {% if request %}
+            <option value="remove">{% trans "Reject" %}</option>
+            {% else %}
             <option value="remove">{% trans "Remove" %}</option>
+            {% endif %}
         </select>
     {% endif %}
     <div class="clear"></div>

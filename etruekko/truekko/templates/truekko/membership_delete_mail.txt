@@ -1,0 +1,30 @@
+{% load i18n %}
+
+{% if membership.role == "REQ" %}
+
+{% blocktrans with groupname=membership.group.name username=membership.user.username role=membership.get_role_display %}
+
+Hello {{ username }},
+
+Your membership request to group "{{ groupname }}" has been rejected
+by the admin.
+
+You can view this group in:
+
+{% endblocktrans %}
+
+{% else %}
+
+{% blocktrans with groupname=membership.group.name username=membership.user.username role=membership.get_role_display %}
+
+Hello {{ username }},
+
+You're not member of the group "{{ groupname }}" anymore.
+
+You can view this group in:
+
+{% endblocktrans %}
+
+{% endif %}
+
+http://etruekko.com{{ url }}

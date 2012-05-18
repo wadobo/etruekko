@@ -12,15 +12,31 @@
     </h2>
 
     <div id="subcontent">
+        <p class="tip">
+        {% if membership %}
+            {% if membership.role == "ADM" %}
+                {% trans "You are admin of this group" %}
+            {% elif membership.role == "MEM" %}
+                {% trans "You are member of this group" %}
+            {% elif membership.role == "REQ" %}
+                {% trans "Your request to be part of this group is sended, you need to wait the group admin response" %}
+            {% elif membership.role == "BAN" %}
+                {% trans "You can't participate in this group because you are banned" %}
+            {% endif %}
+        {% endif %}
+        </p>
+
         <div class="buttons">
             {% if editable %}
                 <a class="button green" href="{% url edit_group viewing.id %}">{% trans "Edit" %}</a>
                 <a class="button green" href="{% url edit_group_members viewing.id %}">{% trans "Edit members" %}</a>
             {% endif %}
-            {% if member %}
+            {% if membership %}
+                {% if membership.role == "ADM" or membership.role == "MEM" %}
                 <form method="POST" action="{% url leave_group viewing.id %}"> {% csrf_token %}
                     <input class="button green link" type="submit" value="{% trans "Leave" %}"/>
                 </form>
+                {% endif %}
             {% else %}
                 <form method="POST" action="{% url join_group viewing.id %}"> {% csrf_token %}
                     <input class="button green link" type="submit" value="{% trans "Join" %}"/>

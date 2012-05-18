@@ -50,12 +50,11 @@ class Index(TemplateView):
 
         if self.request.user.is_authenticated():
             u = self.request.user
-            groups = sorted([i.group for i in Membership.objects.filter(user=u)], key=lambda x: x.name)
             wall, created = Wall.objects.get_or_create(user=u, name="%s wall" % u.username)
             messages = self.messages_for_user()
             context['wallmessages'] = paginate(self.request, messages, 20)
             context['wall'] = wall
-            context['groups'] = groups
+            context['groups'] = u.get_profile().groups()
             items = Item.objects.filter(user=u)
             context['offers'] = items.filter(offer_or_demand="OFF")
             context['demands'] = items.filter(offer_or_demand="DEM")
@@ -82,7 +81,7 @@ class Index(TemplateView):
         if u.is_anonymous():
             return WallMessage.objects.filter(private=False)
 
-        groups = [i.group for i in Membership.objects.filter(user=u)]
+        groups = u.get_profile().groups()
         friends = u.get_profile().followings()
         wall, created = Wall.objects.get_or_create(user=u, name="%s wall" % u.username)
         # user wall messages
@@ -131,8 +130,7 @@ class ViewProfile(TemplateView):
         context['offers'] = items.filter(offer_or_demand="OFF")
         context['demands'] = items.filter(offer_or_demand="DEM")
 
-        groups = sorted([i.group for i in Membership.objects.filter(user=u)], key=lambda x: x.name)
-        context['groups'] = groups
+        context['groups'] = u.get_profile().groups()
 
         return context
 
@@ -362,7 +360,6 @@ class Groups(TemplateView):
 
             query = Group.objects.filter(k)
         else:
-            # TODO show only latest interesting groups (membership, friends, others)
             query = Group.objects.all()
         context['groups'] = paginate(self.request, query, 10)
         return context
@@ -378,7 +375,12 @@ class ViewGroup(TemplateView):
         context['viewing'] = get_object_or_404(Group, pk=self.groupid)
 
         context['editable'] = is_group_editable(self.request.user.username, self.groupid)
-        context['member'] = is_member(self.request.user, context['viewing'])
+
+        try:
+            ms = Membership.objects.get(user=self.request.user, group=self.groupid)
+            context['membership'] = ms
+        except:
+            context['membership'] = None
 
         g = get_object_or_404(Group, pk=self.groupid)
         context['requests'] = g.membership_set.filter(role="REQ").count()
@@ -648,7 +650,7 @@ class JoinGroup(View):
         if is_member(request.user, g):
             msg = _("You already are member of this group")
         else:
-            m = Membership(user=request.user, group=g, role='REQ')
+            m, created = Membership.objects.get_or_create(user=request.user, group=g, role='REQ')
             m.save()
             # sending email to group admin
             context = {'group': g, 'username': request.user.username, 'user': request.user,
@@ -667,13 +669,12 @@ class JoinGroup(View):
 class LeaveGroup(View):
 
     def post(self, request, groupid):
-        g = get_object_or_404(Group, name=groupid)
+        g = get_object_or_404(Group, pk=groupid)
         data = request.POST
 
         if is_member(request.user, g):
             m = Membership.objects.get(user=request.user, group=g)
             m.delete()
-            # TODO send email to group admin
 
         msg = _("You are not member of this group")
 
