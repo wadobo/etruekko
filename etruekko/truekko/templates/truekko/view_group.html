@@ -23,7 +23,7 @@
                 </form>
             {% else %}
                 <form method="POST" action="{% url join_group viewing.id %}"> {% csrf_token %}
-                    <input class="button green link" type="submit" value="Join"/>
+                    <input class="button green link" type="submit" value="{% trans "Join" %}"/>
                 </form>
             {% endif %}
             <a class="button green" href="{% url group_denounce viewing.id %}">{% trans "Denounce a member" %}</a>
