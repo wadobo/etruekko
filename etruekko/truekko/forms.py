@@ -23,7 +23,7 @@ class UserProfileForm(ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ('photo', 'name', 'location', 'web', 'description')
+        fields = ('photo', 'name', 'location', 'web', 'description', 'receive_notification')
         widgets = {'photo': CustomImageWidget()}
 
 

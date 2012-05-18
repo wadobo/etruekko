@@ -37,6 +37,7 @@ class UserProfile(models.Model):
     description = models.TextField(_("Personal description"), max_length=300,
                                    blank=True)
     rating = RatingField(range=5, can_change_vote=True)
+    receive_notification = models.BooleanField(_("Receive mail notifiaction for all messages"), default=False)
 
     def int_rating(self):
         if self.rating.votes == 0:
@@ -182,8 +183,11 @@ class Group(models.Model):
         return emails
 
     def members_emails(self):
-        emails = [i.user.email for i in self.membership_set.all()]
+        emails = [i.user.email for i in self.membership_set.filter(role__in=["ADM", "MEM"])]
         return emails
+
+    def members(self):
+        return [i.user for i in self.membership_set.filter(role__in=["ADM", "MEM"])]
 
     def admins(self):
         return [i.user for i in self.membership_set.filter(role="ADM")]
@@ -615,23 +619,26 @@ class WallMessage(models.Model):
 def wall_message_post_save(sender, instance, created, *args, **kwargs):
     if created:
         name = instance.wall.name
+        email_list = []
         # Sending email notification to receiver
         if instance.wall.user:
-            email_list = [instance.wall.user.email]
+            if instance.wall.user.get_profile().receive_notification:
+                email_list.append(instance.wall.user.email)
             url = reverse('view_profile', args=[instance.wall.user.username])
-            name = instance.wall.user.get_profile().name
+            name = instance.wall.user.username
         elif instance.wall.group:
-            email_list = instance.wall.group.members_emails()
+            email_list = [i.email for i in instance.wall.group.members() if i.get_profile().receive_notification]
             url = reverse('view_group', args=[instance.wall.group.id])
             name = instance.wall.group.name
         else:
-            email_list = [i[1] for i in settings.ADMINS]
+            email_list = [i.email for i in User.objects.filter(is_superuser=True) if i.get_profile().receive_notification]
             url = '/'
 
-        context = {'message': instance, 'name': name, 'url': url}
-        template_email('truekko/message_mail.txt',
-                       _("New message by %(user)s in %(wall)s") % dict(user=instance.user, wall=instance.wall.name),
-                       email_list, context)
+        if email_list:
+            context = {'message': instance, 'name': name, 'url': url}
+            template_email('truekko/message_mail.txt',
+                           _("New message by %(user)s in %(wall)s") % dict(user=instance.user, wall=instance.wall.name),
+                           email_list, context)
 
 post_save.connect(wall_message_post_save, sender=WallMessage)
 
