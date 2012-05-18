@@ -1161,9 +1161,11 @@ class ItemAdd(TemplateView):
         context = RequestContext(self.request, data)
         context['klass'] = 'add'
         context['menu'] = generate_menu("add")
+        context['item'] = None
         if self.item:
             context['form'] = ItemAddForm(instance=self.item)
             context['editing'] = True
+            context['item'] = self.item
         else:
             context['form'] = ItemAddForm()
         return context
@@ -1216,10 +1218,14 @@ class ItemAdd(TemplateView):
         # parsing tags
         tags = request.POST.get('tags')
         if tags:
-            tagnames = (i.strip() for i in request.POST.get('tags').split(','))
+            tagnames = [i.strip() for i in request.POST.get('tags').split(',')]
             for tag in tagnames:
                 dbtag, created = Tag.objects.get_or_create(name=tag)
                 it, created = ItemTagged.objects.get_or_create(item=item, tag=dbtag)
+
+            oldtags = ItemTagged.objects.filter(item=item)\
+                                         .exclude(tag__name__in=tagnames)
+            oldtags.delete()
 
         nxtsrv = 'item'
         if item.type == "IT":

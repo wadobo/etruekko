@@ -335,6 +335,9 @@ class Item(models.Model):
     def tags(self):
         return (i.tag for i in self.itemtagged_set.all())
 
+    def tags_str(self):
+        return ', '.join(i.name for i in self.tags())
+
     def type_str(self):
         return 'item' if self.type == 'IT' else 'serv'
 
