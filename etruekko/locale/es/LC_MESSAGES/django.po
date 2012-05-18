@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-18 09:00+0200\n"
+"POT-Creation-Date: 2012-05-18 09:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -457,12 +457,12 @@ msgid "%(user)s user has been denounced in group %(group)s"
 msgstr "El usuario %(user)s ha sido denunciado en el grupo %(group)s"
 
 #: truekko/utils.py:6
-msgid "Home"
-msgstr "Inicio"
+msgid "Wall"
+msgstr "Muro"
 
-#: truekko/utils.py:7 truekko/templates/truekko/people.html:3
-msgid "People"
-msgstr "Gente"
+#: truekko/utils.py:7
+msgid "My contacts"
+msgstr "Mis contactos"
 
 #: truekko/utils.py:8
 msgid "Services"
@@ -472,21 +472,17 @@ msgstr "Servicios"
 msgid "Item"
 msgstr "Artículos"
 
-#: truekko/utils.py:10 truekko/templates/truekko/item_add.html:7
-msgid "Add"
-msgstr "Añadir"
+#: truekko/utils.py:10
+msgid "Create your offerts and demands"
+msgstr "Crea tus ofertas y demandas"
 
 #: truekko/utils.py:11
-msgid "Transf"
-msgstr "Transf"
+msgid "My swaps"
+msgstr "Mis intercambios"
 
-#: truekko/utils.py:12 truekko/templates/search/advanced.html:53
-#: truekko/templates/truekko/channel_view.html:17
-#: truekko/templates/truekko/groups.html:3
-#: truekko/templates/truekko/user_register.html:3
-#: truekko/templates/truekko/view_profile.html:66
-msgid "Groups"
-msgstr "Grupos"
+#: truekko/utils.py:12 truekko/templates/truekko/index.html:40
+msgid "My groups"
+msgstr "Mis grupos"
 
 #: truekko/views.py:265
 msgid "Error receiving the rating"
@@ -639,6 +635,14 @@ msgstr "Ya no estás siguiendo a %(user)s en etruekko"
 msgid "Thanks for contact with us, we will reply as soon as possible"
 msgstr ""
 "Gracias por contactar con nosotros, contestaremos tan pronto como sea posible"
+
+#: truekko/templates/search/advanced.html:53
+#: truekko/templates/truekko/channel_view.html:17
+#: truekko/templates/truekko/groups.html:3
+#: truekko/templates/truekko/user_register.html:3
+#: truekko/templates/truekko/view_profile.html:66
+msgid "Groups"
+msgstr "Grupos"
 
 #: truekko/templates/search/advanced.html:54
 msgid "Users"
@@ -990,10 +994,6 @@ msgstr "Muros"
 msgid "Etruekko wall"
 msgstr "Muro de Etruekko"
 
-#: truekko/templates/truekko/index.html:40
-msgid "My groups"
-msgstr "Mis grupos"
-
 #: truekko/templates/truekko/index.html:58
 msgid "My Commitments"
 msgstr "Mis Compromisos"
@@ -1037,6 +1037,10 @@ msgstr "Personas que te siguen"
 #: truekko/templates/truekko/view_group.html:17
 msgid "Edit"
 msgstr "Editar"
+
+#: truekko/templates/truekko/item_add.html:7
+msgid "Add"
+msgstr "Añadir"
 
 #: truekko/templates/truekko/item_add.html:51
 msgid "Quantity:"
@@ -1132,6 +1136,10 @@ msgstr ""
 "Puedes ver el mensaje en:\n"
 "http://etruekko.com%(url)s\n"
 "\n"
+
+#: truekko/templates/truekko/people.html:3
+msgid "People"
+msgstr "Gente"
 
 #: truekko/templates/truekko/people.html:15
 msgid "Only friends"
@@ -1628,6 +1636,12 @@ msgstr ""
 #: truekko/templates/truekko/view_profile.html:84
 msgid "Offers"
 msgstr "Ofertas"
+
+#~ msgid "Home"
+#~ msgstr "Inicio"
+
+#~ msgid "Transf"
+#~ msgstr "Transf"
 
 #~ msgid "Mensaje"
 #~ msgstr "Mensaje"

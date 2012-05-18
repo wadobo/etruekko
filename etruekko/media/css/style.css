@@ -275,6 +275,11 @@ a:hover {
     top: 20%;
 }
 
+.menu_text {
+    font-size: small;
+    min-height: 4em;
+}
+
 .menu a {
     text-decoration: none;
     color: black;
