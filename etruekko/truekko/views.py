@@ -50,7 +50,7 @@ class Index(TemplateView):
 
         if self.request.user.is_authenticated():
             u = self.request.user
-            groups = [i.group for i in Membership.objects.filter(user=u)]
+            groups = sorted([i.group for i in Membership.objects.filter(user=u)], key=lambda x: x.name)
             wall, created = Wall.objects.get_or_create(user=u, name="%s wall" % u.username)
             messages = self.messages_for_user()
             context['wallmessages'] = paginate(self.request, messages, 20)
@@ -130,6 +130,10 @@ class ViewProfile(TemplateView):
         items = Item.objects.filter(user=u)
         context['offers'] = items.filter(offer_or_demand="OFF")
         context['demands'] = items.filter(offer_or_demand="DEM")
+
+        groups = sorted([i.group for i in Membership.objects.filter(user=u)], key=lambda x: x.name)
+        context['groups'] = groups
+
         return context
 
     def get(self, request, username):

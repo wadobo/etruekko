@@ -62,6 +62,24 @@
 
 
         <div id="indexmenu"/>
+                <!-- groups -->
+                <h3>{% trans "Groups" %}</h3>
+                <ul>
+                {% for group in groups %}
+                    <li>
+                        <a href="{% url view_group group.id %}">
+                            <img class="left" src="{{ group.get_search_img }}" alt="{{ group.name }}"/>
+                        </a>
+                        <a href="{% url view_group group.id %}">
+                            {{ group.name }}
+                            {% is_admin_group USER group %}
+                            {% if is_admin_group_v %}<img src="/media/imgs/admin.png" alt="admin"/>{% endif %}
+                        </a>
+                        <div class="clear"></div>
+                    </li>
+                {% endfor %}
+                </ul>
+
             <!-- offers -->
             <h3>{% trans "Offers" %}</h3>
             <ul>
