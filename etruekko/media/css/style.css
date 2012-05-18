@@ -6,6 +6,17 @@
     word-wrap: break-word;
 }
 
+.text img {
+    float: none !important;
+    background-color: #FBFFFB;
+    -moz-box-shadow: 3px 3px 4px #CCCCCC;
+    -webkit-box-shadow: 3px 3px 4px #CCCCCC;
+    box-shadow: 3px 3px 4px #CCCCCC;
+    padding: 10px 10px 30px 10px;
+
+    margin: 10px;
+}
+
 html, body {
     height: 100%;
 }
@@ -843,6 +854,14 @@ label {
 
 .priv {
     background-color: #ffdddd;
+}
+
+.notify {
+    background: #efefef url('../imgs/info.png') bottom right no-repeat;
+}
+
+.notify .text p {
+    color: #666;
 }
 
 .msg img {

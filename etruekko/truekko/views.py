@@ -92,16 +92,17 @@ class Index(TemplateView):
         query = query | Q(wall__group__in=groups)
         # and friends messages
         query = query | Q(user__in=friends, private=False)
+        # and user group notification wall
+        query = query | Q(wall=Wall.notification(), user__membership__group__in=groups)
         # and channels msgs
         query = query | Q(wall__channels__in=u.get_profile().channels())
         # and etruekko
         if u.get_profile().is_admin():
-            ewall, created = Wall.objects.get_or_create(name="Etruekko wall")
-            query = query | Q(wall=ewall)
+            query = query | Q(wall=Wall.etruekko())
         # replies will be shown in template
         query = query & Q(parent=None)
 
-        return WallMessage.objects.filter(query)
+        return WallMessage.objects.filter(query).distinct()
 
 
 ############
@@ -321,7 +322,7 @@ class Etruekko(TemplateView):
 
     def get(self, request):
         self.request = request
-        self.wall, created = Wall.objects.get_or_create(name="Etruekko wall")
+        self.wall = Wall.etruekko()
         # checking perms
         if not self.can_view(request.user):
             raise Http404

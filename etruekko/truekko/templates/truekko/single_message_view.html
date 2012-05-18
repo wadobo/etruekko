@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load markup %}
 
-<div class="msg{% if msg.user == USER %} me{% endif %}{% if msg.private %} priv{% endif %}">
+<div class="msg{% if msg.user == USER %} me{% endif %}{% if msg.private %} priv{% endif %}{% if msg.wall.name == 'Notifications' %} notify{% endif %}">
     {% if msg.user == USER %}
     <a href="{% url message_remove msg.id %}" class="rm"><img src="/media/imgs/remove.gif" alt="{% trans "Remove" %}"/></a>
     {% endif %}

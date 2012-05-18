@@ -13,7 +13,7 @@ from django.conf import settings
 from djangoratings.fields import RatingField
 
 from etruekko.utils import template_email
-from etruekko.globaltags.tags import avatar, groupavatar
+from etruekko.globaltags.tags import avatar, groupavatar, image
 
 
 # User profile models
@@ -348,6 +348,28 @@ class Item(models.Model):
         ordering = ['-pub_date']
 
 
+def item_post_save(sender, instance, created, *args, **kwargs):
+    if created:
+        context = {
+            'item_or_service': instance.get_type_display(),
+            'offer_or_demand': instance.get_offer_or_demand_display(),
+            'name': instance.name,
+            'desc': instance.description,
+            'extra': "\n!%s!\n" % image(instance.photo) if instance.photo else '',
+            'url': reverse("item_view", args=(instance.id,)),
+        }
+        msg = _("New %(item_or_service)s %(offer_or_demand)s added: \n"
+                "*%(name)s*, %(desc)s"
+                "%(extra)s"
+                '"Take a look":%(url)s') % context
+        wmsg = WallMessage(user=instance.user,
+                           wall=Wall.notification(),
+                           msg=msg)
+        wmsg.save()
+
+post_save.connect(item_post_save, sender=Item)
+
+
 class Tag(models.Model):
     name = models.CharField(_("Name"), max_length=100)
 
@@ -563,6 +585,16 @@ class Wall(models.Model):
     name = models.CharField(_("Name"), blank=True, null=True, max_length=100)
     description = models.TextField(_("Description"), max_length=300, blank=True, null=True)
 
+    @classmethod
+    def notification(cls):
+        w, created = cls.objects.get_or_create(name="Notifications")
+        return w
+
+    @classmethod
+    def etruekko(cls):
+        ewall, created = Wall.objects.get_or_create(name="Etruekko wall")
+        return ewall
+
     def __unicode__(self):
         return self.name
 
@@ -590,7 +622,6 @@ class Wall(models.Model):
                 return self.messages.filter(query)
 
         return self.messages.filter(query)
-
 
     def display_name(self):
         if self.user:
