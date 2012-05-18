@@ -12,7 +12,7 @@
                 <form method="POST" action="{% url message_post wall.id %}">
                     {% csrf_token %}
                     <label for="comment">{% trans "What's happening?" %}:</label>
-                    <textarea class="autogrow" id="comment" name="comment"></textarea>
+                    <textarea id="comment" name="comment"></textarea>
                     <input type="submit" class="button blue" name="post" value="{% trans "Post" %}"/>
                 </form>
 

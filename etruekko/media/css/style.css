@@ -2,6 +2,14 @@
     margin: 0px;
 }
 
+html, body {
+    height: 100%;
+}
+
+img {
+    border: none;
+}
+
 .helptext {
     color: #888;
 }
@@ -121,6 +129,7 @@ a:hover {
 #wrapper {
     width: 1000px;
     margin: 0 auto 0 auto;
+    min-height: 100%;
 }
 
 .holding {
@@ -194,6 +203,8 @@ a:hover {
     width: 140px;
     float: left;
     padding: 20px;
+    padding-bottom: 0px;
+    padding-top: 0px;
     border-right: 1px solid #ccc;
 }
 

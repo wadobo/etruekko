@@ -4,7 +4,7 @@
     {% if USER.is_authenticated %}
     <form method="POST" action="{% url message_post wall.id %}">
         {% csrf_token %}
-        <textarea class="autogrow" id="comment" name="comment"></textarea>
+        <textarea id="comment" name="comment"></textarea>
         {% if not hidepriv %}
             <label for="priv">{% trans "Private" %}:</label>
             <input type="checkbox" id="priv" name="priv"/><br/>
