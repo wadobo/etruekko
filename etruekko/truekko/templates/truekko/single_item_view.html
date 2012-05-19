@@ -14,7 +14,9 @@
     </div>
     {% endif %}
 
+    {% if item.price %}
     <span class="price">{{ item.price }} {{ item.get_price_type_display }}</span>
+    {% endif %}
 
     <div class="username">
         <span class="username">

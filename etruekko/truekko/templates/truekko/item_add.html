@@ -16,9 +16,14 @@
 
         if (type === "IT" && offer === "OFF") {
             $("#quantity_tr").show();
+            $("#id_price").parent().parent().show();
+            $("#id_price_type").parent().parent().show();
         } else {
             $("#quantity_tr").hide();
             $("#quantity").val("0");
+
+            $("#id_price").parent().parent().hide();
+            $("#id_price_type").parent().parent().hide();
         }
     }
 

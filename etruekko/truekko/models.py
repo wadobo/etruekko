@@ -309,8 +309,8 @@ class Item(models.Model):
     offer_or_demand = models.CharField(_("Offer or demand"), max_length=3, choices=OFFER, default="OFF")
     name = models.CharField(_("Name"), max_length=150)
     description = models.TextField(_("Description"))
-    price = models.IntegerField(_("Price"))
-    price_type = models.CharField(_("Price type"), max_length=20, choices=PRICE_TYPES, default=PRICE_TYPES[0][0])
+    price = models.IntegerField(_("Evaluation"), blank=True, null=True)
+    price_type = models.CharField(_("Evaluation type"), max_length=20, blank=True, null=True, choices=PRICE_TYPES, default=PRICE_TYPES[0][0])
     photo = models.ImageField(_("photo"), blank=True, null=True,
                               upload_to=os.path.join(settings.MEDIA_ROOT,
                               "item_images"))

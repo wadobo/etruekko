@@ -89,7 +89,7 @@
                         <img class="left" src="{{ item.get_search_img }}" alt="{{ item.name }}"/>
                     </a>
                     <a href="{% url item_view item.id %}">
-                        {{ item.name }} ({{item.price }} {{ item.get_price_type_display }})
+                        {{ item.name }} ({% if item.price %}{{item.price }} {{ item.get_price_type_display }}{% endif %})
                     </a>
                     <div class="clear"></div>
                 </li>
@@ -105,7 +105,7 @@
                         <img class="left" src="{{ item.get_search_img }}" alt="{{ item.name }}"/>
                     </a>
                     <a href="{% url item_view item.id %}">
-                        {{ item.name }} ({{item.price }} {{ item.get_price_type_display }})
+                        {{ item.name }} ({% if item.price %}{{item.price }} {{ item.get_price_type_display }}{% endif %})
                     </a>
                     <div class="clear"></div>
                 </li>
