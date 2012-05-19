@@ -58,6 +58,7 @@ class Index(TemplateView):
             items = Item.objects.filter(user=u)
             context['offers'] = items.filter(offer_or_demand="OFF")
             context['demands'] = items.filter(offer_or_demand="DEM")
+            context['priv'] = self.request.GET.get('priv', '')
 
             tq = Q(user_from=u) | Q(user_to=u)
             context['denounces'] = Denounce.objects.filter(status__in=["PEN", "CON"]).filter(tq)
@@ -77,6 +78,8 @@ class Index(TemplateView):
         return super(Index, self).get(request)
 
     def messages_for_user(self):
+        priv = self.request.GET.get('priv', '')
+
         u = self.request.user
         if u.is_anonymous():
             return WallMessage.objects.filter(private=False)
@@ -84,23 +87,27 @@ class Index(TemplateView):
         groups = u.get_profile().groups()
         friends = u.get_profile().followings()
         wall, created = Wall.objects.get_or_create(user=u, name="%s wall" % u.username)
-        # user wall messages
-        query = Q(wall=wall)
-        # and user sended messages
-        query = query | Q(user=u)
-        # and user groups messages
-        query = query | Q(wall__group__in=groups)
-        # and friends messages
-        query = query | Q(user__in=friends, private=False)
-        # and user group notification wall
-        query = query | Q(wall=Wall.notification(), user__membership__group__in=groups)
-        # and channels msgs
-        query = query | Q(wall__channels__in=u.get_profile().channels())
-        # and etruekko
-        if u.get_profile().is_admin():
-            query = query | Q(wall=Wall.etruekko())
-        # replies will be shown in template
-        query = query & Q(parent=None)
+
+        if priv:
+            query = Q(wall=wall, private=True)
+        else:
+            # user wall messages
+            query = Q(wall=wall)
+            # and user sended messages
+            query = query | Q(user=u)
+            # and user groups messages
+            query = query | Q(wall__group__in=groups)
+            # and friends messages
+            query = query | Q(user__in=friends, private=False)
+            # and user group notification wall
+            query = query | Q(wall=Wall.notification(), user__membership__group__in=groups)
+            # and channels msgs
+            query = query | Q(wall__channels__in=u.get_profile().channels())
+            # and etruekko
+            if u.get_profile().is_admin():
+                query = query | Q(wall=Wall.etruekko())
+            # replies will be shown in template
+            query = query & Q(parent=None)
 
         return WallMessage.objects.filter(query).distinct()
 

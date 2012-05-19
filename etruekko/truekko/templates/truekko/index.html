@@ -13,8 +13,20 @@
                     {% csrf_token %}
                     <label for="comment">{% trans "What's happening?" %}:</label>
                     <textarea id="comment" name="comment"></textarea>
+
+                    <div class="right">
+                        {% if priv %}
+                            <a href="{% url index %}" class="button">{% trans "All messages" %}</a>
+                        {% else %}
+                            <a href="{% url index %}?priv=True" class="button">{% trans "Private messages" %}</a>
+                        {% endif %}
+                    </div>
+
+
                     <input type="submit" class="button blue" name="post" value="{% trans "Post" %}"/>
                 </form>
+
+                <div class="clear"></div>
 
                 {% if wallmessages %}
                     {% for msg in wallmessages.object_list %}
