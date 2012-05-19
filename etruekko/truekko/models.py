@@ -99,6 +99,12 @@ class UserProfile(models.Model):
                                     membership__role="REQ")\
                             .order_by("name")
 
+    def main_group(self):
+        try:
+            return Group.objects.filter(membership__user=self.user,
+                                        membership__role__in=["MEM", "ADM"])[0]
+        except:
+            return None
 
 class Follow(models.Model):
     '''

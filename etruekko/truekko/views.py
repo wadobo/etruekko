@@ -133,6 +133,11 @@ class ViewProfile(TemplateView):
         context['admin'] = self.request.user.get_profile().is_admin_user(u)
         context['wall'] = wall
         context['wallmessages'] = paginate(self.request, messages, 20)
+        d = Denounce.objects.filter(user_from=self.request.user, user_to=u)
+        if d.count():
+            context['denounced'] = d[0]
+        else:
+            context['denounced'] = False
 
         items = Item.objects.filter(user=u)
         context['offers'] = items.filter(offer_or_demand="OFF")
