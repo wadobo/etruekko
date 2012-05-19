@@ -60,6 +60,11 @@ class Index(TemplateView):
             context['demands'] = items.filter(offer_or_demand="DEM")
             context['priv'] = self.request.GET.get('priv', '')
 
+            context['admin'] = self.request.user.get_profile().is_admin()
+            if context['admin']:
+                groups = self.request.user.get_profile().admin_groups()
+                context['admin_denounces'] = Denounce.objects.filter(status__in=["PEN", "CON"]).filter(group__in=groups)
+
             tq = Q(user_from=u) | Q(user_to=u)
             context['denounces'] = Denounce.objects.filter(status__in=["PEN", "CON"]).filter(tq)
 
@@ -133,7 +138,7 @@ class ViewProfile(TemplateView):
         context['admin'] = self.request.user.get_profile().is_admin_user(u)
         context['wall'] = wall
         context['wallmessages'] = paginate(self.request, messages, 20)
-        d = Denounce.objects.filter(user_from=self.request.user, user_to=u)
+        d = Denounce.objects.filter(user_from=self.request.user, user_to=u, status__in=['PEN', 'CON'])
         if d.count():
             context['denounced'] = d[0]
         else:

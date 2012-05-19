@@ -164,6 +164,15 @@
                 </ul>
                 {% endif %}
 
+                {% if admin and admin_denounces %}
+                    <h3>{% trans "Admin denounces" %}</h3>
+                    <ul>
+                    {% for denounce in admin_denounces %}
+                        <li><a href="{% url group_denounce_view denounce.id %}">({{ denounce.group.name }}) {{ denounce }} ({{ denounce.get_status_display }})</a></li>
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+
                 <!-- friends -->
                 <h3>{% trans "People you follow" %}</h3>
                 <div class="friends">

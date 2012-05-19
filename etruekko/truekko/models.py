@@ -94,6 +94,11 @@ class UserProfile(models.Model):
                                     membership__role__in=["MEM", "ADM"])\
                             .order_by("name")
 
+    def admin_groups(self):
+        return Group.objects.filter(membership__user=self.user,
+                                    membership__role="ADM")\
+                            .order_by("name")
+
     def reqs(self):
         return Group.objects.filter(membership__user=self.user,
                                     membership__role="REQ")\
@@ -101,8 +106,7 @@ class UserProfile(models.Model):
 
     def main_group(self):
         try:
-            return Group.objects.filter(membership__user=self.user,
-                                        membership__role__in=["MEM", "ADM"])[0]
+            return Group.objects.filter(membership__user=self.user, membership__role__in=["MEM", "ADM"]).order_by("id")[0]
         except:
             return None
 
