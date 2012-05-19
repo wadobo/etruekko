@@ -20,6 +20,7 @@ class CustomImageWidget(ClearableFileInput):
 
 
 class UserProfileForm(ModelForm):
+    required_css_class = 'required'
 
     class Meta:
         model = UserProfile
@@ -28,6 +29,7 @@ class UserProfileForm(ModelForm):
 
 
 class GroupForm(ModelForm):
+    required_css_class = 'required'
 
     class Meta:
         model = Group
@@ -36,6 +38,7 @@ class GroupForm(ModelForm):
 
 
 class RegisterForm(forms.Form):
+    required_css_class = 'required'
 
     username = forms.CharField(label=_("Username"))
     name = forms.CharField(label=_("Name"))
@@ -83,6 +86,7 @@ class RegisterForm(forms.Form):
 
 
 class TransferDirectForm(forms.Form):
+    required_css_class = 'required'
 
     concept = forms.CharField(label=_("Concept"), max_length=500)
     credits = forms.IntegerField(label=_("Credits"))
@@ -111,6 +115,7 @@ class TransferDirectForm(forms.Form):
 
 
 class ItemAddForm(ModelForm):
+    required_css_class = 'required'
 
     class Meta:
         model = Item
@@ -122,6 +127,7 @@ class ItemAddForm(ModelForm):
 
 
 class WallMessageForm(ModelForm):
+    required_css_class = 'required'
 
     class Meta:
         model = WallMessage
@@ -129,6 +135,8 @@ class WallMessageForm(ModelForm):
 
 
 class ContactForm(forms.Form):
+    required_css_class = 'required'
+
     sender = forms.EmailField(label=_("Email"))
     subject = forms.CharField(label=_("Subject"), max_length=100)
     message = forms.CharField(label=_("Message"), widget=forms.Textarea)
