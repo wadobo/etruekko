@@ -14,6 +14,7 @@ from djangoratings.fields import RatingField
 
 from etruekko.utils import template_email
 from etruekko.globaltags.tags import avatar, groupavatar, image
+from etruekko.utils import CountryField
 
 
 # User profile models
@@ -109,6 +110,47 @@ class UserProfile(models.Model):
             return Group.objects.filter(membership__user=self.user, membership__role__in=["MEM", "ADM"]).order_by("id")[0]
         except:
             return None
+
+    def postal_mail(self):
+        return self.user.postal.all()[0] if self.user.postal.count() else None
+
+
+from south.modelsinspector import add_introspection_rules
+add_introspection_rules([], ["^etruekko\.utils\.CountryField"])
+class PostalAddress(models.Model):
+    """Model to store addresses for accounts"""
+
+    user = models.ForeignKey(User, related_name="postal")
+
+    address_line1 = models.CharField(_("Address line 1"), max_length=45)
+    address_line2 = models.CharField(_("Address line 2"), max_length=45, blank=True)
+    postal_code = models.CharField(_("Postal Code"), max_length=10)
+    city = models.CharField(_("City"), max_length=50, blank=False)
+    state_province = models.CharField(_("State/Province"), max_length=40, blank=True)
+    country = CountryField(_("Country"), default="ES", blank=False)
+
+    def __unicode__(self):
+        return "%s, %s %s" % (self.city, self.state_province,
+                              str(self.country))
+
+    def as_text(self):
+        return ("%s\n"
+                "%s\n"
+                "%s\n"
+                "%s\n"
+                "%s, %s\n"
+                "%s" % (self.user.get_profile().name,
+                        self.address_line1,
+                        self.address_line2,
+                        self.postal_code,
+                        self.city, self.state_province,
+                        self.get_country_display()))
+
+    class Meta:
+        verbose_name_plural = _("Addresses")
+        unique_together = ("user", "address_line1", "address_line2", "postal_code",
+                           "city", "state_province", "country")
+
 
 class Follow(models.Model):
     '''
@@ -434,6 +476,9 @@ class Swap(models.Model):
 
     def type(self):
         return "swap"
+
+    def postal(self):
+        return self.swap_mode in ["MAI", "MSG"]
 
     def finished(self):
         return self.status in ['DON', 'CAN']

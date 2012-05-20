@@ -10,6 +10,7 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, get_object_or_404
 from django.views.generic.base import View, TemplateView
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
 from decorators import is_group_admin, is_group_editable, is_member
 from django.shortcuts import render_to_response
 from django.db.models import Q
@@ -21,6 +22,7 @@ from etruekko.truekko.forms import TransferDirectForm
 from etruekko.truekko.forms import ItemAddForm
 from etruekko.truekko.forms import ContactForm
 from etruekko.truekko.forms import CommitmentForm
+from etruekko.truekko.forms import PostalForm
 
 from etruekko.truekko.models import UserProfile
 from etruekko.truekko.models import User
@@ -36,6 +38,7 @@ from etruekko.truekko.models import Swap, SwapItems, SwapComment
 from etruekko.truekko.models import Wall, WallMessage
 from etruekko.truekko.models import Follow
 from etruekko.truekko.models import Commitment
+from etruekko.truekko.models import PostalAddress
 
 from etruekko.truekko.utils import generate_menu
 from etruekko.utils import paginate, template_email
@@ -170,6 +173,15 @@ class EditProfile(TemplateView):
         context['klass'] = 'people'
         context['viewing'] = self.request.user
         context['menu'] = generate_menu()
+
+        p = PostalAddress.objects.filter(user=self.request.user)
+        if p.count():
+            f = PostalForm(instance=p[0])
+        else:
+            f = PostalForm()
+        context['postal_form'] = f
+        context['pwform'] = PasswordChangeForm(self.request.user)
+        context['default'] = self.request.GET.get('setting', 'general')
         return context
 
     def get(self, request):
@@ -196,6 +208,67 @@ class EditProfile(TemplateView):
         return nxt
 
 
+class EditPostal(TemplateView):
+    template_name = 'truekko/edit_profile.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(EditPostal, self).get_context_data(**kwargs)
+        context['klass'] = 'people'
+        context['viewing'] = self.user
+        context['menu'] = generate_menu()
+
+        p = PostalAddress.objects.filter(user=self.user)
+        if p.count():
+            f = PostalForm(instance=p[0])
+        else:
+            f = PostalForm()
+        context['postal_form'] = f
+        context['default'] = self.request.GET.get('setting', 'postal')
+        return context
+
+    def get(self, request, uid=None):
+        if not uid:
+            self.user = request.user
+        else:
+            self.user = get_object_or_404(User, pk=uid)
+        if self.user != request.user and\
+           not request.user.get_profile().is_admin_user(self.user):
+            raise Http404
+
+        return super(EditPostal, self).get(request)
+
+    def post(self, request, uid=None):
+        if not uid:
+            u = request.user
+        else:
+            u = get_object_or_404(User, pk=uid)
+
+        if u != request.user and\
+           not request.user.get_profile().is_admin_user(u):
+            raise Http404
+
+        p = PostalAddress.objects.filter(user=u)
+
+        if p.count():
+            f = PostalForm(request.POST, instance=p[0])
+        else:
+            f = PostalForm(request.POST)
+
+        if not f.is_valid():
+            menu = generate_menu()
+            context = RequestContext(request, {'viewing': u, 'postal_form': f, 'menu': menu})
+            context['default'] = self.request.GET.get('setting', 'postal')
+            context['klass'] = 'people'
+            return render_to_response(EditPostal.template_name, context)
+
+        p = f.save(commit=False)
+        p.user = u
+
+        p.save()
+
+        return redirect("view_profile", u)
+
+
 class EditProfileAdmin(TemplateView):
     template_name = 'truekko/edit_profile.html'
 
@@ -205,6 +278,14 @@ class EditProfileAdmin(TemplateView):
         context['klass'] = 'people'
         context['viewing'] = self.user
         context['menu'] = generate_menu()
+
+        p = PostalAddress.objects.filter(user=self.user)
+        if p.count():
+            f = PostalForm(instance=p[0])
+        else:
+            f = PostalForm()
+        context['postal_form'] = f
+        context['default'] = self.request.GET.get('setting', 'general')
         return context
 
     def get(self, request, username):
@@ -1719,6 +1800,7 @@ class Contact(TemplateView):
 
 
 # profile
+edit_postal = login_required(EditPostal.as_view())
 edit_profile = login_required(EditProfile.as_view())
 edit_profile_admin = login_required(EditProfileAdmin.as_view())
 view_profile = login_required(ViewProfile.as_view())

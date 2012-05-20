@@ -46,7 +46,26 @@
             $("#commitment_creation").toggle();
             return false;
           });
+
+        $("#swap_mode").change(function() {
+            check_postals();
+        });
+
+          $("#postals").hide();
+          check_postals();
+          {% if swap and swap.postal %}
+            $("#postals").show();
+          {% endif %}
     });
+
+    function check_postals() {
+        var type = $("#swap_mode option:selected").val();
+        if (type === "MAI" || type === "MSG") {
+            $("#postals").show();
+        } else {
+            $("#postals").hide();
+        }
+    }
     </script>
 {% endblock %}
 
@@ -192,7 +211,31 @@
                         {% endfor %}
                     </select>
                 </div>
+
             {% endif %}
+
+            <fieldset id="postals">
+                <legend>{% trans "Postal address" %}</legend>
+                <div class="addr">
+                <h3>{{ user_from.username }}</h3>
+                {% if user_from.get_profile.postal_mail %}
+                {{ user_from.get_profile.postal_mail.as_text|textile }}
+                {% else %}
+                <p class="tip">{% trans "No postal mail" %}</p>
+                {% endif %}
+                </div>
+                <div class="addr">
+                <h3>{{ user_to.username }}</h3>
+                {% if user_to.get_profile.postal_mail %}
+                {{ user_to.get_profile.postal_mail.as_text|textile }}
+                {% else %}
+                <p class="tip">{% trans "No postal mail" %}</p>
+                {% endif %}
+                </div>
+                <div class="clear">
+                <a class="button violet" href="{% url edit_profile %}?setting=postal">{% trans "Edit my address" %}</a>
+            </fieldset>
+
             <div class="clear"></div>
 
             <div class="comments">

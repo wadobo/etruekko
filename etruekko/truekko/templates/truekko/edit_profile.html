@@ -2,6 +2,42 @@
 {% load i18n %}
 {% block title %} {% trans 'Edit profile' %} {% endblock %}
 
+{% block extrahead %}
+    <script>
+    $(document).ready(function(){
+        $(".sform").hide();
+        $("#{{ default }}").show();
+
+        $("#gsettings").click(function() {
+            $(".settings").removeClass("violet");
+            $(this).addClass("violet");
+            $(".sform").hide();
+            $("#general").show();
+
+            return false;
+        });
+
+        $("#psettings").click(function() {
+            $(".settings").removeClass("violet");
+            $(this).addClass("violet");
+            $(".sform").hide();
+            $("#postal").show();
+
+            return false;
+        });
+
+        $("#pwsettings").click(function() {
+            $(".settings").removeClass("violet");
+            $(this).addClass("violet");
+            $(".sform").hide();
+            $("#password").show();
+
+            return false;
+        });
+    });
+    </script>
+{% endblock %}
+
 {% block content %}
     <h2>
         <div class="left"><img src="{% avatar viewing 32 %}" alt="{{ viewing.username }}"/></div>
@@ -10,14 +46,57 @@
         {% endblocktrans %}
         <div class="clear"></div>
     </h2>
-    <div id="subcontent" class="form">
-    <a class="button violet" href="{% url password_change %}">{% trans "Change password" %}</a>
-    <form action="" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
-        <input class="button violet" type="submit" value="{% trans 'Save' %}"/>
-    </form>
+
+    <div id="subcontent">
+
+        {% if form %}
+        <a href="#" id="gsettings" class="settings button {% if default == "general" %}violet{% endif %}">{% trans "General settings" %}</a>
+        {% endif %}
+        {% if pwform %}
+        <a href="#" id="pwsettings" class="settings button {% if default == "password" %}violet{% endif %}">{% trans "Change password" %}</a>
+        {% endif %}
+        <a href="#" id="psettings" class="settings button {% if default == "postal" %}violet{% endif %}">{% trans "Postal settings" %}</a>
+
+    {% if form %}
+    <div class="sform" id="general">
+        <div class="form">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <input class="button violet" type="submit" value="{% trans 'Save' %}"/>
+        </form>
+        </div>
+    </div>
+    {% endif %}
+
+
+    <div class="sform" id="postal">
+        <div class="form">
+        <form action="{% url edit_postal viewing.id %}" method="post">
+            {% csrf_token %}
+            <table>
+                {{ postal_form.as_table }}
+            </table>
+            <input class="button violet" type="submit" value="{% trans 'Save' %}"/>
+        </form>
+        </div>
+    </div>
+
+    {% if pwform %}
+    <div class="sform" id="password">
+        <div class="form">
+        <form method="POST" action="{% url password_change %}">
+            {% csrf_token %}
+            <table>
+            {{ pwform.as_table }}
+            </table>
+            <input type="submit" class="button violet" value="{% trans "Save" %}"/>
+        </form>
+        </div>
+    </div>
+    {% endif %}
+
     </div>
 {% endblock %}

@@ -13,6 +13,7 @@ from etruekko.truekko.models import Tag
 from etruekko.truekko.models import ItemTagged
 from etruekko.truekko.models import WallMessage
 from etruekko.truekko.models import Commitment
+from etruekko.truekko.models import PostalAddress
 
 
 class CustomImageWidget(ClearableFileInput):
@@ -168,3 +169,11 @@ class CommitmentForm(ModelForm):
     class Meta:
         model = Commitment
         fields = ('user_from', 'user_to', 'comment')
+
+
+class PostalForm(ModelForm):
+    required_css_class = 'required'
+
+    class Meta:
+        model = PostalAddress
+        exclude = ('user',)
