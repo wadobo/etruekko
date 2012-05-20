@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block extrahead %}
+    {% if not USER.is_authenticated %}
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/index.css" type="text/css"  media="screen" />
+    {% endif %}
+{% endblock %}
+
 {% block content %}
     {% if USER.is_authenticated %}
     <img src="/media/imgs/menu/home.png"/>

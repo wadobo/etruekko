@@ -1,4 +1,6 @@
 import os
+import datetime
+
 from django.utils.translation import ugettext_lazy as _
 from django.utils.translation import ugettext as _u
 from django.db.models.signals import post_save, pre_delete, post_delete
@@ -39,6 +41,8 @@ class UserProfile(models.Model):
                                    blank=True)
     rating = RatingField(range=5, can_change_vote=True)
     receive_notification = models.BooleanField(_("Receive mail notifiaction for all messages"), default=False)
+
+    premiated_date = models.DateTimeField(blank=True, null=True)
 
     def int_rating(self):
         if self.rating.votes == 0:
@@ -282,6 +286,17 @@ def membership_post_save(sender, instance, created, *args, **kwargs):
         template_email('truekko/membership_mail.txt',
                        'Group "%(group)s" membership' % {'group': instance.group.name},
                        [instance.user.email], context)
+
+        # if not admin in this group and this memberhip is admin
+        # giving 30 truekkos
+        credits = 30
+        adms = instance.group.admins()
+        if len(adms) == 1 and instance.user in adms and instance.role == "ADM":
+                p = instance.user.get_profile()
+                if p.valid_credits(credits):
+                    p.credits += credits
+                    p.premiated_date = datetime.datetime.now()
+                    p.save()
 
 def membership_pre_delete(sender, instance, *args, **kwargs):
     url = reverse('view_group', args=(instance.group.id,))
@@ -529,6 +544,47 @@ class Swap(models.Model):
             return False
         return p1.valid_credits(c2 - c1) and p2.valid_credits(c1 - c2)
 
+    def premiate_users(self):
+        days = 7
+        swaps = 3
+        credits = 5
+
+        def premiate_user(u):
+            t = datetime.datetime.now() - datetime.timedelta(days)
+            q = Q(user_from=u) | Q(user_to=u)
+            q = Q(date__gt=t) & q
+            d = u.get_profile().premiated_date
+            if d:
+                q = q & Q(date__gt=d)
+            query = Swap.objects.filter(status="DON").filter(q)
+            p = u.get_profile()
+            if query.count() >= swaps and p.valid_credits(credits):
+                p.credits += credits
+                p.premiated_date = datetime.datetime.now()
+                p.save()
+
+        premiate_user(self.user_from)
+        premiate_user(self.user_to)
+
+    def premiate_groups(self):
+        swaps = 30
+        credits = 30
+
+        #def premiate_group(g):
+        #    q = Q(user_from__membership__group=g) | Q(user_to__membership__group=g)
+        #    query = Swap.objects.filter(status="DON").filter(q)
+        #    if query.count() >= swaps:
+        #        for a in g.admins():
+        #            p = a.get_profile()
+        #            if p.valid_credits(credits):
+        #                p.credits += credits
+        #                p.save()
+
+        #for g in self.user_from.get_profile().groups():
+        #    premiate_group(g)
+        #for g in self.user_to.get_profile().groups():
+        #    premiate_group(g)
+
 
 class SwapItems(models.Model):
     swap = models.ForeignKey(Swap, related_name="items")
@@ -564,6 +620,10 @@ def swap_post_save(sender, instance, created, *args, **kwargs):
         instance.status = 'DON'
         items = {'from': [i.name for i in instance.items_from()], 'to': [i.name for i in instance.items_to()]}
         instance.done_msg = simplejson.dumps(items)
+
+        instance.premiate_users()
+        instance.premiate_groups()
+
         instance.save()
 
         # removing items from sender

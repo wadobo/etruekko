@@ -134,7 +134,7 @@ class ViewProfile(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(ViewProfile, self).get_context_data(**kwargs)
-        u = get_object_or_404(User, username=self.username)
+        u = get_object_or_404(User, username=self.username, is_active=True)
         wall, created = Wall.objects.get_or_create(user=u, name="%s wall" % u.username)
         messages = wall.messages_for_user(self.request.user)
 
@@ -337,6 +337,8 @@ class People(TemplateView):
         else:
             query = User.objects.all()
 
+        query = query.filter(is_active=True)
+
         q = self.request.GET.get('search', '')
         if q:
             k = Q(username__icontains=q) |\
@@ -346,8 +348,6 @@ class People(TemplateView):
                 Q(userprofile__location__icontains=q)
 
             query = query.filter(k)
-        else:
-            query = query.filter(is_active=True)
         context['users'] = paginate(self.request, query, 10)
         return context
 
