@@ -20,6 +20,7 @@ from etruekko.truekko.forms import RegisterForm
 from etruekko.truekko.forms import TransferDirectForm
 from etruekko.truekko.forms import ItemAddForm
 from etruekko.truekko.forms import ContactForm
+from etruekko.truekko.forms import CommitmentForm
 
 from etruekko.truekko.models import UserProfile
 from etruekko.truekko.models import User
@@ -71,6 +72,8 @@ class Index(TemplateView):
             tq = Q(user_from=u) | Q(user_to=u)
             tq2 = Q(status__in=['US1', 'US2'])
             context['swaps'] = Swap.objects.filter(tq).filter(tq2)
+            context['my_commitments'] = u.my_commitments.filter(status='WAI')
+            context['commitments_to_me'] = u.commitments_to_me.filter(status='WAI')
         else:
             context['last_services'] = Item.objects.filter(type="SR")[0:3]
             context['last_items'] = Item.objects.filter(type="SR")[0:3]
@@ -919,6 +922,8 @@ class SwapCreation(TemplateView):
         context = super(SwapCreation, self).get_context_data(**kwargs)
         u = get_object_or_404(User, username=self.username)
         context = self.get_context({'user_to': u, 'user_from': self.request.user})
+        f = CommitmentForm([self.request.user.id, u.id])
+        context['commitment_form'] = f
         context['items'] = [int(i) for i in self.request.GET.getlist('item')]
         return context
 
@@ -1004,6 +1009,8 @@ class SwapView(TemplateView):
         context = super(SwapView, self).get_context_data(**kwargs)
         context = self.get_context({'user_to': self.swap.user_to,
                                     'user_from': self.swap.user_from})
+        f = CommitmentForm([self.swap.user_to.id, self.swap.user_from.id])
+        context['commitment_form'] = f
         context['items'] = [item.item.id for item in self.swap.items.all()]
         context['credits1'] = self.swap.credits_from
         context['credits2'] = self.swap.credits_to
@@ -1052,6 +1059,8 @@ class SwapView(TemplateView):
 
         if 'cancel' in data.keys():
             self.swap.status = 'CAN'
+            # deleting commitments
+            self.swap.commitments.all().delete()
             self.swap.save()
             messages.info(request, _("Swap canceled"))
             return redirect('swap_view', self.swap.id)
@@ -1066,6 +1075,7 @@ class SwapView(TemplateView):
             self.swap.status = 'CON'
             if self.swap.is_valid():
                 self.swap.save()
+                self.swap.commitments.all().update(status="WAI")
                 messages.info(request, _("Conglatulations, swap has been accepted"))
             else:
                 context = self.get_context({'user_to': self.swap.user_to,
@@ -1156,6 +1166,17 @@ class SwapList(TemplateView):
         return super(SwapList, self).get(request)
 
 
+class CommitmentCreate(View):
+    def post(self, request, sid):
+        swap = get_object_or_404(Swap, pk=sid)
+        f = CommitmentForm([swap.user_to.id, swap.user_from.id], request.POST)
+        cm = f.save(commit=False)
+        cm.swap = swap
+        cm.save()
+
+        return redirect('swap_view', cm.swap.id)
+
+
 class CommitmentDone(View):
     def post(self, request, cid):
         cm = get_object_or_404(Commitment, pk=cid, user_to=request.user)
@@ -1163,6 +1184,16 @@ class CommitmentDone(View):
         cm.save()
 
         return redirect('swap_view', cm.swap.id)
+
+
+class CommitmentDelete(View):
+    def post(self, request, cid):
+        cm = get_object_or_404(Commitment, pk=cid)
+        swapid = cm.swap.id
+        if cm.status == "NEG" and cm.user_to == request.user or cm.user_from == request.user:
+            cm.delete()
+
+        return redirect('swap_view', swapid)
 
 
 ###########
@@ -1727,6 +1758,8 @@ swap_view = login_required(SwapView.as_view())
 swap_list = login_required(SwapList.as_view())
 
 commitment_done = login_required(CommitmentDone.as_view())
+commitment_create = login_required(CommitmentCreate.as_view())
+commitment_delete = login_required(CommitmentDelete.as_view())
 
 #item
 item_add = login_required(ItemAdd.as_view())

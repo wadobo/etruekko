@@ -521,18 +521,6 @@ def swap_post_save(sender, instance, created, *args, **kwargs):
         instance.done_msg = simplejson.dumps(items)
         instance.save()
 
-        # creating a commitment for each service
-        for item in instance.items.filter(item__type='SR'):
-            item = item.item
-            if item.demand():
-                ut = item.user
-                uf = instance.user_to if ut == instance.user_from else instance.user_from
-            else:
-                uf = item.user
-                ut = instance.user_to if uf == instance.user_from else instance.user_from
-            cm = Commitment(user_from=uf, user_to=ut, comment=item.name, swap=instance)
-            cm.save()
-
         # removing items from sender
         for item in instance.items.filter(item__type='IT').exclude(item__quantity=0):
             item = item.item
@@ -568,13 +556,14 @@ post_save.connect(swap_post_save, sender=Swap)
 
 class Commitment(models.Model):
     STATUS = [
+        ('NEG', _('Negotiation')),
         ('WAI', _('Waiting')),
         ('DON', _('Done')),
     ]
 
     user_from = models.ForeignKey(User, related_name="my_commitments")
     user_to = models.ForeignKey(User, related_name="commitments_to_me")
-    status = models.CharField(max_length=3, choices=STATUS, default='WAI')
+    status = models.CharField(max_length=3, choices=STATUS, default='NEG')
     #due_date = models.DateTimeField(_('Due date'), null=True, blank=True)
     comment = models.TextField(_('Comment'))
     swap = models.ForeignKey(Swap, related_name="commitments")

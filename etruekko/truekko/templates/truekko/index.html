@@ -72,7 +72,7 @@
                 <!-- commitments -->
                 <h3>{% trans "My Commitments" %}</h3>
                 <ul>
-                {% for cm in USER.my_commitments.all %}
+                {% for cm in my_commitments %}
                     <li>
                         <a href="{% url swap_view cm.swap.id %}">
                             <img class="left" src="{% avatar cm.swap.user_from 20 %}"/>
@@ -86,7 +86,8 @@
                 </ul>
 
                 <h3>{% trans "Commitments to me" %}</h3>
-                {% for cm in USER.commitments_to_me.all %}
+                <ul>
+                {% for cm in commitments_to_me %}
                     <li>
                         <a href="{% url swap_view cm.swap.id %}">
                             <img class="left" src="{% avatar cm.swap.user_from 20 %}"/>

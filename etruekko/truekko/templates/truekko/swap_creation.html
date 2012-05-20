@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load markup %}
+
 {% block title %}
     {% blocktrans with u1=user_from.username u2=user_to.username %} swap items between {{ u1 }} and {{ u2 }} {% endblocktrans %}
 {% endblock %}
@@ -57,6 +59,41 @@
         {% endfor %}
         </ul>
 
+        {% if swap %}
+            <!-- Commitments -->
+            {% if swap.commitments.all %}
+            <h3>{% trans "Commitments" %}</h3>
+            {% for cm in swap.commitments.all %}
+                <div class="commitment">
+                    {% if cm.status == "NEG" %}
+                    <form method="POST" class="right" action="{% url commitment_delete cm.id %}">
+                        {% csrf_token %}
+                        <button class="button"><img src="/media/imgs/remove.gif" alt="{% trans "Remove" %}"/></button>
+                    </form>
+                    {% endif %}
+                    <span class="status">{{ cm.get_status_display }}</span>
+                    <div class="left">
+                    {% with user=cm.user_from %} {% include "single_user.html" %} {% endwith %}
+                    {% with user=cm.user_to %} {% include "single_user.html" %} {% endwith %}
+                    </div>
+                    <span class="service">
+                    {% blocktrans with userfromname=cm.user_from.get_profile.name userfrom=cm.user_from.username usertoname=cm.user_to.get_profile.name userto=cm.user_to.username comment=cm.comment|textile %}
+                    {{ userfromname }} ({{ userfrom }}) has a commitment with {{ usertoname }} ({{ userto }}):
+                    {{ comment }}
+                    {% endblocktrans %}
+                    </span>
+                    <div class="clear"></div>
+                    {% if USER == cm.user_to and cm.status == "WAI" %}
+                        <form method="POST" action="{% url commitment_done cm.id %}">
+                        {% csrf_token %}
+                            <input type="submit" class="button blue" value="{% trans "Done" %}"/>
+                        </form>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            {% endif %}
+        {% endif %}
+
         {% if swap and swap.finished %}
             <div class="status">
                 {{ swap.get_status_msg }}
@@ -79,31 +116,6 @@
             </div>
             <div class="clear"></div>
 
-            <!-- Commitments -->
-            {% if swap.commitments.all %}
-            <h3>{% trans "Commitments" %}</h3>
-            {% for cm in swap.commitments.all %}
-                <div class="commitment">
-                    <span class="status">{{ cm.get_status_display }}</span>
-                    <div class="left">
-                    {% with user=cm.user_from %} {% include "single_user.html" %} {% endwith %}
-                    {% with user=cm.user_to %} {% include "single_user.html" %} {% endwith %}
-                    </div>
-                    <span class="service">
-                    {% blocktrans with userfromname=cm.user_from.get_profile.name userfrom=cm.user_from.username usertoname=cm.user_to.get_profile.name userto=cm.user_to.username comment=cm.comment %}
-                    {{ userfromname }} ({{ userfrom }}) has a commitment to provide the service "{{ comment }}" to {{ usertoname }} ({{ userto }}).
-                    {% endblocktrans %}
-                    </span>
-                    <div class="clear"></div>
-                    {% if USER == cm.user_to and cm.status != "DON" %}
-                        <form method="POST" action="{% url commitment_done cm.id %}">
-                        {% csrf_token %}
-                            <input type="submit" class="button blue" value="{% trans "Done" %}"/>
-                        </form>
-                    {% endif %}
-                </div>
-            {% endfor %}
-            {% endif %}
         {% endif %}
 
 
@@ -199,5 +211,18 @@
                 <input type="submit" class="button yellowish" name="cbutton" value="{% trans "Comment" %}"/>
             {% endif %}
         </form>
+
+        {% if swap and not swap.finished %}
+            <fieldset>
+            <legend>{% trans "Commitments" %}</legend>
+            <form method="POST" action="{% url commitment_create swap.id %}">
+                {% csrf_token %}
+                <table>
+                    {{ commitment_form.as_table }}
+                </table>
+                <input type="submit" class="button blue" name="commitment" value="{% trans "Create a commitment" %}"/>
+            </form>
+            </fieldset>
+        {% endif %}
     </div>
 {% endblock %}
