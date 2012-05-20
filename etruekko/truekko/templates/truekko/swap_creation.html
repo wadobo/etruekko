@@ -80,6 +80,7 @@
             <div class="clear"></div>
 
             <!-- Commitments -->
+            {% if swap.commitments.all %}
             <h3>{% trans "Commitments" %}</h3>
             {% for cm in swap.commitments.all %}
                 <div class="commitment">
@@ -102,6 +103,7 @@
                     {% endif %}
                 </div>
             {% endfor %}
+            {% endif %}
         {% endif %}
 
 
