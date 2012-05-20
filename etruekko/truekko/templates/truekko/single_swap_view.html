@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<div class="transfer">
+<div class="transfer {{ swap.status }}">
     <div class="left">
         <a href="{% url view_profile swap.user_from.username %}"><img src="{% avatar swap.user_from 64 %}" alt="{{ swap.user_from.username }}"/></a>
         <a href="{% url view_profile swap.user_to.username %}"><img src="{% avatar swap.user_to 64 %}" alt="{{ swap.user_to.username }}"/></a>

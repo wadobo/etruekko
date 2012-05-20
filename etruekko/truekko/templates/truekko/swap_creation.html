@@ -40,6 +40,12 @@
             }
             return false;
           });
+
+          $("#commitment_creation").hide();
+          $("#add_commitment").click(function() {
+            $("#commitment_creation").toggle();
+            return false;
+          });
     });
     </script>
 {% endblock %}
@@ -51,13 +57,40 @@
     <div class="clear"></div>
 
     <div id="subcontent">
-        <h3>{{ swapstatus }}</h3>
+        {% if swapstatus %}
+        <div class="transfer {{ swap.status }}">
+            <h2>{{ swapstatus }}</h2>
+        </div>
+        {% endif %}
 
         <ul class="errorlist">
         {% for error in errors %}
             <li>{{ error }}</li>
         {% endfor %}
         </ul>
+
+        {% if swap and swap.finished %}
+            <div class="status">
+                {{ swap.get_status_msg }}
+                <span class="mode">{{ swap.get_swap_mode_display }}</span>
+            </div>
+            <div class="items">
+            <ul class="itemlist left">
+            {% for item in swap.items_from_names %}
+                <li>{{ item }}</li>
+            {% endfor %}
+            <li class="credits">{{ swap.credits_from }}{{ CREDIT_NAME.short }}</li>
+            </ul>
+
+            <ul class="itemlist left">
+            {% for item in swap.items_to_names %}
+                <li>{{ item }}</li>
+            {% endfor %}
+            <li class="credits">{{ swap.credits_to }}{{ CREDIT_NAME.short }}</li>
+            </ul>
+            </div>
+            <div class="clear"></div>
+        {% endif %}
 
         {% if swap %}
             <!-- Commitments -->
@@ -93,31 +126,6 @@
             {% endfor %}
             {% endif %}
         {% endif %}
-
-        {% if swap and swap.finished %}
-            <div class="status">
-                {{ swap.get_status_msg }}
-                <span class="mode">{{ swap.get_swap_mode_display }}</span>
-            </div>
-            <div class="items">
-            <ul class="itemlist left">
-            {% for item in swap.items_from_names %}
-                <li>{{ item }}</li>
-            {% endfor %}
-            <li class="credits">{{ swap.credits_from }}{{ CREDIT_NAME.short }}</li>
-            </ul>
-
-            <ul class="itemlist left">
-            {% for item in swap.items_to_names %}
-                <li>{{ item }}</li>
-            {% endfor %}
-            <li class="credits">{{ swap.credits_to }}{{ CREDIT_NAME.short }}</li>
-            </ul>
-            </div>
-            <div class="clear"></div>
-
-        {% endif %}
-
 
         <form method="POST" action="">
             {% csrf_token %}
@@ -213,7 +221,7 @@
         </form>
 
         {% if swap and not swap.finished %}
-            <fieldset>
+            <fieldset id="commitment_creation">
             <legend>{% trans "Commitments" %}</legend>
             <form method="POST" action="{% url commitment_create swap.id %}">
                 {% csrf_token %}
@@ -223,6 +231,7 @@
                 <input type="submit" class="button blue" name="commitment" value="{% trans "Create a commitment" %}"/>
             </form>
             </fieldset>
+            <a href="#" id="add_commitment">{% trans "Add commitment" %}</a>
         {% endif %}
     </div>
 {% endblock %}

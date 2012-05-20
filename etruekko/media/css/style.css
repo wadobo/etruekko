@@ -684,7 +684,8 @@ span.button {
 /* TRANSF */
 
 .transfer {
-    border-bottom: 1px solid #cccccc;
+    border-bottom: 2px solid #cccccc;
+    margin-bottom: 5px;
     padding: 10px;
 }
 
@@ -709,6 +710,22 @@ span.button {
 
 .transfer .credits {
     font-weight: bold;
+}
+
+.transfer.US1 {
+    background: #EEEEFF url('../imgs/neg.png') center right no-repeat;
+}
+
+.transfer.US2 {
+    background: #EEEEFF url('../imgs/neg.png') center right no-repeat;
+}
+
+.transfer.CAN {
+    background: #FFEEEE url('../imgs/cancel.png') center right no-repeat;
+}
+
+.transfer.DON {
+    background: #EEFFEE url('../imgs/done.png') center right no-repeat;
 }
 
 /* ENDOF TRANSF */
