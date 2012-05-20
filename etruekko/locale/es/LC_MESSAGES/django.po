@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-20 11:43+0200\n"
+"POT-Creation-Date: 2012-05-20 22:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,9 +21,993 @@ msgstr ""
 msgid "Reset password"
 msgstr "Restaurar contraseña"
 
-#: urls.py:50 truekko/templates/truekko/edit_profile.html:14
+#: urls.py:50 truekko/templates/truekko/edit_profile.html:56
 msgid "Change password"
 msgstr "Cambiar contraseña"
+
+#: utils.py:64
+msgid "United Kingdom"
+msgstr ""
+
+#: utils.py:65
+msgid "Afghanistan"
+msgstr ""
+
+#: utils.py:66
+msgid "Aland Islands"
+msgstr ""
+
+#: utils.py:67
+msgid "Albania"
+msgstr ""
+
+#: utils.py:68
+msgid "Algeria"
+msgstr ""
+
+#: utils.py:69
+msgid "American Samoa"
+msgstr ""
+
+#: utils.py:70
+msgid "Andorra"
+msgstr ""
+
+#: utils.py:71
+msgid "Angola"
+msgstr ""
+
+#: utils.py:72
+msgid "Anguilla"
+msgstr ""
+
+#: utils.py:73
+msgid "Antarctica"
+msgstr ""
+
+#: utils.py:74
+msgid "Antigua and Barbuda"
+msgstr ""
+
+#: utils.py:75
+msgid "Argentina"
+msgstr ""
+
+#: utils.py:76
+msgid "Armenia"
+msgstr ""
+
+#: utils.py:77
+msgid "Aruba"
+msgstr ""
+
+#: utils.py:78
+msgid "Australia"
+msgstr ""
+
+#: utils.py:79
+msgid "Austria"
+msgstr ""
+
+#: utils.py:80
+msgid "Azerbaijan"
+msgstr ""
+
+#: utils.py:81
+msgid "Bahamas"
+msgstr ""
+
+#: utils.py:82
+msgid "Bahrain"
+msgstr ""
+
+#: utils.py:83
+msgid "Bangladesh"
+msgstr ""
+
+#: utils.py:84
+msgid "Barbados"
+msgstr ""
+
+#: utils.py:85
+msgid "Belarus"
+msgstr ""
+
+#: utils.py:86
+msgid "Belgium"
+msgstr ""
+
+#: utils.py:87
+msgid "Belize"
+msgstr ""
+
+#: utils.py:88
+msgid "Benin"
+msgstr ""
+
+#: utils.py:89
+msgid "Bermuda"
+msgstr ""
+
+#: utils.py:90
+msgid "Bhutan"
+msgstr ""
+
+#: utils.py:91
+msgid "Bolivia"
+msgstr ""
+
+#: utils.py:92
+msgid "Bosnia and Herzegovina"
+msgstr ""
+
+#: utils.py:93
+msgid "Botswana"
+msgstr ""
+
+#: utils.py:94
+msgid "Bouvet Island"
+msgstr ""
+
+#: utils.py:95
+msgid "Brazil"
+msgstr ""
+
+#: utils.py:96
+msgid "British Indian Ocean Territory"
+msgstr ""
+
+#: utils.py:97
+msgid "Brunei Darussalam"
+msgstr ""
+
+#: utils.py:98
+msgid "Bulgaria"
+msgstr ""
+
+#: utils.py:99
+msgid "Burkina Faso"
+msgstr ""
+
+#: utils.py:100
+msgid "Burundi"
+msgstr ""
+
+#: utils.py:101
+msgid "Cambodia"
+msgstr ""
+
+#: utils.py:102
+msgid "Cameroon"
+msgstr ""
+
+#: utils.py:103
+msgid "Canada"
+msgstr ""
+
+#: utils.py:104
+msgid "Cape Verde"
+msgstr ""
+
+#: utils.py:105
+msgid "Cayman Islands"
+msgstr ""
+
+#: utils.py:106
+msgid "Central African Republic"
+msgstr ""
+
+#: utils.py:107
+msgid "Chad"
+msgstr ""
+
+#: utils.py:108
+msgid "Chile"
+msgstr ""
+
+#: utils.py:109
+msgid "China"
+msgstr ""
+
+#: utils.py:110
+msgid "Christmas Island"
+msgstr ""
+
+#: utils.py:111
+msgid "Cocos (Keeling) Islands"
+msgstr ""
+
+#: utils.py:112
+msgid "Colombia"
+msgstr ""
+
+#: utils.py:113
+msgid "Comoros"
+msgstr ""
+
+#: utils.py:114
+msgid "Congo"
+msgstr ""
+
+#: utils.py:115
+msgid "Congo, The Democratic Republic of the"
+msgstr ""
+
+#: utils.py:116
+msgid "Cook Islands"
+msgstr ""
+
+#: utils.py:117
+msgid "Costa Rica"
+msgstr ""
+
+#: utils.py:118
+msgid "Cote d'Ivoire"
+msgstr ""
+
+#: utils.py:119
+msgid "Croatia"
+msgstr ""
+
+#: utils.py:120
+msgid "Cuba"
+msgstr ""
+
+#: utils.py:121
+msgid "Cyprus"
+msgstr ""
+
+#: utils.py:122
+msgid "Czech Republic"
+msgstr ""
+
+#: utils.py:123
+msgid "Denmark"
+msgstr ""
+
+#: utils.py:124
+msgid "Djibouti"
+msgstr ""
+
+#: utils.py:125
+msgid "Dominica"
+msgstr ""
+
+#: utils.py:126
+msgid "Dominican Republic"
+msgstr ""
+
+#: utils.py:127
+msgid "Ecuador"
+msgstr ""
+
+#: utils.py:128
+msgid "Egypt"
+msgstr ""
+
+#: utils.py:129
+msgid "El Salvador"
+msgstr ""
+
+#: utils.py:130
+msgid "Equatorial Guinea"
+msgstr ""
+
+#: utils.py:131
+msgid "Eritrea"
+msgstr ""
+
+#: utils.py:132
+msgid "Estonia"
+msgstr ""
+
+#: utils.py:133
+msgid "Ethiopia"
+msgstr ""
+
+#: utils.py:134
+msgid "Falkland Islands (Malvinas)"
+msgstr ""
+
+#: utils.py:135
+msgid "Faroe Islands"
+msgstr ""
+
+#: utils.py:136
+msgid "Fiji"
+msgstr ""
+
+#: utils.py:137
+msgid "Finland"
+msgstr ""
+
+#: utils.py:138
+msgid "France"
+msgstr ""
+
+#: utils.py:139
+msgid "French Guiana"
+msgstr ""
+
+#: utils.py:140
+msgid "French Polynesia"
+msgstr ""
+
+#: utils.py:141
+msgid "French Southern Territories"
+msgstr ""
+
+#: utils.py:142
+msgid "Gabon"
+msgstr ""
+
+#: utils.py:143
+msgid "Gambia"
+msgstr ""
+
+#: utils.py:144
+msgid "Georgia"
+msgstr ""
+
+#: utils.py:145
+msgid "Germany"
+msgstr ""
+
+#: utils.py:146
+msgid "Ghana"
+msgstr ""
+
+#: utils.py:147
+msgid "Gibraltar"
+msgstr ""
+
+#: utils.py:148
+msgid "Greece"
+msgstr ""
+
+#: utils.py:149
+msgid "Greenland"
+msgstr ""
+
+#: utils.py:150
+msgid "Grenada"
+msgstr ""
+
+#: utils.py:151
+msgid "Guadeloupe"
+msgstr ""
+
+#: utils.py:152
+msgid "Guam"
+msgstr ""
+
+#: utils.py:153
+msgid "Guatemala"
+msgstr ""
+
+#: utils.py:154
+msgid "Guernsey"
+msgstr ""
+
+#: utils.py:155
+msgid "Guinea"
+msgstr ""
+
+#: utils.py:156
+msgid "Guinea-Bissau"
+msgstr ""
+
+#: utils.py:157
+msgid "Guyana"
+msgstr ""
+
+#: utils.py:158
+msgid "Haiti"
+msgstr ""
+
+#: utils.py:159
+msgid "Heard Island and McDonald Islands"
+msgstr ""
+
+#: utils.py:160
+msgid "Holy See (Vatican City State)"
+msgstr ""
+
+#: utils.py:161
+msgid "Honduras"
+msgstr ""
+
+#: utils.py:162
+msgid "Hong Kong"
+msgstr ""
+
+#: utils.py:163
+msgid "Hungary"
+msgstr ""
+
+#: utils.py:164
+msgid "Iceland"
+msgstr ""
+
+#: utils.py:165
+msgid "India"
+msgstr ""
+
+#: utils.py:166
+msgid "Indonesia"
+msgstr ""
+
+#: utils.py:167
+msgid "Iran, Islamic Republic of"
+msgstr ""
+
+#: utils.py:168
+msgid "Iraq"
+msgstr ""
+
+#: utils.py:169
+msgid "Ireland"
+msgstr ""
+
+#: utils.py:170
+msgid "Isle of Man"
+msgstr ""
+
+#: utils.py:171
+msgid "Israel"
+msgstr ""
+
+#: utils.py:172
+msgid "Italy"
+msgstr ""
+
+#: utils.py:173
+msgid "Jamaica"
+msgstr ""
+
+#: utils.py:174
+msgid "Japan"
+msgstr ""
+
+#: utils.py:175
+msgid "Jersey"
+msgstr ""
+
+#: utils.py:176
+msgid "Jordan"
+msgstr ""
+
+#: utils.py:177
+msgid "Kazakhstan"
+msgstr ""
+
+#: utils.py:178
+msgid "Kenya"
+msgstr ""
+
+#: utils.py:179
+msgid "Kiribati"
+msgstr ""
+
+#: utils.py:180
+msgid "Korea, Democratic People's Republic of"
+msgstr ""
+
+#: utils.py:181
+msgid "Korea, Republic of"
+msgstr ""
+
+#: utils.py:182
+msgid "Kuwait"
+msgstr ""
+
+#: utils.py:183
+msgid "Kyrgyzstan"
+msgstr ""
+
+#: utils.py:184
+msgid "Lao People's Democratic Republic"
+msgstr ""
+
+#: utils.py:185
+msgid "Latvia"
+msgstr ""
+
+#: utils.py:186
+msgid "Lebanon"
+msgstr ""
+
+#: utils.py:187
+msgid "Lesotho"
+msgstr ""
+
+#: utils.py:188
+msgid "Liberia"
+msgstr ""
+
+#: utils.py:189
+msgid "Libyan Arab Jamahiriya"
+msgstr ""
+
+#: utils.py:190
+msgid "Liechtenstein"
+msgstr ""
+
+#: utils.py:191
+msgid "Lithuania"
+msgstr ""
+
+#: utils.py:192
+msgid "Luxembourg"
+msgstr ""
+
+#: utils.py:193
+msgid "Macao"
+msgstr ""
+
+#: utils.py:194
+msgid "Macedonia, The Former Yugoslav Republic of"
+msgstr ""
+
+#: utils.py:195
+msgid "Madagascar"
+msgstr ""
+
+#: utils.py:196
+msgid "Malawi"
+msgstr ""
+
+#: utils.py:197
+msgid "Malaysia"
+msgstr ""
+
+#: utils.py:198
+msgid "Maldives"
+msgstr ""
+
+#: utils.py:199
+msgid "Mali"
+msgstr ""
+
+#: utils.py:200
+msgid "Malta"
+msgstr ""
+
+#: utils.py:201
+msgid "Marshall Islands"
+msgstr ""
+
+#: utils.py:202
+msgid "Martinique"
+msgstr ""
+
+#: utils.py:203
+msgid "Mauritania"
+msgstr ""
+
+#: utils.py:204
+msgid "Mauritius"
+msgstr ""
+
+#: utils.py:205
+msgid "Mayotte"
+msgstr ""
+
+#: utils.py:206
+msgid "Mexico"
+msgstr ""
+
+#: utils.py:207
+msgid "Micronesia, Federated States of"
+msgstr ""
+
+#: utils.py:208
+msgid "Moldova"
+msgstr ""
+
+#: utils.py:209
+msgid "Monaco"
+msgstr ""
+
+#: utils.py:210
+msgid "Mongolia"
+msgstr ""
+
+#: utils.py:211
+msgid "Montenegro"
+msgstr ""
+
+#: utils.py:212
+msgid "Montserrat"
+msgstr ""
+
+#: utils.py:213
+msgid "Morocco"
+msgstr ""
+
+#: utils.py:214
+msgid "Mozambique"
+msgstr ""
+
+#: utils.py:215
+msgid "Myanmar"
+msgstr ""
+
+#: utils.py:216
+msgid "Namibia"
+msgstr ""
+
+#: utils.py:217
+msgid "Nauru"
+msgstr ""
+
+#: utils.py:218
+msgid "Nepal"
+msgstr ""
+
+#: utils.py:219
+msgid "Netherlands"
+msgstr ""
+
+#: utils.py:220
+msgid "Netherlands Antilles"
+msgstr ""
+
+#: utils.py:221
+msgid "New Caledonia"
+msgstr ""
+
+#: utils.py:222
+msgid "New Zealand"
+msgstr ""
+
+#: utils.py:223
+msgid "Nicaragua"
+msgstr ""
+
+#: utils.py:224
+msgid "Niger"
+msgstr ""
+
+#: utils.py:225
+msgid "Nigeria"
+msgstr ""
+
+#: utils.py:226
+msgid "Niue"
+msgstr ""
+
+#: utils.py:227
+msgid "Norfolk Island"
+msgstr ""
+
+#: utils.py:228
+msgid "Northern Mariana Islands"
+msgstr ""
+
+#: utils.py:229
+msgid "Norway"
+msgstr ""
+
+#: utils.py:230
+msgid "Oman"
+msgstr ""
+
+#: utils.py:231
+msgid "Pakistan"
+msgstr ""
+
+#: utils.py:232
+msgid "Palau"
+msgstr ""
+
+#: utils.py:233
+msgid "Palestinian Territory, Occupied"
+msgstr ""
+
+#: utils.py:234
+msgid "Panama"
+msgstr ""
+
+#: utils.py:235
+msgid "Papua New Guinea"
+msgstr ""
+
+#: utils.py:236
+msgid "Paraguay"
+msgstr ""
+
+#: utils.py:237
+msgid "Peru"
+msgstr ""
+
+#: utils.py:238
+msgid "Philippines"
+msgstr ""
+
+#: utils.py:239
+msgid "Pitcairn"
+msgstr ""
+
+#: utils.py:240
+msgid "Poland"
+msgstr ""
+
+#: utils.py:241
+msgid "Portugal"
+msgstr ""
+
+#: utils.py:242
+msgid "Puerto Rico"
+msgstr ""
+
+#: utils.py:243
+msgid "Qatar"
+msgstr ""
+
+#: utils.py:244
+msgid "Reunion"
+msgstr ""
+
+#: utils.py:245
+msgid "Romania"
+msgstr ""
+
+#: utils.py:246
+msgid "Russian Federation"
+msgstr ""
+
+#: utils.py:247
+msgid "Rwanda"
+msgstr ""
+
+#: utils.py:248
+msgid "Saint Barthelemy"
+msgstr ""
+
+#: utils.py:249
+msgid "Saint Helena"
+msgstr ""
+
+#: utils.py:250
+msgid "Saint Kitts and Nevis"
+msgstr ""
+
+#: utils.py:251
+msgid "Saint Lucia"
+msgstr ""
+
+#: utils.py:252
+msgid "Saint Martin"
+msgstr ""
+
+#: utils.py:253
+msgid "Saint Pierre and Miquelon"
+msgstr ""
+
+#: utils.py:254
+msgid "Saint Vincent and the Grenadines"
+msgstr ""
+
+#: utils.py:255
+msgid "Samoa"
+msgstr ""
+
+#: utils.py:256
+msgid "San Marino"
+msgstr ""
+
+#: utils.py:257
+msgid "Sao Tome and Principe"
+msgstr ""
+
+#: utils.py:258
+msgid "Saudi Arabia"
+msgstr ""
+
+#: utils.py:259
+msgid "Senegal"
+msgstr ""
+
+#: utils.py:260
+msgid "Serbia"
+msgstr ""
+
+#: utils.py:261
+msgid "Seychelles"
+msgstr ""
+
+#: utils.py:262
+msgid "Sierra Leone"
+msgstr ""
+
+#: utils.py:263
+msgid "Singapore"
+msgstr ""
+
+#: utils.py:264
+msgid "Slovakia"
+msgstr ""
+
+#: utils.py:265
+msgid "Slovenia"
+msgstr ""
+
+#: utils.py:266
+msgid "Solomon Islands"
+msgstr ""
+
+#: utils.py:267
+msgid "Somalia"
+msgstr ""
+
+#: utils.py:268
+msgid "South Africa"
+msgstr ""
+
+#: utils.py:269
+msgid "South Georgia and the South Sandwich Islands"
+msgstr ""
+
+#: utils.py:270
+msgid "Spain"
+msgstr "España"
+
+#: utils.py:271
+msgid "Sri Lanka"
+msgstr ""
+
+#: utils.py:272
+msgid "Sudan"
+msgstr ""
+
+#: utils.py:273
+msgid "Suriname"
+msgstr ""
+
+#: utils.py:274
+msgid "Svalbard and Jan Mayen"
+msgstr ""
+
+#: utils.py:275
+msgid "Swaziland"
+msgstr ""
+
+#: utils.py:276
+msgid "Sweden"
+msgstr ""
+
+#: utils.py:277
+msgid "Switzerland"
+msgstr ""
+
+#: utils.py:278
+msgid "Syrian Arab Republic"
+msgstr ""
+
+#: utils.py:279
+msgid "Taiwan, Province of China"
+msgstr ""
+
+#: utils.py:280
+msgid "Tajikistan"
+msgstr ""
+
+#: utils.py:281
+msgid "Tanzania, United Republic of"
+msgstr ""
+
+#: utils.py:282
+msgid "Thailand"
+msgstr ""
+
+#: utils.py:283
+msgid "Timor-Leste"
+msgstr ""
+
+#: utils.py:284
+msgid "Togo"
+msgstr ""
+
+#: utils.py:285
+msgid "Tokelau"
+msgstr ""
+
+#: utils.py:286
+msgid "Tonga"
+msgstr ""
+
+#: utils.py:287
+msgid "Trinidad and Tobago"
+msgstr ""
+
+#: utils.py:288
+msgid "Tunisia"
+msgstr ""
+
+#: utils.py:289
+msgid "Turkey"
+msgstr ""
+
+#: utils.py:290
+msgid "Turkmenistan"
+msgstr ""
+
+#: utils.py:291
+msgid "Turks and Caicos Islands"
+msgstr ""
+
+#: utils.py:292
+msgid "Tuvalu"
+msgstr ""
+
+#: utils.py:293
+msgid "Uganda"
+msgstr ""
+
+#: utils.py:294
+msgid "Ukraine"
+msgstr ""
+
+#: utils.py:295
+msgid "United Arab Emirates"
+msgstr ""
+
+#: utils.py:296
+msgid "United States"
+msgstr ""
+
+#: utils.py:297
+msgid "United States Minor Outlying Islands"
+msgstr ""
+
+#: utils.py:298
+msgid "Uruguay"
+msgstr ""
+
+#: utils.py:299
+msgid "Uzbekistan"
+msgstr ""
+
+#: utils.py:300
+msgid "Vanuatu"
+msgstr ""
+
+#: utils.py:301
+msgid "Venezuela"
+msgstr ""
+
+#: utils.py:302
+msgid "Viet Nam"
+msgstr ""
+
+#: utils.py:303
+msgid "Virgin Islands, British"
+msgstr ""
+
+#: utils.py:304
+msgid "Virgin Islands, U.S."
+msgstr ""
+
+#: utils.py:305
+msgid "Wallis and Futuna"
+msgstr ""
+
+#: utils.py:306
+msgid "Western Sahara"
+msgstr ""
+
+#: utils.py:307
+msgid "Yemen"
+msgstr ""
+
+#: utils.py:308
+msgid "Zambia"
+msgstr ""
+
+#: utils.py:309
+msgid "Zimbabwe"
+msgstr ""
 
 #: templates/base.html:46
 msgid "Index"
@@ -126,7 +1110,8 @@ msgid ""
 msgstr ""
 "\n"
 "El usuario \"%(username)s\" no está activo todavía, este usuario está\n"
-"esperando la confirmación de una solicitud de grupo para ser parte de etruekko.\n"
+"esperando la confirmación de una solicitud de grupo para ser parte de "
+"etruekko.\n"
 
 #: templates/login.html:42
 msgid "Sing in"
@@ -165,11 +1150,11 @@ msgstr "preferencias"
 msgid "logout"
 msgstr "salir"
 
-#: templates/user.html:17 truekko/forms.py:43
+#: templates/user.html:17 truekko/forms.py:45
 msgid "Username"
 msgstr "Nombre de usuario"
 
-#: templates/user.html:18 truekko/forms.py:47
+#: templates/user.html:18 truekko/forms.py:49
 msgid "Password"
 msgstr "Contraseña"
 
@@ -221,163 +1206,191 @@ msgstr "Lo sentimos, pero no tienes permiso para hacer esto"
 msgid "Only group admin can edit this group"
 msgstr "Sólo el administrador del grupo puede editar este grupo"
 
-#: truekko/forms.py:44 truekko/models.py:28 truekko/models.py:135
-#: truekko/models.py:166 truekko/models.py:320 truekko/models.py:384
-#: truekko/models.py:595
+#: truekko/forms.py:46 truekko/models.py:31 truekko/models.py:181
+#: truekko/models.py:212 truekko/models.py:377 truekko/models.py:441
+#: truekko/models.py:689
 msgid "Name"
 msgstr "Nombre"
 
-#: truekko/forms.py:45 truekko/models.py:31 truekko/models.py:168
+#: truekko/forms.py:47 truekko/models.py:34 truekko/models.py:214
 msgid "Location"
 msgstr "Localización"
 
-#: truekko/forms.py:46 truekko/forms.py:140 truekko/models.py:167
+#: truekko/forms.py:48 truekko/forms.py:142 truekko/models.py:213
 msgid "Email"
 msgstr "Correo electrónico"
 
-#: truekko/forms.py:48
+#: truekko/forms.py:50
 msgid "Password confirm"
 msgstr "Confirmación de contraseña"
 
-#: truekko/forms.py:53
+#: truekko/forms.py:55
 msgid "Username exists"
 msgstr "El nombre de usuario existe"
 
-#: truekko/forms.py:60
+#: truekko/forms.py:62
 msgid "User exists with the same email"
 msgstr "Un usuario con el mismo email ya existe"
 
-#: truekko/forms.py:70
+#: truekko/forms.py:72
 msgid "Password and password confirm didn't match"
 msgstr "Las contraseñas no coinciden"
 
-#: truekko/forms.py:91
+#: truekko/forms.py:93
 msgid "Concept"
 msgstr "Concepto"
 
-#: truekko/forms.py:92
+#: truekko/forms.py:94
 msgid "Credits"
 msgstr "Créditos"
 
-#: truekko/forms.py:102
+#: truekko/forms.py:104
 msgid "Can't make this transfer, negative credits isn't allowed"
 msgstr ""
 "No es posible hacer esta transferencia, no están permitidos créditos "
 "negativos"
 
-#: truekko/forms.py:104
+#: truekko/forms.py:106
 msgid "Can't make this transfer, insufficient credits"
 msgstr "No es posible hacer esta transferencia, insuficientes créditos"
 
-#: truekko/forms.py:141
+#: truekko/forms.py:143
 msgid "Subject"
 msgstr "Asunto"
 
-#: truekko/forms.py:142 truekko/models.py:652 truekko/models.py:703
+#: truekko/forms.py:144 truekko/models.py:746 truekko/models.py:797
 msgid "Message"
 msgstr "Mensaje"
 
-#: truekko/forms.py:143
+#: truekko/forms.py:145
 msgid "Send a copy to myself"
 msgstr "Enviar una copia a mi correo"
 
-#: truekko/models.py:34 truekko/models.py:170
+#: truekko/models.py:37 truekko/models.py:216
 msgid "Web"
 msgstr "Web"
 
-#: truekko/models.py:35 truekko/models.py:171
+#: truekko/models.py:38 truekko/models.py:217
 msgid "Avatar"
 msgstr "Avatar"
 
-#: truekko/models.py:37
+#: truekko/models.py:40
 msgid "Personal description"
 msgstr "Descripción personal"
 
-#: truekko/models.py:40
+#: truekko/models.py:43
 msgid "Receive mail notifiaction for all messages"
 msgstr "Recibir notificaciones por correo electrónico para todos los mensajes"
 
-#: truekko/models.py:136
+#: truekko/models.py:129
+msgid "Address line 1"
+msgstr "Dirección"
+
+#: truekko/models.py:130
+msgid "Address line 2"
+msgstr "Dirección"
+
+#: truekko/models.py:131
+msgid "Postal Code"
+msgstr "Código postal"
+
+#: truekko/models.py:132
+msgid "City"
+msgstr "Ciudad"
+
+#: truekko/models.py:133
+msgid "State/Province"
+msgstr "Estado/Provincia"
+
+#: truekko/models.py:134
+msgid "Country"
+msgstr "País"
+
+#: truekko/models.py:154
+msgid "Addresses"
+msgstr "Direcciones"
+
+#: truekko/models.py:182
 msgid "Channel description"
 msgstr "Descripción de Canal"
 
-#: truekko/models.py:173
+#: truekko/models.py:219
 msgid "Group description"
 msgstr "Descripción del grupo"
 
-#: truekko/models.py:298 truekko/templates/search/advanced.html:66
+#: truekko/models.py:355 truekko/templates/search/advanced.html:66
 msgid "item"
 msgstr "Artículo"
 
-#: truekko/models.py:299 truekko/templates/search/advanced.html:69
+#: truekko/models.py:356 truekko/templates/search/advanced.html:69
 msgid "service"
 msgstr "Servicio"
 
-#: truekko/models.py:303 truekko/templates/truekko/single_item_view.html:28
+#: truekko/models.py:360 truekko/templates/truekko/single_item_view.html:28
 msgid "Offer"
 msgstr "Oferta"
 
-#: truekko/models.py:304 truekko/templates/truekko/single_item_view.html:26
+#: truekko/models.py:361 truekko/templates/truekko/single_item_view.html:26
 msgid "Demand"
 msgstr "Demanda"
 
-#: truekko/models.py:309
+#: truekko/models.py:366
 msgid "truekkos per hour"
 msgstr "truekkos por hora"
 
-#: truekko/models.py:310
+#: truekko/models.py:367
 msgid "truekkos per kilogram"
 msgstr "truekkos por kilogramo"
 
-#: truekko/models.py:311
+#: truekko/models.py:368
 msgid "truekkos per liter"
 msgstr "truekkos por litro"
 
-#: truekko/models.py:312
+#: truekko/models.py:369
 msgid "truekkos per metter"
 msgstr "truekkos por metro"
 
-#: truekko/models.py:313
+#: truekko/models.py:370
 msgid "truekkos per square metter"
 msgstr "truekkos por metro cuadrado"
 
-#: truekko/models.py:314
+#: truekko/models.py:371
 msgid "truekkos per cubic metter"
 msgstr "truecos por metro cúbico"
 
-#: truekko/models.py:318 truekko/templates/search/advanced.html:53
+#: truekko/models.py:375 truekko/templates/search/advanced.html:53
 msgid "Item or service"
 msgstr "Artículo o servicio"
 
-#: truekko/models.py:319
+#: truekko/models.py:376
 msgid "Offer or demand"
 msgstr "Oferta o demanda"
 
-#: truekko/models.py:321 truekko/models.py:596
+#: truekko/models.py:378 truekko/models.py:690
 msgid "Description"
 msgstr "Descripción"
 
-#: truekko/models.py:322
+#: truekko/models.py:379
 msgid "Evaluation"
 msgstr "Valoración"
 
-#: truekko/models.py:323
+#: truekko/models.py:380
 msgid "Evaluation type"
 msgstr "Tipo de valoración"
 
-#: truekko/models.py:324
+#: truekko/models.py:381
 msgid "photo"
 msgstr "foto"
 
-#: truekko/models.py:327
+#: truekko/models.py:384
 msgid "quantity"
 msgstr "cantidad"
 
-#: truekko/models.py:327
+#: truekko/models.py:384
 msgid "use 0 for unlimited"
 msgstr "usa 0 para ilimitado"
 
-#: truekko/models.py:371
+#: truekko/models.py:428
 #, python-format
 msgid ""
 "New %(item_or_service)s %(offer_or_demand)s added: \n"
@@ -386,112 +1399,116 @@ msgstr ""
 "Una nueva %(offer_or_demand)s de %(item_or_service)s ha sido añadida: \n"
 "*%(name)s*, %(desc)s%(extra)s\"ver\":%(url)s"
 
-#: truekko/models.py:408
+#: truekko/models.py:465
 msgid "User from confirmed"
 msgstr "Usuario desde confirmado"
 
-#: truekko/models.py:409
+#: truekko/models.py:466
 msgid "User to confirmed"
 msgstr "Usuario para confirmado"
 
-#: truekko/models.py:410 truekko/models.py:693
+#: truekko/models.py:467 truekko/models.py:787
 msgid "confirmed"
 msgstr "confirmado"
 
-#: truekko/models.py:411 truekko/models.py:572
-#: truekko/templates/truekko/swap_creation.html:100
+#: truekko/models.py:468 truekko/models.py:666
+#: truekko/templates/truekko/swap_creation.html:141
 msgid "Done"
 msgstr "Hecho"
 
-#: truekko/models.py:412 truekko/templates/truekko/group_denounce_view.html:42
+#: truekko/models.py:469 truekko/templates/truekko/group_denounce_view.html:42
 #: truekko/templates/truekko/group_denounce_view.html:46
 msgid "Cancel"
 msgstr "Cancelado"
 
-#: truekko/models.py:416
+#: truekko/models.py:473
 msgid "---"
 msgstr "---"
 
-#: truekko/models.py:417
+#: truekko/models.py:474
 msgid "In person"
 msgstr "En persona"
 
-#: truekko/models.py:418
+#: truekko/models.py:475
 msgid "Postal mail"
 msgstr "Correo postal"
 
-#: truekko/models.py:419
+#: truekko/models.py:476
 msgid "Express transport"
 msgstr "Empresa de mensajería"
 
-#: truekko/models.py:444 truekko/models.py:447
+#: truekko/models.py:504 truekko/models.py:507
 #, python-format
 msgid "Negotiation, waiting for %s confirmation"
 msgstr "Negociación, esperando la confirmación de %s"
 
-#: truekko/models.py:449
+#: truekko/models.py:509
 msgid "Swap confirmed"
 msgstr "Intercambio confirmado"
 
-#: truekko/models.py:451
+#: truekko/models.py:511
 msgid "Swap done"
 msgstr "Intercambio hecho"
 
-#: truekko/models.py:453 truekko/views.py:1056
+#: truekko/models.py:513 truekko/views.py:1146
 msgid "Swap canceled"
 msgstr "Intercambio cancelado"
 
-#: truekko/models.py:549 truekko/views.py:1069
+#: truekko/models.py:642 truekko/views.py:1160
 msgid "Conglatulations, swap has been accepted"
 msgstr "Felicidades, el intercambio ha sido aceptado"
 
-#: truekko/models.py:550
+#: truekko/models.py:643
 msgid "A swap has been accepted"
 msgstr "Un nuevo intercambio ha sido aceptado"
 
-#: truekko/models.py:552
+#: truekko/models.py:645
 msgid "A swap has been modified"
 msgstr "Un nuevo intercambio ha sido modificado"
 
-#: truekko/models.py:554
+#: truekko/models.py:647
 msgid "A swap has been canceled"
 msgstr "Un nuevo intercambio ha sido cancelado"
 
-#: truekko/models.py:571
+#: truekko/models.py:664
+msgid "Negotiation"
+msgstr "Negociación"
+
+#: truekko/models.py:665
 msgid "Waiting"
 msgstr "Esperando"
 
-#: truekko/models.py:579 truekko/templates/truekko/swap_creation.html:197
+#: truekko/models.py:673 truekko/templates/truekko/swap_creation.html:262
 msgid "Comment"
 msgstr "Comentario"
 
-#: truekko/models.py:638 truekko/models.py:640
+#: truekko/models.py:732 truekko/models.py:734
 #, python-format
 msgid "%s's wall"
 msgstr "Muro de %s"
 
-#: truekko/models.py:651 truekko/templates/truekko/wall.html:9
+#: truekko/models.py:745 truekko/templates/truekko/wall.html:9
 msgid "Private"
 msgstr "Privado"
 
-#: truekko/models.py:684
+#: truekko/models.py:778
 #, python-format
 msgid "New message by %(user)s in %(wall)s"
 msgstr "Nuevo mensaje de %(user)s en %(wall)s"
 
-#: truekko/models.py:692
+#: truekko/models.py:786
 msgid "pending"
 msgstr "pendiente"
 
-#: truekko/models.py:694
+#: truekko/models.py:788
 msgid "resolved"
 msgstr "resuelto"
 
-#: truekko/models.py:695 truekko/templates/truekko/swap_creation.html:195
+#: truekko/models.py:789 truekko/templates/truekko/swap_creation.html:260
 msgid "cancel"
 msgstr "cancelado"
 
-#: truekko/models.py:720
+#: truekko/models.py:814
 #, python-format
 msgid "%(user)s user has been denounced in group %(group)s"
 msgstr "El usuario %(user)s ha sido denunciado en el grupo %(group)s"
@@ -520,83 +1537,83 @@ msgstr "Crea tus ofertas y demandas"
 msgid "My swaps"
 msgstr "Mis intercambios"
 
-#: truekko/utils.py:12 truekko/templates/truekko/index.html:52
+#: truekko/utils.py:12 truekko/templates/truekko/index.html:58
 msgid "My groups"
 msgstr "Mis grupos"
 
-#: truekko/views.py:281
+#: truekko/views.py:365
 msgid "Error receiving the rating"
 msgstr "Error reciviendo la valoración"
 
-#: truekko/views.py:285
+#: truekko/views.py:369
 msgid "You don't have permissions to rate this user"
 msgstr "No tienes permiso para valorar este usuario"
 
-#: truekko/views.py:289
+#: truekko/views.py:373
 msgid "Rating must be between 1 and 5"
 msgstr "La valoración tiene que estar entre 1 y 5"
 
-#: truekko/views.py:295
+#: truekko/views.py:379
 msgid "User rated successfully"
 msgstr "Usuario valorado correctamente"
 
-#: truekko/views.py:489
+#: truekko/views.py:573
 #, python-format
 msgid "Membership request confirmed %s"
 msgstr "Solicitud confirmada %s"
 
-#: truekko/views.py:519
+#: truekko/views.py:603
 msgid "Group memebership modified correctly"
 msgstr "Miembros del grupo modificados correctamente"
 
-#: truekko/views.py:562 truekko/views.py:636
+#: truekko/views.py:646 truekko/views.py:720
 msgid "Welcome to etruekko"
 msgstr "Bienvenido a etruekko"
 
-#: truekko/views.py:565 truekko/views.py:677
+#: truekko/views.py:649 truekko/views.py:761
 #, python-format
 msgid "New user '%(user)s' in group '%(group)s'"
 msgstr "Nuevo usuario '%(user)s' en el grupo '%(group)s'"
 
-#: truekko/views.py:606
+#: truekko/views.py:690
 #, python-format
 msgid "The user '%s' doesn't exist"
 msgstr "El usuario '%s' no existe"
 
-#: truekko/views.py:613
+#: truekko/views.py:697
 #, python-format
 msgid "The user '%s' is already member of the group"
 msgstr "El usuario '%s' ya es miembro del grupo"
 
-#: truekko/views.py:622
+#: truekko/views.py:706
 msgid "A new membership request has been created, you need to confirm"
 msgstr "Una nueva solicitud de miembro ha sido creada, necesitas confirmarla"
 
-#: truekko/views.py:669
+#: truekko/views.py:753
 msgid "You already are member of this group"
 msgstr "Ya eres miembro de este grupo"
 
-#: truekko/views.py:680
+#: truekko/views.py:764
 msgid "Your membership request has been sent to group administrator"
 msgstr "Tu solicitud se ha enviado al administrador del grupo"
 
-#: truekko/views.py:697
+#: truekko/views.py:781
 msgid "You are not member of this group"
 msgstr "No eres miembro de este grupo"
 
-#: truekko/views.py:751
+#: truekko/views.py:835
 msgid "User has been denounced correctly"
 msgstr "El usuario ha sido denunciado correctamente"
 
-#: truekko/views.py:752
+#: truekko/views.py:836
 msgid "You should receive an email"
 msgstr "Recivirás un correco electrónico"
 
-#: truekko/views.py:845
+#: truekko/views.py:929
 msgid "Transfer has been made correctly"
 msgstr "La transferencia se ha hecho correctamente"
 
-#: truekko/views.py:963 truekko/views.py:1076 truekko/views.py:1098
+#: truekko/views.py:1049 truekko/views.py:1167 truekko/views.py:1189
 msgid ""
 "Invalid credits, you can't offer more than you have, and you can't request "
 "more that the other person has"
@@ -604,46 +1621,46 @@ msgstr ""
 "Créditos invalidos, no puedes ofrecer más de lo que tienes ni pedir más de "
 "lo que la otra persona tiene"
 
-#: truekko/views.py:987
+#: truekko/views.py:1073
 msgid "A new swap has been created"
 msgstr "Un nuevo intercambio ha sido creado"
 
-#: truekko/views.py:1026
+#: truekko/views.py:1114
 msgid "You can't view this swap"
 msgstr "No puedes ver este intercambio"
 
-#: truekko/views.py:1250
+#: truekko/views.py:1362
 msgid "Item added correctly"
 msgstr "Artículo añadido correctamente"
 
-#: truekko/views.py:1252
+#: truekko/views.py:1364
 msgid "Service added correctly"
 msgstr "Servicio añadido correctamente"
 
-#: truekko/views.py:1354
+#: truekko/views.py:1466
 msgid "Item removed correctly"
 msgstr "Artículo eliminado correctamente"
 
-#: truekko/views.py:1376
+#: truekko/views.py:1488
 msgid "You can't post here"
 msgstr "No puedes escribir aquí"
 
-#: truekko/views.py:1389
+#: truekko/views.py:1501
 msgid "Message posted correctly"
 msgstr "Mensaje enviado correctamente"
 
-#: truekko/views.py:1429
+#: truekko/views.py:1541
 msgid "Message removed correctly"
 msgstr "Mensaje borrado correctamente"
 
-#: truekko/views.py:1436
+#: truekko/views.py:1548
 msgid ""
 "An e-mail has been send to you which explains how to reset your password"
 msgstr ""
 "Te hemos enviado un correo electrónico que explica cómo restaurar tu "
 "contraseña"
 
-#: truekko/views.py:1443
+#: truekko/views.py:1555
 #, python-format
 msgid ""
 "Your password has been reset, you can now <a href=\"%(url)s\">login</a> with "
@@ -652,22 +1669,22 @@ msgstr ""
 "Tu contraseña se ha restaurado, ahora puedes <a href=\"%(url)s\">entrar</a> "
 "con tu nueva contraseña"
 
-#: truekko/views.py:1626
+#: truekko/views.py:1738
 #, python-format
 msgid "You are now following %(user)s in etruekko"
 msgstr "Ahora estás siguiendo a %(user)s en etruekko"
 
-#: truekko/views.py:1630
+#: truekko/views.py:1742
 #, python-format
 msgid "%(name)s (%(username)s) is now following you in etruekko"
 msgstr "%(name)s (%(username)s) te está siguiendo ahora en etruekko"
 
-#: truekko/views.py:1646
+#: truekko/views.py:1758
 #, python-format
 msgid "You are not following %(user)s in etruekko anymore"
 msgstr "Ya no estás siguiendo a %(user)s en etruekko"
 
-#: truekko/views.py:1686
+#: truekko/views.py:1798
 msgid "Thanks for contact with us, we will reply as soon as possible"
 msgstr ""
 "Gracias por contactar con nosotros, contestaremos tan pronto como sea posible"
@@ -861,7 +1878,9 @@ msgstr ""
 #: truekko/templates/truekko/edit_group.html:21
 #: truekko/templates/truekko/edit_group_members.html:33
 #: truekko/templates/truekko/edit_group_members.html:55
-#: truekko/templates/truekko/edit_profile.html:20
+#: truekko/templates/truekko/edit_profile.html:68
+#: truekko/templates/truekko/edit_profile.html:82
+#: truekko/templates/truekko/edit_profile.html:95
 #: truekko/templates/truekko/item_add.html:64
 msgid "Save"
 msgstr "Guardar"
@@ -905,7 +1924,7 @@ msgstr "Usuarios expulsados"
 msgid "Edit profile"
 msgstr "Editar perfil"
 
-#: truekko/templates/truekko/edit_profile.html:8
+#: truekko/templates/truekko/edit_profile.html:44
 #, python-format
 msgid ""
 "\n"
@@ -915,6 +1934,14 @@ msgstr ""
 "\n"
 "        preferencias de %(username)s\n"
 "        "
+
+#: truekko/templates/truekko/edit_profile.html:53
+msgid "General settings"
+msgstr "Preferencias generales"
+
+#: truekko/templates/truekko/edit_profile.html:58
+msgid "Postal settings"
+msgstr "Preferencias postales"
 
 #: truekko/templates/truekko/follow_mail.txt:3
 #, python-format
@@ -1023,74 +2050,74 @@ msgstr "Confirmado"
 msgid "Resolved"
 msgstr "Resuelto"
 
-#: truekko/templates/truekko/index.html:14
+#: truekko/templates/truekko/index.html:20
 msgid "What's happening?"
 msgstr "¿Qué estás pensando?"
 
-#: truekko/templates/truekko/index.html:19
+#: truekko/templates/truekko/index.html:25
 msgid "All messages"
 msgstr "Todos los mensajes"
 
-#: truekko/templates/truekko/index.html:21
+#: truekko/templates/truekko/index.html:27
 msgid "Private messages"
 msgstr "Mensajes privados"
 
-#: truekko/templates/truekko/index.html:26
+#: truekko/templates/truekko/index.html:32
 #: truekko/templates/truekko/wall.html:14
 msgid "Post"
 msgstr "Publicar"
 
-#: truekko/templates/truekko/index.html:42
+#: truekko/templates/truekko/index.html:48
 msgid "Walls"
 msgstr "Muros"
 
-#: truekko/templates/truekko/index.html:44
+#: truekko/templates/truekko/index.html:50
 msgid "Etruekko wall"
 msgstr "Muro de Etruekko"
 
-#: truekko/templates/truekko/index.html:65
+#: truekko/templates/truekko/index.html:71
 msgid "Pending requests:"
 msgstr "Solicitudes pendientes:"
 
-#: truekko/templates/truekko/index.html:73
+#: truekko/templates/truekko/index.html:79
 msgid "My Commitments"
 msgstr "Mis Compromisos"
 
-#: truekko/templates/truekko/index.html:88
+#: truekko/templates/truekko/index.html:94
 msgid "Commitments to me"
 msgstr "Compromisos conmigo"
 
-#: truekko/templates/truekko/index.html:105
+#: truekko/templates/truekko/index.html:112
 msgid "My Swaps"
 msgstr "Mis Intercambios"
 
-#: truekko/templates/truekko/index.html:122
+#: truekko/templates/truekko/index.html:129
 msgid "My Offers"
 msgstr "Mis Ofertas"
 
-#: truekko/templates/truekko/index.html:135
-#: truekko/templates/truekko/index.html:153
+#: truekko/templates/truekko/index.html:142
+#: truekko/templates/truekko/index.html:160
 msgid "Add new"
 msgstr "Añadir nuevo"
 
-#: truekko/templates/truekko/index.html:140
+#: truekko/templates/truekko/index.html:147
 msgid "My Demands"
 msgstr "Mis Demandas"
 
-#: truekko/templates/truekko/index.html:159
+#: truekko/templates/truekko/index.html:166
 #: truekko/templates/truekko/view_group.html:88
 msgid "Denounces"
 msgstr "Denuncias"
 
-#: truekko/templates/truekko/index.html:168
+#: truekko/templates/truekko/index.html:175
 msgid "Admin denounces"
 msgstr "Denuncias de administrador"
 
-#: truekko/templates/truekko/index.html:177
+#: truekko/templates/truekko/index.html:184
 msgid "People you follow"
 msgstr "Personas que sigues"
 
-#: truekko/templates/truekko/index.html:185
+#: truekko/templates/truekko/index.html:192
 msgid "People following you"
 msgstr "Personas que te siguen"
 
@@ -1378,7 +2405,7 @@ msgid "Go Back"
 msgstr "Atrás"
 
 #: truekko/templates/truekko/single_item_view.html:70
-#: truekko/templates/truekko/swap_creation.html:194
+#: truekko/templates/truekko/swap_creation.html:259
 msgid "Make offer"
 msgstr "Hacer oferta"
 
@@ -1394,6 +2421,7 @@ msgstr "Ver"
 #: truekko/templates/truekko/single_message_view.html:6
 #: truekko/templates/truekko/single_message_view.html:30
 #: truekko/templates/truekko/single_user_view.html:37
+#: truekko/templates/truekko/swap_creation.html:123
 msgid "Remove"
 msgstr "Eliminar"
 
@@ -1440,49 +2468,73 @@ msgstr "Expulsado"
 msgid "Reject"
 msgstr "Rechazar"
 
-#: truekko/templates/truekko/swap_creation.html:4
+#: truekko/templates/truekko/swap_creation.html:6
 #, python-format
 msgid " swap items between %(u1)s and %(u2)s "
 msgstr " intercambio de artículos entre %(u1)s y %(u2)s "
 
-#: truekko/templates/truekko/swap_creation.html:83
+#: truekko/templates/truekko/swap_creation.html:117
+#: truekko/templates/truekko/swap_creation.html:268
 msgid "Commitments"
 msgstr "Compromisos"
 
-#: truekko/templates/truekko/swap_creation.html:92
+#: truekko/templates/truekko/swap_creation.html:132
 #, python-format
 msgid ""
 "\n"
-"                    %(userfromname)s (%(userfrom)s) has a commitment to "
-"provide the service \"%(comment)s\" to %(usertoname)s (%(userto)s).\n"
+"                    %(userfromname)s (%(userfrom)s) has a commitment with "
+"%(usertoname)s (%(userto)s):\n"
+"                    %(comment)s\n"
 "                    "
 msgstr ""
 "\n"
-"                    %(userfromname)s (%(userfrom)s) tiene un compromiso de "
-"proporcionar el servicio \"%(comment)s\" a %(usertoname)s (%(userto)s).\n"
+"                    %(userfromname)s (%(userfrom)s) tiene un compromiso con "
+"%(usertoname)s (%(userto)s).\n"
+"                    %(comment)s\n"
 "                    "
 
-#: truekko/templates/truekko/swap_creation.html:131
-#: truekko/templates/truekko/swap_creation.html:162
+#: truekko/templates/truekko/swap_creation.html:172
+#: truekko/templates/truekko/swap_creation.html:203
 msgid "truekkos"
 msgstr "truekkos"
 
-#: truekko/templates/truekko/swap_creation.html:147
+#: truekko/templates/truekko/swap_creation.html:188
 #: truekko/templates/truekko/view_profile.html:109
 msgid "Demands"
 msgstr "Demandas"
 
-#: truekko/templates/truekko/swap_creation.html:166
+#: truekko/templates/truekko/swap_creation.html:207
 msgid "Swap mode"
 msgstr "Modo de intercambio"
 
-#: truekko/templates/truekko/swap_creation.html:187
+#: truekko/templates/truekko/swap_creation.html:218
+msgid "Postal address"
+msgstr "Dirección postal"
+
+#: truekko/templates/truekko/swap_creation.html:224
+#: truekko/templates/truekko/swap_creation.html:232
+msgid "No postal mail"
+msgstr "No hay dirección postal"
+
+#: truekko/templates/truekko/swap_creation.html:236
+msgid "Edit my address"
+msgstr "Editar mi dirección"
+
+#: truekko/templates/truekko/swap_creation.html:252
 msgid "Comment:"
 msgstr "Comentarios:"
 
-#: truekko/templates/truekko/swap_creation.html:191
+#: truekko/templates/truekko/swap_creation.html:256
 msgid "Accept"
 msgstr "Aceptar"
+
+#: truekko/templates/truekko/swap_creation.html:274
+msgid "Create a commitment"
+msgstr "Crear un compromiso"
+
+#: truekko/templates/truekko/swap_creation.html:277
+msgid "Add commitment"
+msgstr "Añadir compromiso"
 
 #: truekko/templates/truekko/swap_creation_mail.txt:3
 #, python-format
@@ -1716,8 +2768,8 @@ msgid ""
 "Your request to be part of this group is sended, you need to wait the group "
 "admin response"
 msgstr ""
-"Tu solicitud para ser parte de este grupo está enviada, tienes que "
-"espearar la respuesta del administrador."
+"Tu solicitud para ser parte de este grupo está enviada, tienes que espearar "
+"la respuesta del administrador."
 
 #: truekko/templates/truekko/view_group.html:24
 msgid "You can't participate in this group because you are banned"
