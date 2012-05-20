@@ -122,7 +122,11 @@
                     {% endif %}
                 {% endfor %}
                 <br/>
+                {% if credits1 %}
                 <input type="text" id="credits" name="credits1" value="{{ credits1 }}"
+                {% else %}
+                <input type="text" id="credits" name="credits1" value=""
+                {% endif %}
                        {% if swap and swap.finished %}disabled="disabled"{% endif %}
                        placeholder="{% trans "truekkos" %}"/>
                 </fieldset>
@@ -149,7 +153,11 @@
                     {% endif %}
                 {% endfor %}
                 <br/>
+                {% if credits2 %}
                 <input type="text" id="credits" name="credits2" value="{{ credits2 }}"
+                {% else %}
+                <input type="text" id="credits" name="credits2" value=""
+                {% endif %}
                        {% if swap and swap.finished %}disabled="disabled"{% endif %}
                        placeholder="{% trans "truekkos" %}"/>
                 </fieldset>
@@ -180,11 +188,11 @@
             <textarea id="comment" name="comment"></textarea>
 
             {% if accept %}
-            <input type="submit" class="button yellowish" name="accept" value="{% trans "Accept" %}"/>
+            <input type="submit" class="button blue" name="accept" value="{% trans "Accept" %}"/>
             {% endif %}
             {% if not swap or swap.status == "US1" or swap.status == "US2" %}
-                <input type="submit" class="button yellowish" name="offer" value="{% trans "Make offer" %}"/>
-                <input type="submit" class="button yellowish" name="cancel" value="{% trans "cancel" %}"/>
+                <input type="submit" class="button green" name="offer" value="{% trans "Make offer" %}"/>
+                <input type="submit" class="button red" name="cancel" value="{% trans "cancel" %}"/>
             {% else %}
                 <input type="submit" class="button yellowish" name="cbutton" value="{% trans "Comment" %}"/>
             {% endif %}
