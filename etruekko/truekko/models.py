@@ -546,12 +546,12 @@ def swap_post_save(sender, instance, created, *args, **kwargs):
         return
 
     elif instance.status == 'DON':
-        comment = _u("Conglatulations, swap has been accepted")
-        title = _u("A swap has been accepted")
+        comment = _("Conglatulations, swap has been accepted")
+        title = _("A swap has been accepted")
     elif instance.status in ['US1', 'US2']:
-        title = _u("A swap has been modified")
+        title = _("A swap has been modified")
     elif instance.status == 'CAN':
-        title = _u("A swap has been canceled")
+        title = _("A swap has been canceled")
 
     url = reverse('swap_view', args=(instance.id,))
 
