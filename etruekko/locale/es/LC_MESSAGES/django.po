@@ -1607,7 +1607,7 @@ msgstr "El usuario ha sido denunciado correctamente"
 
 #: truekko/views.py:836
 msgid "You should receive an email"
-msgstr "Recivirás un correco electrónico"
+msgstr "Recibirás un correco electrónico"
 
 #: truekko/views.py:929
 msgid "Transfer has been made correctly"
@@ -2030,7 +2030,7 @@ msgstr "¿Por qué estás denunciando a este usuario?"
 #: truekko/templates/truekko/group_denounce_view.html:9
 #, python-format
 msgid " Denounced %(username)s in Group %(name)s "
-msgstr " Denuciado %(username)s en el Grupo %(name)s "
+msgstr " Denunciado %(username)s en el Grupo %(name)s "
 
 #: truekko/templates/truekko/group_denounce_view.html:15
 #, python-format
