@@ -331,6 +331,7 @@ class People(TemplateView):
         context = super(People, self).get_context_data(**kwargs)
         context['klass'] = 'people'
         context['menu'] = generate_menu("people")
+        context['all'] = self.all
 
         if not self.all and self.request.user.is_authenticated():
             query = User.objects.filter(followers__follower=self.request.user)
@@ -447,11 +448,19 @@ class Etruekko(TemplateView):
 
 class Groups(TemplateView):
     template_name = 'truekko/groups.html'
+    all = False
 
     def get_context_data(self, **kwargs):
         context = super(Groups, self).get_context_data(**kwargs)
         context['klass'] = 'group'
         context['menu'] = generate_menu("group")
+        context['all'] = self.all
+
+        if not self.all and self.request.user.is_authenticated():
+            # if authenticated showing only my groups
+            query = self.request.user.get_profile().groups()
+        else:
+            query = Group.objects.all()
 
         q = self.request.GET.get('search', '')
         if q:
@@ -460,11 +469,13 @@ class Groups(TemplateView):
                 Q(name__icontains=q) |\
                 Q(location__icontains=q)
 
-            query = Group.objects.filter(k)
-        else:
-            query = Group.objects.all()
+            query = query.filter(k)
         context['groups'] = paginate(self.request, query, 10)
         return context
+
+
+class GroupsAll(Groups):
+    all = True
 
 
 class ViewGroup(TemplateView):
@@ -1817,6 +1828,7 @@ channel_view = login_required(ChannelView.as_view())
 
 # group
 groups = Groups.as_view()
+groups_all = GroupsAll.as_view()
 view_group = ViewGroup.as_view()
 edit_group = login_required(is_group_admin(EditGroup.as_view()))
 edit_group_members = login_required(is_group_admin(EditGroupMembers.as_view()))

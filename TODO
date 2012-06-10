@@ -1,10 +1,3 @@
-- Sustituir la palabra grupo , grupos, group o groups por comunidad o
-  comunidades en todo el sistema
-
-- En la pestaña mis grupos deben aparecer solo los grupos de los que
-  eres miembro o administrador, no todos los del sistema. o a lo sumo
-  un buscador y un carrusel pero todos no, imaginate que hayan 1000
-
 - Un usuario puede publicar en el muro de un grupo sin pertenecer a
   él, no debería poder, o si?
 
