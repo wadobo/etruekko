@@ -4,10 +4,10 @@
 
 Good news {{ username }},
 
-Your membership request for the group '{{ groupname }}' has been
+Your membership request for the community '{{ groupname }}' has been
 confirmed. You are member of the gorup.
 
-You can view the group in:
+You can view the community in:
 http://etruekko.com{{ url }}
 
 {% endblocktrans %}

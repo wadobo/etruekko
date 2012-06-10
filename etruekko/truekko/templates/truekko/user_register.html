@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% block title %} {% trans 'Groups' %} {% endblock %}
+{% block title %} {% trans 'Communities' %} {% endblock %}
 
 {% block content %}
-    <div class="left"><img src="/media/imgs/menu/group.png" alt="group"/></div>
+    <div class="left"><img src="/media/imgs/menu/group.png" alt="community"/></div>
     <form action="" method="get">
         <input id="id_search" type="text" class="text" placeholder="{% trans "Search..." %}" name="search"/>
         <input class="search_button" type="submit" value="{% trans "Search" %}"/>
@@ -14,9 +14,9 @@
     <div id="subcontent">
         <p class="tip">
         {% blocktrans %}
-        To register in etruekko you should select a group to join in.
-        In this platform each user must be part of a group, so the
-        first step to join to etruekko network is to select the group
+        To register in etruekko you should select a community to join in.
+        In this platform each user must be part of a community, so the
+        first step to join to etruekko network is to select the community
         you want to be part.
         {% endblocktrans %}
         </p>

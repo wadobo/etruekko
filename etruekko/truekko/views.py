@@ -600,7 +600,7 @@ class EditGroupMembers(TemplateView):
                     m.user.is_active = True
                     m.user.save()
 
-        messages.info(request, _("Group memebership modified correctly"))
+        messages.info(request, _("Community memebership modified correctly"))
 
         nxt = redirect('view_group', groupid)
         return nxt
@@ -646,7 +646,7 @@ class Register(TemplateView):
         template_email('truekko/user_registered_mail.txt', _("Welcome to etruekko"), [f.data['email']], context)
         context['url'] = reverse('edit_group_members', args=(groupid,))
         template_email('truekko/user_registered_admin_mail.txt',
-                       _("New user '%(user)s' in group '%(group)s'") % dict(user=f.data['username'], group=g.name),
+                       _("New user '%(user)s' in community '%(group)s'") % dict(user=f.data['username'], group=g.name),
                        g.admins_emails(), context)
 
         nxt = redirect('register_confirm', groupid)
@@ -694,7 +694,7 @@ class RegisterAdmin(TemplateView):
                 return redirect('edit_group_members', groupid)
 
             if (Membership.objects.filter(user=u, group=g).count()):
-                msg = _("The user '%s' is already member of the group") % username
+                msg = _("The user '%s' is already member of the community") % username
                 messages.info(request, msg)
                 return render_to_response(RegisterAdmin.template_name,
                                           self.get_context({'group': g, 'form': RegisterForm()}))
@@ -750,7 +750,7 @@ class JoinGroup(View):
             return redirect('register_group', groupid)
 
         if is_member(request.user, g):
-            msg = _("You already are member of this group")
+            msg = _("You already are member of this community")
         else:
             m, created = Membership.objects.get_or_create(user=request.user, group=g, role='REQ')
             m.save()
@@ -758,10 +758,10 @@ class JoinGroup(View):
             context = {'group': g, 'username': request.user.username, 'user': request.user,
                        'url': reverse('edit_group_members', args=(groupid,))}
             template_email('truekko/user_registered_admin_mail.txt',
-                           _("New user '%(user)s' in group '%(group)s'") % dict(user=request.user.username, group=g.name),
+                           _("New user '%(user)s' in community '%(group)s'") % dict(user=request.user.username, group=g.name),
                            g.admins_emails(), context)
 
-            msg = _("Your membership request has been sent to group administrator")
+            msg = _("Your membership request has been sent to community administrator")
 
         messages.info(request, msg)
         nxt = redirect('view_group', groupid)
@@ -778,7 +778,7 @@ class LeaveGroup(View):
             m = Membership.objects.get(user=request.user, group=g)
             m.delete()
 
-        msg = _("You are not member of this group")
+        msg = _("You are not member of this community")
 
         messages.info(request, msg)
         nxt = redirect('view_group', groupid)

@@ -4,9 +4,9 @@
 
 Hello {{ username }},
 
-You're now "{{ role }}" of the group "{{ groupname }}".
+You're now "{{ role }}" of the community "{{ groupname }}".
 
-You can view this group in:
+You can view this community in:
 
 {% endblocktrans %}
 

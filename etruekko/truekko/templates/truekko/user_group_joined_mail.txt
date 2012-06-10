@@ -4,13 +4,13 @@
 
 Welcome to {{ groupname }},
 
-Your membership request has been sent to the group '{{ groupname }}'
+Your membership request has been sent to the community '{{ groupname }}'
 administrator, you will receive another email when the administrator
 review your membership request and confirm (or reject) it.
 
-Each group could have different conditions to admit members so if you
+Each community could have different conditions to admit members so if you
 don't receive any mail in several days you should contact directly
-with the group writting to the following email:
+with the community writting to the following email:
 
 {{ groupmail }}
 

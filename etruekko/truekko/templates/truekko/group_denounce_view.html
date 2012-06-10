@@ -6,7 +6,7 @@
         <div class="left"><img src="{% groupavatar group 32 %}" alt="{{ group.name }}"/></div>
         <div class="left"><img src="{% avatar denouncer 32 %}" alt="{{ denouncer.username }}"/></div>
         <div class="left"><img src="{% avatar denounced 32 %}" alt="{{ denounced.username }}"/></div>
-        {% blocktrans with name=group.name username=denounced.username %} Denounced {{ username }} in Group {{ name }} {% endblocktrans %}
+        {% blocktrans with name=group.name username=denounced.username %} Denounced {{ username }} in Community {{ name }} {% endblocktrans %}
         <div class="clear"></div>
     </h2>
 

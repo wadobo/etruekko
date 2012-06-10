@@ -6,10 +6,10 @@
 
 Hello {{ username }},
 
-Your membership request to group "{{ groupname }}" has been rejected
+Your membership request to community "{{ groupname }}" has been rejected
 by the admin.
 
-You can view this group in:
+You can view this community in:
 
 {% endblocktrans %}
 
@@ -19,9 +19,9 @@ You can view this group in:
 
 Hello {{ username }},
 
-You're not member of the group "{{ groupname }}" anymore.
+You're not member of the community "{{ groupname }}" anymore.
 
-You can view this group in:
+You can view this community in:
 
 {% endblocktrans %}
 

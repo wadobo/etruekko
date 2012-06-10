@@ -27,7 +27,7 @@ def is_group_admin(view):
         if is_group_editable(request.user.username, groupid):
             return view(request, groupid)
         else:
-            message = _("Only group admin can edit this group")
+            message = _("Only community admin can edit this community")
             messages.info(request, message)
             return redirect('view_group', groupid)
 

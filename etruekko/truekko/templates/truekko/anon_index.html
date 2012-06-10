@@ -74,7 +74,7 @@ collaborates with your community and improves it.
 
     <div class="clear"></div>
 
-    <h3>{% trans "Last Groups" %}</h3>
+    <h3>{% trans "Last Communities" %}</h3>
     {% for group in last_groups %}
         <div class="group">
             <a href="{% url view_group group.id %}"><img src="{% groupavatar group 64 %}" alt="{{ group.name }}"/></a>

@@ -51,7 +51,7 @@ $(document).ready(function() {
                 <input type="text" id="id_q" name="q" placeholder="{% trans "Search..." %}" value="{{ data.q }}"/>
                 <select name="type" id="typeselect">
                     <option value="item" {% if data.type == "item" %}selected="selected"{% endif %}>{% trans "Item or service" %}</option>
-                    <option value="group" {% if data.type == "group" %}selected="selected"{% endif %}>{% trans "Groups" %}</option>
+                    <option value="group" {% if data.type == "group" %}selected="selected"{% endif %}>{% trans "Communities" %}</option>
                     <option value="user" {% if data.type == "user" %}selected="selected"{% endif %}>{% trans "Users" %}</option>
                 </select>
                 <br/>

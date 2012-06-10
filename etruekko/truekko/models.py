@@ -209,6 +209,11 @@ class Group(models.Model):
     Model that represents a barter group.
     '''
 
+    class Meta:
+        verbose_name = "Community"
+        verbose_name_plural = "Communities"
+
+
     name = models.CharField(_("Name"), max_length=500, unique=True)
     email = models.EmailField(_("Email"))
     location = models.CharField(_("Location"), blank=True, null=True,
@@ -216,7 +221,7 @@ class Group(models.Model):
     web = models.URLField(_("Web"), blank=True, null=True, default="")
     photo = models.ImageField(_("Avatar"), blank=True, null=True,
                               upload_to=os.path.join(settings.MEDIA_ROOT, "photos"))
-    description = models.TextField(_("Group description"), max_length=800,
+    description = models.TextField(_("Community description"), max_length=800,
                                    blank=True)
     channel = models.ForeignKey(Channel, related_name="groups")
 
@@ -284,7 +289,7 @@ def membership_post_save(sender, instance, created, *args, **kwargs):
 
         context = {'membership': instance, 'url': url}
         template_email('truekko/membership_mail.txt',
-                       'Group "%(group)s" membership' % {'group': instance.group.name},
+                       'Community "%(group)s" membership' % {'group': instance.group.name},
                        [instance.user.email], context)
 
         # if not admin in this group and this memberhip is admin
@@ -303,7 +308,7 @@ def membership_pre_delete(sender, instance, *args, **kwargs):
 
     context = {'membership': instance, 'url': url}
     template_email('truekko/membership_delete_mail.txt',
-                   'Group "%(group)s" membership' % {'group': instance.group.name},
+                   'Community "%(group)s" membership' % {'group': instance.group.name},
                    [instance.user.email], context)
 
 def membership_post_delete(sender, instance, *args, **kwargs):
@@ -811,7 +816,7 @@ def denounce_post_save(sender, instance, created, *args, **kwargs):
 
         context = {'denounce': instance, 'url': url}
         template_email('truekko/denounce_mail.txt',
-                       _("%(user)s user has been denounced in group %(group)s") % dict(user=instance.user_to.username, group=instance.group.name),
+                       _("%(user)s user has been denounced in community %(group)s") % dict(user=instance.user_to.username, group=instance.group.name),
                        email_list, context)
 
 post_save.connect(denounce_post_save, sender=Denounce)
