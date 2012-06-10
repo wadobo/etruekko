@@ -19,7 +19,8 @@
         }
     </style>
     <script>
-    $(document).ready(function(){
+
+    function updateSelected() {
           $('.item_input').hide();
           $('.item_input').each(function() {
             $(this).parent().removeClass("iselected");
@@ -28,16 +29,20 @@
           $('.item_input:checked').each(function() {
             $(this).parent().addClass("iselected");
           });
+    }
 
+    $(document).ready(function(){
+          updateSelected();
           $('.item_div').click(function() {
             var inp = $(this).find(".item_input");
             if (inp.attr('checked') === 'checked') {
-                inp.removeAttr('checked');
-                $(this).removeClass("iselected");
+                if (!inp.attr("disabled"))
+                    inp.removeAttr('checked');
             } else {
-                inp.attr('checked', 'checked');
-                $(this).addClass("iselected");
+                if (!inp.attr("disabled"))
+                    inp.attr('checked', 'checked');
             }
+            updateSelected();
             return false;
           });
 
@@ -94,19 +99,27 @@
                 <span class="mode">{{ swap.get_swap_mode_display }}</span>
             </div>
             <div class="items">
-            <ul class="itemlist left">
+
+            <div class="left">
+            <h3 class="itemlistheader"><img src="{% avatar swap.user_from 20 %}"/>{{ swap.user_from.username }}</h3>
+            <ul class="itemlist">
             {% for item in swap.items_from_names %}
                 <li>{{ item }}</li>
             {% endfor %}
             <li class="credits">{{ swap.credits_from }}{{ CREDIT_NAME.short }}</li>
             </ul>
+            </div>
 
-            <ul class="itemlist left">
+            <div class="left">
+            <h3 class="itemlistheader"><img src="{% avatar swap.user_to 20 %}"/>{{ swap.user_to.username }}</h3>
+            <ul class="itemlist">
             {% for item in swap.items_to_names %}
                 <li>{{ item }}</li>
             {% endfor %}
             <li class="credits">{{ swap.credits_to }}{{ CREDIT_NAME.short }}</li>
             </ul>
+            </div>
+
             </div>
             <div class="clear"></div>
         {% endif %}
@@ -155,7 +168,7 @@
                 {% for item in user_from.items.all %}
                     {% if not item.demand %}
                         <div class="item_div">
-                        <input class="item_input" name="item_{{item.id}}" type="checkbox" {% if item.id in items %}checked="checked"{% endif %}/>
+                        <input {% if swap and not accept %}disabled="disabled"{% endif %} class="item_input" name="item_{{item.id}}" type="checkbox" {% if item.id in items %}checked="checked"{% endif %}/>
                         {% with short="True" swap="True" %}
                         {% include "truekko/single_item_view.html" %}
                         {% endwith %}
@@ -168,6 +181,7 @@
                 {% else %}
                 <input type="text" id="credits" name="credits1" value=""
                 {% endif %}
+                       {% if swap and not accept %}disabled="disabled"{% endif %}
                        {% if swap and swap.finished %}disabled="disabled"{% endif %}
                        placeholder="{% trans "truekkos" %}"/>
                 </fieldset>
@@ -177,7 +191,7 @@
                 {% for item in user_to.items.all %}
                     {% if not item.demand %}
                         <div class="item_div">
-                        <input class="item_input" name="item_{{item.id}}" type="checkbox" {% if item.id in items %}checked="checked"{% endif %} />
+                        <input {% if swap and not accept %}disabled="disabled"{% endif %} class="item_input" name="item_{{item.id}}" type="checkbox" {% if item.id in items %}checked="checked"{% endif %} />
                         {% with short="True" swap="True" %}
                         {% include "truekko/single_item_view.html" %}
                         {% endwith %}
@@ -199,6 +213,7 @@
                 {% else %}
                 <input type="text" id="credits" name="credits2" value=""
                 {% endif %}
+                       {% if swap and not accept %}disabled="disabled"{% endif %}
                        {% if swap and swap.finished %}disabled="disabled"{% endif %}
                        placeholder="{% trans "truekkos" %}"/>
                 </fieldset>
@@ -253,11 +268,11 @@
             <textarea id="comment" name="comment"></textarea>
 
             {% if accept %}
-            <input type="submit" class="button blue" name="accept" value="{% trans "Accept" %}"/>
-            {% endif %}
-            {% if not swap or swap.status == "US1" or swap.status == "US2" %}
+                <input type="submit" class="button blue" name="accept" value="{% trans "Accept" %}"/>
                 <input type="submit" class="button green" name="offer" value="{% trans "Make offer" %}"/>
-                <input type="submit" class="button red" name="cancel" value="{% trans "cancel" %}"/>
+            {% endif %}
+            {% if not swap %}
+                <input type="submit" class="button green" name="offer" value="{% trans "Make offer" %}"/>
             {% else %}
                 <input type="submit" class="button yellowish" name="cbutton" value="{% trans "Comment" %}"/>
             {% endif %}

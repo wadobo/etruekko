@@ -1149,3 +1149,11 @@ fieldset {
 legend {
     color: #aaa;
 }
+
+.itemlistheader {
+    padding-left: 20px;
+}
+
+.itemlist {
+    font-size: x-large;
+}
