@@ -1,139 +1,101 @@
-1.- REGISTRO
+- Sustituir la palabra grupo , grupos, group o groups por comunidad o
+  comunidades en todo el sistema
 
-2.- BUSQUEDA
+- Al hacer una denuncia pone denuciado en lugar de denunciado
 
-3.- INICIO Y GENTE
+- Al denunciar a un miembro en el mensaje de que el proceso ha acabado
+  correctamente pone, reciviras un mail, es recibirás
 
-4.- INTERCAMBIOS
+- En la pestaña mis grupos deben aparecer solo los grupos de los que
+  eres miembro o administrador, no todos los del sistema. o a lo sumo
+  un buscador y un carrusel pero todos no, imaginate que hayan 1000
 
-5.- COMUNIDAD DE ADMINISTRADORES Y CANALES?
+- Un usuario puede publicar en el muro de un grupo sin pertenecer a
+  él, no debería poder, o si?
 
-COSAS MENOS IMPORTANTES
+- Puedes denunciar a cualquier usuario del sistema, esto deberíamos
+  definirlo un poco más, solo podrías denunciar a aquellos con los que
+  hayas comenzado un intercambio, imaginate que a mí me dé por
+  denunciar a todo el que pille
 
-Cuando se crea un grupo y se hace a un usuario administrador, no le
-llega correo, debería hacerlo, al igual que si hay más de un
-administrador le debería llegar también a los dos
+- Cuando haces una búsqueda y encuentras lo que buscas sea bien o
+  servicio, al pulsar sobre él para ver el detalle no hace nada,
+  debería desplegarse la descripción, foto, etc...
 
-Al intentar abandonar un grupo desde plataforma sale "unhandle
-exception"
+- En la pestaña mis intercambios, en los que ya están hechos y la das
+  a ver, debería poner más claro como ha sido, sale solo en dos
+  columnas lo que se ha intercambiado, pero debería explicarlo mejor o
+  al menos en cada columna poner el nombre de cada usuario
 
-Cuando recibes una solicitud debería aparecer un estado para cuando no
-lo aceptas, salen varias pero no está, así como enviar correo de no
-aceptación
+- Al publicar un servicio no deja valorarlo en truekkos, debe de
+  dejar, que sea como si es un articulo
 
-Mirar bug de auto añadirse a un grupo cuando está en solicitud. Listar
-tu solicitudes pendientes.
+- Al resolver una denuncia, desaparece del muro de los denunciados
+  pero también le desaparece al administrador, debería quedar un
+  historial, para el administrador y el usuario, imagínate que la cosa
+  va a mas y le piden información al administrador o a nosotros
 
-Te llega mensaje cuando publican en tu muro, esto lo dejamos así o
-cuando consigamos que los usuarios puedan hacer su red no? o desde su
-perfil los usuarios lo podrán definir?
+- En el muro en todos los epígrafes, ofertas,, demandas, denuncias,
+  etc... debería existir un desplegable para desplegar solo lo que
+  quieras, por ejemplo si  tengo publicadas 10 ofertas que me salga
+  mis ofertas y un signo más, al pulsar sobre el que me salgan las 10
 
-No deja subir fotos ni de los usuarios ni de artículos
+- En el historial de intercambios, debe aparecer también la fecha del
+  intercambio, así como la fecha en la que cumple con un compromiso.
+  Aparece la foto del usuario con el que has hecho un intercambio, al
+  pulsar en ella te debería llevar a su perfil, ahora no hace nada
 
-Cuando añado un bien o servicio, si después quiero modificar algo al
-editar no me deja poner etiquetas.
+- Cuando solicitas algo que un usuario oferta, te salen sus ofertas y
+  sus demandas, tiene sentido que aparezcan sus demandas?, me imagino
+  que será para que tu intentes oferta le algo de lo que demanda no? 
 
-Deberíamos plantearnos otra pestaña que fuese mi perfil en el que
-apareciesen todos mis datos, ofertas y demandas además de lo que sale
-en inicio
+- No deja gastar los 10 truekkos que le damos de inicio, por ejemplo
+  si yo tengo 12 truekkos y en una negociación la otra parte me pide
+  3, no deja, debería dejar gastar todo porque si no no tiene sentido
+  que le regalemos 10 truekkos por registrarse, de todas maneras esto
+  de los 10 truekkos l hablamos el jueves, quizás sea poco
 
-Debería aparecer en tu muro cuando un amigo pública o hace una oferta
+- Debería dejar deshacer un intercambio por quien lo ha cerrado
+  durante un tiempo, por ejemplo 48 horas. puede darse el caso de que
+  se cierre un intercambio por error y mas ahora al principio
+- Cuando le das a olvide mi contraseña, en el correo que recibes pone
+  reciviendo en lugar de recibiendo, además el link al que te
+  direcciona no funciona, pone 404-not found
 
-En inicio los intercambios deben estar bien traducidos, no llegan los
-correos avisando que tienes un nuevo intercambio a ninguna de las dos
-partes
+- Cuando alguien publica en el muro de etruekko, lo vemos solo
+  nosotros no? y como o donde lo vemos?
 
-Debe poner truekkos y no créditos en la negociación
+- Cuando ves el perfil de un usuario debes poder ver los truekkos que
+  tiene, y en la negociación también, como sabes si no hasta donde le
+  puedes pedir de truekkos?, también debe aparecer en número de
+  transacciones que ha realizado aunque no el detalle
 
-Cuando te unes a un grupo, además del correo en la plataforma tendría
-que poner que está pendiente de aceptar por el administrador
+- Como funciona exactamente la valoración? si por ejemplo a mi me
+  valoran bien 1000 usuarios y uno llega y me quita todas las
+  estrellas esa será mi valoración a partir de ese momento? funciona
+  por medias?, deberíamos pensar la manera de incentivar las
+  valoraciones 
 
-Cambios nomenclatura:
-    Inicio-Muro
-    Gente-Mis contactos
-    Añadir-Crea tus ofertas y demandas
-    Transf-Mis intercambios
-    Grupos-Mis grupos
+- Deberíamos tener un extracto con el movimiento de los truekkos
 
-En la negociación cambiar aceptar por cerrar intercambio, hacer oferta
-por negociar y cancelar por rechazar intercambio
+- Los compromisos solo los puede crear el que recibe una oferta, si el
+  que la recibe crea un compromiso y la acepta, el que la ha hecho
+  debe de tragar, en el caso de que se cree un compromiso el que hace
+  una oferta inicialmente debería de validarlo también, se podría
+  hacer  de manera que en el caso de que se cree un compromiso pida
+  doble confirmación, por ejemplo podría ser que a mí me hagan una
+  oferta, me parezca bien y creó un compromiso, entonces no me deje
+  aceptar, solo me deje hacer oferta para que la otra parte lo acepte,
+  y a la otra parte en la negociación pendiente cuando la abra le
+  salga un mensaje diciéndolo que le han aceptado la oferta  pero que
+  debe confirmarla ella ya que se ha incluido un compromiso, si la
+  rechaza pues no hay transacción
 
-No se puede valorar a los usuarios? - Limitar valoraciones a sólo
-intercambios contigo
+- En mis contactos a medio plazo que salga carrusel, no todos los del
+  sistema
 
-Debería aparecer para cerrar intercambios la forma de entrega,
-presencial, correo postal, mensajería y el tema de los compromisos
+- En servicios y artículos a medio plazo que salga carrusel
 
-En lugar de precio en añadir debemos poner valoración usuario
-
-ambiar preferencias  por mi perfil
-
-En el caso de las etiquetas al crear bienes y servicios, poner ejemplo
-no solo lo de las comas para que se vea que además debe haber un
-espacio para que las coja bien
-
-En el caso de las demandas, es necesario valorarlas?
-
-Puede ser que la plataforma no sea compatible con alguna versión de
-internet explorer
-
-Debe de haber en añadir caja de oferta además de la de demanda
-
-Revisar lo del tipo de precio (por hora, kilo, etc...)
-
-No llegan los correos cuando se negocia
-
-Damos 10 truekkos por registrarse, ademas de esto dijimos de dar x
-truekkos por numero de transacciones, ver también lo de no permitir
-desfase de truekkos y con cuantos truekkos se premia a los
-administradores
-
-Dar 5 truekkos por cada 3 intercambios a condición de:
-    Transferencías en menos de 7 días
-    Usuarios diferentes, no valen intercambios entre los dos mismos usuarios.
-
-Administradores darle 50 etruekkos.
-
-Probar la plataforma en ie.
-
--------------------------------------------------------------------
-
-Personal:
-
-* 10 truekkos por registro
-* 5 truekkos por invitar a alguien después de la primera transacción
-  del invitado
-* cada dos transacciones 5 truekkos
-* límite de truekkos, 50 truekkos
-
-* Registro confirmado por grupo.
-* Transferencia con retención, el que paga tiene que confirmar, el que
-  recibe puede crear una incidencia para un mediador si no recibe el
-  pago.
-* Red social, comunicación por grupo, tipo muro facebook, amigos
-* Perfil de usuario mostrando valoración y datos, tener cuidado con el
-  tema de la privacidad.
-* Incentivar trueque antes que transferencia de truekkos. Mostrar
-  bienes y servicios ofrecidos por cada parte para poder seleccionar
-  varios para intercambiar.
-
-  | +bien     |   |  bien     |
-  |  bien     | > | +bien     |
-  | +servicio |   |  servicio |
-  |    ...    |   |     ...   |
-            +truekkos
-
-Empresarial:
-
-* Transacciones similares al personal, pero al final se muestra un
-  contrato a base a partir de una plantilla para firmar por las dos
-  partes.
-
-Administrador:
-
-* Administrar usuarios completamente, permitir bloquear, cambiar
-  créditos, datos personales.
-* Ofrecer truekkos por grupo, por usuario o por transacciones.
-
-* Por cada usuario registrado 10 truekkos (truekkos del grupo)
-* Por cada 20 transacciones 5 truekkos
+- En mis grupos, al ser administrador al darle a editar lo de limpiar
+  datos y avatar sale muy raro, como descuadrado, de todas maneras,
+  limpiar para qué es?
