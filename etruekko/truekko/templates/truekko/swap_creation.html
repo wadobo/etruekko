@@ -275,6 +275,9 @@
                 <input type="submit" class="button green" name="offer" value="{% trans "Make offer" %}"/>
             {% else %}
                 <input type="submit" class="button yellowish" name="cbutton" value="{% trans "Comment" %}"/>
+                {% if not swap.finished %}
+                <input type="submit" class="button red" name="cancel" value="{% trans "cancel" %}"/>
+                {% endif %}
             {% endif %}
         </form>
 
