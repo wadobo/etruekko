@@ -55,7 +55,9 @@
         {% if pwform %}
         <a href="#" id="pwsettings" class="settings button {% if default == "password" %}violet{% endif %}">{% trans "Change password" %}</a>
         {% endif %}
+        {% if postal_form %}
         <a href="#" id="psettings" class="settings button {% if default == "postal" %}violet{% endif %}">{% trans "Postal settings" %}</a>
+        {% endif %}
 
     {% if form %}
     <div class="sform" id="general">
@@ -72,6 +74,7 @@
     {% endif %}
 
 
+    {% if postal_form %}
     <div class="sform" id="postal">
         <div class="form">
         <form action="{% url edit_postal viewing.id %}" method="post">
@@ -83,6 +86,7 @@
         </form>
         </div>
     </div>
+    {% endif %}
 
     {% if pwform %}
     <div class="sform" id="password">

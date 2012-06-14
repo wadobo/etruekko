@@ -279,12 +279,6 @@ class EditProfileAdmin(TemplateView):
         context['viewing'] = self.user
         context['menu'] = generate_menu()
 
-        p = PostalAddress.objects.filter(user=self.user)
-        if p.count():
-            f = PostalForm(instance=p[0])
-        else:
-            f = PostalForm()
-        context['postal_form'] = f
         context['default'] = self.request.GET.get('setting', 'general')
         return context
 
