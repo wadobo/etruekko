@@ -85,13 +85,21 @@ a:hover {
 #logo {
     text-align: right;
     float: left;
-    width: 220px;
+    width: 185px;
     margin: 10px;
 }
 
 #userprofile {
     float: right;
     margin: 10px;
+}
+
+#userprofile > form {
+    margin: 0px !important;
+}
+
+#userprofile > form > .button {
+    margin-top: 5px;
 }
 
 .small {
@@ -251,7 +259,11 @@ a:hover {
 
 #footwrapper {
     margin: 0 auto 0 auto;
-    width: 550px;
+    width: 915px;
+}
+
+.fimage {
+    margin-bottom: 5px;
 }
 
 /* ENDOF FOOTER */
@@ -1033,80 +1045,92 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus {
   left: auto;
 }
 
-/* Caption */
-
-.caption {
-    z-index:500;
-    position:absolute;
-    bottom:-35px;
-    left:0;
-    height:30px;
-    padding:5px 20px 0 20px;
-    background:#000;
-    background:rgba(0,0,0,.5);
-    width:540px;
-    font-size:1.3em;
-    line-height:1.33;
-    color:#fff;
-    border-top:1px solid #000;
-    text-shadow:none;
-}
-
-.caption p {
-    color: white;
-    font-size: small;
-    margin: 0px;
-    padding: 0px;
-    text-align: left;
-}
-
-#slides {
-    position:absolute;
-    top:15px;
-    left:4px;
-    z-index:100;
-}
-
-.slides_container {
-    width:570px;
-    overflow:hidden;
-    position:relative;
-    display:none;
-}
-
-.slides_container div.slide {
-    width:570px;
-    height:270px;
-    display:block;
-}
-
 #container {
-    width:600px;
-    height:350px;
-    position:relative;
-    margin-left: 20px;
+    width:450px;
+    height:253px;
+    margin: 0px;
     float: left;
 }
 
-#frame {
-    position:absolute;
-    z-index:0;
-    width:739px;
-    height:341px;
-    top:-17px;
-    left:-84px;
+#etk_ad {
+    float: left;
+    width: 200px;
+    padding-left: 40px;
+}
+
+#etk_ad > p {
+    font-size: small;
+    text-align: justify;
+    color: #777;
+}
+
+#etk_ad > h3 {
+    color: #555;
+    margin-top: 0px;
+    padding-top: 0px;
+    text-decoration: underline;
 }
 
 #etk_description {
     float: left;
-    width: 270px;
+    width: 290px;
     text-align: justify;
     color: #555;
+    font-size: 16px;
+    padding-left: 20px;
+}
+
+#etk_description > ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+#etk_description > ul > li {
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #aaa;
+    padding-bottom: 10px;
+    font-size: 20px;
+    color: #444;
+    line-height: 20px;
+}
+
+#etk_description > p > strong {
+    font-size: 20px;
+}
+
+#etk_popups {
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.modal {
+    text-align: left;
+}
+
+.modal h3, .modal h4 {
+    color: #555 !important;
+    font-family: sans-serif !important;
+    font-weight: normal !important;
+    margin-top: 0px !important;
+}
+
+.modal-body p {
+    font: normal normal 200 15px/18px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #636363;
+}
+
+.etkpopup > a {
+    font-size: 18px;
 }
 
 .columns {
     width: 900px;
     margin: 0 auto;
+}
+
+.columns h3 {
+    color: #777 !important;
 }
 
 .c1 {

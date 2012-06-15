@@ -12,34 +12,6 @@
     <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.rating.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.simpleautogrow.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/slides.min.jquery.js"></script>
-
-    <script>
-        $(function(){
-            $('#slides').slides({
-                preload: true,
-                preloadImage: '/media/imgs/loading.gif',
-                play: 5000,
-                pause: 2500,
-                hoverPause: true,
-                animationStart: function(current){
-                    $('.caption').animate({
-                        bottom:-35
-                    },100);
-                },
-                animationComplete: function(current){
-                    $('.caption').animate({
-                        bottom:0
-                    },200);
-                },
-                slidesLoaded: function() {
-                    $('.caption').animate({
-                        bottom:0
-                    },200);
-                }
-            });
-        });
-    </script>
 
     <meta name="keywords" content="trueque, intercambio, banco del tiempo"/>
     <meta name="description" content="etruekko, tu red de intercambio"/>
@@ -106,6 +78,7 @@
         <!-- endof head -->
 
         <div id="content">
+            {% block precontent %}
 
             {% block menu %}
             {% include "menu.html" %}
@@ -120,6 +93,7 @@
                     <!-- endof subcontent -->
                 {% endblock %}
             </div>
+            {% endblock %}
         </div>
         <!-- endof content -->
     </div>
@@ -127,13 +101,18 @@
 
     <div id="foot">
         <div id="footwrapper">
+            <div id="contact" class="fcontent">
+                <h2>{% trans "Contact" %}</h2>
+                <ul>
+                    <li><a href="{% url contact %}">{% trans "Contact" %}</a></li>
+                    <li><a href="mailto:info@etruekko.com">{% trans "info@etruekko.com" %}</a></li>
+                </ul>
+            </div>
+
             <div id="help" class="fcontent">
                 <h2>{% trans "Help" %}</h2>
                 <ul>
-                    <li><a href="">{% trans "What is etruekko" %}</a></li>
-                    <li><a href="">{% trans "How works etruekko" %}</a></li>
                     <li><a href="">{% trans "FAQ" %}</a></li>
-                    <li><a href="{% url contact %}">{% trans "Contact" %}</a></li>
                 </ul>
             </div>
 
@@ -147,13 +126,20 @@
                 </ul>
             </div>
 
-            <div id="privacy" class="fcontent flast">
+            <div id="privacy" class="fcontent">
                 <h2>{% trans "Privacy" %}</h2>
                 <ul>
                     <li><a href="">{% trans "Privacy" %}</a></li>
                     <li><a href="">{% trans "Terms" %}</a></li>
-                    <li><a href="">{% trans "About" %}</a></li>
                 </ul>
+            </div>
+
+            <div id="privacy" class="fcontent flast">
+                <h2>{% trans "Powered by" %}</h2>
+                <a href="http://wadobo.com">
+                    <img class="fimage" src="{{ MEDIA_URL }}imgs/wadobolabs.png" alt="Wadobo labs" title="wadobo labs"/>
+                </a>
+                <a href="http://www.djangoproject.com/"><img src="https://www.djangoproject.com/m/img/badges/djangosite80x15_grey.gif" border="0" alt="A Django site." title="A Django site." /></a>
             </div>
 
         </div>

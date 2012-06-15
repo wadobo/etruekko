@@ -1,57 +1,379 @@
 {% load i18n %}
 
+<div id="etk_popups">
+    <!-- TODO in english / translate -->
+    <div class="row">
+        <div class="span2 etkpopup">
+            <a class="etkpopuplink" href="#">Qué es etruekko</a>
+            <div class="modal hide fade">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3>Qué es etruekko</h3>
+                </div>
+                <div class="modal-body">
 
-<div id="container">
-    <div id="slides">
-        <div class="slides_container">
-            <div class="slide">
-                <img src="/media/imgs/slides/ayuntamiento.jpg" width="570" height="270">
-                <div class="caption" style="bottom:0">
-                    <p>
-                    {% blocktrans %}
-                    City Hall
-                    {% endblocktrans %}
-                    </p>
+                <p>
+                Etruekko es una red de comunidades en la que puedes intercambiar y
+                compartir artículos, servicios y conocimientos siguiendo la filosofía
+                de los sistemas de trueque, los bancos de tiempo y las monedas
+                sociales.
+                </p>
+
+                <p>
+                Consigue lo que necesitas a cambio de lo que ya no usas, lo que sabes
+                hacer, tus conocimientos y tu saldo en nuestra moneda social, a la
+                vez que potencias el reciclaje, alargas la vida de tus bienes,
+                reciclas, ahorras, colaboras a la sostenibilidad ambiental  y ayudas a
+                implantar una cultura colaborativa, de empoderamiento social y ayuda
+                mutua en tu comunidad.
+                </p>
+
+                <p>
+                <strong>Pon en valor lo que posees y sabes hacer. Crece con tu comunidad</strong>
+                </p>
                 </div>
-            </div>
-            <div class="slide">
-                <img src="/media/imgs/slides/asociaciones.jpg" width="570" height="270">
-                <div class="caption" style="bottom:0">
-                    <p>
-                    {% blocktrans %}
-                    Association
-                    {% endblocktrans %}
-                    </p>
-                </div>
-            </div>
-            <div class="slide">
-                <img src="/media/imgs/slides/ongs.jpg" width="570" height="270">
-                <div class="caption" style="bottom:0">
-                    <p>
-                    {% blocktrans %}
-                    ONG
-                    {% endblocktrans %}
-                    </p>
+
+                <div class="modal-footer">
+                    <a class="button green small" href="{% url register_wizard %}">{% trans "Register" %}</a>
+                    <a class="button blue small" href="#">{% trans "FAQ" %}</a>
                 </div>
             </div>
         </div>
-        <img src="/media/imgs/frame.png" width="739" height="341" alt="frame" id="frame">
+
+        <div class="span2 etkpopup">
+            <a class="etkpopuplink" href="#">Cómo funciona</a>
+            <div class="modal hide fade">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3>Cómo funciona</h3>
+                </div>
+                <div class="modal-body">
+                    <p>
+                    Etruekko está formado por comunidades autogestionadas conectadas en
+                    red, por lo tanto lo primero que debes hacer es registrarte y
+                    solicitar unirte a una comunidad, ya sea de tu barrio, universidad,
+                    asociación a la que perteneces, etc..., esta será tu entorno de
+                    confianza, no podrás interactuar hasta que el administrador de la
+                    comunidad a la que has solicitado unirte te acepte en ella.
+                    </p>
+
+                    <p>
+                    Pertenecer a una comunidad o varias no significa estar aislado, puedes
+                    crear tu red de contactos e interactuar con otros usuarios
+                    pertenecientes a otras comunidades, confía en ellos, ya que pertenecer
+                    a Etruekko significa que un administrador te ha verificado.
+                    </p>
+
+                    <p>
+                    En Etruekko te comunicaras y compartirás con tu red de contactos a
+                    través de su red social, podrás publicar tus ofertas y demandas ya
+                    sean bienes o servicios así como encontrar  lo que en cada momento
+                    necesites, proponiendo o recibiendo ofertas las cuales podrás negociar
+                    de manera ágil y sencilla hasta conseguir cerrar un intercambio.
+                    </p>
+
+                    <p>
+                    Cualquier intercambio es posible, cualquier cosa que ofrezcas, ya sea
+                    un bien , servicio, conocimiento o habilidad  es susceptible de ser
+                    intercambiada, los usuarios en sus negociaciones deciden de tu a tu lo
+                    que van a intercambiar.
+                    </p>
+
+                    <p>
+                    Además no solo podrás intercambiar lo que posees y sabes hacer,
+                    también puedes pagar con nuestra moneda social, el truekko, una moneda
+                    que no genera deuda, ni intereses ni pierde su valor y que tú mismo
+                    generas por el valor que aportas a la sociedad al realizar este tipo
+                    de consumo. También es la moneda con la que valoraras todo lo que
+                    ofrezcas.
+                    </p>
+
+                    <p>
+                    <strong>
+                    Registrate, unete a tu comunidad y comienza a poner en valor los
+                    bienes que posees, tus conocimientos y tus habilidades
+                    </strong>
+
+                    <a class="button green small" href="{% url register_wizard %}">{% trans "Register" %}</a>
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <a class="button blue small" href="#">{% trans "FAQ" %}</a>
+                    <a class="button blue small" href="#">{% trans "To what communities can I join in" %}</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="span2 etkpopup">
+            <a class="etkpopuplink" href="#">Qué puedo hacer</a>
+            <div class="modal hide fade">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3>Qué puedo hacer</h3>
+                </div>
+                <div class="modal-body">
+                    <p>
+                    Seguro que tienes muchas cosas que ya no usas, seguro que sabes hacer
+                    muchas cosas, ofrécelo y demanda lo que necesitas, ¿Se te ha roto un
+                    grifo y tienes ropa de bebe que ya no usas?, encuentra a alguien que
+                    te lo arregle a cambio de esa ropa. Mantén actualizadas tus ofertas y
+                    demandas e incluye cuantas más cosas mejor, más posibilidades de
+                    intercambio tendrás
+                    </p>
+
+                    <p>
+                    ¿Tienes una raqueta que apenas usas? compártela, otra persona la puede
+                    necesitar un día y no deberá comprar una, pide un alquiler por horas,
+                    días, etc... ya sea en Truekkos o en Euros
+                    </p>
+
+                    <p>
+                    Crea tu red de contactos y comunícate con ellos a través de nuestra
+                    Red Social
+                    </p>
+
+                    <p><strong>Lo importante es el acceso a algo no su posesión</strong></p>
+                    <ul>
+                    <li>
+                      Cuantas más ofertas y demandas tengas creadas más fácil te será
+                      llegar a un acuerdo cuando negocies un intercambio así como que te
+                      propongan transacciones
+                    </li>
+
+                    <li>
+                      La valoración de un bien o servicio por parte de un usuario es
+                      orientativa, no dudes en hacerle una oferta, durante la negociación
+                      esta valoración pasará a un segundo plano.
+                    </li>
+
+                    <li>
+                      Cuando inicies una negociación con un usuario con el que no tienes
+                      relación, consulta su valoración, numero de intercambios realizados
+                      y comentarios sobre el, pero ante todo siempre confía en él
+                    </li>
+
+                    <li>
+                      Piensa en la cantidad de cosas que tienes en casa que  bien ya no
+                      usas o usas esporádicamente, esas cosas son las que puedes trocar si
+                      no piensas usarlas de nuevo o compartir si solo las usas de vez en
+                      cuando
+                    </li>
+
+                    <li>
+                      ¿Sabes la cantidad de cosas que sabes hacer? todos tenemos
+                      habilidades y conocimientos aunque no las explotemos
+                      profesionalmente, ofrécete.
+                    </li>
+
+                    <li>
+                      Piensa en Etruekko cada vez que tengas que comprar algo o necesites
+                      que te presten un servicio como primera opción antes de decidir usar
+                      tu dinero
+                    </li>
+
+                    <li>
+                      Consulta las ayudas que aparecen en las páginas y mira los
+                      videotutoriales
+                    </li>
+
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <a class="button green small" href="{% url register_wizard %}">{% trans "Register" %}</a>
+                    <a class="button blue small" href="#">{% trans "FAQ" %}</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="span2 etkpopup">
+            <a class="etkpopuplink" href="#">Crea tu comunidad</a>
+            <div class="modal hide fade">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3>Crea tu comunidad</h3>
+                </div>
+                <div class="modal-body">
+
+                <p>
+                Si eres gestor de una asociación, ONG, entidad
+                pública, fundación o de cualquier otro colectivo y
+                deseas que tu comunidad pertenezca a Etruekko, rellena
+                <a href="{% url contact %}">este formulario</a>, nos pondremos en
+                contacto contigo personalmente para darte toda la
+                información que necesites y explicarte todo lo que te
+                ofrecemos.
+                </p>
+
+                <h3>Aquí puedes ver las comunidades ya creadas</h3>
+
+                {% for group in last_groups %}
+                    <div class="group">
+                        <a href="{% url view_group group.id %}"><img src="{% groupavatar group 64 %}" alt="{{ group.name }}"/></a>
+                        <a href="{% url view_group group.id %}"><span class="name">{{ group.name }}</span></a>
+                        <span class="location"><a href="{% url groups %}?search={{ group.location }}">{{ group.location }}</a></span>
+                        <p class="description">{{ group.description|truncatewords:20 }}</p>
+                        {% if group.web %}
+                            <a href="{{ group.web }}"><span class="web">{{ group.web }}</span></a>
+                        {% endif %}
+                        <div class="clear"></div>
+                    </div>
+                {% endfor %}
+
+                <a href="{% url groups %}">{% trans "more..." %}</a>
+
+                </div>
+                <div class="modal-footer">
+                    <a class="button green small" href="{% url contact %}">{% trans "Register community" %}</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="span2 etkpopup">
+            <a class="etkpopuplink" href="#">Qué es el Truekko</a>
+            <div class="modal hide fade">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3>Qué es el Truekko</h3>
+                </div>
+                <div class="modal-body">
+
+                <p>
+                El Truekko es nuestra moneda social. Su valor está respaldada por la
+                confianza y por el valor que aportas a la sociedad al contribuir al
+                reciclaje, la reutilización de recursos, la sostenibilidad
+                medioambiental, la ayuda mutua y el empoderamiento social entre otros
+                valores.
+                </p>
+
+                <p>
+                Los usuarios de Etruekko aceptaran el pago total o parcial en esta
+                moneda ya que otros usuarios aceptaran que ellos les paguen con ella.
+                También valorarán los servicios o artículos que ofrecen en esta
+                moneda. Su equivalencia referencial será  1 Truekko = 1 €.
+                </p>
+
+                <p>
+                Puedes conseguir Truekkos de 3 maneras distintas:
+                </p>
+
+                <ul>
+                <li>
+                  Una vez que el administrador de una comunidad te acepte en ella
+                  recibirás 20 Truekkos
+                </li>
+
+                <li>
+                  Por cada intercambio que realices recibirás 5 Truekkos
+                </li>
+
+                <li>
+                  Por apadrinar a un amigo 5 Truekkos
+                </li>
+                </ul>
+
+                <p><strong>Empieza a usar un dinero diferente que no genera deuda, ni intereses
+                ni pierde su valor</strong></p>
+                </div>
+                <div class="modal-footer">
+                    <a class="button green small" href="{% url register_wizard %}">{% trans "Register" %}</a>
+                    <a class="button blue small" href="#">{% trans "FAQ" %}</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="span2 etkpopup">
+            <a class="etkpopuplink" href="#">Comunidades</a>
+            <div class="modal hide fade">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3>Comunidades</h3>
+                </div>
+                <div class="modal-body">
+                <p>
+                La confianza es muy importante en Etruekko, cada comunidad será
+                confiable por sí misma, ya que será gestionada por un administrador
+                que gestionará  colectivos reducidos de usuarios con los que
+                normalmente tiene algún tipo de relación, además irá viendo la
+                actividad de su grupo. Por lo tanto un usuario que pertenezca a una
+                comunidad será un usuario verificado.
+                </p>
+
+                <p>
+                La confiabilidad individual de cada comunidad hace confiable todo el
+                sistema Etruekko, permitiéndote hacer tu propia red de contactos y
+                redes de intercambio seguro.
+                </p>
+
+                <p><strong>Intercambia y comparte tus conocimientos,
+                habilidades y bienes con tu comunidad. crea tus
+                propias redes</strong></p>
+
+                <h3>{% trans "Last Communities" %}</h3>
+                {% for group in last_groups %}
+                    <div class="group">
+                        <a href="{% url view_group group.id %}"><img src="{% groupavatar group 64 %}" alt="{{ group.name }}"/></a>
+                        <a href="{% url view_group group.id %}"><span class="name">{{ group.name }}</span></a>
+                        <span class="location"><a href="{% url groups %}?search={{ group.location }}">{{ group.location }}</a></span>
+                        <p class="description">{{ group.description|truncatewords:20 }}</p>
+                        {% if group.web %}
+                            <a href="{{ group.web }}"><span class="web">{{ group.web }}</span></a>
+                        {% endif %}
+                        <div class="clear"></div>
+                    </div>
+                {% endfor %}
+
+                <a href="{% url groups %}">{% trans "more..." %}</a>
+
+                </div>
+
+                <div class="modal-footer">
+                    <a class="button green small" href="{% url register_wizard %}">{% trans "Register" %}</a>
+                    <a class="button blue small" href="#">{% trans "FAQ" %}</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
+<div id="etk_main">
 
-<p id="etk_description">
-{% blocktrans %}
-Etruekko is a social network where you can share items or services,
-allowing any combination, and indirect sharing like time banking and
-traditional barter systems. Get what you want without money at the
-same time that you recycle, makes the most of your items and skills,
-collaborates with your community and improves it.
-{% endblocktrans %}
-</p>
-<p>
+<div id="container">
+    <iframe width="450" height="253" src="http://www.youtube.com/embed/2Iswls39rIw" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<div id="etk_description">
+    <!-- TODO in english / translate -->
+    <ul class="etk_desc">
+        <li>Cubre tus necesidades de consumo sin usar tu dinero</li>
+        <li>Pon en valor lo que posees y sabes hacer</li>
+        <li>Crece con tu comunidad</li>
+    </ul>
+
+    <p>
+    Nuestros valores: Compartir, colaborar, intercambiar, ayuda mutua, confianza, sostenibilidad ambiental, empoderamiento...
+    <strong>Hazlos tuyos</strong>
+    </p>
+</div>
+
+<div id="etk_ad">
+    <!-- TODO in english / translate -->
+    <h3>¿Quieres anunciarte aquí?</h3>
+    <p>
+    Anunciarse en Etruekko es algo más que dar a conocer tu negocio
+    publicitariamente, es apoyar una iniciativa basada en valores
+    profundamente beneficiosos para la sociedad, es aportar tu granito de
+    arena a la conservación medioambiental, es apoyar la comunidad en la
+    que desarrollas tu actividad, es ser solidario y sobre todo es
+    potenciar la Responsabilidad Social de tu negocio.
+    </p>
+
+    <!-- TODO point to ad contact form -->
+    <a class="button blue" href="{% url contact %}">{% trans "Advertise" %}</a>
+</div>
 
 <div class="clear"></div>
+</div>
 
 <div class="columns">
     <div class="left c1">
@@ -92,3 +414,12 @@ collaborates with your community and improves it.
     {% endfor %}
 
 </div>
+
+<script text="javascript">
+    $(document).ready(function(){
+        $(".etkpopuplink").click(function() {
+            $(this).next().modal("show");
+            return false;
+        });
+    });
+</script>
