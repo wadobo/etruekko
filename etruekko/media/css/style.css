@@ -1100,7 +1100,9 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus {
 }
 
 #etk_popups {
+    padding-top: 20px;
     padding-bottom: 20px;
+    margin-bottom: 10px;
     text-align: center;
 }
 
@@ -1122,6 +1124,12 @@ textarea:focus, input[type=text]:focus, input[type=password]:focus {
 
 .etkpopup > a {
     font-size: 18px;
+    color: #aaa;
+}
+
+.etkpopup > a:hover {
+    color: white;
+    text-decoration: none;
 }
 
 .columns {
