@@ -71,6 +71,7 @@ p {
     color: white;
     list-style: none;
     width: 100%;
+    margin: 0px;
 }
 
 #messages li {

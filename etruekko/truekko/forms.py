@@ -141,6 +141,7 @@ class ContactForm(forms.Form):
 
     sender = forms.EmailField(label=_("Email"))
     subject = forms.CharField(label=_("Subject"), max_length=100)
+    phone = forms.CharField(label=_("Phone"), required=False, max_length=100)
     message = forms.CharField(label=_("Message"), widget=forms.Textarea)
     cc_myself = forms.BooleanField(label=_("Send a copy to myself"), required=False)
 
@@ -148,14 +149,16 @@ class ContactForm(forms.Form):
         subject = self.cleaned_data['subject']
         message = self.cleaned_data['message']
         sender = self.cleaned_data['sender']
+        phone = self.cleaned_data['phone']
         cc_myself = self.cleaned_data['cc_myself']
 
+        msg = _("Phone: %(number)s\n\n%(msg)s") % dict(number=phone, msg=message)
         recipients = ['info@etruekko.com']
         if cc_myself:
             recipients.append(sender)
 
         from django.core.mail import send_mail
-        send_mail(subject, message, sender, recipients)
+        send_mail(subject, msg, sender, recipients)
 
 
 class CommitmentForm(ModelForm):

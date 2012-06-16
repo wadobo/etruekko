@@ -1773,11 +1773,15 @@ class UnFollowView(View):
 
 class Contact(TemplateView):
     template_name = 'truekko/contact.html'
+    help_text = ''
+    subject = ''
 
     def get_context_data(self, **kwargs):
         context = super(Contact, self).get_context_data(**kwargs)
         context['menu'] = generate_menu()
         context['form'] = ContactForm()
+        context['form'].fields['subject'].initial = self.subject
+        context['help_text'] = self.help_text
 
         return context
 
@@ -1802,6 +1806,25 @@ class Contact(TemplateView):
         # notify
         messages.info(request, _(u"Thanks for contact with us, we will reply as soon as possible"))
         return redirect(index)
+
+
+class NewCommunityContact(Contact):
+    help_text = _("Fill the following form to register a new "
+                  "community. We will contact you as soon as "
+                  "possible. In the message you should put "
+                  "a short description about your community.")
+    subject = _("I want to create a new community in Etruekko")
+
+
+class NewAdContact(Contact):
+    help_text = _("Fill the following form to advertise in "
+                  "Etruekko. In the message you should put "
+                  "a short description about what do you "
+                  "want to ad in this platform. "
+                  "We will contact you as soon as "
+                  "possible to tell you more about "
+                  "conditions and what we need")
+    subject = _("I want add an advertise in Etruekko")
 
 
 # profile
@@ -1870,6 +1893,8 @@ etruekko = login_required(Etruekko.as_view())
 
 # contact
 contact = Contact.as_view()
+new_community_contact = NewCommunityContact.as_view()
+new_ad_contact = NewAdContact.as_view()
 
 
 index = Index.as_view()

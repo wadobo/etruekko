@@ -56,6 +56,8 @@ urlpatterns = patterns('etruekko.truekko.views',
     url(r'^etruekko$', 'etruekko', name='etruekko'),
     # contact
     url(r'^contact$', 'contact', name='contact'),
+    url(r'^contact/community$', 'new_community_contact', name='new_community_contact'),
+    url(r'^contact/ad$', 'new_ad_contact', name='new_ad_contact'),
 
     url(r'^$', 'index', name='index'),
 )
