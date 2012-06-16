@@ -782,6 +782,14 @@ class LeaveGroup(View):
         g = get_object_or_404(Group, pk=groupid)
         data = request.POST
 
+        if len(g.admins()) == 1 and g.is_admin(self.request.user):
+            msg = _("You are the only admin of this community. "
+                    "You can't leave until you set a new admin")
+
+            messages.info(request, msg)
+            return redirect('view_group', groupid)
+
+
         if is_member(request.user, g):
             m = Membership.objects.get(user=request.user, group=g)
             m.delete()

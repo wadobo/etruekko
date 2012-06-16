@@ -1,8 +1,3 @@
-- El administrador de una comunidad, puede abandonarla, no deberia
-  poder si no nombra antes a otro administrador, ya que ahora al puede
-  abandonar y puede solicitar volver a unirse, pero quien lo vuelve a
-  admitir entonces si no hay administrador?
-
 - Confirmación al darle a aceptar/cancelar en una transacción con
   javascript para avisar de que la operación no se puede deshacer.
 
