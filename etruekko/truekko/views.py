@@ -1,11 +1,13 @@
 import uuid
 from unidecode import unidecode
 import datetime
+import os
 
 from django.http import Http404
 from django.contrib import messages
 from django.template import RequestContext
 from django.utils.translation import ugettext as _
+from django.utils import translation
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, get_object_or_404
 from django.views.generic.base import View, TemplateView
@@ -14,6 +16,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from decorators import is_group_admin, is_group_editable, is_member
 from django.shortcuts import render_to_response
 from django.db.models import Q
+from django.conf import settings
 
 from etruekko.truekko.forms import UserProfileForm
 from etruekko.truekko.forms import GroupForm
@@ -1827,6 +1830,40 @@ class NewAdContact(Contact):
     subject = _("I want add an advertise in Etruekko")
 
 
+##############
+# PLAIN TEXT #
+##############
+
+class PlainText(TemplateView):
+    template_name = 'truekko/plain_text.html'
+    filename = ''
+    prefix = 'n'
+
+    def get_context_data(self, **kwargs):
+        context = super(PlainText, self).get_context_data(**kwargs)
+        cur_language = translation.get_language()
+
+        # looking for language file
+        directory = os.path.join(settings.MEDIA_ROOT, "plaintext")
+        default = os.path.join(directory, self.filename)
+        langfile = "%s.%s" % (default, cur_language)
+
+        if os.path.exists(langfile):
+            path = langfile
+        else:
+            path = default
+
+        context['text'] = open(path).read()
+        context['prefix'] = self.prefix
+
+        return context
+
+
+class FAQ(PlainText):
+    filename = "faq.txt"
+    prefix = "faq"
+
+
 # profile
 edit_postal = login_required(EditPostal.as_view())
 edit_profile = login_required(EditProfile.as_view())
@@ -1896,5 +1933,7 @@ contact = Contact.as_view()
 new_community_contact = NewCommunityContact.as_view()
 new_ad_contact = NewAdContact.as_view()
 
+# faq
+faq = FAQ.as_view()
 
 index = Index.as_view()

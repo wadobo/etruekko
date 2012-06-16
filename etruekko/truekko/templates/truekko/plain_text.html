@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load markup %}
+
+{% block extrahead %}
+    <script>
+    function generate_menu() {
+        var parentmenu = $("#textmenul");
+        var menu = $("#textmenul");
+        var first = $("h1");
+        var cid = 0;
+        var prefix = "{{ prefix }}";
+        first.nextAll().each(function() {
+            if ($(this).get(0).tagName == "H2") {
+                cid++;
+                var name = prefix + cid;
+                $(this).html('<a href="#'+name+'" name="'+name+'">'+$(this).text()+'</a>');
+                menu.append('<li><a class="menulink" href="#'+name+'">'+$(this).text()+'</a></li>');
+                if (window.location.hash == "#" + name) {
+                    $("html, body").animate({
+                        scrollTop: $(this).offset().top + "px"
+                    }, {
+                        duration: 500,
+                        easing: "swing"
+                    });
+                }
+            }
+        });
+
+    $('.menulink').click(function() {
+        var $target = $(this.hash);
+        $target = $target.length && $target || $('[name=' + this.hash.slice(1) +']');
+        if ($target.length) {
+            var targetOffset = $target.offset().top;
+            var newv = $(this).attr("href");
+            $('html,body').animate({scrollTop: targetOffset}, 500, "swing", function() {window.location.hash = newv;});
+            return false;
+        }
+    });
+
+    }
+
+    $(document).ready(function(){
+        generate_menu();
+
+        var div = $('#textmenu');
+        var start = $(div).offset().top;
+        var left = $(div).offset().left;
+
+        $.event.add(window, "scroll", function() {
+            var p = $(window).scrollTop();
+            $(div).css('position',((p)>start) ? 'fixed' : 'static');
+            $(div).css('top',((p)>start) ? '0px' : '');
+            $(div).css('left',((p)>start) ? left+'px' : '');
+        });
+    });
+    </script>
+{% endblock %}
+
+{% block subcontent %}
+
+<div id="textmenu">
+    <h3>{% trans "Menu" %}</h3>
+    <ul id="textmenul">
+    </ul>
+</div>
+
+<div id="plaintext">
+{{ text|textile|urlizetrunc:20 }}
+</div>
+
+{% endblock %}
+
+

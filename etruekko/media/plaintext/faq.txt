@@ -1,0 +1,161 @@
+h1. Preguntas frecuentes
+
+h2. Registro
+
+Es imprescindible registrarse y después solicitar tu adhesión a una comunidad.
+
+h3. ¿Por qué no puedo acceder a la plataforma una vez registrado?
+
+No podrás acceder hasta la plataforma hasta que el administrador de la comunidad a la que has solicitado adherirte te acepte dentro de ella.
+
+h3. ¿Es imprescindible pertenecer a una comunidad para poder ser usuario de Etruekko?
+
+No, durante la fase piloto, si no está creada ninguna comunidad de tu entorno a la que unirte, solicita tu adhesión a la COMUNIDAD ETRUEKKO, la cual estará administrada por nosotros.
+
+h2. Muro
+
+h3. ¿Que se publica en mi muro?
+
+Verás todo lo que publiques, lo que otros usuarios publiquen directamente en tu muro, lo que el administrador de tu comunidad publique, lo que publiquen los usuarios a los que sigues y las últimas ofertas y demandas de tu red de contactos.
+
+h3. ¿Por qué no veo lo que publican las personas que me siguen?
+
+No puedes ver lo que pública un usuario si no lo sigues.
+
+h3. ¿Cómo puedo seguir a un usuario?
+
+Ve a su perfil de usuario y pulsa en seguir, también podrás dejar de seguirlo desde su perfil.
+
+h3. ¿Quien ve lo que publico en la caja "que estas pensando"?
+
+Todos tus seguidores.
+
+h3. ¿Cómo puedo escribirle directamente a un usuario?
+
+Ve a su perfil y publica en su muro, si quieres que solo lea lo que publicas un usuario pulsa en el check privado
+
+h3. ¿Puedo escribir en el muro de un usuario si no lo sigo?
+
+Si
+
+h3. ¿Cómo puedo publicar un mensaje para que lo lean todos los usuarios de una comunidad?
+
+Ve al perfil de la comunidad y publica en su muro, si quieres que solo lo lean los usuarios de tu comunidad pero no otros usuarios que te siguen que son de otras comunidades pulsa el check privado
+
+h2. Transacciones
+
+h3. ¿Cómo comienzo una transacción?
+
+Si tienes algo que ofrecer, busca usuarios que demanden lo que tu ofreces y hazle una oferta comenzando una negociación
+
+Si necesitas algo, busca usuarios que oferten lo que tu demandas y solicítales el servicio o bien comenzando una negociación.
+
+Por lo tanto puedes ser tu quien inicie una transacción, o pueden ser otros usuarios los que te propongan transacciones
+
+h3. ¿Cómo funcionan las negociaciones?
+
+Una vez hagas una oferta o solicites un bien o servicio se abrirá la pantalla de negociación, tienes dos columnas, a la derecha tienes todas tus ofertas y a la izquierda las ofertas y demandas del usuario con el que estas interaccionando, las demandas aparecen a título informativo.
+
+Pulsando sobre tus ofertas y sus ofertas, puedes ir añadiendo o quitando todos los elementos que entraran en la negociación, o sea lo que tu ofreces y lo que le solicitas de sus ofertas, puedes incluir tantos elementos como quieras.
+
+También puedes incluir truekkos, los truekkos que pongas en tu columna serán los que tu pagues y por tanto se te restaran de tu saldo una vez se cierre la negociación y viceversa
+
+Elige la forma en la que se producirá el intercambio, persona, envió postal o mensajería, ten en cuenta los posibles gastos de envío y negocia quien los asumirá
+
+Incluye los comentarios que desees y crea un compromiso si es necesario
+
+Los compromisos se crean en los casos en los que un usuario hace entrega de un bien o servicio a corto plazo y otro a medio o largo plazo, por ejemplo el usuario A llega al acuerdo de entregar una bicicleta al cerrar la transacción a usuario B y este se compromete a entregarle X kilos de naranjas cuando tenga su cosecha, el usuario B ha adquirido un compromiso con el usuario A. El compromiso desaparecerá cuando el usuario A reciba el bien o articulo comprometido, el será el que pueda cerrar el compromiso
+
+h3. ¿Es necesario que coincidan las valoraciones de los bienes que dos usuarios negocian intercambiar para cerrar un intercambio?
+
+No, la valoración a la hora de cerrar una negociación es secundaria, son los usuarios los que finalmente deciden  cerrar un intercambio o no independientemente de las valoraciones que inicialmente hubiesen hecho de sus bienes y servicios
+
+h3. ¿Quién cierra una negociación?
+
+El usuario que recibe una oferta es el único que puede cerrar la negociación, ya sea cancelándola o aceptándola
+
+También puede modificar la oferta inicial recibida y hacer una contraoferta, en ese caso la podría cerrar el usuario que recibe la contraoferta
+
+El número de negociaciones posibles a la hora de cerrar un intercambio es ilimitado, se pueden hacer tantas contraofertas como se desee, modificando tanto los bienes y artículos como los Truekkos que entran en juego en la misma.
+
+h3. ¿Qué pasa si un usuario no cumple con el intercambio pactado con otro?
+
+Los usuarios registrados en Etruekko aceptan unas condiciones particulares y de uso en las que se comprometen a cumplir con los acuerdos alcanzados con otros usuarios.
+
+Un usuario puede ser denunciado por otro en el caso de incumplimiento, esta denuncia será recibida por el administrador de sus respectivas comunidades el cuál puede expulsarlos en el caso de no solucionarse el problema
+
+h3. ¿Cómo denuncio a un usuario?
+
+Desde el perfil del usuario al que quieres denunciar
+
+h2. Truekko
+
+¿Cuál es el valor de 1 Truekko?
+
+El valor del Truekko orientativo es equivalente a 1 €, con el fin de tener una referencia a la hora de valorar tus ofertas y de utilizarlo en tus intercambios
+
+h3. ¿Cómo puedo conseguir Truekkos?
+
+Al registrarte en Etruekko recibirás 20 Truekkos en tu cuenta
+
+Por cada transacción que realices recibirás 5 Truekkos
+
+Al traer un amigo a tu comunidad Etruekko recibirás 5 Truekkos una vez este haya hecho su primer intercambio 
+
+En unos meses implantaremos otros mecanismos para que puedas conseguir Truekkos
+
+h3. ¿Puedo cambiar Truekkos por Euros?
+
+No, el Truekko es una moneda alternativa fuera totalmente del sistema monetario, solo se puede usar dentro del sistema Etruekko aunque en un futuro barajamos algunas opciones para que le puedas dar otros usos.
+
+h3. ¿Puedo pagar a otro usuario únicamente en Truekkos sin intercambiar ningún bien o servicio?
+
+Sí, pero no recibirás Truekkos
+
+h3. ¿Puedo transferir Truekkos a otro usuario sin realizar un intercambio con él?
+
+Si, ve a su perfil y hazle una transferencia directa
+
+h3. ¿Es ilimitado el número de Truekkos que puedo tener en mi saldo?
+
+No, puedes tener como máximo 50 Truekkos, ya que la filosofía de Etruekko es promover los intercambios, por lo tanto gasta tus truekkos si quieres conseguir más mediante invitaciones o intercambios
+
+h3. ¿Puedo usar euros?
+
+La plataforma no está preparada para usar dinero oficial, tendrías que usar los comentarios en tus negociaciones para pactar una forma de pago que no sea mediante intercambio o Truekkos
+
+h2. Comunidad
+
+h3. ¿Es imprescindible pertenecer a una comunidad para poder usar Etruekko?
+
+En estos momentos sí, pero si no tienes una comunidad de referencia a la que adherirte, solicita tu adhesión a la comunidad Etruekko, administrada directamente por nosotros
+
+h3. ¿Puedo pertenecer a más de una comunidad?
+
+Si
+
+h3. ¿Cómo puedo abandonar una comunidad?
+
+Ve al perfil de la comunidad y pulsa en el botón abandonar
+
+h3. ¿Puedo realizar intercambios con usuarios de comunidades a las que no pertenezco?
+
+Si, crea tu propia red de intercambio
+
+h3. ¿Por defecto soy seguidor de todos los usuarios de la comunidad a la que pertenezco?
+
+No, crea tu propia red de contactos
+
+h3. ¿Para ser administrador de una comunidad debo estar constituido como algún tipo de entidad?
+
+No, una persona física puede administrar su propia comunidad
+
+h2. Búsquedas
+
+h3. ¿Cómo funcionan las búsquedas en Etruekko?
+
+Todas las búsquedas funcionan por etiqueta, busca por nombre o localización, ya sean servicios, artículos, comunidades. Si quieres definir más tus búsquedas busca en la búsqueda avanzada
+
+h3. ¿En qué campos funcionan las búsquedas?
+
+Las búsquedas encuentras las palabras tanto de la descripción de tus ofertas y demandas, por localización según tu perfil y por las etiquetas que crees a la hora de crear ofertas y demandas

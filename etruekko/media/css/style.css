@@ -1190,3 +1190,37 @@ legend {
 .itemlist {
     font-size: x-large;
 }
+
+#textmenu {
+    float: right;
+    padding: 20px;
+    margin: 20px;
+    margin-left: 0px;
+    border: 1px solid #888;
+
+    background-color: #efefef;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+#textmenu ul {
+    list-style: none;
+    font-size: small;
+    margin: 0px;
+    padding: 0px;
+}
+
+#textmenu h3 {
+    margin-top: 0px;
+}
+
+#plaintext p {
+    font: normal normal 200 15px/18px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    text-align: justify;
+    color: #636363;
+}
+
+#plaintext {
+    width: 500px;
+}
