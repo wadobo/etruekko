@@ -1,6 +1,3 @@
-- Confirmación al darle a aceptar/cancelar en una transacción con
-  javascript para avisar de que la operación no se puede deshacer.
-
 - Al publicar un servicio no deja valorarlo en truekkos, debe de
   dejar, que sea como si es un articulo
 

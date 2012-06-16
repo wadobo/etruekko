@@ -61,6 +61,24 @@
           {% if swap and swap.postal %}
             $("#postals").show();
           {% endif %}
+
+          var target = null;
+          $('#swapform :input').focus(function() {
+            target = $(this).attr("name");
+          });
+
+          $('#swapform').submit(function() {
+            var c = true;
+            if (target == "cancel") {
+                var msg = "{% trans "You are going to cancel this swap. Are you sure?" %}";
+                c = confirm(msg);
+            } else if (target == "accept") {
+                var msg = "{% trans "You are going to accept this swap. You can't undo this operation. Are you sure?" %}";
+                c = confirm(msg);
+            }
+
+            return c;
+          });
     });
 
     function check_postals() {
@@ -159,7 +177,7 @@
             {% endif %}
         {% endif %}
 
-        <form method="POST" action="">
+        <form id="swapform" method="POST" action="">
             {% csrf_token %}
 
             {% if not swap or not swap.finished %}
