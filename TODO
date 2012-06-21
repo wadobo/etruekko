@@ -1,6 +1,3 @@
-- Al publicar un servicio no deja valorarlo en truekkos, debe de
-  dejar, que sea como si es un articulo
-
 - Al resolver una denuncia, desaparece del muro de los denunciados
   pero también le desaparece al administrador, debería quedar un
   historial, para el administrador y el usuario, imagínate que la cosa
@@ -26,28 +23,14 @@
   que le regalemos 10 truekkos por registrarse, de todas maneras esto
   de los 10 truekkos l hablamos el jueves, quizás sea poco
 
-- Debería dejar deshacer un intercambio por quien lo ha cerrado
-  durante un tiempo, por ejemplo 48 horas. puede darse el caso de que
-  se cierre un intercambio por error y mas ahora al principio
 - Cuando le das a olvide mi contraseña, en el correo que recibes pone
   reciviendo en lugar de recibiendo, además el link al que te
   direcciona no funciona, pone 404-not found
-
-- Cuando alguien publica en el muro de etruekko, lo vemos solo
-  nosotros no? y como o donde lo vemos?
 
 - Cuando ves el perfil de un usuario debes poder ver los truekkos que
   tiene, y en la negociación también, como sabes si no hasta donde le
   puedes pedir de truekkos?, también debe aparecer en número de
   transacciones que ha realizado aunque no el detalle
-
-- Como funciona exactamente la valoración? si por ejemplo a mi me
-  valoran bien 1000 usuarios y uno llega y me quita todas las
-  estrellas esa será mi valoración a partir de ese momento? funciona
-  por medias?, deberíamos pensar la manera de incentivar las
-  valoraciones 
-
-- Deberíamos tener un extracto con el movimiento de los truekkos
 
 - Los compromisos solo los puede crear el que recibe una oferta, si el
   que la recibe crea un compromiso y la acepta, el que la ha hecho
@@ -62,15 +45,6 @@
   debe confirmarla ella ya que se ha incluido un compromiso, si la
   rechaza pues no hay transacción
 
-- En mis contactos a medio plazo que salga carrusel, no todos los del
-  sistema
-
-- En servicios y artículos a medio plazo que salga carrusel
-
-- En mis grupos, al ser administrador al darle a editar lo de limpiar
-  datos y avatar sale muy raro, como descuadrado, de todas maneras,
-  limpiar para qué es?
-
 QUIZAS
 
 - Un usuario puede publicar en el muro de un grupo sin pertenecer a
@@ -84,4 +58,42 @@ QUIZAS
 - Cuando haces una búsqueda y encuentras lo que buscas sea bien o
   servicio, al pulsar sobre él para ver el detalle no hace nada,
   debería desplegarse la descripción, foto, etc...
+
+- En mis contactos a medio plazo que salga carrusel, no todos los del
+  sistema
+
+- En servicios y artículos a medio plazo que salga carrusel
+
+- En mis grupos, al ser administrador al darle a editar lo de limpiar
+  datos y avatar sale muy raro, como descuadrado, de todas maneras,
+  limpiar para qué es?
+
+    * Limpiar es para quitar la imagen de grupo puesta y dejarlo sin
+      imagen.
+
+- Deberíamos tener un extracto con el movimiento de los truekkos
+
+- Como funciona exactamente la valoración? si por ejemplo a mi me
+  valoran bien 1000 usuarios y uno llega y me quita todas las
+  estrellas esa será mi valoración a partir de ese momento? funciona
+  por medias?, deberíamos pensar la manera de incentivar las
+  valoraciones
+
+    * La valoración funciona por media, por eso cuando se muestra la
+      valocación de un usuario se muestra también el número de votos,
+      porque es un dato importante. Si son pocos votos los que tiene,
+      la valoración no es representativa.
+
+- Cuando alguien publica en el muro de etruekko, lo vemos solo
+  nosotros no? y como o donde lo vemos?
+
+    * El muro etruekko sólo lo pueden ver los administradores de
+      grupos. Todo lo que ahí se publica es visible por todo
+      administrador de etruekko.
+
+- Debería dejar deshacer un intercambio por quien lo ha cerrado
+  durante un tiempo, por ejemplo 48 horas. puede darse el caso de que
+  se cierre un intercambio por error y mas ahora al principio
+
+    * Resuelto con confirmación
 

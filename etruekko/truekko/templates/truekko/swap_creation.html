@@ -94,13 +94,14 @@
 
 {% block content %}
     <div class="left"><img src="/media/imgs/menu/transf.png" alt="transf"/></div>
-    <div class="left"><img src="{% avatar user_from 48 %}" alt="{{ user_from.username }}"/></div>
-    <div class="left"><img src="{% avatar user_to 48 %}" alt="{{ user_to.username }}"/></div>
+    <div class="left"><a href="{% url view_profile user_from %}"><img src="{% avatar user_from 48 %}" alt="{{ user_from.username }}"/></a></div>
+    <div class="left"><a href="{% url view_profile user_to %}"><img src="{% avatar user_to 48 %}" alt="{{ user_to.username }}"/></a></div>
     <div class="clear"></div>
 
     <div id="subcontent">
         {% if swapstatus %}
         <div class="transfer {{ swap.status }}">
+            <div class="date">{{ swap.date }}</div>
             <h2>{{ swapstatus }}</h2>
         </div>
         {% endif %}
@@ -119,7 +120,7 @@
             <div class="items">
 
             <div class="left">
-            <h3 class="itemlistheader"><img src="{% avatar swap.user_from 20 %}"/>{{ swap.user_from.username }}</h3>
+            <h3 class="itemlistheader"><a href="{% url view_profile swap.user_from %}"><img src="{% avatar swap.user_from 20 %}"/>{{ swap.user_from.username }}</a></h3>
             <ul class="itemlist">
             {% for item in swap.items_from_names %}
                 <li>{{ item }}</li>
@@ -129,7 +130,7 @@
             </div>
 
             <div class="left">
-            <h3 class="itemlistheader"><img src="{% avatar swap.user_to 20 %}"/>{{ swap.user_to.username }}</h3>
+            <h3 class="itemlistheader"><a href="{% url view_profile swap.user_to %}"><img src="{% avatar swap.user_to 20 %}"/>{{ swap.user_to.username }}</a></h3>
             <ul class="itemlist">
             {% for item in swap.items_to_names %}
                 <li>{{ item }}</li>
