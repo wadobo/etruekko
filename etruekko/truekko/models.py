@@ -118,6 +118,10 @@ class UserProfile(models.Model):
     def postal_mail(self):
         return self.user.postal.all()[0] if self.user.postal.count() else None
 
+    def swaps(self):
+        u = self.user
+        return Swap.objects.filter(Q(user_from=u) | Q(user_to=u))
+
 
 from south.modelsinspector import add_introspection_rules
 add_introspection_rules([], ["^etruekko\.utils\.CountryField"])

@@ -8,15 +8,6 @@
   quieras, por ejemplo si  tengo publicadas 10 ofertas que me salga
   mis ofertas y un signo más, al pulsar sobre el que me salgan las 10
 
-- En el historial de intercambios, debe aparecer también la fecha del
-  intercambio, así como la fecha en la que cumple con un compromiso.
-  Aparece la foto del usuario con el que has hecho un intercambio, al
-  pulsar en ella te debería llevar a su perfil, ahora no hace nada
-
-- Cuando solicitas algo que un usuario oferta, te salen sus ofertas y
-  sus demandas, tiene sentido que aparezcan sus demandas?, me imagino
-  que será para que tu intentes oferta le algo de lo que demanda no? 
-
 - No deja gastar los 10 truekkos que le damos de inicio, por ejemplo
   si yo tengo 12 truekkos y en una negociación la otra parte me pide
   3, no deja, debería dejar gastar todo porque si no no tiene sentido
@@ -26,11 +17,6 @@
 - Cuando le das a olvide mi contraseña, en el correo que recibes pone
   reciviendo en lugar de recibiendo, además el link al que te
   direcciona no funciona, pone 404-not found
-
-- Cuando ves el perfil de un usuario debes poder ver los truekkos que
-  tiene, y en la negociación también, como sabes si no hasta donde le
-  puedes pedir de truekkos?, también debe aparecer en número de
-  transacciones que ha realizado aunque no el detalle
 
 - Los compromisos solo los puede crear el que recibe una oferta, si el
   que la recibe crea un compromiso y la acepta, el que la ha hecho
@@ -44,6 +30,11 @@
   salga un mensaje diciéndolo que le han aceptado la oferta  pero que
   debe confirmarla ella ya que se ha incluido un compromiso, si la
   rechaza pues no hay transacción
+
++ En el historial de intercambios, debe aparecer también la fecha del
+  intercambio, así como la fecha en la que cumple con un compromiso.
+  Aparece la foto del usuario con el que has hecho un intercambio, al
+  pulsar en ella te debería llevar a su perfil, ahora no hace nada
 
 QUIZAS
 
@@ -96,4 +87,11 @@ QUIZAS
   se cierre un intercambio por error y mas ahora al principio
 
     * Resuelto con confirmación
+
+- Cuando solicitas algo que un usuario oferta, te salen sus ofertas y
+  sus demandas, tiene sentido que aparezcan sus demandas?, me imagino
+  que será para que tu intentes oferta le algo de lo que demanda no?
+
+    * Las demandas salen para que tengas una idea de qué puedes
+      ofrecerle
 

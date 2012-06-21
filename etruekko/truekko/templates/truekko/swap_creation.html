@@ -184,6 +184,9 @@
             {% if not swap or not swap.finished %}
                 <fieldset class="swap1">
                 <legend>{{ user_from.username }}</legend>
+
+                {% include "truekko/profile_info.html" with user=user_from %}
+
                 {% for item in user_from.items.all %}
                     {% if not item.demand %}
                         <div class="item_div">
@@ -207,6 +210,9 @@
 
                 <fieldset class="swap2">
                 <legend>{{ user_to.username }}</legend>
+
+                {% include "truekko/profile_info.html" with user=user_to %}
+
                 {% for item in user_to.items.all %}
                     {% if not item.demand %}
                         <div class="item_div">

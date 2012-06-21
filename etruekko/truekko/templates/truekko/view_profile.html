@@ -58,6 +58,8 @@
                     user since {{ d }}
                 {% endblocktrans %}
             </span>
+
+            {% include "truekko/profile_info.html" with user=viewing %}
         </div>
 
         <div class="clear"></div>

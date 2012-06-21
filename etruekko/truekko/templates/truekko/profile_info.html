@@ -1,0 +1,10 @@
+{% load i18n %}
+
+{% trans "User evaluation" %}:
+{% with value=user.get_profile.int_rating votes=user.get_profile.rating.votes %}
+    {% include "rating.html" %}
+{% endwith %}
+<p>
+    {% trans "Number of swaps in etruekko" %}: {{ user.get_profile.swaps.count }} <br/>
+    {% trans "Number of truekkos" %}: {{ user.get_profile.credits }}
+</p>
