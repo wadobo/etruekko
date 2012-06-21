@@ -22,8 +22,13 @@
             $("#quantity_tr").hide();
             $("#quantity").val("0");
 
-            $("#id_price").parent().parent().hide();
-            $("#id_price_type").parent().parent().hide();
+            if (offer == "DEM") {
+                $("#id_price").parent().parent().hide();
+                $("#id_price_type").parent().parent().hide();
+            } else {
+                $("#id_price").parent().parent().show();
+                $("#id_price_type").parent().parent().show();
+            }
         }
     }
 
