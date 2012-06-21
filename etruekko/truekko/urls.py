@@ -60,6 +60,8 @@ urlpatterns = patterns('etruekko.truekko.views',
     url(r'^contact/ad$', 'new_ad_contact', name='new_ad_contact'),
     # faq
     url(r'^faq$', 'faq', name='faq'),
+    url(r'^terms$', 'terms', name='terms'),
+    url(r'^privacy$', 'privacy', name='privacy'),
 
     url(r'^$', 'index', name='index'),
 )

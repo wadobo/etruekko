@@ -1871,6 +1871,14 @@ class FAQ(PlainText):
     filename = "faq.txt"
     prefix = "faq"
 
+class Privacy(PlainText):
+    filename = "privacy.txt"
+    prefix = "privacy"
+
+class Terms(PlainText):
+    filename = "terms.txt"
+    prefix = "terms"
+
 
 # profile
 edit_postal = login_required(EditPostal.as_view())
@@ -1943,5 +1951,7 @@ new_ad_contact = NewAdContact.as_view()
 
 # faq
 faq = FAQ.as_view()
+terms = Terms.as_view()
+privacy = Privacy.as_view()
 
 index = Index.as_view()

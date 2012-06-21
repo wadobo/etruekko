@@ -1,0 +1,56 @@
+h1. Política de protección de datos de carácter personal
+
+ETRUEKKO garantiza una política de privacidad responsable y respetuosa con las decisiones del usuario.
+
+Todos los datos personales que recojamos sobre usted serán almacenados en un fichero automatizado de datos personales, cuyo responsable es ETRUEKKO, que se encuentra ubicado en nuestros servidores., tal y como se describe más abajo, parte de su información personal es comunicada a terceros y utilizada por nosotros y por terceros. Mediante la aceptación de las Condiciones de Uso, Usted acepta expresamente que usemos y comuniquemos su información personal conforme a esta Política de Privacidad. Esta Política de Privacidad forma parte de las Condiciones de Uso y está sujeta a los términos de dichas Condiciones de Uso.
+
+
+h2. Derecho de información
+
+De conformidad con lo establecido por la Ley Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de Carácter Personal (en adelante, LOPD), ETRUEKKO (en adelante, sitio web) y su titular informan al usuario de este sitio de la existencia de un fichero automatizado de datos de carácter personal creado por TRUEKENET y bajo su responsabilidad.
+
+h2. Finalidad
+
+Los datos de los usuarios registrados a través de los formularios habilitados al efecto en el sitio web son recabados por ETRUEKKO con la finalidad de facilitar la prestación de los servicios que ETRUEKKO proporciona a través de dicho sitio web, así como para facilitarle información comercial sobre servicios que pudieran resultar de su interés. El usuario garantiza que los datos personales facilitados a ETRUEKKO son veraces y se hace responsable de comunicar al mismo cualquier modificación de los mismos.
+
+h2. Carácter obligatorio o facultativo de la información facilitada por el usuario y veracidad de los datos:
+
+Los campos marcados con un asterisco (*) en el formulario de registro a cumplimentar por el usuario son estrictamente necesarios para atender a su petición, siendo voluntaria la inclusión de datos en los campos restantes.
+
+El usuario garantiza que los datos personales facilitados a ETRUEKKO son veraces y se hace responsable de comunicar al mismo cualquier modificación de los mismos.
+
+h2. Consentimiento del usuario
+
+El envío de datos personales, mediante el uso de los formularios electrónicos de ETRUEKKO o, en su caso, mensajes de correo electrónico, supone el consentimiento expreso del remitente al tratamiento automatizado de los datos incluidos en los medios de comunicación indicados, así como al envío de comunicaciones vía electrónica con información acerca de nuestros servicios y servicios o productos de terceros.
+
+h2. Derechos de acceso, rectificación, oposición y cancelación de los usuarios:
+
+El usuario podrá ejercer sus derechos de acceso, rectificación, oposición y cancelación al tratamiento de sus datos personales, en los términos y condiciones previstos en la LOPD.
+
+Podrá ejercer dichos derechos mediante el formulario de contacto del sitio web o dirigiéndose a la siguiente dirección de correo electrónico "info@etruekko.com":mailto:info@etruekko.com.
+
+h2. Seguridad
+
+ETRUEKKO mantiene los niveles de seguridad de protección de datos personales conforme al Real Decreto 994/1999, de 11 de junio, relativo a las medidas de seguridad de los ficheros automatizados que contengan datos de carácter personal, y ha establecido todos los medios técnicos a su alcance para evitar la pérdida, mal uso, alteración, acceso no autorizado y robo de los datos que el usuario facilite a través del sitio web, sin perjuicio de informarle de que las medidas de seguridad en Internet no son inexpugnables.
+
+ETRUEKKO se compromete a cumplir con el deber de secreto y confidencialidad respecto de los datos personales contenidos en el fichero automatizado de acuerdo con la legislación aplicable, así como a conferirles un tratamiento seguro en las cesiones de datos que, en su caso, puedan producirse.
+
+h2. Comunicaciones electrónicas comerciales:
+
+ETRUEKKO informa que remitirá comunicaciones comerciales por medios electrónicos con información sobre productos, servicios y eventos que puedan ser de interés para los usuarios del sitio web. Dicho consentimiento podrá ser revocado en cualquier momento por el usuario, con la simple notificación de su voluntad a ETRUEKKO, y no tendrá carácter retroactivo.
+
+h2. Información sobre cookies y técnicas de "spamming"
+
+El usuario consiente el uso de cookies, que en ningún caso permitirán su identificación, con la exclusiva finalidad de facilitar su navegación por las diferentes páginas del presente sitio web y que en ningún caso permitirán la identificación del usuario. En cualquier caso, el usuario podrá denegar o impedir la instalación de estas cookies modificando la configuración de su navegador.
+
+Este sitio web está adherido al sistema publicitario de ((((('Google adsense')))) que utiliza cookies para mostrar contenidos publicitarios relacionados con la navegación realizada por el usuario. Cuando un usuario accede a un sitio web adscrito al servicio de (((('Google AdSense')))) y hace clic en él se introduce una cookie en su navegador, a través de la cual Google recopila información de la navegación del usuario para gestionar y luego publicar anuncios a través del programa de publicidad ((('Google Adsense')))). El usuario puede inhabilitar en cualquier momento el uso de la cookie de Google desactivándola en su navegador.
+
+ETRUEKKO no utiliza técnicas de 'spamming' y únicamente tratará los datos que el usuario transmita mediante los formularios electrónicos habilitados en este sitio web o mensajes de correo electrónico.
+
+En caso de duda o controversia relativas a nuestra política de privacidad y de protección de datos personales el usuario puede ponerse en contacto con nosotros mediante el formulario de contacto del sitio web o dirigiéndose a la siguiente dirección de correo electrónico "info@etruekko.com":mailto:info@etruekko.com.
+
+El tratamiento de los datos de carácter personal, así como el envío de comunicaciones comerciales realizadas por medios electrónicos, son conformes a la Ley Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de Carácter Personal (B.O.E. de 14 de diciembre de 1999) y a la Ley 34/2002, de 11 de julio, de servicios de la Sociedad de Información y de Comercio Electrónico (B.O.E. de 12 de julio de 2002).
+
+h2. Modificación de la presente política de privacidad
+
+ETRUEKKO se reserva el derecho a modificar la presente política para adaptarla a futuras novedades legislativas o jurisprudenciales, así como a prácticas de la industria, informando previamente a los usuarios de los cambios que en ella se produzcan.
