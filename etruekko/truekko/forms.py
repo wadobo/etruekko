@@ -48,6 +48,13 @@ class RegisterForm(forms.Form):
     email = forms.EmailField(label=_("Email"))
     password = forms.CharField(label=_("Password"), widget=forms.PasswordInput)
     password2 = forms.CharField(label=_("Password confirm"), widget=forms.PasswordInput)
+    accept_terms = forms.BooleanField(label=_("I accept"),
+                                      help_text=_('You should accept '
+                                      'the <a href="/terms">terms of use</a> '
+                                      'and the <a href="/privacy">privacy policy</a> '
+                                      'to join to etruekko'),
+                                      error_messages={'required': _("You should accept the terms of use and the privacy policy")},
+                                      required=True)
 
     def clean_username(self):
         username = self.cleaned_data.get("username")

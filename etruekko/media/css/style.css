@@ -27,6 +27,8 @@ img {
 
 .helptext {
     color: #888;
+    display: block;
+    width: 400px;
 }
 
 ul.errorlist {
