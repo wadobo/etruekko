@@ -59,11 +59,11 @@
             {{ form.as_table }}
             <tr id="quantity_tr">
                 <th><label for="quantity">{% trans "Quantity:" %}</label></th>
-                <td><input id="quantity" type="text" name="quantity" value="{{ form.quantity }}"/>  {% trans "Use 0 for unlimited" %}</td>
+                <td><input id="quantity" type="text" name="quantity" value="{{ form.quantity }}"/>  {% trans "Use 0 for unlimited" %}{% tooltip "item_quantity" %}</td>
             </tr>
             <tr>
                 <th><label for="tags">{% trans "Tags:" %}<label></th>
-                <td><input id="tags" type="text" name="tags" value="{{ item.tags_str }}"/>  {% trans "comma separated values" %}</td>
+                <td><input id="tags" type="text" name="tags" value="{{ item.tags_str }}"/>  {% trans "comma separated values" %}{% tooltip "item_tags" %}</td>
             </tr>
         </table>
         <input class="button red" type="submit" value="{% trans 'Save' %}"/>

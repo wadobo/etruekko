@@ -28,8 +28,8 @@
 
         <div class="buttons">
             {% if editable %}
-                <a class="button green" href="{% url edit_group viewing.id %}">{% trans "Edit" %}</a>
-                <a class="button green" href="{% url edit_group_members viewing.id %}">{% trans "Edit members" %}</a>
+                <a class="button green" href="{% url edit_group viewing.id %}">{% trans "Edit" %}{% tooltip "admin_group_edit" %}</a>
+                <a class="button green" href="{% url edit_group_members viewing.id %}">{% trans "Edit members" %}{% tooltip "admin_group_edit_members" %}</a>
             {% endif %}
             {% if membership %}
                 {% if membership.role == "ADM" or membership.role == "MEM" %}
@@ -47,7 +47,7 @@
 
             <div>
             {% if editable %}
-                <a class="button green" href="{% url channel_view viewing.channel.id %}">{% trans "Go to channel" %} {{ viewing.channel.name }}</a>
+                <a class="button green" href="{% url channel_view viewing.channel.id %}">{% trans "Go to channel" %} {{ viewing.channel.name }}{% tooltip "admin_group_goto_channel" %}</a>
             {% endif %}
             </div>
         </div>

@@ -4,6 +4,8 @@ from django import template
 import urllib, hashlib
 from django.conf import settings
 
+from etruekko.truekko.tooltips import tooltips
+
 
 register = template.Library()
 
@@ -81,3 +83,8 @@ def is_admin_group(context, user, group):
 def clear_mod_3(context):
     mod3 = context.get('forloop').get('counter') % 3
     return {'mod3': mod3}
+
+
+@register.simple_tag
+def tooltip(tipname):
+    return '<img tooltip="<p>%s</p>" class="tooltip" src="/media/imgs/help.png"/>' % tooltips.get(tipname, '')

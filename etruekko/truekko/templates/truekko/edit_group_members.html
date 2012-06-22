@@ -14,7 +14,7 @@
     </h2>
     <div id="subcontent" class="form">
         <div class="buttons">
-            <a class="button green" href="{% url register_group_admin group.id %}">{% trans "Add new member" %}</a>
+            <a class="button green" href="{% url register_group_admin group.id %}">{% trans "Add new member" %}{% tooltip "admin_group_add_member" %}</a>
         </div>
 
     <form action="" method="post">

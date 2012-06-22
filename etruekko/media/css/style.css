@@ -27,8 +27,6 @@ img {
 
 .helptext {
     color: #888;
-    display: block;
-    width: 400px;
 }
 
 ul.errorlist {
@@ -1225,4 +1223,17 @@ legend {
 
 #plaintext {
     width: 500px;
+}
+
+.tooltiptext p {
+    text-align: justify;
+    padding: 8px;
+}
+
+.tooltiptext {
+    min-width: 400px !important;
+}
+
+.tooltip {
+    margin-left: 2px;
 }

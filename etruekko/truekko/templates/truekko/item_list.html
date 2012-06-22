@@ -1,12 +1,23 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% block title %} {% trans 'Transfer' %} {% endblock %}
+{% block title %}
+    {% if klass == "serv" %}
+        {% trans 'Services' %}
+    {% else %}
+        {% trans 'Items' %}
+    {% endif %}
+{% endblock %}
 
 {% block content %}
     <div class="left"><img src="/media/imgs/menu/{{ klass }}.png" alt="transf"/></div>
     <form action="" method="get">
         <input id="id_search" type="text" class="text" placeholder="{% trans "Search..." %}" name="search"/>
         <input class="search_button" type="submit" value="{% trans "Search" %}"/>
+        {% if klass == "serv" %}
+            {% tooltip "services_search" %}
+        {% else %}
+            {% tooltip "items_search" %}
+        {% endif %}
     </form>
 
     <div class="clear"></div>

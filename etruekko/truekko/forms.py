@@ -15,6 +15,8 @@ from etruekko.truekko.models import WallMessage
 from etruekko.truekko.models import Commitment
 from etruekko.truekko.models import PostalAddress
 
+from etruekko.globaltags.tags import tooltip
+
 
 class CustomImageWidget(ClearableFileInput):
 

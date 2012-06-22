@@ -7,11 +7,13 @@
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" type="text/css"  media="screen" />
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/buttons.css" type="text/css"  media="screen" />
     <link rel="stylesheet" href="{{ MEDIA_URL }}css/jquery.rating.css" type="text/css"  media="screen" />
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/jquery.qtip.min.css" />
     <link rel="shortcut icon" href="{{ MEDIA_URL }}favicon.ico" type="image/x-icon" />
 
     <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.rating.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.simpleautogrow.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.qtip.min.js"></script>
 
     <meta name="keywords" content="trueque, intercambio, banco del tiempo"/>
     <meta name="description" content="etruekko, tu red de intercambio"/>
@@ -31,7 +33,23 @@
             $(this).next().show();
             return false;
           });
-    });
+
+          $('.tooltip').qtip({ content: { attr: 'tooltip' },
+                               style: { classes: 'ui-tooltip-bootstrap tooltiptext' },
+                               position: {
+                                my: 'center left',
+                                at: 'center right',
+                                viewport: $(window),
+                                adjust: {
+                                    method: "flip shift"
+                                }
+                               }
+                             });
+
+          $('.helptext').each(function() {
+              $(this).prev().remove();
+          });
+      });
     </script>
 
 </head>

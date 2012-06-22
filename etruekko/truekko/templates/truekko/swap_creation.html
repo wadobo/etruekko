@@ -96,6 +96,7 @@
     <div class="left"><img src="/media/imgs/menu/transf.png" alt="transf"/></div>
     <div class="left"><a href="{% url view_profile user_from %}"><img src="{% avatar user_from 48 %}" alt="{{ user_from.username }}"/></a></div>
     <div class="left"><a href="{% url view_profile user_to %}"><img src="{% avatar user_to 48 %}" alt="{{ user_to.username }}"/></a></div>
+    {% tooltip "swap_creation" %}
     <div class="clear"></div>
 
     <div id="subcontent">
@@ -250,6 +251,7 @@
                             <option value="{{ opt }}" {% if swap.swap_mode == opt %}selected="selected"{% endif %}>{{ text }}</option>
                         {% endfor %}
                     </select>
+                    {% tooltip "swap_mode" %}
                 </div>
 
             {% endif %}
@@ -304,6 +306,7 @@
                 <input type="submit" class="button red" name="cancel" value="{% trans "cancel" %}"/>
                 {% endif %}
             {% endif %}
+            {% tooltip "swap_accept" %}
         </form>
 
         {% if swap and not swap.finished %}

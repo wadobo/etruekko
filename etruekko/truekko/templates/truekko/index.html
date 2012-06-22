@@ -13,19 +13,20 @@
 
 {% block content %}
     <img src="/media/imgs/menu/home.png"/>
+    {% tooltip "wall" %}
     <div id="subcontent">
         <!-- Authenticated -->
         <div id="indexcontent">
             <form method="POST" action="{% url message_post wall.id %}">
                 {% csrf_token %}
-                <label for="comment">{% trans "What's happening?" %}:</label>
+                <label for="comment">{% trans "What's happening?" %}:{% tooltip "whats_happening" %}</label>
                 <textarea id="comment" name="comment"></textarea>
 
                 <div class="right">
                     {% if priv %}
                         <a href="{% url index %}" class="button">{% trans "All messages" %}</a>
                     {% else %}
-                        <a href="{% url index %}?priv=True" class="button">{% trans "Private messages" %}</a>
+                        <a href="{% url index %}?priv=True" class="button">{% trans "Private messages" %} {% tooltip "private" %} </a>
                     {% endif %}
                 </div>
 
@@ -48,9 +49,9 @@
             {% if USER.get_profile.is_admin %}
                 <h3>{% trans "Walls" %}</h3>
                 <ul>
-                    <li><a href="{% url etruekko %}">{% trans "Etruekko wall" %}</a></li>
+                    <li><a href="{% url etruekko %}">{% trans "Etruekko wall" %}</a>{% tooltip "etruekko_wall" %}</li>
                     {% for channel in USER.get_profile.channels %}
-                    <li><a href="{% url channel_view channel.id %}">{{ channel.name }}</a></li>
+                    <li><a href="{% url channel_view channel.id %}">{{ channel.name }}</a>{% tooltip "channel_wall" %}</li>
                     {% endfor %}
                 </ul>
             {% endif %}
@@ -77,7 +78,7 @@
             </ul>
 
             <!-- commitments -->
-            <h3>{% trans "My Commitments" %}</h3>
+            <h3>{% trans "My Commitments" %}{% tooltip "commitments" %}</h3>
             <ul>
             {% for cm in my_commitments %}
                 <li>
@@ -164,7 +165,7 @@
 
             <!-- denounces -->
             {% if denounces %}
-            <h3>{% trans "Denounces" %}</h3>
+            <h3>{% trans "Denounces" %}{% tooltip "denounces" %}</h3>
             <ul>
             {% for denounce in denounces %}
                 <li><a href="{% url group_denounce_view denounce.id %}">{{ denounce }} ({{ denounce.get_status_display }})</a></li>
@@ -182,7 +183,7 @@
             {% endif %}
 
             <!-- friends -->
-            <h3>{% trans "People you follow" %}</h3>
+            <h3>{% trans "People you follow" %}{% tooltip "following" %}</h3>
             <div class="friends">
             {% for u in USER.get_profile.followings %}
                 <a href="{% url view_profile u.username %}">
@@ -190,7 +191,7 @@
                 </a>
             {% endfor %}
             </div>
-            <h3>{% trans "People following you" %}</h3>
+            <h3>{% trans "People following you" %}{% tooltip "followers" %}</h3>
             <div class="friends">
             {% for u in USER.get_profile.followers %}
                 <a href="{% url view_profile u.username %}">
