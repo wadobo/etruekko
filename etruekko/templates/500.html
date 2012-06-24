@@ -1,0 +1,221 @@
+{% load i18n %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Error 500</title>
+
+<style>
+/* === General Styles === */
+
+html,
+div,
+span,
+head,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+a,
+font,
+img,
+small,
+strong,
+ol,
+ul,
+li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    background: transparent;
+}
+
+body {
+    font-family: PTSansRegular;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    line-height: 1;
+}
+
+body {
+    background: #8DC73F url(/media/imgs/cloud2-bg.gif) repeat-x 0 0;
+}
+
+h1 {
+    font-size: 100px;
+    color: #AAA;
+    font-family: "HelveticaNeue-Light", "HelveticaNeue", Helvetica, Arial, sans-serif;
+}
+
+#header {
+    margin: auto;
+    margin-top: 80px;
+    margin-bottom: 10px;
+    height: 50px;
+}
+
+.container {
+    width: 885px;
+    margin: 0 auto;
+}
+
+#main {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+
+    -webkit-box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+
+    background: #fbfbfb;
+    opacity: 0.9;
+    margin: 0 auto 0 auto;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+
+/* === Content Styles === */
+
+#content {    padding: 10px 44px }
+
+.text {
+    text-align: center;
+    margin-top: 40px;
+    padding-bottom: 40px;
+}
+
+.text h2 {
+    font-size: 30px;
+    color: #555555;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: lighter;
+    letter-spacing: 2px;
+}
+
+.text p {
+    font-style: normal;
+    font-weight: normal;
+    color: #454545;
+    padding: 15px;
+    padding-bottom: 0px;
+}
+
+.details {
+    border-top: 1px solid #4f4f4f;
+    height: 120px;
+    text-align: center;
+}
+
+#sliderwrap {
+    float: left;
+    text-align: center;
+    width: 600px;
+    overflow: hidden;
+    position: relative;
+    height: 110px;
+    margin-left: 10px;
+}
+
+.details h3 {
+    padding-top: 20px;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: lighter;
+    color: #555555;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+#slidertext p {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    color: #555555;
+    padding: 0 25px;
+}
+
+a.prev {
+    float: left;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+a.next {
+    float: right;
+    margin-top: 50px;
+    margin-right: 50px;
+}
+
+#slidertext {
+    margin-top: 15px;
+    float: left;
+    width: 600px;
+    overflow: hidden;
+    position: relative;
+}
+
+#slidertext li {
+    overflow: hidden;
+    position: relative;
+    width: 600px;
+    height: 100px;
+}
+
+#slidertext ul {    width: 600px }
+</style>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+    <div id="header">
+    <a href="/"><img src="/media/imgs/logo-trans.png"/></a>
+    </div><!--end header-->
+              <div style="clear:both"></div>
+
+    <div id="main">
+
+         <div id="content">
+
+              <div class="text">
+
+                <h1> Error 500 </h1>
+                <h2> Ha ocurrido un problema </h2>
+
+                <p>
+                Si el problema persiste no dudes en contactar con el
+                administrador a traves de <a href="mailto:info@etruekko.com">info@etruekko.com</a>
+                </p>
+
+                <p>
+                volver a <a href="{% url index %}"><br/><img src="/media/imgs/logo-trans.png"</a>
+                </p>
+
+
+              </div><!--end text-->
+
+        </div><!--end content-->
+</div><!--end main-->
+
+</div><!--end class container-->
+
+</body>
+
+</html>
+
+
