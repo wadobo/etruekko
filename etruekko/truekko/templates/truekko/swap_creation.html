@@ -177,6 +177,30 @@
                 </div>
             {% endfor %}
             {% endif %}
+
+            {% if not swap.finished %}
+                <fieldset id="commitment_creation">
+                <legend>{% trans "Commitments" %}</legend>
+                <p>
+                {% blocktrans with from=USER to=userto %}
+                Commitment from {{ from }} to {{ to }}
+                {% endblocktrans %}
+                </p>
+                <div class="left"><a href="{% url view_profile USER %}"><img src="{% avatar USER 48 %}" alt="{{ USER.username }}"/></a></div>
+                <div class="left"><a href="{% url view_profile userto %}"><img src="{% avatar userto 48 %}" alt="{{ userto.username }}"/></a></div>
+                <div class="clear"></div>
+
+                <form method="POST" action="{% url commitment_create swap.id %}">
+                    {% csrf_token %}
+                    <table>
+                        {{ commitment_form.as_table }}
+                    </table>
+                    <input type="submit" class="button blue" name="commitment" value="{% trans "Create a commitment" %}"/>
+                </form>
+                </fieldset>
+                <a href="#" id="add_commitment">{% trans "Add commitment" %}</a>
+            {% endif %}
+
         {% endif %}
 
         <form id="swapform" method="POST" action="">
@@ -309,18 +333,5 @@
             {% tooltip "swap_accept" %}
         </form>
 
-        {% if swap and not swap.finished %}
-            <fieldset id="commitment_creation">
-            <legend>{% trans "Commitments" %}</legend>
-            <form method="POST" action="{% url commitment_create swap.id %}">
-                {% csrf_token %}
-                <table>
-                    {{ commitment_form.as_table }}
-                </table>
-                <input type="submit" class="button blue" name="commitment" value="{% trans "Create a commitment" %}"/>
-            </form>
-            </fieldset>
-            <a href="#" id="add_commitment">{% trans "Add commitment" %}</a>
-        {% endif %}
     </div>
 {% endblock %}

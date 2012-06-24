@@ -173,14 +173,15 @@ class ContactForm(forms.Form):
 class CommitmentForm(ModelForm):
     required_css_class = 'required'
 
-    def __init__(self, users, *args, **kwargs):
-        super(CommitmentForm, self).__init__(*args, **kwargs)
-        self.fields['user_from'].queryset = User.objects.filter(pk__in=users)
-        self.fields['user_to'].queryset = User.objects.filter(pk__in=users)
+    #def __init__(self, users, *args, **kwargs):
+    #    super(CommitmentForm, self).__init__(*args, **kwargs)
+    #    self.fields['user_from'].queryset = User.objects.filter(pk__in=users)
+    #    self.fields['user_to'].queryset = User.objects.filter(pk__in=users)
 
     class Meta:
         model = Commitment
-        fields = ('user_from', 'user_to', 'comment')
+        #fields = ('user_from', 'user_to', 'comment')
+        fields = ('comment', )
 
 
 class PostalForm(ModelForm):

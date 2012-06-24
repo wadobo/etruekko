@@ -1020,7 +1020,8 @@ class SwapCreation(TemplateView):
         context = super(SwapCreation, self).get_context_data(**kwargs)
         u = get_object_or_404(User, username=self.username)
         context = self.get_context({'user_to': u, 'user_from': self.request.user})
-        f = CommitmentForm([self.request.user.id, u.id])
+        #f = CommitmentForm([self.request.user.id, u.id])
+        f = CommitmentForm()
         context['commitment_form'] = f
         context['items'] = [int(i) for i in self.request.GET.getlist('item')]
         return context
@@ -1107,13 +1108,15 @@ class SwapView(TemplateView):
         context = super(SwapView, self).get_context_data(**kwargs)
         context = self.get_context({'user_to': self.swap.user_to,
                                     'user_from': self.swap.user_from})
-        f = CommitmentForm([self.swap.user_to.id, self.swap.user_from.id])
+        #f = CommitmentForm([self.swap.user_to.id, self.swap.user_from.id])
+        f = CommitmentForm()
         context['commitment_form'] = f
         context['items'] = [item.item.id for item in self.swap.items.all()]
         context['credits1'] = self.swap.credits_from
         context['credits2'] = self.swap.credits_to
         context['comments'] = self.swap.comments.all()
         context['swap'] = self.swap
+        context['userto'] = self.swap.user_to if self.request.user == self.swap.user_from else self.swap.user_from
         if self.request.user == self.swap.user_from and self.swap.status == 'US2':
             context['accept'] = True
         if self.request.user == self.swap.user_to and self.swap.status == 'US1':
@@ -1267,8 +1270,11 @@ class SwapList(TemplateView):
 class CommitmentCreate(View):
     def post(self, request, sid):
         swap = get_object_or_404(Swap, pk=sid)
-        f = CommitmentForm([swap.user_to.id, swap.user_from.id], request.POST)
+        #f = CommitmentForm([swap.user_to.id, swap.user_from.id], request.POST)
+        f = CommitmentForm(request.POST)
         cm = f.save(commit=False)
+        cm.user_from = self.request.user
+        cm.user_to = swap.user_to if swap.user_from == self.request.user else swap.user_from
         cm.swap = swap
         cm.save()
 
