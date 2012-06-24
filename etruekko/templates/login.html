@@ -6,14 +6,14 @@
 <p>
 {% blocktrans %}
 To login in etruekko you should have an account. If you don't have
-one, you can request the creation to a group. In etruekko users must
-be part of a group and only will be created by group administrators.
+one, you can request the creation to a community. In etruekko users must
+be part of a community and only will be created by community administrators.
 {% endblocktrans %}
 </p>
 
 <p>
-{% trans "You can view the list of groups in:" %}
-<a href="{% url groups %}">Groups</a>
+{% trans "You can view the list of communities in:" %}
+<a href="{% url groups %}">{% trans "Communities" %}</a>
 </p>
 
 {% if form.user_cache %}
@@ -21,7 +21,7 @@ be part of a group and only will be created by group administrators.
 <p class="tip">
 {% blocktrans with username=form.user_cache.username %}
 The user "{{ username }}" is not active yet, this user is waiting for
-a group membership request to be part of etruekko.
+a community membership request to be part of etruekko.
 {% endblocktrans %}
 </p>
 
