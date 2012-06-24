@@ -475,7 +475,7 @@ class Swap(models.Model):
         ('US2', _('User to confirmed')),
         ('CON', _('confirmed')),
         ('DON', _('Done')),
-        ('CAN', _('Cancel')),
+        ('CAN', _('Canceled')),
     ]
 
     SWAP_MODE = [
@@ -795,7 +795,7 @@ class Denounce(models.Model):
         ('PEN', _('pending')),
         ('CON', _('confirmed')),
         ('RES', _('resolved')),
-        ('CAN', _('cancel')),
+        ('CAN', _('canceled')),
     ]
 
     user_from = models.ForeignKey(User, related_name="dennounces_from")
