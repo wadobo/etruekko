@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-24 12:14+0200\n"
+"POT-Creation-Date: 2012-06-24 12:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1444,7 +1444,7 @@ msgid "confirmed"
 msgstr "confirmado"
 
 #: truekko/models.py:477 truekko/models.py:675
-#: truekko/templates/truekko/swap_creation.html:174
+#: truekko/templates/truekko/swap_creation.html:176
 msgid "Done"
 msgstr "Hecho"
 
@@ -1509,7 +1509,7 @@ msgstr "Negociación"
 msgid "Waiting"
 msgstr "Esperando"
 
-#: truekko/models.py:682 truekko/templates/truekko/swap_creation.html:328
+#: truekko/models.py:682 truekko/templates/truekko/swap_creation.html:330
 msgid "Comment"
 msgstr "Comentario"
 
@@ -2829,8 +2829,8 @@ msgid "Go Back"
 msgstr "Atrás"
 
 #: truekko/templates/truekko/single_item_view.html:70
-#: truekko/templates/truekko/swap_creation.html:323
-#: truekko/templates/truekko/swap_creation.html:326
+#: truekko/templates/truekko/swap_creation.html:325
+#: truekko/templates/truekko/swap_creation.html:328
 msgid "Make offer"
 msgstr "Hacer oferta"
 
@@ -2911,7 +2911,7 @@ msgstr ""
 "seguro?"
 
 #: truekko/templates/truekko/swap_creation.html:150
-#: truekko/templates/truekko/swap_creation.html:183
+#: truekko/templates/truekko/swap_creation.html:185
 msgid "Commitments"
 msgstr "Compromisos"
 
@@ -2930,8 +2930,8 @@ msgstr ""
 "                    %(comment)s\n"
 "                    "
 
-#: truekko/templates/truekko/swap_creation.html:185
-#, fuzzy, python-format
+#: truekko/templates/truekko/swap_creation.html:187
+#, python-format
 msgid ""
 "\n"
 "                Commitment from %(from)s to %(to)s\n"
@@ -2941,50 +2941,50 @@ msgstr ""
 "                Compromiso de %(from)s con %(to)s\n"
 "                "
 
-#: truekko/templates/truekko/swap_creation.html:198
+#: truekko/templates/truekko/swap_creation.html:200
 msgid "Create a commitment"
 msgstr "Crear un compromiso"
 
-#: truekko/templates/truekko/swap_creation.html:201
+#: truekko/templates/truekko/swap_creation.html:203
 msgid "Add commitment"
 msgstr "Añadir compromiso"
 
-#: truekko/templates/truekko/swap_creation.html:233
-#: truekko/templates/truekko/swap_creation.html:268
+#: truekko/templates/truekko/swap_creation.html:235
+#: truekko/templates/truekko/swap_creation.html:270
 msgid "truekkos"
 msgstr "truekkos"
 
-#: truekko/templates/truekko/swap_creation.html:252
+#: truekko/templates/truekko/swap_creation.html:254
 #: truekko/templates/truekko/view_profile.html:111
 msgid "Demands"
 msgstr "Demandas"
 
-#: truekko/templates/truekko/swap_creation.html:272
+#: truekko/templates/truekko/swap_creation.html:274
 msgid "Swap mode"
 msgstr "Modo de intercambio"
 
-#: truekko/templates/truekko/swap_creation.html:284
+#: truekko/templates/truekko/swap_creation.html:286
 msgid "Postal address"
 msgstr "Dirección postal"
 
-#: truekko/templates/truekko/swap_creation.html:290
-#: truekko/templates/truekko/swap_creation.html:298
+#: truekko/templates/truekko/swap_creation.html:292
+#: truekko/templates/truekko/swap_creation.html:300
 msgid "No postal mail"
 msgstr "No hay dirección postal"
 
-#: truekko/templates/truekko/swap_creation.html:302
+#: truekko/templates/truekko/swap_creation.html:304
 msgid "Edit my address"
 msgstr "Editar mi dirección"
 
-#: truekko/templates/truekko/swap_creation.html:318
+#: truekko/templates/truekko/swap_creation.html:320
 msgid "Comment:"
 msgstr "Comentarios:"
 
-#: truekko/templates/truekko/swap_creation.html:322
+#: truekko/templates/truekko/swap_creation.html:324
 msgid "Accept"
 msgstr "Aceptar"
 
-#: truekko/templates/truekko/swap_creation.html:330
+#: truekko/templates/truekko/swap_creation.html:332
 msgid "cancel"
 msgstr "cancelar"
 

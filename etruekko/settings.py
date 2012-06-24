@@ -199,7 +199,7 @@ HAYSTACK_CONNECTIONS = {
 
 # truekko settings
 
-ETK_USER_INITIAL_CREDITS = 10
+ETK_USER_INITIAL_CREDITS = 20
 ETK_USER_MIN_CREDITS = 0
 ETK_USER_MAX_CREDITS = 50
 ETK_CREDIT = {'name': 'etruekko', 'plural': 'etruekkos', 'short': u'etks'}
