@@ -864,6 +864,11 @@ label {
 .commitment .service {
 }
 
+.commitment .date {
+    font-size: small;
+    color: #aaa;
+}
+
 /* ENDOF SWAP */
 
 

@@ -167,6 +167,8 @@
                     {{ comment }}
                     {% endblocktrans %}
                     </span>
+
+                    <span class="date"> {{ cm.date }} </span>
                     <div class="clear"></div>
                     {% if USER == cm.user_to and cm.status == "WAI" %}
                         <form method="POST" action="{% url commitment_done cm.id %}">
