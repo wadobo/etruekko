@@ -5,6 +5,9 @@
     <p class="tip">
         {{ help_text }}
     </p>
+    <p>
+        {{ help_text2 }}
+    </p>
     <form action="{% url contact %}" method="post">{% csrf_token %}
         <table>
         {{ form.as_table }}

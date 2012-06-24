@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import uuid
 from unidecode import unidecode
 import datetime
@@ -1785,6 +1786,7 @@ class UnFollowView(View):
 class Contact(TemplateView):
     template_name = 'truekko/contact.html'
     help_text = ''
+    help_text2 = ''
     subject = ''
 
     def get_context_data(self, **kwargs):
@@ -1793,6 +1795,7 @@ class Contact(TemplateView):
         context['form'] = ContactForm()
         context['form'].fields['subject'].initial = self.subject
         context['help_text'] = self.help_text
+        context['help_text2'] = self.help_text2
 
         return context
 
@@ -1828,13 +1831,22 @@ class NewCommunityContact(Contact):
 
 
 class NewAdContact(Contact):
-    help_text = _("Fill the following form to advertise in "
-                  "Etruekko. In the message you should put "
-                  "a short description about what do you "
-                  "want to ad in this platform. "
-                  "We will contact you as soon as "
-                  "possible to tell you more about "
-                  "conditions and what we need")
+    help_text = _(\
+u"Anunciarte en Etruekko es algo más que dar a conocer tu negocio "
+u"publicitariamente, es apoyar una iniciativa basada en valores "
+u"profundamente beneficiosos para la sociedad, es aportar tu granito de "
+u"arena a la conservación medioambiental, es apoyar la comunidad en la "
+u"que desarrollas tu actividad, es ser solidario y sobre todo es "
+u"potenciar la Responsabilidad Social de tu negocio.")
+
+    help_text2 = _("Fill the following form to advertise in "
+                   "Etruekko. In the message you should put "
+                   "a short description about what do you "
+                   "want to ad in this platform. "
+                   "We will contact you as soon as "
+                   "possible to tell you more about "
+                   "conditions and what we need")
+
     subject = _("I want add an advertise in Etruekko")
 
 

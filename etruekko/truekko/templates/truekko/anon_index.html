@@ -38,7 +38,7 @@
 
                 <div class="modal-footer">
                     <a class="button green small" href="{% url register_wizard %}">{% trans "Register" %}</a>
-                    <a class="button blue small" href="{% url faq %}#faq1">{% trans "FAQ" %}</a>
+                    <a class="button blue small" href="{% url faq %}#faq1">{% trans "Register FAQ" %}</a>
                 </div>
             </div>
         </div>
@@ -97,12 +97,12 @@
                     bienes que posees, tus conocimientos y tus habilidades
                     </strong>
 
-                    <a class="button green small" href="{% url register_wizard %}">{% trans "Register" %}</a>
                     </p>
                 </div>
 
                 <div class="modal-footer">
-                    <a class="button blue small" href="{% url faq %}">{% trans "FAQ" %}</a>
+                    <a class="button green small" href="{% url register_wizard %}">{% trans "Register" %}</a>
+                    <a class="button blue small" href="{% url faq %}#faq5">{% trans "Community FAQ" %}</a>
                     <a class="button blue small" href="{% url faq %}#faq5">{% trans "To what communities can I join in" %}</a>
                 </div>
             </div>
@@ -184,7 +184,6 @@
                 </div>
                 <div class="modal-footer">
                     <a class="button green small" href="{% url register_wizard %}">{% trans "Register" %}</a>
-                    <a class="button blue small" href="{% url faq %}">{% trans "FAQ" %}</a>
                 </div>
             </div>
         </div>
@@ -227,6 +226,7 @@
 
                 </div>
                 <div class="modal-footer">
+                    <a class="button green small" href="{% url groups %}">{% trans "Communities" %}</a>
                     <a class="button green small" href="{% url new_community_contact %}">{% trans "Register community" %}</a>
                 </div>
             </div>
@@ -280,7 +280,7 @@
                 </div>
                 <div class="modal-footer">
                     <a class="button green small" href="{% url register_wizard %}">{% trans "Register" %}</a>
-                    <a class="button blue small" href="{% url faq %}#faq4">{% trans "FAQ" %}</a>
+                    <a class="button blue small" href="{% url faq %}#faq4">{% trans "Truekko FAQ" %}</a>
                 </div>
             </div>
         </div>
@@ -331,8 +331,9 @@
                 </div>
 
                 <div class="modal-footer">
+                    <a class="button green small" href="{% url groups %}">{% trans "Communities" %}</a>
                     <a class="button green small" href="{% url register_wizard %}">{% trans "Register" %}</a>
-                    <a class="button blue small" href="{% url faq %}#faq5">{% trans "FAQ" %}</a>
+                    <a class="button blue small" href="{% url faq %}#faq5">{% trans "Community FAQ" %}</a>
                 </div>
             </div>
         </div>
@@ -364,18 +365,7 @@
 
 <div id="etk_ad">
     <!-- TODO in english / translate -->
-    <h3>¿Quieres anunciarte aquí?</h3>
-    <p>
-    Anunciarse en Etruekko es algo más que dar a conocer tu negocio
-    publicitariamente, es apoyar una iniciativa basada en valores
-    profundamente beneficiosos para la sociedad, es aportar tu granito de
-    arena a la conservación medioambiental, es apoyar la comunidad en la
-    que desarrollas tu actividad, es ser solidario y sobre todo es
-    potenciar la Responsabilidad Social de tu negocio.
-    </p>
-
-    <!-- TODO point to ad contact form -->
-    <a class="button blue" href="{% url new_ad_contact %}">{% trans "Advertise" %}</a>
+    <a class="button blue bigbutton" href="{% url new_ad_contact %}">¿Quieres anunciarte aquí?</a>
 </div>
 
 <div class="clear"></div>
