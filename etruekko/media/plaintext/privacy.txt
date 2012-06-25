@@ -7,7 +7,7 @@ Todos los datos personales que recojamos sobre usted serán almacenados en un fi
 
 h2. Derecho de información
 
-De conformidad con lo establecido por la Ley Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de Carácter Personal (en adelante, LOPD), ETRUEKKO (en adelante, sitio web) y su titular informan al usuario de este sitio de la existencia de un fichero automatizado de datos de carácter personal creado por TRUEKENET y bajo su responsabilidad.
+De conformidad con lo establecido por la Ley Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de Carácter Personal (en adelante, LOPD), ETRUEKKO (en adelante, sitio web) y su titular informan al usuario de este sitio de la existencia de un fichero automatizado de datos de carácter personal creado por ETRUEKKO y bajo su responsabilidad.
 
 h2. Finalidad
 
