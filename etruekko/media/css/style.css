@@ -65,6 +65,7 @@ p {
 }
 
 #messages {
+    padding: 0px;
     padding-top: 10px;
     padding-bottom: 10px;
     background: #000000;
