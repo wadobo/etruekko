@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-24 13:09+0200\n"
+"POT-Creation-Date: 2012-06-25 10:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1091,12 +1091,22 @@ msgstr ""
 "\n"
 "Para acceder a etruekko necesitas una cuenta. Si no tienes una\n"
 "puedes solicitar unirte a una comunidad. En etruekko los usuarios deben\n"
-"ser parte de una comunidad y sólo pueden ser creados por los administradores de "
-"una comunidad.\n"
+"ser parte de una comunidad y sólo pueden ser creados por los administradores "
+"de una comunidad.\n"
 
 #: templates/login.html:15
 msgid "You can view the list of communities in:"
 msgstr "Puedes ver la lista de comunidades en:"
+
+#: templates/login.html:16 truekko/templates/search/advanced.html:54
+#: truekko/templates/truekko/anon_index.html:229
+#: truekko/templates/truekko/anon_index.html:334
+#: truekko/templates/truekko/channel_view.html:17
+#: truekko/templates/truekko/groups.html:3
+#: truekko/templates/truekko/user_register.html:3
+#: truekko/templates/truekko/view_profile.html:77
+msgid "Communities"
+msgstr "Comunidades"
 
 #: templates/login.html:22
 #, python-format
@@ -1147,11 +1157,11 @@ msgstr "preferencias"
 msgid "logout"
 msgstr "salir"
 
-#: templates/user.html:17 truekko/forms.py:47
+#: templates/user.html:17 truekko/forms.py:49
 msgid "Username"
 msgstr "Nombre de usuario"
 
-#: templates/user.html:18 truekko/forms.py:51
+#: templates/user.html:18 truekko/forms.py:53
 msgid "Password"
 msgstr "Contraseña"
 
@@ -1208,29 +1218,29 @@ msgstr "Lo sentimos, pero no tienes permiso para hacer esto"
 msgid "Only community admin can edit this community"
 msgstr "Sólo el administrador puede editar esta comunidad"
 
-#: truekko/forms.py:48 truekko/models.py:31 truekko/models.py:185
+#: truekko/forms.py:50 truekko/models.py:31 truekko/models.py:185
 #: truekko/models.py:221 truekko/models.py:386 truekko/models.py:450
 #: truekko/models.py:698
 msgid "Name"
 msgstr "Nombre"
 
-#: truekko/forms.py:49 truekko/models.py:34 truekko/models.py:223
+#: truekko/forms.py:51 truekko/models.py:34 truekko/models.py:223
 msgid "Location"
 msgstr "Localización"
 
-#: truekko/forms.py:50 truekko/forms.py:151 truekko/models.py:222
+#: truekko/forms.py:52 truekko/forms.py:157 truekko/models.py:222
 msgid "Email"
 msgstr "Correo electrónico"
 
-#: truekko/forms.py:52
+#: truekko/forms.py:54
 msgid "Password confirm"
 msgstr "Confirmación de contraseña"
 
-#: truekko/forms.py:53
+#: truekko/forms.py:55
 msgid "I accept"
 msgstr "Acepto"
 
-#: truekko/forms.py:54
+#: truekko/forms.py:56
 msgid ""
 "You should accept the <a href=\"/terms\">terms of use</a> and the <a href=\"/"
 "privacy\">privacy policy</a> to join to etruekko"
@@ -1238,57 +1248,61 @@ msgstr ""
 "Debes aceptar los <a href=\"/terms\">terminos de uso</a> y la <a href=\"/"
 "privacy\">política de privacidad</a> para unirte a etruekko"
 
-#: truekko/forms.py:58
+#: truekko/forms.py:60
 msgid "You should accept the terms of use and the privacy policy"
 msgstr "Debes aceptar los terminos de uso y la política de privacidad"
 
-#: truekko/forms.py:64
+#: truekko/forms.py:67
+msgid "Username isn't valid, use only letters, numbers or _"
+msgstr "El nombre de usuario no es válido, usa sólo letras, números o _"
+
+#: truekko/forms.py:70
 msgid "Username exists"
 msgstr "El nombre de usuario existe"
 
-#: truekko/forms.py:71
+#: truekko/forms.py:77
 msgid "User exists with the same email"
 msgstr "Un usuario con el mismo email ya existe"
 
-#: truekko/forms.py:81
+#: truekko/forms.py:87
 msgid "Password and password confirm didn't match"
 msgstr "Las contraseñas no coinciden"
 
-#: truekko/forms.py:102
+#: truekko/forms.py:108
 msgid "Concept"
 msgstr "Concepto"
 
-#: truekko/forms.py:103
+#: truekko/forms.py:109
 msgid "Credits"
 msgstr "Créditos"
 
-#: truekko/forms.py:113
+#: truekko/forms.py:119
 msgid "Can't make this transfer, negative credits isn't allowed"
 msgstr ""
 "No es posible hacer esta transferencia, no están permitidos créditos "
 "negativos"
 
-#: truekko/forms.py:115
+#: truekko/forms.py:121
 msgid "Can't make this transfer, insufficient credits"
 msgstr "No es posible hacer esta transferencia, insuficientes créditos"
 
-#: truekko/forms.py:152
+#: truekko/forms.py:158
 msgid "Subject"
 msgstr "Asunto"
 
-#: truekko/forms.py:153
+#: truekko/forms.py:159
 msgid "Phone"
 msgstr "Teléfono"
 
-#: truekko/forms.py:154 truekko/models.py:755 truekko/models.py:806
+#: truekko/forms.py:160 truekko/models.py:755 truekko/models.py:806
 msgid "Message"
 msgstr "Mensaje"
 
-#: truekko/forms.py:155
+#: truekko/forms.py:161
 msgid "Send a copy to myself"
 msgstr "Enviar una copia a mi correo"
 
-#: truekko/forms.py:164
+#: truekko/forms.py:170
 #, python-format
 msgid ""
 "Phone: %(number)s\n"
@@ -2099,16 +2113,6 @@ msgstr ""
 #: truekko/views.py:1856
 msgid "I want add an advertise in Etruekko"
 msgstr "Quiero anunciarme en Etruekko"
-
-#: truekko/templates/search/advanced.html:54
-#: truekko/templates/truekko/anon_index.html:229
-#: truekko/templates/truekko/anon_index.html:334
-#: truekko/templates/truekko/channel_view.html:17
-#: truekko/templates/truekko/groups.html:3
-#: truekko/templates/truekko/user_register.html:3
-#: truekko/templates/truekko/view_profile.html:77
-msgid "Communities"
-msgstr "Comunidades"
 
 #: truekko/templates/search/advanced.html:55
 msgid "Users"

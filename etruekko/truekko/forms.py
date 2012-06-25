@@ -1,3 +1,5 @@
+import re
+
 from django.utils.translation import ugettext_lazy as _
 from django.forms import ModelForm
 from django import forms
@@ -60,6 +62,10 @@ class RegisterForm(forms.Form):
 
     def clean_username(self):
         username = self.cleaned_data.get("username")
+
+        if not re.match("^\w+$", username):
+            raise forms.ValidationError(_("Username isn't valid, use only letters, numbers or _"))
+
         if User.objects.filter(username=username).count():
             raise forms.ValidationError(_("Username exists"))
 
