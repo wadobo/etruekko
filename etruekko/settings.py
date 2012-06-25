@@ -8,7 +8,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('Daniel Garcia', 'danigm@ewadobo.com'),
+    ('Daniel Garcia', 'danigm@wadobo.com'),
 )
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
