@@ -22,7 +22,7 @@
         <a href="{% url etruekko %}">(etruekko)</a>
     {% endif %}
 
-    <span class="text">{{ msg.msg|textile|urlizetrunc:20 }}</span>
+    <span class="text">{{ msg.msg|urlizetrunc:20|textile }}</span>
 
     {% for msg in msg.get_childs %}
     <div class="msg msg_reply{% if msg.user == USER %} me{% endif %}">
@@ -38,7 +38,7 @@
         <a href="{% url view_profile msg.user.username %}"><span class="username">{{ msg.user.username }}</span></a>
         <span class="fullname">{{ msg.user.get_profile.name }}</span>
 
-        <span class="text">{{ msg.msg|textile|urlizetrunc:20 }}</span>
+        <span class="text">{{ msg.msg|urlizetrunc:20|textile }}</span>
     </div>
     {% endfor %}
 
