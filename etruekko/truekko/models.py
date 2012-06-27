@@ -435,8 +435,8 @@ def item_post_save(sender, instance, created, *args, **kwargs):
             'url': reverse("item_view", args=(instance.id,)),
         }
         msg = _("New %(item_or_service)s %(offer_or_demand)s added: \n"
-                "*%(name)s*, %(desc)s"
-                "%(extra)s"
+                "*%(name)s*, %(desc)s "
+                "%(extra)s "
                 '"Take a look":%(url)s') % context
         wmsg = WallMessage(user=instance.user,
                            wall=Wall.notification(),
@@ -753,6 +753,11 @@ class WallMessage(models.Model):
 
     private = models.BooleanField(_("Private"), default=False)
     msg = models.TextField(_("Message"))
+
+    def formatted_msg(self):
+        from textile import textile
+        from django.template.defaultfilters import urlizetrunc
+        return textile(urlizetrunc(self.msg, 20))
 
     def get_childs(self):
         return self.childs.all().order_by("date")

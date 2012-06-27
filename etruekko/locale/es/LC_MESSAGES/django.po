@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-25 10:29+0200\n"
+"POT-Creation-Date: 2012-06-27 10:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1294,7 +1294,7 @@ msgstr "Asunto"
 msgid "Phone"
 msgstr "Teléfono"
 
-#: truekko/forms.py:160 truekko/models.py:755 truekko/models.py:806
+#: truekko/forms.py:160 truekko/models.py:755 truekko/models.py:811
 msgid "Message"
 msgstr "Mensaje"
 
@@ -1441,10 +1441,10 @@ msgstr "usa 0 para ilimitado"
 #, python-format
 msgid ""
 "New %(item_or_service)s %(offer_or_demand)s added: \n"
-"*%(name)s*, %(desc)s%(extra)s\"Take a look\":%(url)s"
+"*%(name)s*, %(desc)s %(extra)s \"Take a look\":%(url)s"
 msgstr ""
 "Una nueva %(offer_or_demand)s de %(item_or_service)s ha sido añadida: \n"
-"*%(name)s*, %(desc)s%(extra)s\"ver\":%(url)s"
+"*%(name)s*, %(desc)s %(extra)s \"ver\":%(url)s"
 
 #: truekko/models.py:474
 msgid "User from confirmed"
@@ -1454,7 +1454,7 @@ msgstr "Usuario desde confirmado"
 msgid "User to confirmed"
 msgstr "Usuario para confirmado"
 
-#: truekko/models.py:476 truekko/models.py:796
+#: truekko/models.py:476 truekko/models.py:801
 msgid "confirmed"
 msgstr "confirmado"
 
@@ -1537,24 +1537,24 @@ msgstr "Muro de %s"
 msgid "Private"
 msgstr "Privado"
 
-#: truekko/models.py:787
+#: truekko/models.py:792
 #, python-format
 msgid "New message by %(user)s in %(wall)s"
 msgstr "Nuevo mensaje de %(user)s en %(wall)s"
 
-#: truekko/models.py:795
+#: truekko/models.py:800
 msgid "pending"
 msgstr "pendiente"
 
-#: truekko/models.py:797
+#: truekko/models.py:802
 msgid "resolved"
 msgstr "resuelto"
 
-#: truekko/models.py:798
+#: truekko/models.py:803
 msgid "canceled"
 msgstr "cancelado"
 
-#: truekko/models.py:823
+#: truekko/models.py:828
 #, python-format
 msgid "%(user)s user has been denounced in community %(group)s"
 msgstr "El usuario %(user)s ha sido denunciado en la comunidad %(group)s"
@@ -2199,19 +2199,19 @@ msgid "Truekko FAQ"
 msgstr "Preguntas frecuentes Truekko"
 
 #: truekko/templates/truekko/anon_index.html:315
-#: truekko/templates/truekko/anon_index.html:403
+#: truekko/templates/truekko/anon_index.html:417
 msgid "Last Communities"
 msgstr "Últimas Comunidades"
 
-#: truekko/templates/truekko/anon_index.html:377
+#: truekko/templates/truekko/anon_index.html:391
 msgid "Activity"
 msgstr "Actividad"
 
-#: truekko/templates/truekko/anon_index.html:384
+#: truekko/templates/truekko/anon_index.html:398
 msgid "Last Services"
 msgstr "Últimos Servicios"
 
-#: truekko/templates/truekko/anon_index.html:393
+#: truekko/templates/truekko/anon_index.html:407
 msgid "Last Items"
 msgstr "Últimos Artículos"
 
