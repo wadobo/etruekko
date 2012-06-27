@@ -83,7 +83,7 @@ class Index(TemplateView):
             context['commitments_to_me'] = u.commitments_to_me.filter(status='WAI')
         else:
             context['last_services'] = Item.objects.filter(type="SR")[0:3]
-            context['last_items'] = Item.objects.filter(type="SR")[0:3]
+            context['last_items'] = Item.objects.filter(type="IT")[0:3]
             context['last_groups'] = Group.objects.all().order_by("-id")[0:3]
 
         return context
