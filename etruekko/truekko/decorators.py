@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import redirect
 from django.utils.translation import ugettext as _
 
