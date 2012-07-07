@@ -3,77 +3,7 @@
 {% block title %} {% trans 'People' %} {% endblock %}
 
 {% block extrahead %}
-    <script type="text/javascript">
-
-        // ajax setup for csrf token
-        $.ajaxSetup({
-             beforeSend: function(xhr, settings) {
-                 function getCookie(name) {
-                     var cookieValue = null;
-                     if (document.cookie && document.cookie != '') {
-                         var cookies = document.cookie.split(';');
-                         for (var i = 0; i < cookies.length; i++) {
-                             var cookie = jQuery.trim(cookies[i]);
-                             // Does this cookie string begin with the name we want?
-                         if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                             cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                             break;
-                         }
-                     }
-                 }
-                 return cookieValue;
-                 }
-                 if (!(/^http:.*/.test(settings.url) || /^https:.*/.test(settings.url))) {
-                     // Only send the token to relative URLs i.e. locally.
-                     xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-                 }
-             }
-        });
-
-        function follow(obj) {
-            obj.attr("disabled", "disabled");
-            url = obj.parent().attr('action') + ".json";
-            obj.parent().find('.loader').show();
-            obj.hide();
-            $.post(url, {}, function(data) {
-                if (data.status == "ok") {
-                    obj.parent().attr('action', data.url);
-                    obj.attr("value", data.text);
-
-                    if (obj.hasClass("unfollowajax")) {
-                        obj.removeClass("unfollowajax");
-                        obj.addClass("followajax");
-                        obj.removeClass("red");
-                        obj.addClass("green");
-                    } else {
-                        obj.removeClass("followajax");
-                        obj.addClass("unfollowajax");
-                        obj.removeClass("green");
-                        obj.addClass("red");
-                    }
-                }
-                obj.removeAttr("disabled");
-                obj.parent().find('.loader').hide();
-                obj.show();
-            });
-        }
-
-        function connect_follow() {
-            $(".followajax").click(function() {
-                follow($(this));
-                return false;
-            });
-
-            $(".unfollowajax").click(function() {
-                follow($(this));
-                return false;
-            });
-        }
-
-        jQuery(document).ready(function() {
-            connect_follow();
-        });
-    </script>
+    {% include "truekko/followjs.html" %}
 {% endblock %}
 
 {% block content %}

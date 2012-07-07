@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} {{ title }} {% endblock %}
+
+{% block extrahead %}
+    {% include "truekko/followjs.html" %}
+{% endblock %}
+
+{% block content %}
+    <div class="left"><img src="/media/imgs/menu/people.png" alt="people"/></div>
+    <div class="left">
+        <a href="{% url view_profile viewing.username %}">
+            <img src="{% avatar viewing 48 %}" alt="{{ viewing.username }}" title="{{ viewing.username }}"/>
+        </a>
+    </div>
+    <h2>{{ title }}</h2>
+    <div class="clear"></div>
+
+    <div id="subcontent">
+        {% for user in users.object_list %}
+            {% include "truekko/single_user_view.html" with follow="true" %}
+        {% endfor %}
+    </div>
+
+
+    {% with pagination=users %}
+        {% include "paginate.html" %}
+    {% endwith %}
+{% endblock %}

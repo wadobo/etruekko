@@ -1804,6 +1804,39 @@ class UnFollowView(View):
     get = post
 
 
+class FollowersView(TemplateView):
+    template_name = 'truekko/userlist.html'
+    title = _('People following you')
+
+    def get_query(self):
+        return self.user.get_profile().followers()
+
+    def get_context_data(self, **kwargs):
+        query = self.get_query()
+        context = {}
+        context['users'] = paginate(self.request, query, 20)
+        context['viewing'] = self.user
+        context['title'] = self.title
+
+        context['klass'] = 'people'
+        context['menu'] = generate_menu()
+        return context
+
+    def get(self, request, uid=None):
+        self.user = self.request.user
+        if uid:
+            self.user = get_object_or_404(User, id=uid)
+        return super(FollowersView, self).get(request)
+
+
+class FollowingsView(FollowersView):
+    template_name = 'truekko/userlist.html'
+    title = _('People you follow')
+
+    def get_query(self):
+        return self.user.get_profile().followings()
+
+
 ###########
 #         #
 # CONTACT #
@@ -1931,6 +1964,9 @@ people_all = PeopleAll.as_view()
 # friendship
 follow = login_required(FollowView.as_view())
 unfollow = login_required(UnFollowView.as_view())
+
+followers = login_required(FollowersView.as_view())
+followings = login_required(FollowingsView.as_view())
 
 # channel
 channel_view = login_required(ChannelView.as_view())

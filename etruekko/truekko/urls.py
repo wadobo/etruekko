@@ -14,6 +14,9 @@ urlpatterns = patterns('etruekko.truekko.views',
     url(r'^unfollow/(\d+)$', 'unfollow', name='unfollow'),
     url(r'^follow/(\d+)(\.json)$', 'follow', name='follow-json'),
     url(r'^unfollow/(\d+)(\.json)$', 'unfollow', name='unfollow-json'),
+
+    url(r'^followings/(\d+)?$', 'followings', name='followings'),
+    url(r'^followers/(\d+)?$', 'followers', name='followers'),
     # channels
     url(r'^channel/view/(\d+)$', 'channel_view', name='channel_view'),
     # communities (old groups)
