@@ -11,8 +11,27 @@
     </span>
     {% endif %}
 
+    {% if follow %}
+        {% if user != USER %}
+            <div class="follow">
+            {% if USER in user.get_profile.followers %}
+                <form method="POST" action="{% url unfollow user.id %}"> {% csrf_token %}
+                    <input class="unfollowajax button red link" type="submit" value="{% trans "unfollow" %}"/>
+                    <img class="loader" src="/media/imgs/ajax-loader.gif"/>
+                </form>
+            {% else %}
+                <form method="POST" action="{% url follow user.id %}"> {% csrf_token %}
+                    <input class="followajax button green link" type="submit" value="{% trans "follow" %}"/>
+                    <img class="loader" src="/media/imgs/ajax-loader.gif"/>
+                </form>
+            {% endif %}
+            </div>
+        {% endif %}
+    {% endif %}
+
     <span class="location"><a href="{% url people %}?search={{ user.get_profile.location }}">{{ user.get_profile.location }}</a></span>
     <p class="description">{{ user.get_profile.description|truncatewords:20 }}</p>
+
     <span class="date">
         {% blocktrans with user.date_joined|timesince as d %}
             user since {{ d }}

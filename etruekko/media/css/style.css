@@ -1248,3 +1248,12 @@ legend {
 .bigbutton {
     height: auto !important;
 }
+
+.follow {
+    float: right;
+    margin-left: 20px;
+}
+
+.loader {
+    display: none;
+}

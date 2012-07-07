@@ -18,6 +18,8 @@ from decorators import is_group_admin, is_group_editable, is_member
 from django.shortcuts import render_to_response
 from django.db.models import Q
 from django.conf import settings
+from django.utils import simplejson as json
+from django.http import HttpResponse
 
 from etruekko.truekko.forms import UserProfileForm
 from etruekko.truekko.forms import GroupForm
@@ -1750,7 +1752,7 @@ class SearchAdvanced(TemplateView):
 
 class FollowView(View):
 
-    def post(self, request, userid):
+    def post(self, request, userid, js=None):
         user = get_object_or_404(User, pk=userid)
         if user == request.user:
             raise Http404
@@ -1758,7 +1760,7 @@ class FollowView(View):
         f, created = Follow.objects.get_or_create(follower=request.user, following=user)
         f.save()
 
-        messages.info(request, _(u"You are now following %(user)s in etruekko") % {'user': user.username})
+        msg = _(u"You are now following %(user)s in etruekko") % {'user': user.username}
         url = reverse('view_profile', args=(request.user.username,))
         context = {'user': request.user, 'you': user, 'url': url}
         template_email('truekko/follow_mail.txt',
@@ -1767,20 +1769,39 @@ class FollowView(View):
                             'username': request.user.username},
                        [user.email], context)
 
-        nxt = redirect('view_profile', user.username)
-        return nxt
+        if js:
+            json_response = json.dumps({'status': 'ok',
+                        'url': reverse('unfollow', args=(userid,)),
+                        'text': _("unfollow"),
+                        'msg': msg})
+            return HttpResponse(json_response, mimetype='application/json')
+        else:
+            messages.info(request, msg)
+            return redirect('view_profile', user.username)
+
+    get = post
 
 
 class UnFollowView(View):
 
-    def post(self, request, userid):
+    def post(self, request, userid, js=None):
         user = get_object_or_404(User, pk=userid)
         f = get_object_or_404(Follow, follower=request.user, following=user)
         f.delete()
 
-        messages.info(request, _(u"You are not following %(user)s in etruekko anymore") % {'user': user.username})
-        nxt = redirect('view_profile', user.username)
-        return nxt
+        msg = _(u"You are not following %(user)s in etruekko anymore") % {'user': user.username}
+
+        if js:
+            json_response = json.dumps({'status': 'ok',
+                'url': reverse('follow', args=(userid,)),
+                'text': _("follow"),
+                'msg': msg})
+            return HttpResponse(json_response, mimetype='application/json')
+        else:
+            messages.info(request, msg)
+            return redirect('view_profile', user.username)
+
+    get = post
 
 
 ###########
