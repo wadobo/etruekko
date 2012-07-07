@@ -185,20 +185,34 @@
             <!-- friends -->
             <h3>{% trans "People you follow" %}{% tooltip "following" %}</h3>
             <div class="friends">
-            {% for u in USER.get_profile.followings %}
+            <ul>
+            {% for u in USER.get_profile.last_followings %}
+                <li>
                 <a href="{% url view_profile u.username %}">
                     <img src="{% avatar u 20 %}" alt="{{ u.username }}" title="{{ u.username }}"/>
+                    {{ u.username }}
                 </a>
+                <div class="clear"></div>
+                </li>
             {% endfor %}
+            </ul>
+            <a href="{% url followings %}">{% trans "more..." %}</a>
             </div>
             <div class="clear"></div>
             <h3>{% trans "People following you" %}{% tooltip "followers" %}</h3>
             <div class="friends">
-            {% for u in USER.get_profile.followers %}
+            <ul>
+            {% for u in USER.get_profile.last_followers %}
+                <li>
                 <a href="{% url view_profile u.username %}">
                     <img src="{% avatar u 20 %}" alt="{{ u.username }}" title="{{ u.username }}"/>
+                    {{ u.username }}
                 </a>
+                <div class="clear"></div>
+                </li>
             {% endfor %}
+            </ul>
+            <a href="{% url followers %}">{% trans "more..." %}</a>
             </div>
             <div class="clear"></div>
         </div>

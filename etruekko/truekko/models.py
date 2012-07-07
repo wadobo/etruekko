@@ -78,8 +78,14 @@ class UserProfile(models.Model):
     def followers(self):
         return [i.follower for i in self.user.followers.all()]
 
+    def last_followers(self):
+        return [i.follower for i in self.user.followers.all().order_by("-id")[0:5]]
+
     def followings(self):
         return [i.following for i in self.user.followings.all()]
+
+    def last_followings(self):
+        return [i.following for i in self.user.followings.all().order_by("-id")[0:5]]
 
     def valid_credits(self, value):
         min = settings.ETK_USER_MIN_CREDITS
