@@ -128,6 +128,10 @@ class UserProfile(models.Model):
         u = self.user
         return Swap.objects.filter(Q(user_from=u) | Q(user_to=u))
 
+    def swaps_done(self):
+        u = self.user
+        return Swap.objects.filter(status="DON").filter(Q(user_from=u) | Q(user_to=u))
+
 
 from south.modelsinspector import add_introspection_rules
 add_introspection_rules([], ["^etruekko\.utils\.CountryField"])
