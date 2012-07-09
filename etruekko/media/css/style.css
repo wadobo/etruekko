@@ -612,6 +612,10 @@ a:hover {
 
 .memberimg {
     position: relative;
+
+    background: white;
+    width: 64px;
+    height: 64px;
 }
 
 .memberimg .floating {

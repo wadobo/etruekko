@@ -15,13 +15,21 @@
 
         <div id="memberlist">
         <h3> {% trans "Communities" %} </h3>
+        <table>
+        <tr>
         {% for group in channel.groups.all %}
-            <div class="left memberimg">
+            {% if forloop.counter0|divisibleby:"4" %}
+            </tr>
+            <tr>
+            {% endif %}
+            <td class="left memberimg">
                 <a href="{% url view_group group.id %}">
                     <img src="{% groupavatar group 64 %}" title="{{ group.name }}" alt="{{ group.name }}"/>
                 </a>
-            </div>
+            </td>
         {% endfor %}
+        </tr>
+        </table>
         <div class="clear"></div>
         </div>
 
