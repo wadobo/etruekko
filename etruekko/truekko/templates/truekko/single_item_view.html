@@ -37,11 +37,13 @@
 
     {% if not short %}
     <div class="tags">
+        <div class="taglist">
         {% for tag in item.tags %}
             <span class="tag"><a href="{% url item_list item.type_str %}?search={{ tag.name }}">{{ tag.name }}</a></span>
         {% endfor %}
+        </div>
 
-        <div id="social">
+        <div class="social">
             <a href="https://twitter.com/share"
                class="twitter-share-button"
                data-url="{{ BASE_URL }}{% url item_view item.id %}"
