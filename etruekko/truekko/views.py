@@ -2002,8 +2002,8 @@ commitment_delete = login_required(CommitmentDelete.as_view())
 
 #item
 item_add = login_required(ItemAdd.as_view())
-item_view = login_required(ItemView.as_view())
-item_list = login_required(ItemList.as_view())
+item_view = ItemView.as_view()
+item_list = ItemList.as_view()
 item_remove = login_required(ItemRemove.as_view())
 
 # messages

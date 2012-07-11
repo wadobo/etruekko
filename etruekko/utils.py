@@ -1,5 +1,6 @@
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 from django.conf import settings
+from django.contrib.sites.models import Site
 
 from django.template.loader import get_template
 from django.template import Context
@@ -25,12 +26,15 @@ def context_processor(request):
     This is a context processor that adds some vars to the base template
     '''
 
+    site = Site.objects.get(id=settings.SITE_ID)
+
     return {
         'CREDIT_NAME': settings.ETK_CREDIT,
         'MEDIA_URL': settings.MEDIA_URL,
         'SITE_NAME': settings.SITE_NAME,
         'COLORS': COLORS,
         'USER': request.user,
+        'BASE_URL': 'http://' + site.domain
     }
 
 

@@ -40,6 +40,20 @@
         {% for tag in item.tags %}
             <span class="tag"><a href="{% url item_list item.type_str %}?search={{ tag.name }}">{{ tag.name }}</a></span>
         {% endfor %}
+
+        <div id="social">
+            <a href="https://twitter.com/share"
+               class="twitter-share-button"
+               data-url="{{ BASE_URL }}{% url item_view item.id %}"
+               data-via="etruekko"
+               data-lang="es"
+               data-text="{{ item.name }}"
+               data-count="horizontal">Tweet</a>
+            <br/>
+
+            <iframe src="//www.facebook.com/plugins/like.php?href={{ BASE_URL }}{% url item_view item.id %}/&amp;send=false&amp;layout=button_count&amp;width=20&amp;show_faces=false&amp;action=recommend&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:150px; height:21px;" allowTransparency="true"></iframe>
+        </div>
+
     </div>
     {% endif %}
 
