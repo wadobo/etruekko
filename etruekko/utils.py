@@ -58,7 +58,12 @@ def template_email(template_name, subject, to, context):
     plaintext = get_template(template_name)
     text_content = plaintext.render(Context(context))
 
-    send_mail('[etruekko] %s' % unicode(subject), text_content, 'no-reply@etruekko.com', to, fail_silently=False)
+    for t in to:
+        send_mail('[etruekko] %s' % unicode(subject),
+                  text_content,
+                  'no-reply@etruekko.com',
+                  [t],
+                  fail_silently=False)
 
 
 
