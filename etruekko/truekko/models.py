@@ -40,7 +40,7 @@ class UserProfile(models.Model):
     description = models.TextField(_("Personal description"), max_length=300,
                                    blank=True)
     rating = RatingField(range=5, can_change_vote=True)
-    receive_notification = models.BooleanField(_("Receive mail notifiaction for all messages"), default=False)
+    receive_notification = models.BooleanField(_("Receive mail notifiaction for all messages"), default=True)
 
     premiated_date = models.DateTimeField(blank=True, null=True)
 
