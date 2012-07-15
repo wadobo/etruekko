@@ -27,9 +27,17 @@
     <div class="clear"></div>
 
     <div id="subcontent">
+        <div id="indexcontent2">
+
         {% for item in items.object_list %}
             {% include "truekko/single_item_view.html" %}
         {% endfor %}
+
+        </div>
+        <div id="indexmenu2">
+            {% fixed_ads "RIGHTTOP" "160" %}
+        </div>
+        <div class="clear"></div>
     </div>
 
 

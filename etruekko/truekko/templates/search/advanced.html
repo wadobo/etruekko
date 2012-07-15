@@ -90,6 +90,7 @@ $(document).ready(function() {
         </div>
 
         <div class="querycontent">
+            <div id="indexcontent2">
             <h3>{% trans "Results" %}</h3>
 
             {% for object in result.object_list %}
@@ -103,6 +104,11 @@ $(document).ready(function() {
             {% empty %}
                 <p>{% trans "No results found" %}</p>
             {% endfor %}
+            </div>
+            <div id="indexmenu2">
+                {% fixed_ads "RIGHTTOP" "160" %}
+            </div>
+            <div class="clear"></div>
         </div>
     </div>
 

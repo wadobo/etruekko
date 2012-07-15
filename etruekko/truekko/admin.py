@@ -2,6 +2,7 @@ from django.contrib import admin
 from etruekko.truekko.models import UserProfile, Group, Membership
 from etruekko.truekko.models import Item, Tag, ItemTagged
 from etruekko.truekko.models import Channel
+from etruekko.truekko.models import Ad
 from django.db import models
 
 
@@ -49,6 +50,10 @@ class ItemTaggedAdmin(admin.ModelAdmin):
     list_display = ('item', 'tag')
 
 
+class AdAdmin(admin.ModelAdmin):
+    list_display = ('info', 'active', 'position', 'type', 'priority')
+
+
 admin.site.register(Channel, ChannelAdmin)
 admin.site.register(Group, GroupAdmin)
 admin.site.register(Membership, MembershipAdmin)
@@ -57,3 +62,5 @@ admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(Item, ItemAdmin)
 admin.site.register(Tag, TagAdmin)
 admin.site.register(ItemTagged, ItemTaggedAdmin)
+
+admin.site.register(Ad, AdAdmin)

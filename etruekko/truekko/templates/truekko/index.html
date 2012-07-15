@@ -35,6 +35,7 @@
             </form>
 
             <div class="clear"></div>
+            {% fixed_ads "TOP" "550" %}
 
             {% if wallmessages %}
                 {% for msg in wallmessages.object_list %}
@@ -45,6 +46,8 @@
 
         <!-- index menu -->
         <div id="indexmenu">
+            {% fixed_ads "RIGHTTOP" %}
+
             <!-- admin walls -->
             {% if USER.get_profile.is_admin %}
                 <h3>{% trans "Walls" %}</h3>

@@ -15,6 +15,9 @@
         <a class="button{% if all %} green{% endif %}" href="{% url groups %}">{% trans "My communities" %}</a>
         <a class="button{% if not all %} green{% endif %}" href="{% url groups_all %}">{% trans "All communities" %}</a>
 
+        <div class="clear"></div>
+
+        <div id="indexcontent2">
         {% for group in groups.object_list %}
             <div class="group">
                 <a href="{% url view_group group.id %}"><img src="{% groupavatar group 64 %}" alt="{{ group.name }}"/></a>
@@ -33,6 +36,13 @@
                 <div class="clear"></div>
             </div>
         {% endfor %}
+        </div>
+
+        <div id="indexmenu2">
+            {% fixed_ads "RIGHTTOP" "160" %}
+        </div>
+
+        <div class="clear"></div>
     </div>
 
 

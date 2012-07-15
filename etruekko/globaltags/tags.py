@@ -5,6 +5,7 @@ import urllib, hashlib
 from django.conf import settings
 
 from etruekko.truekko.tooltips import tooltips
+from django.utils.translation import ugettext as _
 
 
 register = template.Library()
@@ -88,3 +89,20 @@ def clear_mod_3(context):
 @register.simple_tag
 def tooltip(tipname):
     return '<img tooltip="<p>%s</p>" class="tooltip" src="/media/imgs/help.png"/>' % tooltips.get(tipname, '')
+
+
+@register.simple_tag(takes_context=True)
+def fixed_ads(context, position, width="280"):
+    from etruekko.truekko.models import Ad
+    ads_div = '<div class="ads %s" style="width: %spx">' % (position, width)
+    ads_div += '<h4>%s</h4>' % _("Ads")
+
+    ads = Ad.objects.filter(position=position, type="FIXED", active=True)
+    if not ads.count():
+        return ''
+
+    for ad in ads:
+        ads_div += '<div class="ad %s %s">%s</div>' % (ad.type, ad.position, ad.html)
+
+    ads_div += '</div>'
+    return ads_div

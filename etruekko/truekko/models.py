@@ -839,3 +839,33 @@ def denounce_post_save(sender, instance, created, *args, **kwargs):
                        email_list, context)
 
 post_save.connect(denounce_post_save, sender=Denounce)
+
+
+class Ad(models.Model):
+    POS = [
+        ('TOP', _('top')),
+        ('RIGHTTOP', _('right top')),
+        ('RIGHTBOTTOM', _('right bottom')),
+        ('BOTTOM', _('bottom')),
+    ]
+
+    TYPE = [
+        ('FIXED', _('fixed')),
+        # comming soon PRINTS, ROUNDROBIN
+    ]
+
+    position = models.CharField(_("Position"), max_length=20, choices=POS, default='RIGHTTOP')
+    type = models.CharField(_("Type"), max_length=20, choices=TYPE, default='FIXED')
+    priority = models.IntegerField(_("Priority"), default=0)
+    active = models.BooleanField(_("Active"), default=False)
+
+    html = models.TextField(_("Ad html"))
+    info = models.TextField(_("Announcer info"))
+
+    date = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return self.info
+
+    class Meta:
+        ordering = ['-priority']

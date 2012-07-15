@@ -32,10 +32,19 @@
                 <a class="button default" href="{% url item_remove item.id %}">{% trans "Delete" %}</a>
             {% endif %}
         </div>
+        <div class="clear"></div>
+        <div id="indexcontent2">
 
         {% with long="True" %}
             {% include "truekko/single_item_view.html" %}
         {% endwith %}
+
+        </div>
+
+        <div id="indexmenu2">
+            {% fixed_ads "RIGHTTOP" "160" %}
+        </div>
+        <div class="clear"></div>
 
     </div>
 {% endblock %}
