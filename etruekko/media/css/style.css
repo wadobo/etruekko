@@ -889,6 +889,13 @@ label {
     background-color: #eee;
     padding: 10px;
     margin: 5px;
+
+    color: #333333;
+    direction: ltr;
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+    font-size: 12px;
+    line-height: 1.28;
+    text-align: left;
 }
 
 .msg_reply {
@@ -896,6 +903,13 @@ label {
     margin-left: 20px;
     border: 1px solid #cccccc;
     background-color: white;
+
+    color: #333333;
+    direction: ltr;
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+    font-size: 11px;
+    line-height: 1.28;
+    text-align: left;
 }
 
 .priv {

@@ -24,6 +24,8 @@
 
     <span class="text">{{ msg.formatted_msg|safe }}</span>
 
+    <div class="clear"></div>
+
     {% for msg in msg.get_childs %}
     <div class="msg msg_reply{% if msg.user == USER %} me{% endif %}">
         {% if msg.user == USER %}
@@ -41,6 +43,8 @@
         <span class="text">{{ msg.formatted_msg|safe }}</span>
     </div>
     {% endfor %}
+
+    <div class="clear"></div>
 
     <a class="reply_link" href="#">{% trans "reply" %}</a>
     <div class="reply_form">
