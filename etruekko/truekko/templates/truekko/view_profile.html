@@ -66,7 +66,7 @@
 
         <div id="indexcontent">
             <!-- wall --!>
-            {% with wall=wall wallmessages=wallmessages%}
+            {% with wall=wall wallmessages=wallmessages  type="profile" %}
                 {% include "truekko/wall.html" %}
             {% endwith %}
         </div>

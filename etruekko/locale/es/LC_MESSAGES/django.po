@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-27 09:47+0200\n"
-"PO-Revision-Date: 2012-08-27 09:51+0200\n"
+"POT-Creation-Date: 2012-08-27 10:00+0200\n"
+"PO-Revision-Date: 2012-08-27 10:01+0200\n"
 "Last-Translator: Daniel García <danigm@wadobo.com>\n"
 "Language-Team: Español; Castellano <>\n"
 "Language: \n"
@@ -1546,7 +1546,7 @@ msgstr "Descripción"
 msgid "%s's wall"
 msgstr "Muro de %s"
 
-#: truekko/models.py:764 truekko/templates/truekko/wall.html:9
+#: truekko/models.py:764 truekko/templates/truekko/wall.html:14
 msgid "Private"
 msgstr "Privado"
 
@@ -2552,7 +2552,7 @@ msgid "Private messages"
 msgstr "Mensajes privados"
 
 #: truekko/templates/truekko/index.html:34
-#: truekko/templates/truekko/wall.html:14
+#: truekko/templates/truekko/wall.html:20
 msgid "Post"
 msgstr "Publicar"
 
@@ -3369,6 +3369,18 @@ msgstr ""
 #: truekko/templates/truekko/view_profile.html:95
 msgid "Offers"
 msgstr "Ofertas"
+
+#: truekko/templates/truekko/wall.html:10
+msgid ""
+"Private, if you check this option, only group members will view this messsage"
+msgstr ""
+"Privado, si seleccionas esta opción sólo los miembros del grupo verán este "
+"mensaje"
+
+#: truekko/templates/truekko/wall.html:12
+msgid ""
+"Private, if you check this option, only this user will view this messages"
+msgstr "Privado, si seleccionas esta opción sólo este usuario verá el mensaje"
 
 #~ msgid "What is etruekko"
 #~ msgstr "Qué es etruekko"

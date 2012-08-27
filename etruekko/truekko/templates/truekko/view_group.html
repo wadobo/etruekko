@@ -108,7 +108,7 @@
 
         <!-- wall -->
         <div id="groupwall">
-            {% with wall=wall wallmessages=wallmessages%}
+            {% with wall=wall wallmessages=wallmessages type="group" %}
                 {% include "truekko/wall.html" %}
             {% endwith %}
         </div>

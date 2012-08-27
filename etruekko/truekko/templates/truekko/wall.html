@@ -6,7 +6,13 @@
         {% csrf_token %}
         <textarea id="comment" name="comment"></textarea>
         {% if not hidepriv %}
+            {% if type == "group" %}
+            <label for="priv">{% trans "Private, if you check this option, only group members will view this messsage" %}:</label>
+            {% elif type == "profile" %}
+            <label for="priv">{% trans "Private, if you check this option, only this user will view this messages" %}:</label>
+            {% else %}
             <label for="priv">{% trans "Private" %}:</label>
+            {% endif %}
             <input type="checkbox" id="priv" name="priv"/><br/>
         {% else %}
             <input type="checkbox" id="priv" name="priv" checked="checked" class="hidden"/>
