@@ -61,12 +61,12 @@
 
     <p class="{% if long %}description{% else %}shortdescription{% endif %}">
     {% if long %}
-        {{ item.description }}
+        {{ item.description|urlizetrunc:20|linebreaks }}
     {% else %}
         {% if short %}
-            {{ item.description|truncatewords:10 }}
+            {{ item.description|urlizetrunc:20|linebreaks|truncatewords:10 }}
         {% else %}
-            {{ item.description|truncatewords:20 }}
+            {{ item.description|urlizetrunc:20|linebreaks|truncatewords:20 }}
         {% endif %}
     {% endif %}
     </p>
