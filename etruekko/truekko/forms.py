@@ -27,11 +27,22 @@ class CustomImageWidget(ClearableFileInput):
 
 class UserProfileForm(ModelForm):
     required_css_class = 'required'
+    email = forms.EmailField()
 
     class Meta:
         model = UserProfile
-        fields = ('photo', 'name', 'location', 'web', 'description', 'receive_notification')
+        fields = ('photo', 'name', 'email', 'location', 'web', 'description', 'receive_notification')
         widgets = {'photo': CustomImageWidget()}
+
+    def __init__(self, *args, **kwargs):
+        super(UserProfileForm, self).__init__(*args, **kwargs)
+        self.fields['email'].initial = self.instance.user.email
+
+    def save(self):
+        instance = super(UserProfileForm, self).save(commit=False)
+        instance.user.email = self.cleaned_data['email']
+        instance.user.save()
+        instance.save()
 
 
 class GroupForm(ModelForm):

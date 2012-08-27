@@ -7,6 +7,9 @@
     $(document).ready(function(){
         $(".sform").hide();
         $("#{{ default }}").show();
+        {% if not default %}
+            $(".sform").show();
+        {% endif %}
 
         $("#gsettings").click(function() {
             $(".settings").removeClass("violet");
