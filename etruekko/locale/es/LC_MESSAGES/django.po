@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-27 10:00+0200\n"
-"PO-Revision-Date: 2012-08-27 10:01+0200\n"
+"POT-Creation-Date: 2012-09-02 11:42+0200\n"
+"PO-Revision-Date: 2012-09-02 11:43+0200\n"
 "Last-Translator: Daniel García <danigm@wadobo.com>\n"
 "Language-Team: Español; Castellano <>\n"
 "Language: \n"
@@ -18,6 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Gtranslator 2.91.5\n"
+
+#: settings.py:211
+#, python-format
+msgid ""
+"If you don't know any group to join, you can join to <a class=\"button blue"
+"\" href=\"%(link)s\">%(name)s</a>"
+msgstr ""
+"Si no sabes a qué comunidad unirte, puedes unirte a <a class=\"button blue\" "
+"href=\"%(link)s\">%(name)s</a>"
 
 #: urls.py:25 urls.py:37
 msgid "Reset password"
@@ -2105,45 +2114,45 @@ msgstr ""
 "Tu contraseña se ha restaurado, ahora puedes <a href=\"%(url)s\">entrar</a> "
 "con tu nueva contraseña"
 
-#: truekko/views.py:1763
+#: truekko/views.py:1777
 #, python-format
 msgid "You are now following %(user)s in etruekko"
 msgstr "Ahora estás siguiendo a %(user)s en etruekko"
 
-#: truekko/views.py:1767
+#: truekko/views.py:1781
 #, python-format
 msgid "%(name)s (%(username)s) is now following you in etruekko"
 msgstr "%(name)s (%(username)s) te está siguiendo ahora en etruekko"
 
-#: truekko/views.py:1775 truekko/templates/truekko/single_user_view.html:19
+#: truekko/views.py:1789 truekko/templates/truekko/single_user_view.html:19
 #: truekko/templates/truekko/view_profile.html:32
 msgid "unfollow"
 msgstr "dejar de seguir"
 
-#: truekko/views.py:1792
+#: truekko/views.py:1806
 #, python-format
 msgid "You are not following %(user)s in etruekko anymore"
 msgstr "Ya no estás siguiendo a %(user)s en etruekko"
 
-#: truekko/views.py:1797 truekko/templates/truekko/single_user_view.html:24
+#: truekko/views.py:1811 truekko/templates/truekko/single_user_view.html:24
 #: truekko/templates/truekko/view_profile.html:36
 msgid "follow"
 msgstr "seguir"
 
-#: truekko/views.py:1809 truekko/templates/truekko/index.html:205
+#: truekko/views.py:1823 truekko/templates/truekko/index.html:205
 msgid "People following you"
 msgstr "Personas que te siguen"
 
-#: truekko/views.py:1834 truekko/templates/truekko/index.html:189
+#: truekko/views.py:1848 truekko/templates/truekko/index.html:189
 msgid "People you follow"
 msgstr "Personas que sigues"
 
-#: truekko/views.py:1881
+#: truekko/views.py:1895
 msgid "Thanks for contact with us, we will reply as soon as possible"
 msgstr ""
 "Gracias por contactar con nosotros, contestaremos tan pronto como sea posible"
 
-#: truekko/views.py:1886
+#: truekko/views.py:1900
 msgid ""
 "Fill the following form to register a new community. We will contact you as "
 "soon as possible. In the message you should put a short description about "
@@ -2153,11 +2162,11 @@ msgstr ""
 "pondremos en contacto contigo lo antes posible. En el mensaje deberías poner "
 "una descripción corta acerca de tu comunidad."
 
-#: truekko/views.py:1890
+#: truekko/views.py:1904
 msgid "I want to create a new community in Etruekko"
 msgstr "Quiero crear una nueva comunidad en Etruekko"
 
-#: truekko/views.py:1894
+#: truekko/views.py:1908
 msgid ""
 "Anunciarte en Etruekko es algo más que dar a conocer tu negocio "
 "publicitariamente, es apoyar una iniciativa basada en valores profundamente "
@@ -2173,7 +2182,7 @@ msgstr ""
 "actividad, es ser solidario y sobre todo es potenciar la Responsabilidad "
 "Social de tu negocio."
 
-#: truekko/views.py:1902
+#: truekko/views.py:1916
 msgid ""
 "Fill the following form to advertise in Etruekko. In the message you should "
 "put a short description about what do you want to ad in this platform. We "
@@ -2185,7 +2194,7 @@ msgstr ""
 "plataforma. Nos pondremos en contacto contigo tan pronto como sea posible y "
 "te contaremos más acerca de las condiciones y qué necesitamos"
 
-#: truekko/views.py:1910
+#: truekko/views.py:1924
 msgid "I want add an advertise in Etruekko"
 msgstr "Quiero anunciarme en Etruekko"
 
@@ -3216,7 +3225,7 @@ msgstr ""
 "        de la que quieres formar parte.\n"
 "        "
 
-#: truekko/templates/truekko/user_register.html:37
+#: truekko/templates/truekko/user_register.html:44
 msgid "select"
 msgstr "seleccionar"
 

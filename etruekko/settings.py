@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # Django settings for etruekko project.
 
+from django.utils.translation import ugettext_lazy as _
+
 import os
 CURDIR = os.path.abspath(os.path.dirname(__file__))
 
@@ -203,3 +205,7 @@ ETK_USER_INITIAL_CREDITS = 20
 ETK_USER_MIN_CREDITS = 0
 ETK_USER_MAX_CREDITS = 50
 ETK_CREDIT = {'name': 'etruekko', 'plural': 'etruekkos', 'short': u'etks'}
+
+REGISTER_COMMUNITY = "ETRUEKKO"
+# leave blank if you don't want to show this tip
+REGISTER_TIP = _('If you don\'t know any group to join, you can join to <a class="button blue" href="%(link)s">%(name)s</a>')

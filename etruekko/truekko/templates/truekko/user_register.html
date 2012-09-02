@@ -20,6 +20,13 @@
         you want to be part.
         {% endblocktrans %}
         </p>
+
+        {% if register_tip %}
+        <p class="tip">
+        {{ register_tip|safe }}
+        </p>
+        {% endif %}
+
         <div class="centered">
         {% for group in groups.object_list %}
             <div class="group groupgrid">

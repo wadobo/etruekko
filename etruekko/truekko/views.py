@@ -1586,10 +1586,24 @@ class PasswordResetCompleteView(TemplateView):
 class RegisterWizard(TemplateView):
     template_name = 'truekko/user_register.html'
 
+    def register_tip(self):
+        if settings.REGISTER_TIP and Group.objects.all().count():
+            try:
+                community = Group.objects.get(name=settings.REGISTER_COMMUNITY)
+            except:
+                community = Group.objects.all()[0]
+            link = reverse('register_group', args=[community.id])
+            name = community.name
+
+            return settings.REGISTER_TIP % {'name': name, 'link': link}
+        else:
+            return ''
+
     def get_context_data(self, **kwargs):
         context = super(RegisterWizard, self).get_context_data(**kwargs)
         context['klass'] = 'group'
         context['menu'] = generate_menu("group")
+        context['register_tip'] = self.register_tip()
 
         q = self.request.GET.get('search', '')
         if q:
