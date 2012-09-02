@@ -564,8 +564,8 @@ class Swap(models.Model):
         return p1.valid_credits(c2 - c1) and p2.valid_credits(c1 - c2)
 
     def premiate_users(self):
-        days = 7
-        swaps = 3
+        days = 365
+        swaps = 5
         credits = 5
 
         def premiate_user(u):
