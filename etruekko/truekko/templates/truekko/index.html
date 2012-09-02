@@ -21,6 +21,11 @@
                 {% csrf_token %}
                 <label for="comment">{% trans "What's happening?" %}:{% tooltip "whats_happening" %}</label>
                 <textarea id="comment" name="comment"></textarea>
+                {% if USER.is_superuser %}
+                    <label for="notify">{% trans "Notification, all user will view the message" %}</label>
+                    <input id="notify" name="notify" type="checkbox"/>
+                    <br/>
+                {% endif %}
 
                 <div class="right">
                     {% if priv %}

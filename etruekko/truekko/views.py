@@ -1524,11 +1524,23 @@ class ItemRemove(TemplateView):
 
 class MessagePost(View):
 
+    def post_notify(self, msg):
+        wall = Wall.notification()
+        wmsg = WallMessage(user=self.request.user,
+                           wall=wall,
+                           msg=msg)
+        wmsg.save()
+        return redirect("/")
+
     def post(self, request, wallid):
         wall = get_object_or_404(Wall, pk=wallid)
         msg = request.POST.get('comment', '')
         reply = request.POST.get('reply', '')
         priv = bool(request.POST.get('priv', False))
+
+        notify = request.POST.get("notify", False)
+        if notify and request.user.is_superuser:
+            return self.post_notify(msg)
 
         # TODO check post permissions
         if not self.can_post(request.user, wall):
