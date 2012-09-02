@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load markup %}
 
-{% blocktrans with msg=message name=name url=url %}
+{% blocktrans with msg=message name=name url=url surl=surl %}
 
 There is a new message in '{{ name }}' wall:
 
@@ -9,5 +9,12 @@ There is a new message in '{{ name }}' wall:
 
 You can view the message in:
 http://etruekko.com{{ url }}
+
+---
+You're receiving this email because you've the receive email option
+active in your settings.
+
+You can disable the email sending in settings:
+http://etruekko.com{{ surl }}
 
 {% endblocktrans %}

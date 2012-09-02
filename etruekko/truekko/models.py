@@ -810,7 +810,8 @@ def wall_message_post_save(sender, instance, created, *args, **kwargs):
             url = '/'
 
         if email_list:
-            context = {'message': instance, 'name': name, 'url': url}
+            surl = reverse('edit_profile')
+            context = {'message': instance, 'name': name, 'url': url, 'surl': surl}
             template_email('truekko/message_mail.txt',
                            _("New message by %(user)s in %(wall)s") % dict(user=instance.user, wall=instance.wall.name),
                            email_list, context)

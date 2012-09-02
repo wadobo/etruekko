@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-02 21:04+0200\n"
-"PO-Revision-Date: 2012-09-02 21:05+0200\n"
+"POT-Creation-Date: 2012-09-02 21:14+0200\n"
+"PO-Revision-Date: 2012-09-02 21:16+0200\n"
 "Last-Translator: Daniel García <danigm@wadobo.com>\n"
 "Language-Team: Español; Castellano <>\n"
 "Language: \n"
@@ -1308,7 +1308,7 @@ msgstr "Asunto"
 msgid "Phone"
 msgstr "Teléfono"
 
-#: truekko/forms.py:170 truekko/models.py:778 truekko/models.py:834
+#: truekko/forms.py:170 truekko/models.py:778 truekko/models.py:835
 msgid "Message"
 msgstr "Mensaje"
 
@@ -1472,7 +1472,7 @@ msgstr "Usuario desde confirmado"
 msgid "User to confirmed"
 msgstr "Usuario para confirmado"
 
-#: truekko/models.py:499 truekko/models.py:824
+#: truekko/models.py:499 truekko/models.py:825
 msgid "confirmed"
 msgstr "confirmado"
 
@@ -1559,69 +1559,69 @@ msgstr "Muro de %s"
 msgid "Private"
 msgstr "Privado"
 
-#: truekko/models.py:815
+#: truekko/models.py:816
 #, python-format
 msgid "New message by %(user)s in %(wall)s"
 msgstr "Nuevo mensaje de %(user)s en %(wall)s"
 
-#: truekko/models.py:823
+#: truekko/models.py:824
 msgid "pending"
 msgstr "pendiente"
 
-#: truekko/models.py:825
+#: truekko/models.py:826
 msgid "resolved"
 msgstr "resuelto"
 
-#: truekko/models.py:826
+#: truekko/models.py:827
 msgid "canceled"
 msgstr "cancelado"
 
-#: truekko/models.py:851
+#: truekko/models.py:852
 #, python-format
 msgid "%(user)s user has been denounced in community %(group)s"
 msgstr "El usuario %(user)s ha sido denunciado en la comunidad %(group)s"
 
-#: truekko/models.py:859
+#: truekko/models.py:860
 msgid "top"
 msgstr "arriba"
 
-#: truekko/models.py:860
+#: truekko/models.py:861
 msgid "right top"
 msgstr "arriba derecha"
 
-#: truekko/models.py:861
+#: truekko/models.py:862
 msgid "right bottom"
 msgstr "abajo derecha"
 
-#: truekko/models.py:862
+#: truekko/models.py:863
 msgid "bottom"
 msgstr "abajo"
 
-#: truekko/models.py:866
+#: truekko/models.py:867
 msgid "fixed"
 msgstr "fijo"
 
-#: truekko/models.py:870
+#: truekko/models.py:871
 msgid "Position"
 msgstr "Posición"
 
-#: truekko/models.py:871
+#: truekko/models.py:872
 msgid "Type"
 msgstr "Tipo"
 
-#: truekko/models.py:872
+#: truekko/models.py:873
 msgid "Priority"
 msgstr "Prioridad"
 
-#: truekko/models.py:873
+#: truekko/models.py:874
 msgid "Active"
 msgstr "Activo"
 
-#: truekko/models.py:875
+#: truekko/models.py:876
 msgid "Ad html"
 msgstr "Anuncio html"
 
-#: truekko/models.py:876
+#: truekko/models.py:877
 msgid "Announcer info"
 msgstr "Información del anunciante"
 
@@ -2799,15 +2799,29 @@ msgid ""
 "You can view the message in:\n"
 "http://etruekko.com%(url)s\n"
 "\n"
+"---\n"
+"You're receiving this email because you've the receive email option\n"
+"active in your settings.\n"
+"\n"
+"You can disable the email sending in settings:\n"
+"http://etruekko.com%(surl)s\n"
+"\n"
 msgstr ""
 "\n"
 "\n"
-"Hay un nuevo mensaje en el muro '%(name)s':\n"
+"Hay un mensaje nuevo en el muro '%(name)s':\n"
 "\n"
 "%(msg)s\n"
 "\n"
 "Puedes ver el mensaje en:\n"
 "http://etruekko.com%(url)s\n"
+"\n"
+"---\n"
+"Estás reciviendo este correo porque tienes la opción de recibir correos\n"
+"activada en tus preferencias\n"
+"\n"
+"Puedes desactivar el envío de correo en las preferencias:\n"
+"http://etruekko.com%(surl)s\n"
 "\n"
 
 #: truekko/templates/truekko/people.html:3
@@ -3443,6 +3457,27 @@ msgstr ""
 msgid ""
 "Private, if you check this option, only this user will view this messages"
 msgstr "Privado, si seleccionas esta opción sólo este usuario verá el mensaje"
+
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "There is a new message in '%(name)s' wall:\n"
+#~ "\n"
+#~ "%(msg)s\n"
+#~ "\n"
+#~ "You can view the message in:\n"
+#~ "http://etruekko.com%(url)s\n"
+#~ "\n"
+#~ msgstr ""
+#~ "\n"
+#~ "\n"
+#~ "Hay un nuevo mensaje en el muro '%(name)s':\n"
+#~ "\n"
+#~ "%(msg)s\n"
+#~ "\n"
+#~ "Puedes ver el mensaje en:\n"
+#~ "http://etruekko.com%(url)s\n"
+#~ "\n"
 
 #~ msgid "What is etruekko"
 #~ msgstr "Qué es etruekko"
