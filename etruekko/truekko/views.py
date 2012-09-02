@@ -497,7 +497,8 @@ class ViewGroup(TemplateView):
 
         g = get_object_or_404(Group, pk=self.groupid)
         context['requests'] = g.membership_set.filter(role="REQ").count()
-        context['memberships'] = g.membership_set.exclude(role__in=["REQ", "BAN"]).order_by("-id")
+        admins = [i for i in g.membership_set.filter(role="ADM").order_by("-id")]
+        context['memberships'] = admins + [i for i in g.membership_set.exclude(role__in=["REQ", "BAN", "ADM"]).order_by("-id")[0:10]]
 
         context['denounces'] = Denounce.objects.filter(group=g, status__in=["PEN", "CON"])
 
@@ -1851,6 +1852,23 @@ class FollowingsView(FollowersView):
         return self.user.get_profile().followings()
 
 
+class GroupMemberListView(FollowersView):
+    template_name = 'truekko/userlist.html'
+
+    def get_query(self):
+        return self.group.members()
+
+    def get_context_data(self, **kwargs):
+        context = super(GroupMemberListView, self).get_context_data(**kwargs)
+        context.update({'viewing': None})
+        return context
+
+    def get(self, request, gid):
+        self.group = get_object_or_404(Group, id=gid)
+        self.title = _(u'%(name)s members') % {'name': self.group.name}
+        return super(GroupMemberListView, self).get(request)
+
+
 ###########
 #         #
 # CONTACT #
@@ -1987,6 +2005,7 @@ channel_view = login_required(ChannelView.as_view())
 
 # group
 groups = Groups.as_view()
+group_member_list = GroupMemberListView.as_view()
 groups_all = GroupsAll.as_view()
 view_group = ViewGroup.as_view()
 edit_group = login_required(is_group_admin(EditGroup.as_view()))

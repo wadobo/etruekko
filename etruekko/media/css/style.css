@@ -592,6 +592,12 @@ a:hover {
     float: left;
 }
 
+.member td {
+    border-bottom: 1px dashed #999;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+
 #memberlist {
     width: 300px;
     float: left;

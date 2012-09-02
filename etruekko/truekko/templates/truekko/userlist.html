@@ -9,9 +9,11 @@
 {% block content %}
     <div class="left"><img src="/media/imgs/menu/people.png" alt="people"/></div>
     <div class="left">
+    {% if viewing %}
         <a href="{% url view_profile viewing.username %}">
             <img src="{% avatar viewing 48 %}" alt="{{ viewing.username }}" title="{{ viewing.username }}"/>
         </a>
+    {% endif %}
     </div>
     <h2>{{ title }}</h2>
     <div class="clear"></div>

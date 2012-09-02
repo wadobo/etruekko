@@ -84,24 +84,34 @@
         {% endif %}
 
 
-        <table class="member">
-        <tr>
+        <div class="member">
+        <table>
         {% for membership in memberships %}
-            {% if forloop.counter0|divisibleby:"4" %}
-            </tr>
-            <tr>
-            {% endif %}
-            <td class="left memberimg {% if membership.role == "ADM" %}admin{% endif %} {% if membership.user == USER %}me{% endif %}">
+            <tr class="member">
+            <td>
+            <div class="memberimg {% if membership.role == "ADM" %}admin{% endif %} {% if membership.user == USER %}me{% endif %}">
                 <a href="{% url view_profile membership.user.username %}">
                     <img src="{% avatar membership.user 64 %}" title="{{ membership.user.get_profile.name }}" alt="{{ membership.user.username }}"/>
                 </a>
                 {% if USER.is_authenticated %}
                 {% is_admin_group membership.user viewing %} {% if is_admin_group_v %}<img class="floating" src="/media/imgs/admin.png" alt="admin"/>{% endif %}
                 {% endif %}
+            </div>
             </td>
+            <td>
+                {% with user=membership.user %}
+                <a href="{% url view_profile user.username %}"><span class="username">{{ user.username }}</span></a>
+                <br/>
+                <span class="fullname">{{ user.get_profile.name }}</span>
+                <br/>
+                {{ user.get_profile.location }}
+                {% endwith %}
+            </td>
+            </tr>
         {% endfor %}
-        </tr>
         </table>
+        <a href="{% url member_list viewing.id %}">{% trans "more..." %}</a>
+        </div>
 
         <div class="clear"></div>
         </div>
