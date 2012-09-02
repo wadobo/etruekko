@@ -225,10 +225,15 @@
                     {% endif %}
                 {% endfor %}
                 <br/>
+                <label for="credits1">
+                {% blocktrans with toname=user_to.username fname=user_from.username %}
+                    credits from {{ fname }} to {{ toname }}
+                {% endblocktrans %}
+                </label>
                 {% if credits1 %}
-                <input type="text" id="credits" name="credits1" value="{{ credits1 }}"
+                <input type="text" id="credits1" name="credits1" value="{{ credits1 }}"
                 {% else %}
-                <input type="text" id="credits" name="credits1" value=""
+                <input type="text" id="credits1" name="credits1" value=""
                 {% endif %}
                        {% if swap and not accept %}disabled="disabled"{% endif %}
                        {% if swap and swap.finished %}disabled="disabled"{% endif %}
@@ -260,16 +265,22 @@
                     {% endif %}
                 {% endfor %}
                 <br/>
+                <label for="credits2">
+                {% blocktrans with toname=user_to.username fname=user_from.username %}
+                    credits from {{ toname }} to {{ fname }}
+                {% endblocktrans %}
+                </label>
                 {% if credits2 %}
-                <input type="text" id="credits" name="credits2" value="{{ credits2 }}"
+                <input type="text" id="credits2" name="credits2" value="{{ credits2 }}"
                 {% else %}
-                <input type="text" id="credits" name="credits2" value=""
+                <input type="text" id="credits2" name="credits2" value=""
                 {% endif %}
                        {% if swap and not accept %}disabled="disabled"{% endif %}
                        {% if swap and swap.finished %}disabled="disabled"{% endif %}
                        placeholder="{% trans "truekkos" %}"/>
                 </fieldset>
 
+                <div class="clear"></div>
                 <div class="swap_mode">
                     <label for="swap_mode">{% trans "Swap mode" %}:</label>
                     <select id="swap_mode" name="swap_mode">
