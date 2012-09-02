@@ -4,15 +4,6 @@
     <div class="left">
         <a href="{% url view_profile item.user.username %}"><img src="{% avatar item.user 64 %}" alt="{{ item.user.username }}"/></a>
     </div>
-    {% if item.photo %}
-    <div class="left">
-        {% if long %}
-            <img src="{% image item.photo 128 %}" alt="{{ item.name }}"/>
-        {% else %}
-            <img src="{% image item.photo 64 %}" alt="{{ item.name }}"/>
-        {% endif %}
-    </div>
-    {% endif %}
 
     {% if item.price %}
     <span class="price">{{ item.price }} {{ item.get_price_type_display }}</span>
@@ -75,10 +66,28 @@
     <div class="date">{{ item.pub_date }}</div>
     {% endif %}
 
-    {% if not long %}
+    <div class="clear"></div>
+
+    {% if item.images.all %}
+    <div class="carousel es-carousel-wrapper{% if not long %} carousel_short{% endif %}">
+        <div class="es-carousel">
+            <ul>
+            {% for im in item.images.all %}
+                <li>
+                    <a href="#">
+                        {% if long %}
+                        <img src="{% image im.photo 128 %}" alt="{{ item.name }}" />
+                        {% else %}
+                        <img src="{% image im.photo 40 %}" alt="{{ item.name }}" />
+                        {% endif %}
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
     {% endif %}
 
-    <div class="clear"></div>
 
     {% if item.user == USER or swap %}
     {% else %}
@@ -92,4 +101,7 @@
     {% if not long and not short %}
         <a class="button orange" href="{% url item_view item.id %}">{% trans "View" %}</a>
     {% endif %}
+
+    <div class="clear"></div>
+
 </div>

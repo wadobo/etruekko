@@ -147,8 +147,7 @@ class ItemAddForm(ModelForm):
 
     class Meta:
         model = Item
-        fields = ('name', 'type', 'offer_or_demand', 'description', 'photo', 'price', 'price_type')
-        widgets = {'photo': CustomImageWidget()}
+        fields = ('name', 'type', 'offer_or_demand', 'description', 'price', 'price_type')
 
     def quantity(self):
         return self.instance.quantity

@@ -1333,3 +1333,20 @@ legend {
 }
 
 /** End of Ads **/
+
+.newimage {
+    display: block;
+}
+
+#newimg {
+    display: block;
+}
+
+.es-carousel ul {
+    padding: 0px;
+}
+
+.carousel_short {
+    width: 250px;
+    float: right;
+}

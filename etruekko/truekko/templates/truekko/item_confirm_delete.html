@@ -11,9 +11,10 @@
 
 {% block content %}
     <h2>
-        {% if item.photo %}
-            <div class="left"><img src="{% image item.photo 32 %}" alt="{{ item.name }}"/></div>
-        {% endif %}
+        {% for im in item.images.all %}
+            <div class="left"><img src="{% image im.photo 32 %}" alt="{{ item.name }}"/></div>
+        {% endfor %}
+
         {% if item.type == "IT" %}
             {% blocktrans with item.name as name %} Remove Item / {{ name }} {% endblocktrans %}
         {% else %}

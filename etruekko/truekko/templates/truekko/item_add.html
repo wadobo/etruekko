@@ -42,6 +42,16 @@
         $("#id_offer_or_demand").change(function() {
             check_quantity();
         });
+
+        $("#newimg").click(function() {
+            var obj = $(".newimage").last().clone();
+            var splitname = obj.attr("name").split("_");
+            var newname = splitname[0] + "_" + (parseInt(splitname[1], 10) + 1);
+            obj.attr("name", newname);
+            obj.val("");
+            $(".toadd").append(obj);
+            return false;
+        });
     });
     </script>
 {% endblock %}
@@ -55,6 +65,7 @@
     <div id="subcontent" class="form">
     <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
+
         <table>
             {{ form.as_table }}
             <tr id="quantity_tr">
@@ -66,6 +77,23 @@
                 <td><input id="tags" type="text" name="tags" value="{{ item.tags_str }}"/>  {% trans "comma separated values" %}{% tooltip "item_tags" %}</td>
             </tr>
         </table>
+
+        <h2>{% trans "Images" %}</h2>
+        {% for im in item.images.all %}
+        <div class="toremove">
+            <label for="image_{{ im.id }}">
+                <img src="{% image im.photo 64 %}" alt="{{ item.name }}"/>
+                {% trans "remove" %}
+            </label>
+            <input id="image_{{ im.id }}" type="checkbox" name="rmimg_{{ im.id }}"/>
+        </div>
+        {% endfor %}
+        <h2>{% trans "Add images" %}</h2>
+        <div class="toadd">
+            <input type="file" class="newimage" name="newimage_1"/>
+        </div>
+        <a href="#" id="newimg">{% trans "Add more images" %}</a>
+
         <input class="button red" type="submit" value="{% trans 'Save' %}"/>
     </form>
     </div>

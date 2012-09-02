@@ -3,6 +3,7 @@ import uuid
 from unidecode import unidecode
 import datetime
 import os
+from PIL import Image
 
 from django.http import Http404
 from django.contrib import messages
@@ -37,7 +38,7 @@ from etruekko.truekko.models import Channel
 from etruekko.truekko.models import Membership
 from etruekko.truekko.models import Denounce
 from etruekko.truekko.models import Transfer
-from etruekko.truekko.models import Item
+from etruekko.truekko.models import Item, ItemImage
 from etruekko.truekko.models import Tag
 from etruekko.truekko.models import ItemTagged
 from etruekko.truekko.models import Swap, SwapItems, SwapComment
@@ -1339,18 +1340,26 @@ class ItemAdd(TemplateView):
         return super(ItemAdd, self).get(request)
 
     def post(self, request, object_id=None):
+        stay_here = False
         self.item = None
         if object_id:
             self.item = get_object_or_404(Item, id=object_id, user=self.request.user)
 
         files_req = request.FILES
-        if (files_req.get('photo', '')):
-            files_req['photo'].name = "item_%s" % uuid.uuid4().hex
+        itemimages = []
+        for f in files_req:
+            freq = files_req[f]
+            if validate_image(freq):
+                freq.name = "item_%s" % uuid.uuid4().hex
+                itemimages.append(freq)
+            else:
+                messages.error(request, _("Invalid image format: %(name)s") % {'name': freq.name})
+                stay_here = True
 
         if self.item:
-            form = ItemAddForm(request.POST, files_req, instance=self.item)
+            form = ItemAddForm(request.POST, instance=self.item)
         else:
-            form = ItemAddForm(request.POST, files_req)
+            form = ItemAddForm(request.POST)
 
         try:
             quantity = int(request.POST.get('quantity', '0'))
@@ -1371,6 +1380,15 @@ class ItemAdd(TemplateView):
         item.user = self.request.user
         item.save()
 
+        # adding images
+        for im in itemimages:
+            itemim = ItemImage(item=item, photo=im)
+            itemim.save()
+
+        # removing images:
+        l = [i.split("_")[1] for i in request.POST if i.startswith("rmimg")]
+        ItemImage.objects.filter(id__in=l).delete()
+
         # parsing tags
         tags = request.POST.get('tags')
         if tags:
@@ -1383,14 +1401,17 @@ class ItemAdd(TemplateView):
                                          .exclude(tag__name__in=tagnames)
             oldtags.delete()
 
-        nxtsrv = 'item'
-        if item.type == "IT":
-            messages.info(request, _("Item added correctly"))
+        if stay_here:
+            nxt = redirect('item_edit', item.id)
         else:
-            messages.info(request, _("Service added correctly"))
-            nxtsrv = 'serv'
+            nxtsrv = 'item'
+            if item.type == "IT":
+                messages.info(request, _("Item added correctly"))
+            else:
+                messages.info(request, _("Service added correctly"))
+                nxtsrv = 'serv'
 
-        nxt = redirect('item_list', nxtsrv, request.user.username)
+            nxt = redirect('item_list', nxtsrv, request.user.username)
         return nxt
 
 
@@ -1982,6 +2003,23 @@ class Privacy(PlainText):
 class Terms(PlainText):
     filename = "terms.txt"
     prefix = "terms"
+
+
+def validate_image(imfile):
+    file = imfile.file
+    try:
+        trial_image = Image.open(file)
+        trial_image.load()
+
+        if hasattr(file, 'reset'):
+            file.reset()
+
+        trial_image = Image.open(file)
+        trial_image.verify()
+        return True
+    except Exception:
+        return False
+
 
 
 # profile

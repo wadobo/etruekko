@@ -430,6 +430,12 @@ class Item(models.Model):
     def __unicode__(self):
         return "%s" % self.name
 
+    def first_photo(self):
+        if self.images.all().count():
+            return self.images.all()[0].photo
+        else:
+            return None
+
     class Meta:
         ordering = ['-pub_date']
 
@@ -454,6 +460,13 @@ def item_post_save(sender, instance, created, *args, **kwargs):
         wmsg.save()
 
 post_save.connect(item_post_save, sender=Item)
+
+
+class ItemImage(models.Model):
+    item = models.ForeignKey(Item, related_name="images")
+    photo = models.ImageField(_("photo"), blank=True, null=True,
+                              upload_to=os.path.join(settings.MEDIA_ROOT,
+                              "item_images"))
 
 
 class Tag(models.Model):

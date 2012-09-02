@@ -3,6 +3,9 @@ from etruekko.truekko.models import UserProfile, Group, Membership
 from etruekko.truekko.models import Item, Tag, ItemTagged
 from etruekko.truekko.models import Channel
 from etruekko.truekko.models import Ad
+
+from etruekko.truekko import models as pmodels
+
 from django.db import models
 
 
@@ -64,3 +67,20 @@ admin.site.register(Tag, TagAdmin)
 admin.site.register(ItemTagged, ItemTaggedAdmin)
 
 admin.site.register(Ad, AdAdmin)
+
+
+def get_generic_admin(model):
+    glist_display = [i.name for i in model._meta.fields]
+    glist_display.remove('id')
+    class GenericAdmin(admin.ModelAdmin):
+        list_display = glist_display
+
+    return GenericAdmin
+
+for m in dir(pmodels):
+    mo = getattr(pmodels, m)
+    try:
+        if issubclass(mo, models.Model):
+            admin.site.register(mo, get_generic_admin(mo))
+    except:
+        pass

@@ -10,12 +10,22 @@
 
 {% block extrahead %}
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        <script type="text/javascript" src="{{ MEDIA_URL }}elastic/js/jquery.easing.1.3.js"></script>
+        <script type="text/javascript" src="{{ MEDIA_URL }}elastic/js/jquery.elastislide.js"></script>
+        <link rel="stylesheet" href="{{ MEDIA_URL }}elastic/css/elastislide.css" />
+        <script>
+            $(document).ready(function(){
+                $('.carousel').elastislide({
+                    imageW  : 128
+                });
+            });
+        </script>
 {% endblock %}
 
 {% block content %}
     <h2>
-        {% if item.photo %}
-            <div class="left"><img src="{% image item.photo 32 %}" alt="{{ item.name }}"/></div>
+        {% if item.first_photo %}
+        <div class="left"><img src="{% image item.first_photo 32 %}" alt="{{ item.name }}"/></div>
         {% endif %}
         {% if item.type == "IT" %}
             {% blocktrans with item.name as name %} Item / {{ name }} {% endblocktrans %}
