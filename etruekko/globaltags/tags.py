@@ -19,6 +19,7 @@ def avatar(user, size=48):
         if not os.path.exists(path):
             im = Image.open(puser.photo.path)
             im.thumbnail((size, size))
+            im = im.convert(mode="RGBA")
             im.save(path)
 
         path = path[len(settings.MEDIA_ROOT) + 1:]
@@ -34,6 +35,7 @@ def image(img, size=48):
     if not os.path.exists(path):
         im = Image.open(img.path)
         im.thumbnail((size, size))
+        im = im.convert(mode="RGBA")
         im.save(path)
 
     path = path[len(settings.MEDIA_ROOT) + 1:]
@@ -48,6 +50,7 @@ def groupavatar(group, size=48):
         if not os.path.exists(path):
             im = Image.open(group.photo.path)
             im.thumbnail((size, size))
+            im = im.convert(mode="RGBA")
             im.save(path)
 
         path = path[len(settings.MEDIA_ROOT) + 1:]
