@@ -61,9 +61,17 @@
                 imageW  : 40
             });
 
-            //$('.carousel img').click(function() {
-            //    alert($(this).attr('src'));
-            //});
+          $('.carousel img').qtip({ content: { attr: 'tooltip' },
+                               style: { classes: 'ui-tooltip-bootstrap tooltiptext' },
+                               position: {
+                                my: 'center left',
+                                at: 'center right',
+                                viewport: $(window),
+                                adjust: {
+                                    method: "flip shift"
+                                }
+                               }
+          });
         });
     </script>
 

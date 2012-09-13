@@ -75,9 +75,9 @@
             {% for im in item.images.all %}
                 <li>
                     {% if long %}
-                    <img src="{% image im.photo 128 %}" alt="{{ item.name }}" />
+                    <img  tooltip="<center><img src='{% image im.photo 350 %}'/></center>" src="{% image im.photo 128 %}" alt="{{ item.name }}" />
                     {% else %}
-                    <img src="{% image im.photo 40 %}" alt="{{ item.name }}" />
+                    <img  tooltip="<center><img src='{% image im.photo 350 %}'/></center>" src="{% image im.photo 40 %}" alt="{{ item.name }}" />
                     {% endif %}
                 </li>
             {% endfor %}
