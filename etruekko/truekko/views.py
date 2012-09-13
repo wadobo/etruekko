@@ -343,7 +343,7 @@ class People(TemplateView):
 
     def get(self, request, filter_name=None):
         self.request = request
-        self.filter_name = filter_name
+        self.filter_name = filter_name or "all"
         self.filter = self.get_filters().get(self.filter_name, None)
         if not self.filter:
             self.filter = self.get_filters()['all']
@@ -1429,7 +1429,7 @@ class ItemAdd(TemplateView):
                 messages.info(request, _("Service added correctly"))
                 nxtsrv = 'serv'
 
-            nxt = redirect('item_list', nxtsrv, request.user.username)
+            nxt = redirect('item_view', item.id)
         return nxt
 
 
@@ -1460,17 +1460,29 @@ class ItemView(TemplateView):
 class ItemList(TemplateView):
     template_name = 'truekko/item_list.html'
 
+    def get_filters(self):
+        filters = SortedDict()
+        filters['all'] = {'text': _("All"), 'query': Q()}
+        u = self.request.user
+
+        if not u.is_authenticated():
+            return filters
+
+        filters['friends'] = {'text': _("Only Friends"), 'query': Q(user__followers__follower=u)}
+
+        for g in u.get_profile().groups():
+            filters[g.name] = {'text': g.name, 'query': Q(user__membership__group=g)}
+
+        return filters
+
     def get_context_data(self, **kwargs):
         context = super(ItemList, self).get_context_data(**kwargs)
         context['klass'] = self.klass
         context['menu'] = generate_menu(self.klass)
+        context['filters'] = self.get_filters()
+        context['sfilter'] = self.filter_name
 
-        if self.username:
-            iq = Q(user__username=self.username) & Q(type=self.itemtype)
-        else:
-            iq = Q(type=self.itemtype)
-
-        query = Item.objects.filter(iq)
+        query = Item.objects.filter(type=self.itemtype).filter(self.filter['query'])
 
         q = self.request.GET.get('search', '')
         if q:
@@ -1489,8 +1501,13 @@ class ItemList(TemplateView):
         context['items'] = paginate(self.request, query.order_by('-pub_date'), 10)
         return context
 
-    def get(self, request, itemtype, username=None):
+    def get(self, request, itemtype, filter_name=None):
         self.request = request
+
+        self.filter_name = filter_name or "all"
+        self.filter = self.get_filters().get(self.filter_name, None)
+        if not self.filter:
+            self.filter = self.get_filters()['all']
 
         if itemtype == "item":
             self.itemtype = "IT"
@@ -1498,7 +1515,6 @@ class ItemList(TemplateView):
         else:
             self.itemtype = "SR"
             self.klass = 'serv'
-        self.username = username
 
         return super(ItemList, self).get(request)
 
