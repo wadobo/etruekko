@@ -74,13 +74,11 @@
             <ul>
             {% for im in item.images.all %}
                 <li>
-                    <a href="#">
-                        {% if long %}
-                        <img src="{% image im.photo 128 %}" alt="{{ item.name }}" />
-                        {% else %}
-                        <img src="{% image im.photo 40 %}" alt="{{ item.name }}" />
-                        {% endif %}
-                    </a>
+                    {% if long %}
+                    <img src="{% image im.photo 128 %}" alt="{{ item.name }}" />
+                    {% else %}
+                    <img src="{% image im.photo 40 %}" alt="{{ item.name }}" />
+                    {% endif %}
                 </li>
             {% endfor %}
             </ul>
