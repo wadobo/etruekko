@@ -19,8 +19,7 @@ urlpatterns = patterns('etruekko.truekko.views',
     # channels
     url(r'^channel/view/(\d+)$', 'channel_view', name='channel_view'),
     # communities (old groups)
-    url(r'^communities$', 'groups', name='groups'),
-    url(r'^communities/all$', 'groups_all', name='groups_all'),
+    url(r'^communities/(\w+)?$', 'groups', name='groups'),
     url(r'^community/(\d+)$', 'view_group', name='view_group'),
     url(r'^community/edit/(\d+)$', 'edit_group', name='edit_group'),
     url(r'^community/edit/members/(\d+)$', 'edit_group_members', name='edit_group_members'),

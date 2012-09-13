@@ -336,7 +336,7 @@ class People(TemplateView):
         filters['friends'] = {'text': _("Only Friends"), 'query': Q(followers__follower=self.request.user)}
 
         for g in u.get_profile().groups():
-            filters[g.name] = {'text': g.name, 'query': Q(membership__group=g)}
+            filters['community%d' % g.id] = {'text': g.name, 'query': Q(membership__group=g)}
 
         return filters
 
@@ -356,11 +356,7 @@ class People(TemplateView):
         context['filters'] = self.get_filters()
         context['sfilter'] = self.filter_name
 
-        if self.request.user.is_authenticated():
-            query = User.objects.filter(self.filter['query'])
-        else:
-            query = User.objects.all()
-
+        query = User.objects.filter(self.filter['query'])
         query = query.filter(is_active=True)
 
         q = self.request.GET.get('search', '')
@@ -467,19 +463,28 @@ class Etruekko(TemplateView):
 
 class Groups(TemplateView):
     template_name = 'truekko/groups.html'
-    all = False
+
+    def get_filters(self):
+        filters = SortedDict()
+        filters['all'] = {'text': _("All"), 'query': Q()}
+        u = self.request.user
+
+        if not u.is_authenticated():
+            return filters
+
+        filters['mine'] = {'text': _("My communities"), 'query': Q(membership__user=u,
+                                                                   membership__role__in=["MEM", "ADM"])}
+
+        return filters
 
     def get_context_data(self, **kwargs):
         context = super(Groups, self).get_context_data(**kwargs)
         context['klass'] = 'group'
         context['menu'] = generate_menu("group")
-        context['all'] = self.all
+        context['filters'] = self.get_filters()
+        context['sfilter'] = self.filter_name
 
-        if not self.all and self.request.user.is_authenticated():
-            # if authenticated showing only my groups
-            query = self.request.user.get_profile().groups()
-        else:
-            query = Group.objects.all()
+        query = Group.objects.filter(self.filter['query'])
 
         q = self.request.GET.get('search', '')
         if q:
@@ -492,9 +497,13 @@ class Groups(TemplateView):
         context['groups'] = paginate(self.request, query, 10)
         return context
 
-
-class GroupsAll(Groups):
-    all = True
+    def get(self, request, filter_name=None):
+        self.request = request
+        self.filter_name = filter_name or "all"
+        self.filter = self.get_filters().get(self.filter_name, None)
+        if not self.filter:
+            self.filter = self.get_filters()['all']
+        return super(Groups, self).get(request)
 
 
 class ViewGroup(TemplateView):
@@ -1471,7 +1480,7 @@ class ItemList(TemplateView):
         filters['friends'] = {'text': _("Only Friends"), 'query': Q(user__followers__follower=u)}
 
         for g in u.get_profile().groups():
-            filters[g.name] = {'text': g.name, 'query': Q(user__membership__group=g)}
+            filters['community%d' % g.id] = {'text': g.name, 'query': Q(user__membership__group=g)}
 
         return filters
 
@@ -2089,7 +2098,6 @@ channel_view = login_required(ChannelView.as_view())
 # group
 groups = Groups.as_view()
 group_member_list = GroupMemberListView.as_view()
-groups_all = GroupsAll.as_view()
 view_group = ViewGroup.as_view()
 edit_group = login_required(is_group_admin(EditGroup.as_view()))
 edit_group_members = login_required(is_group_admin(EditGroupMembers.as_view()))

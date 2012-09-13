@@ -12,11 +12,6 @@
     <div class="clear"></div>
 
     <div id="subcontent">
-        <a class="button{% if all %} green{% endif %}" href="{% url groups %}">{% trans "My communities" %}</a>
-        <a class="button{% if not all %} green{% endif %}" href="{% url groups_all %}">{% trans "All communities" %}</a>
-
-        <div class="clear"></div>
-
         <div id="indexcontent2">
         {% for group in groups.object_list %}
             <div class="group">
@@ -40,6 +35,11 @@
 
         <div id="indexmenu2">
             {% fixed_ads "RIGHTTOP" "160" %}
+            <div class="filters">
+                {% for k, v in filters.items %}
+                    <a class="button{% if sfilter == k %} green{% endif %}" href="{% url groups k %}">{{ v.text }}</a>
+                {% endfor %}
+            </div>
         </div>
 
         <div class="clear"></div>

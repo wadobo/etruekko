@@ -48,7 +48,7 @@
             {% fixed_ads "RIGHTTOP" "160" %}
             <div class="filters">
                 {% for k, v in filters.items %}
-                    <a class="button{% if sfilter == k %} violet{% endif %}" href="{% url item_list klass k %}">{{ v.text }}</a>
+                    <a class="button{% if sfilter == k %} red{% endif %}" href="{% url item_list klass k %}">{{ v.text }}</a>
                 {% endfor %}
             </div>
         </div>
