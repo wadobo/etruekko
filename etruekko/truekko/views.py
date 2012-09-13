@@ -5,6 +5,8 @@ import datetime
 import os
 from PIL import Image
 
+from django.utils.datastructures import SortedDict
+
 from django.http import Http404
 from django.contrib import messages
 from django.template import RequestContext
@@ -322,20 +324,40 @@ class EditProfileAdmin(TemplateView):
 
 class People(TemplateView):
     template_name = 'truekko/people.html'
-    all=False
 
-    def get(self, request):
+    def get_filters(self):
+        filters = SortedDict()
+        filters['all'] = {'text': _("All"), 'query': Q()}
+        u = self.request.user
+
+        if not u.is_authenticated():
+            return filters
+
+        filters['friends'] = {'text': _("Only Friends"), 'query': Q(followers__follower=self.request.user)}
+
+        for g in u.get_profile().groups():
+            filters[g.name] = {'text': g.name, 'query': Q(membership__group=g)}
+
+        return filters
+
+
+    def get(self, request, filter_name=None):
         self.request = request
+        self.filter_name = filter_name
+        self.filter = self.get_filters().get(self.filter_name, None)
+        if not self.filter:
+            self.filter = self.get_filters()['all']
         return super(People, self).get(request)
 
     def get_context_data(self, **kwargs):
         context = super(People, self).get_context_data(**kwargs)
         context['klass'] = 'people'
         context['menu'] = generate_menu("people")
-        context['all'] = self.all
+        context['filters'] = self.get_filters()
+        context['sfilter'] = self.filter_name
 
-        if not self.all and self.request.user.is_authenticated():
-            query = User.objects.filter(followers__follower=self.request.user)
+        if self.request.user.is_authenticated():
+            query = User.objects.filter(self.filter['query'])
         else:
             query = User.objects.all()
 
@@ -352,10 +374,6 @@ class People(TemplateView):
             query = query.filter(k)
         context['users'] = paginate(self.request, query, 10)
         return context
-
-
-class PeopleAll(People):
-    all=True
 
 
 class RateUser(View):
@@ -2041,7 +2059,6 @@ edit_profile_admin = login_required(EditProfileAdmin.as_view())
 view_profile = login_required(ViewProfile.as_view())
 rate_user = login_required(RateUser.as_view())
 people = People.as_view()
-people_all = PeopleAll.as_view()
 
 # friendship
 follow = login_required(FollowView.as_view())

@@ -17,10 +17,6 @@
     <div class="clear"></div>
 
     <div id="subcontent">
-        <a class="button{% if all %} violet{% endif %}" href="{% url people %}">{% trans "Only friends" %}</a>
-        <a class="button{% if not all %} violet{% endif %}" href="{% url people_all %}">{% trans "All" %}</a>
-        <div class="clear"></div>
-
         <div id="indexcontent2">
         {% for user in users.object_list %}
             {% include "truekko/single_user_view.html" with follow="true" %}
@@ -29,6 +25,12 @@
 
         <div id="indexmenu2">
             {% fixed_ads "RIGHTTOP" "160" %}
+            <div class="filters">
+                {% for k, v in filters.items %}
+                    <a class="button{% if sfilter == k %} violet{% endif %}" href="{% url people k %}">{{ v.text }}</a>
+                {% endfor %}
+            </div>
+
         </div>
 
         <div class="clear"></div>
