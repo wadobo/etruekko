@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}
+    {% blocktrans %} Register {% endblocktrans %}
+{% endblock %}
+
+{% block content %}
+    <div id="subcontent" class="form">
+    <p class="tip">
+    {% blocktrans %}
+        Welcome to etruekko, the social network for people that want
+        to make a better world. You only need to fill the following
+        form and start to use etruekko.
+    {% endblocktrans %}
+    </p>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <input class="button green" type="submit" value="{% trans 'Register' %}"/>
+    </form>
+    </div>
+{% endblock %}
+

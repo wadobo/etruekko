@@ -1,0 +1,20 @@
+{% load i18n %}
+
+{% blocktrans with username=username groupurl=groupurl %}
+
+Welcome to etruekko,
+
+You have been registered in etruekko with the username '{{ username }}'
+
+You can start to use etruekko and be part of this great community to
+make a better world.
+
+Communities are an important part of etruekko. You should check what
+communities could be interesting for you and join in to connect you
+with other people with similar interests.
+
+http://etruekko.com{{ groupurl }}
+
+Thank you for use etruekko.com
+
+{% endblocktrans %}

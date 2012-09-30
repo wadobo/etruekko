@@ -99,9 +99,9 @@ class RegisterForm(forms.Form):
 
         return cleaned_data
 
-    def save(self, group):
+    def save(self, group=None):
         data = self.cleaned_data
-        u = User(username=data["username"], email=data["email"], is_active=False)
+        u = User(username=data["username"], email=data["email"], is_active=True)
         u.set_password(data["password"])
         u.save()
         p = u.get_profile()
@@ -109,8 +109,9 @@ class RegisterForm(forms.Form):
         p.location = data["location"]
         p.save()
 
-        m = Membership(user=u, group=group, role="REQ")
-        m.save()
+        if group:
+            m = Membership(user=u, group=group, role="REQ")
+            m.save()
 
 
 class TransferDirectForm(forms.Form):

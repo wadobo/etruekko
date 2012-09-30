@@ -693,6 +693,41 @@ class Register(TemplateView):
         return nxt
 
 
+class RegisterSingle(TemplateView):
+
+    template_name = 'truekko/register_single.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(RegisterSingle, self).get_context_data(**kwargs)
+        context['form'] = RegisterForm()
+        context['klass'] = 'home'
+        context['menu'] = generate_menu("home")
+        return context
+
+    def post(self, request):
+        data = request.POST
+
+        f = RegisterForm(data)
+        if not f.is_valid():
+            context = RequestContext(request, {})
+            context['klass'] = 'home'
+            context['menu'] = generate_menu("home")
+            context['form'] = f
+            return render_to_response(self.template_name, context)
+
+        f.save()
+
+        # sending mail to user and admins
+        context = dict(f.data.items())
+        context['groupurl'] = reverse('groups')
+        template_email('truekko/single_user_registered_mail.txt', _("Welcome to etruekko"), [f.data['email']], context)
+
+        msg = _("Conglatulations! You're now part of etruekko. Loggin in and start to make a better work")
+        messages.info(request, msg)
+
+        return redirect('index')
+
+
 class RegisterAdmin(TemplateView):
 
     template_name = 'truekko/register_admin.html'
@@ -2136,6 +2171,7 @@ message_remove = login_required(MessageRemove.as_view())
 
 # register
 register_wizard = RegisterWizard.as_view()
+register_single = RegisterSingle.as_view()
 
 # search
 search_advanced = login_required(SearchAdvanced.as_view())

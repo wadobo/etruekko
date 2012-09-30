@@ -38,12 +38,12 @@
                     {% endif %}
                 {% endif %}
 
-                {% if viewing != USER %}
-                {% if denounced %}
-                    <a class="button red" href="{% url group_denounce_view denounced.id %}">{% trans "View denounce" %}</a>
-                {% else %}
-                    <a class="button red" href="{% url group_denounce_user viewing.get_profile.main_group.id viewing.username %}">{% trans "Denonunce" %}</a>
-                {% endif %}
+                {% if viewing != USER and viewing.get_profile.main_group %}
+                    {% if denounced %}
+                        <a class="button red" href="{% url group_denounce_view denounced.id %}">{% trans "View denounce" %}</a>
+                    {% else %}
+                        <a class="button red" href="{% url group_denounce_user viewing.get_profile.main_group.id viewing.username %}">{% trans "Denonunce" %}</a>
+                    {% endif %}
                 {% endif %}
 
             </div>

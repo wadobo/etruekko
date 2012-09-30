@@ -325,15 +325,8 @@ def membership_pre_delete(sender, instance, *args, **kwargs):
                    'Community "%(group)s" membership' % {'group': instance.group.name},
                    [instance.user.email], context)
 
-def membership_post_delete(sender, instance, *args, **kwargs):
-    u = instance.user
-    m = Membership.objects.filter(user=u).count()
-    if not m:
-        u.delete()
-
 post_save.connect(membership_post_save, sender=Membership)
 pre_delete.connect(membership_pre_delete, sender=Membership)
-post_delete.connect(membership_post_delete, sender=Membership)
 
 
 # Transfer models
