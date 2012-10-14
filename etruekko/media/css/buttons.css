@@ -20,7 +20,7 @@ div .button {
     cursor: default;
     font-weight: bold;
     text-align: center;
-    height: 27px;
+    min-height: 27px;
     line-height: 27px;
     min-width: 54px;
     padding: 0 8px;
