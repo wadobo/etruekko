@@ -28,7 +28,10 @@ def context_processor(request):
 
     site = Site.objects.get(id=settings.SITE_ID)
 
+    from etruekko.truekko.utils import generate_menu
+
     return {
+        'HOME_MENU': generate_menu("home"),
         'CREDIT_NAME': settings.ETK_CREDIT,
         'MEDIA_URL': settings.MEDIA_URL,
         'SITE_NAME': settings.SITE_NAME,

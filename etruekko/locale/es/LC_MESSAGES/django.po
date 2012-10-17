@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-30 12:14+0200\n"
-"PO-Revision-Date: 2012-09-30 12:19+0200\n"
+"POT-Creation-Date: 2012-10-17 18:33+0200\n"
+"PO-Revision-Date: 2012-10-17 18:35+0200\n"
 "Last-Translator: Daniel García <danigm@wadobo.com>\n"
 "Language-Team: Español; Castellano <>\n"
 "Language: \n"
@@ -36,987 +36,987 @@ msgstr "Restaurar contraseña"
 msgid "Change password"
 msgstr "Cambiar contraseña"
 
-#: utils.py:73
+#: utils.py:76
 msgid "United Kingdom"
 msgstr "United Kingdom"
 
-#: utils.py:74
+#: utils.py:77
 msgid "Afghanistan"
 msgstr "Afghanistan"
 
-#: utils.py:75
+#: utils.py:78
 msgid "Aland Islands"
 msgstr "Aland Islands"
 
-#: utils.py:76
+#: utils.py:79
 msgid "Albania"
 msgstr "Albania"
 
-#: utils.py:77
+#: utils.py:80
 msgid "Algeria"
 msgstr "Algeria"
 
-#: utils.py:78
+#: utils.py:81
 msgid "American Samoa"
 msgstr "American Samoa"
 
-#: utils.py:79
+#: utils.py:82
 msgid "Andorra"
 msgstr "Andorra"
 
-#: utils.py:80
+#: utils.py:83
 msgid "Angola"
 msgstr "Angola"
 
-#: utils.py:81
+#: utils.py:84
 msgid "Anguilla"
 msgstr "Anguilla"
 
-#: utils.py:82
+#: utils.py:85
 msgid "Antarctica"
 msgstr "Antarctica"
 
-#: utils.py:83
+#: utils.py:86
 msgid "Antigua and Barbuda"
 msgstr "Antigua and Barbuda"
 
-#: utils.py:84
+#: utils.py:87
 msgid "Argentina"
 msgstr "Argentina"
 
-#: utils.py:85
+#: utils.py:88
 msgid "Armenia"
 msgstr "Armenia"
 
-#: utils.py:86
+#: utils.py:89
 msgid "Aruba"
 msgstr "Aruba"
 
-#: utils.py:87
+#: utils.py:90
 msgid "Australia"
 msgstr "Australia"
 
-#: utils.py:88
+#: utils.py:91
 msgid "Austria"
 msgstr "Austria"
 
-#: utils.py:89
+#: utils.py:92
 msgid "Azerbaijan"
 msgstr "Azerbaijan"
 
-#: utils.py:90
+#: utils.py:93
 msgid "Bahamas"
 msgstr "Bahamas"
 
-#: utils.py:91
+#: utils.py:94
 msgid "Bahrain"
 msgstr "Bahrain"
 
-#: utils.py:92
+#: utils.py:95
 msgid "Bangladesh"
 msgstr "Bangladesh"
 
-#: utils.py:93
+#: utils.py:96
 msgid "Barbados"
 msgstr "Barbados"
 
-#: utils.py:94
+#: utils.py:97
 msgid "Belarus"
 msgstr "Belarus"
 
-#: utils.py:95
+#: utils.py:98
 msgid "Belgium"
 msgstr "Belgium"
 
-#: utils.py:96
+#: utils.py:99
 msgid "Belize"
 msgstr "Belize"
 
-#: utils.py:97
+#: utils.py:100
 msgid "Benin"
 msgstr "Benin"
 
-#: utils.py:98
+#: utils.py:101
 msgid "Bermuda"
 msgstr "Bermuda"
 
-#: utils.py:99
+#: utils.py:102
 msgid "Bhutan"
 msgstr "Bhutan"
 
-#: utils.py:100
+#: utils.py:103
 msgid "Bolivia"
 msgstr "Bolivia"
 
-#: utils.py:101
+#: utils.py:104
 msgid "Bosnia and Herzegovina"
 msgstr "Bosnia and Herzegovina"
 
-#: utils.py:102
+#: utils.py:105
 msgid "Botswana"
 msgstr "Botswana"
 
-#: utils.py:103
+#: utils.py:106
 msgid "Bouvet Island"
 msgstr "Bouvet Island"
 
-#: utils.py:104
+#: utils.py:107
 msgid "Brazil"
 msgstr "Brazil"
 
-#: utils.py:105
+#: utils.py:108
 msgid "British Indian Ocean Territory"
 msgstr "British Indian Ocean Territory"
 
-#: utils.py:106
+#: utils.py:109
 msgid "Brunei Darussalam"
 msgstr "Brunei Darussalam"
 
-#: utils.py:107
+#: utils.py:110
 msgid "Bulgaria"
 msgstr "Bulgaria"
 
-#: utils.py:108
+#: utils.py:111
 msgid "Burkina Faso"
 msgstr "Burkina Faso"
 
-#: utils.py:109
+#: utils.py:112
 msgid "Burundi"
 msgstr "Burundi"
 
-#: utils.py:110
+#: utils.py:113
 msgid "Cambodia"
 msgstr "Cambodia"
 
-#: utils.py:111
+#: utils.py:114
 msgid "Cameroon"
 msgstr "Cameroon"
 
-#: utils.py:112
+#: utils.py:115
 msgid "Canada"
 msgstr "Canada"
 
-#: utils.py:113
+#: utils.py:116
 msgid "Cape Verde"
 msgstr "Cape Verde"
 
-#: utils.py:114
+#: utils.py:117
 msgid "Cayman Islands"
 msgstr "Cayman Islands"
 
-#: utils.py:115
+#: utils.py:118
 msgid "Central African Republic"
 msgstr "Central African Republic"
 
-#: utils.py:116
+#: utils.py:119
 msgid "Chad"
 msgstr "Chad"
 
-#: utils.py:117
+#: utils.py:120
 msgid "Chile"
 msgstr "Chile"
 
-#: utils.py:118
+#: utils.py:121
 msgid "China"
 msgstr "China"
 
-#: utils.py:119
+#: utils.py:122
 msgid "Christmas Island"
 msgstr "Christmas Island"
 
-#: utils.py:120
+#: utils.py:123
 msgid "Cocos (Keeling) Islands"
 msgstr "Cocos (Keeling) Islands"
 
-#: utils.py:121
+#: utils.py:124
 msgid "Colombia"
 msgstr "Colombia"
 
-#: utils.py:122
+#: utils.py:125
 msgid "Comoros"
 msgstr "Comoros"
 
-#: utils.py:123
+#: utils.py:126
 msgid "Congo"
 msgstr "Congo"
 
-#: utils.py:124
+#: utils.py:127
 msgid "Congo, The Democratic Republic of the"
 msgstr "Congo, The Democratic Republic of the"
 
-#: utils.py:125
+#: utils.py:128
 msgid "Cook Islands"
 msgstr "Cook Islands"
 
-#: utils.py:126
+#: utils.py:129
 msgid "Costa Rica"
 msgstr "Costa Rica"
 
-#: utils.py:127
+#: utils.py:130
 msgid "Cote d'Ivoire"
 msgstr "Cote d'Ivoire"
 
-#: utils.py:128
+#: utils.py:131
 msgid "Croatia"
 msgstr "Croatia"
 
-#: utils.py:129
+#: utils.py:132
 msgid "Cuba"
 msgstr "Cuba"
 
-#: utils.py:130
+#: utils.py:133
 msgid "Cyprus"
 msgstr "Cyprus"
 
-#: utils.py:131
+#: utils.py:134
 msgid "Czech Republic"
 msgstr "Czech Republic"
 
-#: utils.py:132
+#: utils.py:135
 msgid "Denmark"
 msgstr "Denmark"
 
-#: utils.py:133
+#: utils.py:136
 msgid "Djibouti"
 msgstr "Djibouti"
 
-#: utils.py:134
+#: utils.py:137
 msgid "Dominica"
 msgstr "Dominica"
 
-#: utils.py:135
+#: utils.py:138
 msgid "Dominican Republic"
 msgstr "Dominican Republic"
 
-#: utils.py:136
+#: utils.py:139
 msgid "Ecuador"
 msgstr "Ecuador"
 
-#: utils.py:137
+#: utils.py:140
 msgid "Egypt"
 msgstr "Egypt"
 
-#: utils.py:138
+#: utils.py:141
 msgid "El Salvador"
 msgstr "El Salvador"
 
-#: utils.py:139
+#: utils.py:142
 msgid "Equatorial Guinea"
 msgstr "Equatorial Guinea"
 
-#: utils.py:140
+#: utils.py:143
 msgid "Eritrea"
 msgstr "Eritrea"
 
-#: utils.py:141
+#: utils.py:144
 msgid "Estonia"
 msgstr "Estonia"
 
-#: utils.py:142
+#: utils.py:145
 msgid "Ethiopia"
 msgstr "Ethiopia"
 
-#: utils.py:143
+#: utils.py:146
 msgid "Falkland Islands (Malvinas)"
 msgstr "Falkland Islands (Malvinas)"
 
-#: utils.py:144
+#: utils.py:147
 msgid "Faroe Islands"
 msgstr "Faroe Islands"
 
-#: utils.py:145
+#: utils.py:148
 msgid "Fiji"
 msgstr "Fiji"
 
-#: utils.py:146
+#: utils.py:149
 msgid "Finland"
 msgstr "Finland"
 
-#: utils.py:147
+#: utils.py:150
 msgid "France"
 msgstr "France"
 
-#: utils.py:148
+#: utils.py:151
 msgid "French Guiana"
 msgstr "French Guiana"
 
-#: utils.py:149
+#: utils.py:152
 msgid "French Polynesia"
 msgstr "French Polynesia"
 
-#: utils.py:150
+#: utils.py:153
 msgid "French Southern Territories"
 msgstr "French Southern Territories"
 
-#: utils.py:151
+#: utils.py:154
 msgid "Gabon"
 msgstr "Gabon"
 
-#: utils.py:152
+#: utils.py:155
 msgid "Gambia"
 msgstr "Gambia"
 
-#: utils.py:153
+#: utils.py:156
 msgid "Georgia"
 msgstr "Georgia"
 
-#: utils.py:154
+#: utils.py:157
 msgid "Germany"
 msgstr "Germany"
 
-#: utils.py:155
+#: utils.py:158
 msgid "Ghana"
 msgstr "Ghana"
 
-#: utils.py:156
+#: utils.py:159
 msgid "Gibraltar"
 msgstr "Gibraltar"
 
-#: utils.py:157
+#: utils.py:160
 msgid "Greece"
 msgstr "Greece"
 
-#: utils.py:158
+#: utils.py:161
 msgid "Greenland"
 msgstr "Greenland"
 
-#: utils.py:159
+#: utils.py:162
 msgid "Grenada"
 msgstr "Grenada"
 
-#: utils.py:160
+#: utils.py:163
 msgid "Guadeloupe"
 msgstr "Guadeloupe"
 
-#: utils.py:161
+#: utils.py:164
 msgid "Guam"
 msgstr "Guam"
 
-#: utils.py:162
+#: utils.py:165
 msgid "Guatemala"
 msgstr "Guatemala"
 
-#: utils.py:163
+#: utils.py:166
 msgid "Guernsey"
 msgstr "Guernsey"
 
-#: utils.py:164
+#: utils.py:167
 msgid "Guinea"
 msgstr "Guinea"
 
-#: utils.py:165
+#: utils.py:168
 msgid "Guinea-Bissau"
 msgstr "Guinea-Bissau"
 
-#: utils.py:166
+#: utils.py:169
 msgid "Guyana"
 msgstr "Guyana"
 
-#: utils.py:167
+#: utils.py:170
 msgid "Haiti"
 msgstr "Haiti"
 
-#: utils.py:168
+#: utils.py:171
 msgid "Heard Island and McDonald Islands"
 msgstr "Heard Island and McDonald Islands"
 
-#: utils.py:169
+#: utils.py:172
 msgid "Holy See (Vatican City State)"
 msgstr "Holy See (Vatican City State)"
 
-#: utils.py:170
+#: utils.py:173
 msgid "Honduras"
 msgstr "Honduras"
 
-#: utils.py:171
+#: utils.py:174
 msgid "Hong Kong"
 msgstr "Hong Kong"
 
-#: utils.py:172
+#: utils.py:175
 msgid "Hungary"
 msgstr "Hungary"
 
-#: utils.py:173
+#: utils.py:176
 msgid "Iceland"
 msgstr "Iceland"
 
-#: utils.py:174
+#: utils.py:177
 msgid "India"
 msgstr "India"
 
-#: utils.py:175
+#: utils.py:178
 msgid "Indonesia"
 msgstr "Indonesia"
 
-#: utils.py:176
+#: utils.py:179
 msgid "Iran, Islamic Republic of"
 msgstr "Iran, Islamic Republic of"
 
-#: utils.py:177
+#: utils.py:180
 msgid "Iraq"
 msgstr "Iraq"
 
-#: utils.py:178
+#: utils.py:181
 msgid "Ireland"
 msgstr "Ireland"
 
-#: utils.py:179
+#: utils.py:182
 msgid "Isle of Man"
 msgstr "Isle of Man"
 
-#: utils.py:180
+#: utils.py:183
 msgid "Israel"
 msgstr "Israel"
 
-#: utils.py:181
+#: utils.py:184
 msgid "Italy"
 msgstr "Italy"
 
-#: utils.py:182
+#: utils.py:185
 msgid "Jamaica"
 msgstr "Jamaica"
 
-#: utils.py:183
+#: utils.py:186
 msgid "Japan"
 msgstr "Japan"
 
-#: utils.py:184
+#: utils.py:187
 msgid "Jersey"
 msgstr "Jersey"
 
-#: utils.py:185
+#: utils.py:188
 msgid "Jordan"
 msgstr "Jordan"
 
-#: utils.py:186
+#: utils.py:189
 msgid "Kazakhstan"
 msgstr "Kazakhstan"
 
-#: utils.py:187
+#: utils.py:190
 msgid "Kenya"
 msgstr "Kenya"
 
-#: utils.py:188
+#: utils.py:191
 msgid "Kiribati"
 msgstr "Kiribati"
 
-#: utils.py:189
+#: utils.py:192
 msgid "Korea, Democratic People's Republic of"
 msgstr "Korea, Democratic People's Republic of"
 
-#: utils.py:190
+#: utils.py:193
 msgid "Korea, Republic of"
 msgstr "Korea, Republic of"
 
-#: utils.py:191
+#: utils.py:194
 msgid "Kuwait"
 msgstr "Kuwait"
 
-#: utils.py:192
+#: utils.py:195
 msgid "Kyrgyzstan"
 msgstr "Kyrgyzstan"
 
-#: utils.py:193
+#: utils.py:196
 msgid "Lao People's Democratic Republic"
 msgstr "Lao People's Democratic Republic"
 
-#: utils.py:194
+#: utils.py:197
 msgid "Latvia"
 msgstr "Latvia"
 
-#: utils.py:195
+#: utils.py:198
 msgid "Lebanon"
 msgstr "Lebanon"
 
-#: utils.py:196
+#: utils.py:199
 msgid "Lesotho"
 msgstr "Lesotho"
 
-#: utils.py:197
+#: utils.py:200
 msgid "Liberia"
 msgstr "Liberia"
 
-#: utils.py:198
+#: utils.py:201
 msgid "Libyan Arab Jamahiriya"
 msgstr "Libyan Arab Jamahiriya"
 
-#: utils.py:199
+#: utils.py:202
 msgid "Liechtenstein"
 msgstr "Liechtenstein"
 
-#: utils.py:200
+#: utils.py:203
 msgid "Lithuania"
 msgstr "Lithuania"
 
-#: utils.py:201
+#: utils.py:204
 msgid "Luxembourg"
 msgstr "Luxembourg"
 
-#: utils.py:202
+#: utils.py:205
 msgid "Macao"
 msgstr "Macao"
 
-#: utils.py:203
+#: utils.py:206
 msgid "Macedonia, The Former Yugoslav Republic of"
 msgstr "Macedonia, The Former Yugoslav Republic of"
 
-#: utils.py:204
+#: utils.py:207
 msgid "Madagascar"
 msgstr "Madagascar"
 
-#: utils.py:205
+#: utils.py:208
 msgid "Malawi"
 msgstr "Malawi"
 
-#: utils.py:206
+#: utils.py:209
 msgid "Malaysia"
 msgstr "Malaysia"
 
-#: utils.py:207
+#: utils.py:210
 msgid "Maldives"
 msgstr "Maldives"
 
-#: utils.py:208
+#: utils.py:211
 msgid "Mali"
 msgstr "Mali"
 
-#: utils.py:209
+#: utils.py:212
 msgid "Malta"
 msgstr "Malta"
 
-#: utils.py:210
+#: utils.py:213
 msgid "Marshall Islands"
 msgstr "Marshall Islands"
 
-#: utils.py:211
+#: utils.py:214
 msgid "Martinique"
 msgstr "Martinique"
 
-#: utils.py:212
+#: utils.py:215
 msgid "Mauritania"
 msgstr "Mauritania"
 
-#: utils.py:213
+#: utils.py:216
 msgid "Mauritius"
 msgstr "Mauritius"
 
-#: utils.py:214
+#: utils.py:217
 msgid "Mayotte"
 msgstr "Mayotte"
 
-#: utils.py:215
+#: utils.py:218
 msgid "Mexico"
 msgstr "Mexico"
 
-#: utils.py:216
+#: utils.py:219
 msgid "Micronesia, Federated States of"
 msgstr "Micronesia, Federated States of"
 
-#: utils.py:217
+#: utils.py:220
 msgid "Moldova"
 msgstr "Moldova"
 
-#: utils.py:218
+#: utils.py:221
 msgid "Monaco"
 msgstr "Monaco"
 
-#: utils.py:219
+#: utils.py:222
 msgid "Mongolia"
 msgstr "Mongolia"
 
-#: utils.py:220
+#: utils.py:223
 msgid "Montenegro"
 msgstr "Montenegro"
 
-#: utils.py:221
+#: utils.py:224
 msgid "Montserrat"
 msgstr "Montserrat"
 
-#: utils.py:222
+#: utils.py:225
 msgid "Morocco"
 msgstr "Morocco"
 
-#: utils.py:223
+#: utils.py:226
 msgid "Mozambique"
 msgstr "Mozambique"
 
-#: utils.py:224
+#: utils.py:227
 msgid "Myanmar"
 msgstr "Myanmar"
 
-#: utils.py:225
+#: utils.py:228
 msgid "Namibia"
 msgstr "Namibia"
 
-#: utils.py:226
+#: utils.py:229
 msgid "Nauru"
 msgstr "Nauru"
 
-#: utils.py:227
+#: utils.py:230
 msgid "Nepal"
 msgstr "Nepal"
 
-#: utils.py:228
+#: utils.py:231
 msgid "Netherlands"
 msgstr "Netherlands"
 
-#: utils.py:229
+#: utils.py:232
 msgid "Netherlands Antilles"
 msgstr "Netherlands Antilles"
 
-#: utils.py:230
+#: utils.py:233
 msgid "New Caledonia"
 msgstr "New Caledonia"
 
-#: utils.py:231
+#: utils.py:234
 msgid "New Zealand"
 msgstr "New Zealand"
 
-#: utils.py:232
+#: utils.py:235
 msgid "Nicaragua"
 msgstr "Nicaragua"
 
-#: utils.py:233
+#: utils.py:236
 msgid "Niger"
 msgstr "Niger"
 
-#: utils.py:234
+#: utils.py:237
 msgid "Nigeria"
 msgstr "Nigeria"
 
-#: utils.py:235
+#: utils.py:238
 msgid "Niue"
 msgstr "Niue"
 
-#: utils.py:236
+#: utils.py:239
 msgid "Norfolk Island"
 msgstr "Norfolk Island"
 
-#: utils.py:237
+#: utils.py:240
 msgid "Northern Mariana Islands"
 msgstr "Northern Mariana Islands"
 
-#: utils.py:238
+#: utils.py:241
 msgid "Norway"
 msgstr "Norway"
 
-#: utils.py:239
+#: utils.py:242
 msgid "Oman"
 msgstr "Oman"
 
-#: utils.py:240
+#: utils.py:243
 msgid "Pakistan"
 msgstr "Pakistan"
 
-#: utils.py:241
+#: utils.py:244
 msgid "Palau"
 msgstr "Palau"
 
-#: utils.py:242
+#: utils.py:245
 msgid "Palestinian Territory, Occupied"
 msgstr "Palestinian Territory, Occupied"
 
-#: utils.py:243
+#: utils.py:246
 msgid "Panama"
 msgstr "Panama"
 
-#: utils.py:244
+#: utils.py:247
 msgid "Papua New Guinea"
 msgstr "Papua New Guinea"
 
-#: utils.py:245
+#: utils.py:248
 msgid "Paraguay"
 msgstr "Paraguay"
 
-#: utils.py:246
+#: utils.py:249
 msgid "Peru"
 msgstr "Peru"
 
-#: utils.py:247
+#: utils.py:250
 msgid "Philippines"
 msgstr "Philippines"
 
-#: utils.py:248
+#: utils.py:251
 msgid "Pitcairn"
 msgstr "Pitcairn"
 
-#: utils.py:249
+#: utils.py:252
 msgid "Poland"
 msgstr "Poland"
 
-#: utils.py:250
+#: utils.py:253
 msgid "Portugal"
 msgstr "Portugal"
 
-#: utils.py:251
+#: utils.py:254
 msgid "Puerto Rico"
 msgstr "Puerto Rico"
 
-#: utils.py:252
+#: utils.py:255
 msgid "Qatar"
 msgstr "Qatar"
 
-#: utils.py:253
+#: utils.py:256
 msgid "Reunion"
 msgstr "Reunion"
 
-#: utils.py:254
+#: utils.py:257
 msgid "Romania"
 msgstr "Romania"
 
-#: utils.py:255
+#: utils.py:258
 msgid "Russian Federation"
 msgstr "Russian Federation"
 
-#: utils.py:256
+#: utils.py:259
 msgid "Rwanda"
 msgstr "Rwanda"
 
-#: utils.py:257
+#: utils.py:260
 msgid "Saint Barthelemy"
 msgstr "Saint Barthelemy"
 
-#: utils.py:258
+#: utils.py:261
 msgid "Saint Helena"
 msgstr "Saint Helena"
 
-#: utils.py:259
+#: utils.py:262
 msgid "Saint Kitts and Nevis"
 msgstr "Saint Kitts and Nevis"
 
-#: utils.py:260
+#: utils.py:263
 msgid "Saint Lucia"
 msgstr "Saint Lucia"
 
-#: utils.py:261
+#: utils.py:264
 msgid "Saint Martin"
 msgstr "Saint Martin"
 
-#: utils.py:262
+#: utils.py:265
 msgid "Saint Pierre and Miquelon"
 msgstr "Saint Pierre and Miquelon"
 
-#: utils.py:263
+#: utils.py:266
 msgid "Saint Vincent and the Grenadines"
 msgstr "Saint Vincent and the Grenadines"
 
-#: utils.py:264
+#: utils.py:267
 msgid "Samoa"
 msgstr "Samoa"
 
-#: utils.py:265
+#: utils.py:268
 msgid "San Marino"
 msgstr "San Marino"
 
-#: utils.py:266
+#: utils.py:269
 msgid "Sao Tome and Principe"
 msgstr "Sao Tome and Principe"
 
-#: utils.py:267
+#: utils.py:270
 msgid "Saudi Arabia"
 msgstr "Saudi Arabia"
 
-#: utils.py:268
+#: utils.py:271
 msgid "Senegal"
 msgstr "Senegal"
 
-#: utils.py:269
+#: utils.py:272
 msgid "Serbia"
 msgstr "Serbia"
 
-#: utils.py:270
+#: utils.py:273
 msgid "Seychelles"
 msgstr "Seychelles"
 
-#: utils.py:271
+#: utils.py:274
 msgid "Sierra Leone"
 msgstr "Sierra Leone"
 
-#: utils.py:272
+#: utils.py:275
 msgid "Singapore"
 msgstr "Singapore"
 
-#: utils.py:273
+#: utils.py:276
 msgid "Slovakia"
 msgstr "Slovakia"
 
-#: utils.py:274
+#: utils.py:277
 msgid "Slovenia"
 msgstr "Slovenia"
 
-#: utils.py:275
+#: utils.py:278
 msgid "Solomon Islands"
 msgstr "Solomon Islands"
 
-#: utils.py:276
+#: utils.py:279
 msgid "Somalia"
 msgstr "Somalia"
 
-#: utils.py:277
+#: utils.py:280
 msgid "South Africa"
 msgstr "South Africa"
 
-#: utils.py:278
+#: utils.py:281
 msgid "South Georgia and the South Sandwich Islands"
 msgstr "South Georgia and the South Sandwich Islands"
 
-#: utils.py:279
+#: utils.py:282
 msgid "Spain"
 msgstr "SpainEspaña"
 
-#: utils.py:280
+#: utils.py:283
 msgid "Sri Lanka"
 msgstr "Sri Lanka"
 
-#: utils.py:281
+#: utils.py:284
 msgid "Sudan"
 msgstr "Sudan"
 
-#: utils.py:282
+#: utils.py:285
 msgid "Suriname"
 msgstr "Suriname"
 
-#: utils.py:283
+#: utils.py:286
 msgid "Svalbard and Jan Mayen"
 msgstr "Svalbard and Jan Mayen"
 
-#: utils.py:284
+#: utils.py:287
 msgid "Swaziland"
 msgstr "Swaziland"
 
-#: utils.py:285
+#: utils.py:288
 msgid "Sweden"
 msgstr "Sweden"
 
-#: utils.py:286
+#: utils.py:289
 msgid "Switzerland"
 msgstr "Switzerland"
 
-#: utils.py:287
+#: utils.py:290
 msgid "Syrian Arab Republic"
 msgstr "Syrian Arab Republic"
 
-#: utils.py:288
+#: utils.py:291
 msgid "Taiwan, Province of China"
 msgstr "Taiwan, Province of China"
 
-#: utils.py:289
+#: utils.py:292
 msgid "Tajikistan"
 msgstr "Tajikistan"
 
-#: utils.py:290
+#: utils.py:293
 msgid "Tanzania, United Republic of"
 msgstr "Tanzania, United Republic of"
 
-#: utils.py:291
+#: utils.py:294
 msgid "Thailand"
 msgstr "Thailand"
 
-#: utils.py:292
+#: utils.py:295
 msgid "Timor-Leste"
 msgstr "Timor-Leste"
 
-#: utils.py:293
+#: utils.py:296
 msgid "Togo"
 msgstr "Togo"
 
-#: utils.py:294
+#: utils.py:297
 msgid "Tokelau"
 msgstr "Tokelau"
 
-#: utils.py:295
+#: utils.py:298
 msgid "Tonga"
 msgstr "Tonga"
 
-#: utils.py:296
+#: utils.py:299
 msgid "Trinidad and Tobago"
 msgstr "Trinidad and Tobago"
 
-#: utils.py:297
+#: utils.py:300
 msgid "Tunisia"
 msgstr "Tunisia"
 
-#: utils.py:298
+#: utils.py:301
 msgid "Turkey"
 msgstr "Turkey"
 
-#: utils.py:299
+#: utils.py:302
 msgid "Turkmenistan"
 msgstr "Turkmenistan"
 
-#: utils.py:300
+#: utils.py:303
 msgid "Turks and Caicos Islands"
 msgstr "Turks and Caicos Islands"
 
-#: utils.py:301
+#: utils.py:304
 msgid "Tuvalu"
 msgstr "Tuvalu"
 
-#: utils.py:302
+#: utils.py:305
 msgid "Uganda"
 msgstr "Uganda"
 
-#: utils.py:303
+#: utils.py:306
 msgid "Ukraine"
 msgstr "Ukraine"
 
-#: utils.py:304
+#: utils.py:307
 msgid "United Arab Emirates"
 msgstr "United Arab Emirates"
 
-#: utils.py:305
+#: utils.py:308
 msgid "United States"
 msgstr "United States"
 
-#: utils.py:306
+#: utils.py:309
 msgid "United States Minor Outlying Islands"
 msgstr "United States Minor Outlying Islands"
 
-#: utils.py:307
+#: utils.py:310
 msgid "Uruguay"
 msgstr "Uruguay"
 
-#: utils.py:308
+#: utils.py:311
 msgid "Uzbekistan"
 msgstr "Uzbekistan"
 
-#: utils.py:309
+#: utils.py:312
 msgid "Vanuatu"
 msgstr "Vanuatu"
 
-#: utils.py:310
+#: utils.py:313
 msgid "Venezuela"
 msgstr "Venezuela"
 
-#: utils.py:311
+#: utils.py:314
 msgid "Viet Nam"
 msgstr "Viet Nam"
 
-#: utils.py:312
+#: utils.py:315
 msgid "Virgin Islands, British"
 msgstr "Virgin Islands, British"
 
-#: utils.py:313
+#: utils.py:316
 msgid "Virgin Islands, U.S."
 msgstr "Virgin Islands, U.S."
 
-#: utils.py:314
+#: utils.py:317
 msgid "Wallis and Futuna"
 msgstr "Wallis and Futuna"
 
-#: utils.py:315
+#: utils.py:318
 msgid "Western Sahara"
 msgstr "Western Sahara"
 
-#: utils.py:316
+#: utils.py:319
 msgid "Yemen"
 msgstr "Yemen"
 
-#: utils.py:317
+#: utils.py:320
 msgid "Zambia"
 msgstr "Zambia"
 
-#: utils.py:318
+#: utils.py:321
 msgid "Zimbabwe"
 msgstr "Zimbabwe"
 
@@ -1095,47 +1095,25 @@ msgstr "Terminos de uso"
 msgid "Powered by"
 msgstr "Powered by"
 
-#: templates/login.html:7
+#: templates/login.html:4 truekko/templates/truekko/register.html:4
+#: truekko/templates/truekko/register_admin.html:4
+#: truekko/templates/truekko/register_single.html:4
+msgid " Register "
+msgstr " Registrar "
+
+#: templates/login.html:14
 msgid ""
 "\n"
-"To login in etruekko you should have an account. If you don't have\n"
-"one, you can request the creation to a community. In etruekko users must\n"
-"be part of a community and only will be created by community "
-"administrators.\n"
+"    The login has failed, try again. If you don't have an account,\n"
+"    please register.\n"
+"    "
 msgstr ""
 "\n"
-"Para acceder a etruekko necesitas una cuenta. Si no tienes una\n"
-"puedes solicitar unirte a una comunidad. En etruekko los usuarios deben\n"
-"ser parte de una comunidad y sólo pueden ser creados por los administradores "
-"de una comunidad.\n"
+"    La autenticación ha fallado, prueba otra vez. Si no tienes una cuenta,\n"
+"    por favor regístrate.\n"
+"    "
 
-#: templates/login.html:15
-msgid "You can view the list of communities in:"
-msgstr "Puedes ver la lista de comunidades en:"
-
-#: templates/login.html:16 truekko/templates/search/advanced.html:54
-#: truekko/templates/truekko/anon_index.html:229
-#: truekko/templates/truekko/anon_index.html:334
-#: truekko/templates/truekko/channel_view.html:17
-#: truekko/templates/truekko/groups.html:3
-#: truekko/templates/truekko/user_register.html:3
-#: truekko/templates/truekko/view_profile.html:77
-msgid "Communities"
-msgstr "Comunidades"
-
-#: templates/login.html:22
-#, python-format
-msgid ""
-"\n"
-"The user \"%(username)s\" is not active yet, this user is waiting for\n"
-"a community membership request to be part of etruekko.\n"
-msgstr ""
-"\n"
-"El usuario \"%(username)s\" no está activo todavía, este usuario está\n"
-"esperando la confirmación de una solicitud de comunidad para ser parte de "
-"etruekko.\n"
-
-#: templates/login.html:42
+#: templates/login.html:24
 msgid "Sing in"
 msgstr "Entrar"
 
@@ -1199,12 +1177,28 @@ msgstr "Olvidé la contraseña"
 msgid "Register"
 msgstr "Registro"
 
-#: templates/accounts/password_reset.html:13
-#: templates/accounts/password_reset_confirm_form.html:14
+#: templates/accounts/password_reset.html:15
+msgid ""
+"It seems you forgot your password, put your email address and we'll send you "
+"a password recover link"
+msgstr ""
+"Parece que has olvidado tu contraseña, escribe tu correo electrónico y te "
+"enviaremos un enlace para recuperar tu contraseña"
+
+#: templates/accounts/password_reset.html:23
+#: templates/accounts/password_reset_confirm_form.html:23
 msgid "Send"
 msgstr "Enviar"
 
-#: templates/accounts/password_reset_confirm_form.html:17
+#: templates/accounts/password_reset_confirm_form.html:14
+msgid ""
+"You're going to reset your password, write a new password and be sure to "
+"remember it"
+msgstr ""
+"Vas a cambiar tu contraseña, escribe una contraseña nueva y asegúrate de "
+"recordarla"
+
+#: templates/accounts/password_reset_confirm_form.html:26
 msgid "Sorry, this link has expired or is invalid"
 msgstr "Lo sentimos, este enlace ha expirado o es invalido"
 
@@ -2226,6 +2220,16 @@ msgstr ""
 msgid "I want add an advertise in Etruekko"
 msgstr "Quiero anunciarme en Etruekko"
 
+#: truekko/templates/search/advanced.html:54
+#: truekko/templates/truekko/anon_index.html:229
+#: truekko/templates/truekko/anon_index.html:334
+#: truekko/templates/truekko/channel_view.html:17
+#: truekko/templates/truekko/groups.html:3
+#: truekko/templates/truekko/user_register.html:3
+#: truekko/templates/truekko/view_profile.html:77
+msgid "Communities"
+msgstr "Comunidades"
+
 #: truekko/templates/search/advanced.html:55
 msgid "Users"
 msgstr "Usuarios"
@@ -2852,12 +2856,6 @@ msgstr "Número de intercambios en etruekko"
 #: truekko/templates/truekko/profile_info.html:9
 msgid "Number of truekkos"
 msgstr "Número de truekkos"
-
-#: truekko/templates/truekko/register.html:4
-#: truekko/templates/truekko/register_admin.html:4
-#: truekko/templates/truekko/register_single.html:4
-msgid " Register "
-msgstr " Registrar "
 
 #: truekko/templates/truekko/register.html:10
 #: truekko/templates/truekko/register_admin.html:10
@@ -3517,6 +3515,32 @@ msgstr ""
 msgid ""
 "Private, if you check this option, only this user will view this messages"
 msgstr "Privado, si seleccionas esta opción sólo este usuario verá el mensaje"
+
+#~ msgid ""
+#~ "\n"
+#~ "To login in etruekko you should have an account. If you don't have\n"
+#~ "one, you can request the creation to a community. In etruekko users must\n"
+#~ "be part of a community and only will be created by community "
+#~ "administrators.\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Para acceder a etruekko necesitas una cuenta. Si no tienes una\n"
+#~ "puedes solicitar unirte a una comunidad. En etruekko los usuarios deben\n"
+#~ "ser parte de una comunidad y sólo pueden ser creados por los "
+#~ "administradores de una comunidad.\n"
+
+#~ msgid "You can view the list of communities in:"
+#~ msgstr "Puedes ver la lista de comunidades en:"
+
+#~ msgid ""
+#~ "\n"
+#~ "The user \"%(username)s\" is not active yet, this user is waiting for\n"
+#~ "a community membership request to be part of etruekko.\n"
+#~ msgstr ""
+#~ "\n"
+#~ "El usuario \"%(username)s\" no está activo todavía, este usuario está\n"
+#~ "esperando la confirmación de una solicitud de comunidad para ser parte de "
+#~ "etruekko.\n"
 
 #~ msgid "All communities"
 #~ msgstr "Todas las comunidades"
